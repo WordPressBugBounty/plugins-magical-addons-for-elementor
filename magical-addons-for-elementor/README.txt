@@ -273,6 +273,9 @@ e.g.
 
 == Changelog ==
 
+= 1.2.2 =
+	* Security update 
+
 = 1.2.1 =
 	* Fixed skillbar animation issue
 	* Added waypoint js

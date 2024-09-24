@@ -56,9 +56,10 @@ if (!class_exists('Magcial_Addon_Cloud_Library')) {
 		public function editor_script()
 		{
 
-			wp_enqueue_script('mg-elibrary',  plugins_url('/assets/js/elementor-manage-library.js', __FILE__), ['jquery']);
+			wp_enqueue_script('mg-elibrary',  plugins_url('/assets/js/elementor-manage-library.js', __FILE__), ['jquery'], MAGICAL_ADDON_VERSION, true);
 			wp_localize_script('mg-elibrary', 'mg_lib_params', [
 				'site' => site_url(),
+				'nonce' => wp_create_nonce('mg_nonce'),
 			]);
 			wp_enqueue_script('masonry');
 			wp_enqueue_style('mgaddon_lib',  plugins_url('/assets/css/style.css', __FILE__));

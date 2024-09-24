@@ -75,6 +75,7 @@
                     url: ajaxurl, 
                     data: {
                       action: 'magical_addon_import_template',
+                      nonce: mg_lib_params.nonce,
                       id: tmpl_id,
                       parent_site: parent_site,
                     },
