@@ -13,6 +13,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Repeater;
 use Elementor\Utils;
+use Elementor\Icons_Manager;
 
 defined('ABSPATH') || die();
 
@@ -160,7 +161,6 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 ],
             ]
         );
-
         $repeater->add_control(
             'hashtags',
             [
@@ -463,7 +463,7 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                     ],
                     [
                         'share_icon'    => [
-                            'value'   => 'fab fa-twitter',
+                            'value'   => 'fab fa-x-twitter',
                             'library' => 'fa-brands',
                         ],
                         'share_network' => 'twitter',
@@ -763,10 +763,32 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
         $social_icons = $settings['icon_list'];
         $network_view = $settings['network_view'];
 ?>
+
+
         <ul class="mg-share-buttons">
             <?php
-            foreach ($social_icons as $icon) :
+            foreach ($social_icons as $index => $icon) :
                 $social_media_name  = sanitize_key($icon['share_network']);
+
+                if ($social_media_name == 'email') {
+                    $select_icon = [
+                        'value'   => 'fab fa-envelope',
+                        'library' => 'fa-solid',
+                    ];
+                } elseif ($social_media_name == 'twitter') {
+                    $select_icon = [
+                        'value'   => 'fab fa-x-twitter',
+                        'library' => 'fa-brands',
+                    ];
+                } else {
+                    $select_icon = [
+                        'value'   => 'fab fa-' . $icon['share_network'],
+                        'library' => 'fa-brands',
+                    ];
+                }
+
+
+
                 $custom_share_title = esc_html($icon['share_title']);
                 $share_text         = esc_html($icon['share_text']);
                 $default_share_text = esc_html(ucfirst($social_media_name));
@@ -781,45 +803,52 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 $custom_share_url = isset($icon['custom_link']['url']) ? esc_url($icon['custom_link']['url']) : '';
                 $share_url        = $custom_share_url ? $custom_share_url : $url;
 
-                $this->add_render_attribute('list_classes', 'class', [
+
+                $key1 = $this->get_repeater_setting_key('list_classes', 'social_icons', $index);
+
+                $this->add_render_attribute($key1, 'class', [
                     'mg-share-button',
                     'elementor-repeater-item-' . sanitize_html_class($icon['_id'])
                 ]);
 
-                $this->add_render_attribute('link_classes', 'class', [
+                $key2 = $this->get_repeater_setting_key('link_classes', 'social_icons', $index);
+
+                $this->add_render_attribute($key2, 'class', [
                     'sharer',
                     'mg-share-network',
                     'elementor-social-icon-' . sanitize_html_class($social_media_name),
                 ]);
 
-                $this->add_render_attribute('link_classes', 'data-sharer', sanitize_html_class($social_media_name));
-                $this->add_render_attribute('link_classes', 'data-url', esc_url($share_url));
-                $this->add_render_attribute('link_classes', 'data-hashtags', esc_attr($hashtags));
-                $this->add_render_attribute('link_classes', 'data-title', esc_attr($custom_share_title));
-                $this->add_render_attribute('link_classes', 'data-image', esc_url($image));
+                $this->add_render_attribute($key2, 'data-sharer', sanitize_html_class($social_media_name));
+                $this->add_render_attribute($key2, 'data-url', esc_url($share_url));
+                $this->add_render_attribute($key2, 'data-hashtags', esc_attr($hashtags));
+                $this->add_render_attribute($key2, 'data-title', esc_attr($custom_share_title));
+                $this->add_render_attribute($key2, 'data-image', esc_url($image));
                 if ($social_media_name == 'email') {
-                    $this->add_render_attribute('link_classes', 'data-to', sanitize_email($icon['email_to']));
-                    $this->add_render_attribute('link_classes', 'data-subject', sanitize_text_field($icon['email_subject']));
+                    $this->add_render_attribute($key2, 'data-to', sanitize_email($icon['email_to']));
+                    $this->add_render_attribute($key2, 'data-subject', sanitize_text_field($icon['email_subject']));
                 }
 
             ?>
-                <li <?php $this->print_render_attribute_string('list_classes'); ?>>
-                    <a <?php $this->print_render_attribute_string('link_classes'); ?>>
+                <li <?php $this->print_render_attribute_string($key1); ?>>
+                    <a <?php $this->print_render_attribute_string($key2); ?>>
                         <?php
                         $social_media_name = $social_media_name === 'email' ? 'envelope' : $social_media_name;
                         $ico_library = $social_media_name === 'envelope' ? 'fa' : 'fab';
 
                         if ('icon_and_text' === $network_view) {
                         ?>
-                            <i class="<?php echo esc_attr($ico_library) ?> fa-<?php echo esc_attr($social_media_name); ?>" aria-hidden="true"></i>
                             <?php
+                            Icons_Manager::render_icon($select_icon, ['aria-hidden' => 'true']);
+
                             if (!empty($share_on_text) && '' !== $share_on_text) {
                                 printf("<span class='mg-share-label'>%s</span>", esc_html($share_on_text));
                             }
                         }
                         if ('icon_only' === $network_view) {
+                            Icons_Manager::render_icon($select_icon, ['aria-hidden' => 'true']);
                             ?>
-                            <i class="<?php echo esc_attr($ico_library) ?> fa-<?php echo esc_attr($social_media_name); ?>" aria-hidden="true"></i>
+
                         <?php
                         }
                         if ('text_only' === $network_view) {
