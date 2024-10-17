@@ -109,6 +109,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'options' => [
 					'style1' => 'Style One',
 					'style2' => 'Style Two',
+					'style3' => 'Style Three',
 				],
 				'default' => 'style1',
 			]
@@ -238,6 +239,19 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 
 			]
 		);
+
+		$this->add_control(
+			'mg_show_description',
+			[
+				'label' => __('Show Description', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __('Show', 'magical-addons-for-elementor'),
+				'label_off' => __('Hide', 'magical-addons-for-elementor'),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
 		$this->add_control(
 			'mg_member_desc',
 			[
@@ -307,7 +321,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'recommended' => [
 					'fa-brands' => [
 						'facebook',
-						'twitter',
+						'x-twitter',
 						'linkedin',
 						'instagram',
 						'reddit',
@@ -326,7 +340,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 						'delicious',
 						'deviantart',
 						'digg',
-						'elementor',
+						'magical-addons-for-elementor',
 						'flickr',
 						'foursquare',
 						'free-code-camp',
@@ -392,7 +406,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 					],
 				],
 				[
-					'$mg_team_social_icon' => 'fa fa-twitter',
+					'$mg_team_social_icon' => 'fa fa-x-twitter',
 					'mg_member_icon_link' => [
 						'url' => 'https://twitter.com',
 					],
@@ -426,7 +440,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				],
 				[
 					'mg_team_social_selected_icon' => [
-						'value' => 'fab fa-twitter',
+						'value' => 'fab fa-x-twitter',
 						'library' => 'fa-brands'
 					],
 					'mg_member_icon_link' => [
@@ -535,13 +549,25 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				],
 			]
 		);
+
 		$this->add_control(
 			'mg_team_content_bg_color',
 			[
 				'label' => __('Content Background color', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .mg-team-content' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .mg-team-content, {{WRAPPER}} .mg-team-style3 .mg-team-content::after' => 'background: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'mg_team_content_bg_hover_color',
+			[
+				'label' => __('Hover Background color', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mg-team-member:hover .mg-team-content, {{WRAPPER}} .mg-team-style3:hover .mg-team-content::after' => 'background: {{VALUE}};',
 				],
 			]
 		);
@@ -594,7 +620,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 					'size' => 100,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .mg-team-img figure img' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mg-team-member figure img' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -625,7 +651,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 					'mg_team_img_auto_height!' => 'yes',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .mg-team-img figure img, .mg-team-style2 .team-bg-img img' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mg-team-member figure img, .mg-team-style2 .team-bg-img img' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -646,7 +672,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 					'mg_team_img_auto_height!' => 'yes',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .mg-team-img' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mg-team-member figure' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -716,7 +742,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .mg-team-img figure img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mg-team-member figure img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -727,7 +753,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .mg-team-img figure img' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mg-team-member figure img' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -739,7 +765,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .mg-team-img figure img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mg-team-member figure img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 
 			]
@@ -751,7 +777,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .mg-team-img' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .mg-team-member' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -759,7 +785,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 			\Elementor\Group_Control_Border::get_type(),
 			[
 				'name' => 'mg_team_img_border',
-				'selector' => '{{WRAPPER}} .mg-team-img figure img',
+				'selector' => '{{WRAPPER}} .mg-team-member figure img',
 			]
 		);
 		$this->end_controls_section();
@@ -801,6 +827,16 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .mg-member-name' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'mg_member_name_hover_color',
+			[
+				'label' => __('Hover Text Color', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mg-team-member:hover .mg-member-name' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -875,6 +911,16 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 			]
 		);
 		$this->add_control(
+			'mgtm_designation_hover_color',
+			[
+				'label' => __('Hover Text Color', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mg-team-member:hover .mg-designation' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
 			'mgtm_designation_bgcolor',
 			[
 				'label' => __('Background Color', 'magical-addons-for-elementor'),
@@ -942,6 +988,16 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .mg-team-content p' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'mg_member_des_hover_color',
+			[
+				'label' => __('Hover Text Color', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mg-team-member:hover .mg-team-content p' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -1058,7 +1114,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 		$this->add_control(
 			'mgtm_icon_color_header',
 			[
-				'label' => __('Icon color', 'plugin-name'),
+				'label' => __('Icon color', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -1179,16 +1235,14 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 		//description
 		$mg_member_desc = $this->get_settings('mg_member_desc');
 		$this->add_inline_editing_attributes('mg_member_desc');
-
+		$mg_show_description = $this->get_settings('mg_show_description');
 
 		// social list item
 		$mg_display_social = $this->get_settings('mg_display_social');
-		$mg_memeber_icon_list = $this->get_settings('mg_memeber_icon_list'); //Repeter
-
-
+		$mg_memeber_icon_list = $this->get_settings('mg_memeber_icon_list'); //Repeater
 
 ?>
-		<div class="mg-team-member <?php if ($all_basic_style == 'style1') :  ?>style1<?php else : ?>mg-team-style2<?php endif; ?>">
+		<div class="mg-team-member <?php if ($all_basic_style == 'style1') : ?>style1<?php elseif ($all_basic_style == 'style2') : ?>mg-team-style2<?php elseif ($all_basic_style == 'style3') : ?>mg-team-style3<?php endif; ?>">
 			<?php if ($all_basic_style == 'style1') : ?>
 				<?php if ($member_img['url'] || $member_img['id']) : ?>
 					<div class="mg-team-img">
@@ -1197,7 +1251,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 						</figure>
 					</div>
 				<?php endif; ?>
-			<?php else : ?>
+			<?php elseif ($all_basic_style == 'style2') : ?>
 				<div class="mg-team-img">
 					<?php if ($team_imgbg_image['url'] || $team_imgbg_image['id']) : ?>
 						<div class="team-bg-img">
@@ -1210,112 +1264,175 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 						</figure>
 					<?php endif; ?>
 				</div>
+			<?php elseif ($all_basic_style == 'style3') : ?>
+				<!-- <div class="mg-team-img mg-style3-img"> -->
+				<!-- You can add specific content or structure for style3 here -->
+				<?php if ($member_img['url'] || $member_img['id']) : ?>
+					<figure class="mg-round-img-style3">
+						<?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'member_img'); ?>
+					</figure>
+				<?php endif; ?>
+				<!-- </div> -->
 			<?php endif; ?>
+
 			<div class="mg-team-content">
-				<?php
-				if ($mg_member_name) :
-					printf(
-						'<%1$s %2$s>%3$s</%1$s>',
-						tag_escape($mg_member_name_tag),
-						$this->get_render_attribute_string('mg_member_name'),
-						mg_kses_tags($mg_member_name)
-					);
-				endif;
-				?>
-				<?php if ($mg_member_designation) : ?>
-					<span <?php echo $this->get_render_attribute_string('mg_member_designation'); ?>><?php echo mg_kses_tags($mg_member_designation); ?></span>
-				<?php endif; ?>
-				<?php if ($mg_member_desc) : ?>
-					<p <?php echo $this->get_render_attribute_string('mg_member_desc'); ?>><?php echo wp_kses_post($mg_member_desc); ?></p>
-				<?php endif; ?>
-				<?php if ($mg_memeber_icon_list && $mg_display_social == 'yes') : ?>
-					<div class="mg-social">
-						<ul>
-							<?php
-							foreach ($mg_memeber_icon_list as $index => $memeber_icon) :
-								$key1 = $this->get_repeater_setting_key('mg_member_icon_link', 'mg_memeber_icon_list', $index);
+				<div class="mg-single-team-details">
 
-								$this->add_render_attribute($key1, 'href', esc_url($memeber_icon['mg_member_icon_link']['url']));
-								if (!empty($memeber_icon['mg_member_icon_link']['is_external'])) {
-									$this->add_render_attribute($key1, 'target', '_blank');
-								}
-								if (!empty($memeber_icon['mg_member_icon_link']['nofollow'])) {
-									$this->set_render_attribute($key1, 'rel', 'nofollow');
-								}
-							?>
-								<li><a <?php echo $this->get_render_attribute_string($key1); ?>>
+					<?php
+					if ($mg_member_name) :
+						printf(
+							'<%1$s %2$s>%3$s</%1$s>',
+							tag_escape($mg_member_name_tag),
+							$this->get_render_attribute_string('mg_member_name'),
+							mg_kses_tags($mg_member_name)
+						);
+					endif;
+					?>
+					<?php if ($mg_member_designation) : ?>
+						<span <?php echo $this->get_render_attribute_string('mg_member_designation'); ?>><?php echo mg_kses_tags($mg_member_designation); ?></span>
+					<?php endif;
 
-										<?php mg_icons_render($memeber_icon, 'mg_team_social_icon', 'mg_team_social_selected_icon'); ?>
-									</a></li>
-							<?php endforeach; ?>
-						</ul>
-					</div>
-				<?php endif; ?>
+					if ($mg_show_description === 'yes' && $mg_member_desc) : ?>
+						<p <?php echo $this->get_render_attribute_string('mg_member_desc'); ?>>
+							<?php echo wp_kses_post($mg_member_desc); ?>
+						</p>
+					<?php endif; ?>
+
+					<?php if ($mg_memeber_icon_list && $mg_display_social == 'yes') : ?>
+						<div class="mg-social">
+							<ul>
+								<?php
+								foreach ($mg_memeber_icon_list as $index => $memeber_icon) :
+									$key1 = $this->get_repeater_setting_key('mg_member_icon_link', 'mg_memeber_icon_list', $index);
+
+									$this->add_render_attribute($key1, 'href', esc_url($memeber_icon['mg_member_icon_link']['url']));
+									if (!empty($memeber_icon['mg_member_icon_link']['is_external'])) {
+										$this->add_render_attribute($key1, 'target', '_blank');
+									}
+									if (!empty($memeber_icon['mg_member_icon_link']['nofollow'])) {
+										$this->set_render_attribute($key1, 'rel', 'nofollow');
+									}
+								?>
+									<li><a <?php echo $this->get_render_attribute_string($key1); ?>>
+											<?php mg_icons_render($memeber_icon, 'mg_team_social_icon', 'mg_team_social_selected_icon'); ?>
+										</a></li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+					<?php endif; ?>
+
+				</div>
 			</div>
 		</div>
-
-
-
 	<?php
 	}
 
 	protected function content_template()
 	{
 	?>
-		<# view.addInlineEditingAttributes( 'mg_member_name' ); view.addRenderAttribute( 'mg_member_name' , 'class' , 'mg-member-name' ); view.addInlineEditingAttributes( 'mg_member_designation' ); view.addRenderAttribute( 'mg_member_designation' , 'class' , 'mg-designation' ); view.addInlineEditingAttributes( 'mg_member_desc' ); if ( settings.member_img.url || settings.member_img.id ) { var image={ id: settings.member_img.id, url: settings.member_img.url, size: settings.thumbnail, dimension: settings.thumbnail_custom_dimension, model: view.getEditModel() }; var image_url=elementor.imagesManager.getImageUrl( image ); } #>
-			<div class="mg-team-member <# if (settings.all_basic_style === 'style1') { #>style1<# } else { #>mg-team-style2<# } #>">
-				<# if( settings.all_basic_style==='style1' ){ #>
-					<# if( settings.member_img.url || settings.member_img.id ){ #>
+		<#
+			view.addInlineEditingAttributes( 'mg_member_name' );
+			view.addRenderAttribute( 'mg_member_name' , 'class' , 'mg-member-name' );
+			view.addInlineEditingAttributes( 'mg_member_designation' );
+			view.addRenderAttribute( 'mg_member_designation' , 'class' , 'mg-designation' );
+			view.addInlineEditingAttributes( 'mg_member_desc' );
+
+			if ( settings.member_img.url || settings.member_img.id ) {
+			var image={
+			id: settings.member_img.id,
+			url: settings.member_img.url,
+			size: settings.thumbnail,
+			dimension: settings.thumbnail_custom_dimension,
+			model: view.getEditModel()
+			};
+			var image_url=elementor.imagesManager.getImageUrl( image );
+			}
+			#>
+			<div class="mg-team-member <# if (settings.all_basic_style === 'style1') { #>style1<# } else if (settings.all_basic_style === 'style2') { #>mg-team-style2<# } else if (settings.all_basic_style === 'style3') { #>mg-team-style3<# } #>">
+				<# if (settings.all_basic_style==='style1' ) { #>
+					<# if (settings.member_img.url || settings.member_img.id) { #>
 						<div class="mg-team-img">
 							<figure>
 								<img alt="Team Image" src="{{ image_url }}">
 							</figure>
 						</div>
 						<# } #>
-							<# } else{ #>
+							<# } else if (settings.all_basic_style==='style2' ) { #>
 								<div class="mg-team-img">
-									<# if ( settings.team_imgbg_image.url || settings.team_imgbg_image.id ) { var bgimage={ id: settings.team_imgbg_image.id, url: settings.team_imgbg_image.url, size: settings.bgimg_thumbnail, dimension: settings.thumbnail_custom_dimension, model: view.getEditModel() }; var bgimage_url=elementor.imagesManager.getImageUrl( bgimage ); #>
+									<# if (settings.team_imgbg_image.url || settings.team_imgbg_image.id) {
+										var bgimage={
+										id: settings.team_imgbg_image.id,
+										url: settings.team_imgbg_image.url,
+										size: settings.bgimg_thumbnail,
+										dimension: settings.thumbnail_custom_dimension,
+										model: view.getEditModel()
+										};
+										var bgimage_url=elementor.imagesManager.getImageUrl( bgimage ); #>
 										<div class="team-bg-img">
 											<img alt="Team Bg Image" src="{{ bgimage_url }}">
 										</div>
 										<# } #>
-											<# if( settings.member_img.url || settings.member_img.id ){ #>
+											<# if (settings.member_img.url || settings.member_img.id) { #>
 												<figure class="mg-round-img">
 													<img alt="Team Image" src="{{ image_url }}">
 												</figure>
 												<# } #>
 								</div>
-								<# } #>
-									<div class="mg-team-content">
-										<# if (settings.mg_member_name) { #>
-											<{{ settings.mg_member_name_tag }} {{{ view.getRenderAttributeString( 'mg_member_name' ) }}}>{{{ settings.mg_member_name }}}</{{ settings.mg_member_name_tag }}>
+								<# } else if (settings.all_basic_style==='style3' ) { #>
+									<!-- <div class="mg-team-img mg-style3-img"> -->
+									<# if (settings.member_img.url || settings.member_img.id) { #>
+										<figure class="mg-round-img-style3">
+											<img alt="Team Image" src="{{ image_url }}">
+										</figure>
+										<# } #>
+											<!-- </div> -->
 											<# } #>
-												<# if (settings.mg_member_designation) { #>
-													<span {{{ view.getRenderAttributeString( 'mg_member_designation' ) }}}>{{{ settings.mg_member_designation }}}</span>
-													<# } #>
-														<# if (settings.mg_member_desc) { #>
-															<p {{{ view.getRenderAttributeString( 'mg_member_desc' ) }}}>{{{ settings.mg_member_desc }}}</p>
+												<div class="mg-team-content">
+													<div class="mg-single-team-details">
+														<# if (settings.mg_member_name) { #>
+															<{{ settings.mg_member_name_tag }} {{{ view.getRenderAttributeString( 'mg_member_name' ) }}}>{{{ settings.mg_member_name }}}</{{ settings.mg_member_name_tag }}>
 															<# } #>
-
-
-																<# if(settings.mg_memeber_icon_list && settings.mg_display_social==='yes' ){ #>
-																	<div class="mg-social">
-																		<ul>
-																			<# _.each( settings.mg_memeber_icon_list, function( item, index ) { var iconHTML=elementor.helpers.renderIcon( view, item.mg_team_social_selected_icon, { 'aria-hidden' : true }, 'i' , 'object' ), migrated=elementor.helpers.isIconMigrated( item, 'mg_team_social_selected_icon' ); var key=view.getRepeaterSettingKey('mg_member_icon_link','mg_memeber_icon_list',index); if(item.mg_member_icon_link.url){ view.addRenderAttribute( key, 'href' , item.mg_member_icon_link.url ); }else{ view.addRenderAttribute( key, 'href' , '#' ); } if ( item.mg_member_icon_link.is_external ) { view.addRenderAttribute( key, 'target' , '_blank' ); } if ( item.mg_member_icon_link.nofollow ) { view.addRenderAttribute( key, 'rel' , 'nofollow' ); } #>
-																				<li><a {{{ view.getRenderAttributeString( key ) }}}>
-																						{{{ iconHTML.value }}}
-																					</a></li>
-
-																				<# } ); #>
-
-																		</ul>
-																	</div>
+																<# if (settings.mg_member_designation) { #>
+																	<span {{{ view.getRenderAttributeString( 'mg_member_designation' ) }}}>{{{ settings.mg_member_designation }}}</span>
 																	<# } #>
-									</div>
+
+																		<# if (settings.mg_show_description==='yes' && settings.mg_member_desc) { #>
+																			<p {{{ view.getRenderAttributeString('mg_member_desc') }}}>
+																				{{{ settings.mg_member_desc }}}
+																			</p>
+																			<# } #>
+
+																				<# if (settings.mg_memeber_icon_list && settings.mg_display_social==='yes' ) { #>
+																					<div class="mg-social">
+																						<ul>
+																							<#
+																								_.each( settings.mg_memeber_icon_list, function( item, index ) {
+																								var iconHTML=elementor.helpers.renderIcon( view, item.mg_team_social_selected_icon, { 'aria-hidden' : true }, 'i' , 'object' ),
+																								migrated=elementor.helpers.isIconMigrated( item, 'mg_team_social_selected_icon' );
+																								var key=view.getRepeaterSettingKey('mg_member_icon_link','mg_memeber_icon_list',index);
+
+																								if (item.mg_member_icon_link.url) {
+																								view.addRenderAttribute( key, 'href' , item.mg_member_icon_link.url );
+																								} else {
+																								view.addRenderAttribute( key, 'href' , '#' );
+																								}
+																								if (item.mg_member_icon_link.is_external) {
+																								view.addRenderAttribute( key, 'target' , '_blank' );
+																								}
+																								if (item.mg_member_icon_link.nofollow) {
+																								view.addRenderAttribute( key, 'rel' , 'nofollow' );
+																								}
+																								#>
+																								<li><a {{{ view.getRenderAttributeString( key ) }}}>
+																										{{{ iconHTML.value }}}
+																									</a></li>
+																								<# }); #>
+																						</ul>
+																					</div>
+																					<# } #>
+													</div>
+												</div>
 			</div>
-
-
-
 	<?php
 	}
 }

@@ -275,6 +275,66 @@ span.mgheading_two {
   box-shadow: 0 0.2rem 2.8rem rgba(36, 36, 36, 0.1);
 }
 
+.mg-team-member.mg-team-style3 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+.mg-team-member.mg-team-style3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mg-team-member.mg-team-style3 .mg-team-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #000000;
+  padding: 20px;
+  background-color: rgb(255 255 255);
+  transform: translateY(calc(100% - 65%));
+  transition: all 0.4s ease-in-out;
+}
+
+.mg-team-member.mg-team-style3:hover .mg-team-content {
+  transform: translateY(0);
+}
+
+figure.mg-round-img-style3 {
+  width: 100%;
+  height: 100%;
+}
+.mg-team-member.mg-team-style3 .mg-designation {
+  padding: 3px 0;
+}
+
+.mg-team-style3 .mg-team-content::after {
+  position: absolute;
+  top: -15px;
+  left: 45%;
+  right: 45%;
+  width: 30px;
+  height: 30px;
+  content: "";
+  background: #ffffff;
+  z-index: -1;
+  transform: rotate(45deg);
+  transition: all 0.4s ease-in-out;
+}
+
+.mg-team-member.mg-team-style3:hover .mg-team-content {
+  background: #ff6a00;
+}
+
+.mg-team-member.mg-team-style3:hover .mg-team-content::after {
+  background: #ff6a00;
+}
+
 .mg-shadow {
   border-radius: 2px;
   box-shadow: 0 0.2rem 2.8rem rgba(36, 36, 36, 0.1);
@@ -299,12 +359,12 @@ span.mgheading_two {
   margin: 10px 0 15px;
 }
 
-.mg-infobox-icon i  {
+.mg-infobox-icon i {
   font-size: 40px;
   color: #000;
 }
 
-.mg-infobox-icon svg  {
+.mg-infobox-icon svg {
   width: 40px;
   fill: #000;
 }
@@ -327,6 +387,7 @@ a.mg-btn:hover {
 
 .mg-infobox a.mg-btn-text.mg-btn i {
   font-size: 80%;
+  transition: 0.3s;
 }
 
 .mg-infobox a.mg-btn-text i {
@@ -337,6 +398,7 @@ a.mg-btn:hover {
 .mg-infobox a.mg-btn-text svg {
   width: 12px;
   fill: #0d6efd;
+  transition: 0.3s;
 }
 
 /*info box Style two*/
@@ -393,7 +455,7 @@ a.mg-btn:hover {
   margin-bottom: 10px;
 }
 .mg-pricing-icon svg {
- width: 60px;
+  width: 60px;
   margin-bottom: 10px;
 }
 
@@ -451,7 +513,7 @@ p.mg-price-desc {
 .mg-team-content,
 .mg-card-text {
   padding: 19.2px 19.2px 40px;
-  padding: 1.2rem 1.2rem 2.5rem;
+  padding: 1.2rem;
 }
 .mg-card-text.list-post-text {
   padding: 19.2px;
@@ -475,17 +537,12 @@ span.mg-designation {
   display: block;
   font-size: 14px;
   color: #a39e9e;
-  margin: 0 0 10px;
+  /* margin: 0 0 10px; */
 }
-
 
 .mg-description {
   font-size: 16px;
 }
-
-
-
-
 
 .mg-social ul {
   margin: 0;
@@ -500,8 +557,10 @@ span.mg-designation {
   transition: 0.3s;
 }
 
-.mg-social {
-  margin: 35px 0 0;
+.mg-team-style3 .mg-social ul li {
+  border: 1px solid #dce1e4;
+  padding: 5px;
+  border-radius: 2px;
 }
 
 .style1 .mg-team-img figure img {
@@ -538,6 +597,19 @@ span.mg-designation {
   text-align: center;
   font-size: 20px;
   color: #c3c3c3;
+}
+
+.mg-team-style3 .mg-social ul li a i {
+  min-width: 15px;
+  min-height: 15px;
+  font-size: 15px;
+  fill: #ffffff;
+}
+
+.mg-team-style3 .mg-social ul li a svg {
+  min-width: 15px;
+  min-height: 15px;
+  fill: #ffffff;
 }
 
 .mg-social ul li a i:hover {
@@ -712,8 +784,6 @@ span.mgc-badge.mgcb-top {
   padding-right: 20px;
 }
 
-
-
 .mg-card-img-left .mg-card-img img {
   border-radius: calc(0.5rem - 1px) 0 0 calc(0.5rem - 1px);
 }
@@ -737,7 +807,6 @@ a.mg-btn.mg-card-btn {
   position: relative;
 }
 
-
 .mg-btn.mg-hvrcard-btn svg,
 .mgprice-btn-wrap .mg-btn-text svg,
 .mg-card-text .mg-btn.mg-card-btn svg,
@@ -745,7 +814,6 @@ a.mg-btn.mg-card-btn {
   fill: #fff;
   width: 12px;
 }
-
 
 .mg-pricing.s2 .mg-btn span.right svg,
 .mg-pricing.s2 .mg-btn span.left svg {
@@ -796,7 +864,6 @@ h3.mg-aboutme-title {
   font-size: 18px;
   text-transform: uppercase;
 }
-
 
 .mg-team-style2 .mg-aboutme-title {
   border: inherit;
@@ -875,8 +942,6 @@ span.mgp-comment i {
   display: inline-block;
   margin-left: 10px;
 }
-
-
 
 /*Link style two*/
 
@@ -1014,7 +1079,7 @@ a.mg-card-btn.mg-link2:hover:before {
   line-height: 1.2;
 }
 
-h2.mgsec-title{
+h2.mgsec-title {
   font-size: 34px;
   line-height: 1.3;
   margin: 0 0 10px;
@@ -2473,7 +2538,6 @@ html body header.magical-header {
   box-shadow: 0 0 0 4px rgba(72, 72, 72, 0.5);
 }
 
-
 .mg-progress {
   width: 100%;
   padding: 10px;
@@ -2510,8 +2574,13 @@ html body header.magical-header {
   height: 100%;
   width: 0;
   background-color: rgb(43, 194, 83);
-  background-image: linear-gradient(center bottom, rgb(43, 194, 83) 37%, rgb(84, 240, 84) 69%);
-  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43, 194, 83) 37%,
+    rgb(84, 240, 84) 69%
+  );
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
@@ -2526,7 +2595,16 @@ html body header.magical-header {
   left: 0;
   bottom: 0;
   right: 0;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
   z-index: 1;
   background-size: 50px 50px;
   animation: move 2s linear infinite;
@@ -2553,4 +2631,47 @@ html body header.magical-header {
 
 .nostripes .progress-line:after {
   background-image: none;
+}
+
+/* Project Details CSS  */
+
+/* Main container styling */
+.project-details {
+  background-color: #f4f4f4;
+  width: 100%;
+  padding: 30px 23px;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Each item styling */
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #dce1e4;
+  transition: all 0.4s ease-in-out;
+}
+
+.project-item:last-child {
+  border-bottom: none;
+}
+
+/* Labels, colons, and values */
+.project-label {
+  color: #000000;
+  width: 35%;
+  transition: all 0.4s ease-in-out;
+}
+
+.colon {
+  color: #000000;
+  transition: all 0.4s ease-in-out;
+}
+
+.project-value {
+  color: #444444;
+  width: 60%;
+  text-align: right;
+  transition: all 0.4s ease-in-out;
 }

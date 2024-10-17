@@ -273,6 +273,11 @@ e.g.
 
 == Changelog ==
 
+= 1.2.4 =
+	* Project details widget added
+	* New style added in team member widget
+	* Twitter x icon added 
+
 = 1.2.3 =
 	* Social Share icons issue fixed
 = 1.2.2 =

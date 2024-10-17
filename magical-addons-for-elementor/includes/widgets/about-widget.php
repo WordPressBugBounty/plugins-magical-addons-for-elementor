@@ -371,7 +371,7 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 				'recommended' => [
 					'fa-brands' => [
 						'facebook',
-						'twitter',
+						'x-twitter',
 						'linkedin',
 						'instagram',
 						'reddit',
@@ -460,7 +460,7 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 			],
 			[
 				'mgab_social_selected_icon' => [
-					'value' => 'fab fa-twitter',
+					'value' => 'fab fa-x-twitter',
 					'library' => 'fa-brands'
 				],
 				'mg_member_icon_link' => [

@@ -192,6 +192,11 @@ class magicalWidgetInit
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/nav-menu/nav-menu.php');
 			$widgets_manager->register(new \MG_Addon_navMenu());
 		}
+		if (mg_get_addons_option('bk_project_details_widget', 'on') == 'on') {
+			// project details Widget
+			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/project-details.php');
+			$widgets_manager->register(new \BkProjectDetails());
+		}
 		if (mg_get_addons_option('mg_data_table', 'on') == 'on') {
 			// Feature List Widget
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/data-table.php');
@@ -208,6 +213,7 @@ class magicalWidgetInit
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/banner.php');
 			$widgets_manager->register(new \MgAddon_Banner());
 		}
+		
 		// Advanced Skillbars
 		if (mg_get_addons_option('mg_skillbar', 'on') == 'on') {
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/advance-skill-bars.php');
