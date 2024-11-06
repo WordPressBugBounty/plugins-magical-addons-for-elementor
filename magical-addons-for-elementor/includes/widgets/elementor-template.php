@@ -127,9 +127,9 @@ class mg_ElementorTemplate extends Widget_Base
     {
         // Get Settings
         $settings = $this->get_settings();
-
-        if ('' == $settings['select_template']) {
-            echo '<div class="mg-etemplate-not">' . esc_html__('Please select a template for display!! If the template list is empty then you need to add template first!!!') . '</div>';
+        $template_id = $settings['select_template'];
+        if ('' == $settings['select_template'] || get_post_status($template_id) != 'publish') {
+            echo '<div class="mg-etemplate-not">' . esc_html__('Please select a valid template for display!! If the template list is empty then you need to add template first!!!') . '</div>';
         } else {
             echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($settings['select_template'], true); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         }

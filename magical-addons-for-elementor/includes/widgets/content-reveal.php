@@ -1015,7 +1015,14 @@ class MgAddon_contentReveal extends \Elementor\Widget_Base
 				break;
 
 			case 'template':
-				$output = \Elementor\Plugin::$instance->frontend->get_builder_content_for_display($settings['template']);
+				$template_id = $settings['template'];
+
+				// Check if the selected template is published
+				if (get_post_status($template_id) == 'publish') {
+					$output = \Elementor\Plugin::$instance->frontend->get_builder_content_for_display($template_id);
+				} else {
+					$output = __('Selected template is not published.', 'magical-addons-for-elementor');
+				}
 				break;
 
 			default:
@@ -1059,7 +1066,7 @@ class MgAddon_contentReveal extends \Elementor\Widget_Base
 		<div class="mg-content-reveal-container">
 			<div <?php echo wp_kses_post($this->get_render_attribute_string('wrapper')); ?>>
 				<div class="mg-content-reveal-content">
-					<?php echo $this->get_content_type(); 
+					<?php echo $this->get_content_type();
 					?>
 				</div>
 				<?php if ('yes' === $settings['separator']) { ?>

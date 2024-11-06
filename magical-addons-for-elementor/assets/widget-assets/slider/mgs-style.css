@@ -78,10 +78,18 @@
 .mgs-item.swiper-slide-active .mgslide-content{
     opacity: 1;
 }
+.mgs-extitle {
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+}
 .mgs-title {
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
     font-size: 40px;
     text-transform: uppercase;
+    margin: 10px 0;
     font-weight: 700;
     color:#fff;
 }
@@ -90,6 +98,18 @@
     font-size: 18px;
     color: #fff;
     line-height: 20px;
+}
+.mgsec-subtitle-exline span{
+    position: relative;
+}
+.mgsec-subtitle-exline span:before{
+    position:absolute;
+    content:"";
+    width: 50px;
+    height: 2px;
+    background: #ccc;
+    margin: 0 0 0 20px;
+    top: 50%;
 }
 .mgs-btn {
   box-shadow: 2px 4px 3px rgba(0,0,0,0.3);
@@ -107,6 +127,17 @@
 }
 
 .mgs-main .swiper-slide.swiper-slide-active {
+    visibility: visible;
+}
+.mgs-navonhover .swiper-button-prev,
+.mgs-navonhover .swiper-button-next{
+    opacity: 0;
+    transition: 0.5s;
+    visibility: hidden;
+}
+.mgs-navonhover:hover .swiper-button-prev,
+.mgs-navonhover:hover .swiper-button-next{
+    opacity: 1;
     visibility: visible;
 }
 /* .mgs-overlay:before {

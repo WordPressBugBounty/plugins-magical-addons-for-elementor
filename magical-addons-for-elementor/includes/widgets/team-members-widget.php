@@ -307,8 +307,23 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'default' => 'yes',
 			]
 		);
+		$this->add_control(
+			'mgteam_social_style',
+			[
+				'label' => __('Social Icon Style', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'style1' => 'Style One',
+					'style2' => 'Style Two',
+				],
+				'default' => 'style1',
+				'condition' => [
+					'mg_display_social' => 'yes',
+					'all_basic_style!' => 'style3',
+				],
+			]
+		);
 		$repeater = new \Elementor\Repeater();
-
 		$repeater->add_control(
 			'mg_team_social_selected_icon',
 			[
@@ -1239,10 +1254,11 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 
 		// social list item
 		$mg_display_social = $this->get_settings('mg_display_social');
+		$mgteam_social_style = $this->get_settings('mgteam_social_style');
 		$mg_memeber_icon_list = $this->get_settings('mg_memeber_icon_list'); //Repeater
 
 ?>
-		<div class="mg-team-member <?php if ($all_basic_style == 'style1') : ?>style1<?php elseif ($all_basic_style == 'style2') : ?>mg-team-style2<?php elseif ($all_basic_style == 'style3') : ?>mg-team-style3<?php endif; ?>">
+		<div class="mg-team-member <?php if ($all_basic_style == 'style1') : ?>style1<?php elseif ($all_basic_style == 'style2') : ?>mg-team-style2<?php elseif ($all_basic_style == 'style3') : ?>mg-team-style3<?php endif; ?> mgt-social-<?php echo isset($mgteam_social_style) ? $mgteam_social_style : 'default'; ?>">
 			<?php if ($all_basic_style == 'style1') : ?>
 				<?php if ($member_img['url'] || $member_img['id']) : ?>
 					<div class="mg-team-img">
@@ -1348,7 +1364,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 			var image_url=elementor.imagesManager.getImageUrl( image );
 			}
 			#>
-			<div class="mg-team-member <# if (settings.all_basic_style === 'style1') { #>style1<# } else if (settings.all_basic_style === 'style2') { #>mg-team-style2<# } else if (settings.all_basic_style === 'style3') { #>mg-team-style3<# } #>">
+			<div class="mg-team-member <# if (settings.all_basic_style === 'style1') { #>style1<# } else if (settings.all_basic_style === 'style2') { #>mg-team-style2<# } else if (settings.all_basic_style === 'style3') { #>mg-team-style3<# } #> mgt-social<# if ( settings.mgteam_social_style ) { #>-{{{ settings.mgteam_social_style }}}<# } #>">
 				<# if (settings.all_basic_style==='style1' ) { #>
 					<# if (settings.member_img.url || settings.member_img.id) { #>
 						<div class="mg-team-img">

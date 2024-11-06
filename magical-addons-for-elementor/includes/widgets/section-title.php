@@ -616,7 +616,119 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 
 			]
 		);
+		$this->add_control(
+			'mgsecsubt_extra_line',
+			[
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'label' => __('Subtitle Extra Line', 'magical-addons-for-elementor'),
+				'separator' => 'before'
+			]
+		);
+		$this->add_control(
+			'mgsecsubt_exline_show',
+			[
+				'label' => __('Extra Line Show?', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __('Yes', 'magical-addons-for-elementor'),
+				'label_off' => __('No', 'magical-addons-for-elementor'),
+				'return_value' => 'yes',
+				'default' => '',
+			]
+		);
+		$this->add_responsive_control(
+			'mgsecsubt_exline_height',
+			[
+				'label' => __('Extra Line Height', 'magical-addons-for-elementor'),
+				'type' =>  \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 50,
+					],
+				],
+				'condition' => [
+					'mgsecsubt_exline_show' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .mgsec-subtitle-exline span:before' => 'height: {{SIZE}}{{UNIT}};'
+				],
 
+			]
+		);
+		$this->add_responsive_control(
+			'mgsecsubt_exline_width',
+			[
+				'label' => __('Extra Line Width', 'magical-addons-for-elementor'),
+				'type' =>  \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 500,
+					],
+				],
+				'condition' => [
+					'mgsecsubt_exline_show' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .mgsec-subtitle-exline span:before' => 'width: {{SIZE}}{{UNIT}};'
+				],
+
+			]
+		);
+		$this->add_responsive_control(
+			'mgsecsubt_exline_topbottom',
+			[
+				'label' => __(' Top Bottom Position', 'magical-addons-for-elementor'),
+				'type' =>  \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 500,
+					],
+				],
+				'condition' => [
+					'mgsecsubt_exline_show' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .mgsec-subtitle-exline span:before' => 'top: {{SIZE}}{{UNIT}};'
+				],
+
+			]
+		);
+		$this->add_responsive_control(
+			'mgsecsubt_exline_leftright',
+			[
+				'label' => __('Right Left Position', 'magical-addons-for-elementor'),
+				'type' =>  \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px', '%', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => -500,
+						'max' => 500,
+					],
+				],
+				'condition' => [
+					'mgsecsubt_exline_show' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .mgsec-subtitle-exline span:before' => 'left: {{SIZE}}{{UNIT}};'
+				],
+
+			]
+		);
+		$this->add_control(
+			'mgsecsubt_exline_color',
+			[
+				'label'     => __('Extra Line Color', 'magical-addons-for-elementor'),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mgsec-subtitle-exline span:before' => 'background: {{VALUE}}'
+				]
+			]
+		);
 		$this->end_controls_section();
 		$this->start_controls_section(
 			'mgsec_title_style',
@@ -988,7 +1100,11 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 
 		$settings   = $this->get_settings_for_display();
 		$mgsec_subtitle = $this->get_settings('mgsec_subtitle');
+		if ($settings['mgsecsubt_exline_show'] == 'yes') {
+			$this->add_render_attribute('mgsec_subtitle', 'class', 'mgsec-subtitle-exline');
+		}
 		$this->add_render_attribute('mgsec_subtitle', 'class', 'mgsec-subtitle');
+
 		$this->add_inline_editing_attributes('mgsec_subtitle');
 		$mgsec_title = $this->get_settings('mgsec_title');
 		$mgsectitle_tag = $this->get_settings('mgsectitle_tag');
@@ -1020,7 +1136,7 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 				<?php endif; ?>
 			<?php endif; ?>
 			<?php if ($settings['mgsec_subtitle_show'] && $settings['mgsec_subtitle'] && $settings['mgsecsub_position'] == 'top') : ?>
-				<h5 <?php echo $this->get_render_attribute_string('mgsec_subtitle'); ?>><?php echo mg_kses_tags($mgsec_subtitle); ?></h5>
+				<h5 <?php echo $this->get_render_attribute_string('mgsec_subtitle'); ?>><span><?php echo mg_kses_tags($mgsec_subtitle); ?></span></h5>
 			<?php endif; ?>
 
 			<?php if ($mgsec_title) : ?>
@@ -1085,6 +1201,11 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 			var mgsec_subtitle=settings.mgsec_subtitle;
 			view.addInlineEditingAttributes( 'mgsec_subtitle' , 'basic' );
 			view.addRenderAttribute('mgsec_subtitle', 'class' , 'mgsec-subtitle' );
+			if ( settings.mgsecsubt_exline_show ==='yes' ){
+			view.addRenderAttribute('mgsec_subtitle', 'class' , 'mgsec-subtitle-exline' );
+			}
+
+
 
 			<!-- This is Description -->
 
@@ -1127,7 +1248,7 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 										<# } #>
 
 											<# if ( settings.mgsec_subtitle_show && settings.mgsec_subtitle && settings.mgsecsub_position==='top' ) { #>
-												<h5 {{{ view.getRenderAttributeString( 'mgsec_subtitle' ) }}}>{{{ mgsec_subtitle }}}</h5>
+												<h5 {{{ view.getRenderAttributeString( 'mgsec_subtitle' ) }}}><span>{{{ mgsec_subtitle }}}</span></h5>
 												<# } #>
 
 													<# if ( mgsec_title ) { #>

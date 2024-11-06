@@ -15,7 +15,6 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
-use Elementor\Scheme_Typography;
 use Elementor\Utils;
 
 class MgAddon_slider_lite extends \Elementor\Widget_Base
@@ -149,6 +148,18 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
+            'mgs_extitle',
+            [
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'label' => __('Subtitle', 'magical-addons-for-elementor'),
+                'placeholder' => __('Enter subtitle', 'magical-addons-for-elementor'),
+                'dynamic' => [
+                    'active' => true,
+                ]
+            ]
+        );
+        $repeater->add_control(
             'mgs_title',
             [
                 'type' => Controls_Manager::TEXT,
@@ -166,8 +177,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
             [
                 'type' => Controls_Manager::TEXTAREA,
                 'label_block' => true,
-                'show_label' => false,
-                'label' => __('Subtitle', 'magical-addons-for-elementor'),
+                'label' => __('Description', 'magical-addons-for-elementor'),
                 'placeholder' => __('Type subtitle here', 'magical-addons-for-elementor'),
                 'dynamic' => [
                     'active' => true,
@@ -368,6 +378,20 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
                 'label_off' => __('No', 'magical-addons-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
+            ]
+        );
+        $this->add_control(
+            'mgs_navigation_on_hover',
+            [
+                'label' => __('Navigation show only on hover?', 'magical-addons-for-elementor'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'magical-addons-for-elementor'),
+                'label_off' => __('No', 'magical-addons-for-elementor'),
+                'return_value' => 'yes',
+                'default' => '',
+                'condition' => [
+                    'mgs_navigation' => 'yes',
+                ],
             ]
         );
         $this->add_control(
@@ -627,6 +651,27 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
                 ]
             ]
         );
+        $this->add_control(
+            'mgs_content_bg_overlay',
+            [
+                'label' => __('Content Background overlay', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mgs-main .mgs-overlay-outside' => 'background: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'mgs_img_bg_overlay',
+                'description' => __('Background for transparent image', 'magical-addons-for-elementor'),
+                'selector' => '{{WRAPPER}} .mgs-main .mgs-item',
+                'exclude' => [
+                    'image'
+                ]
+            ]
+        );
 
         $this->add_group_control(
             Group_Control_Border::get_type(),
@@ -876,6 +921,53 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'mgs_heading_extitle',
+            [
+                'type' => Controls_Manager::HEADING,
+                'label' => __('Subtitle', 'magical-addons-for-elementor'),
+                'separator' => 'before'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'mgs_extitle_spacing',
+            [
+                'label' => __('Bottom Spacing', 'magical-addons-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .mgslide-content .mgs-extitle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgs_extitle_color',
+            [
+                'label' => __('Text Color', 'magical-addons-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mgslide-content .mgs-extitle' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'mgs_extitle_typo',
+                'selector' => '{{WRAPPER}} .mgslide-content .mgs-extitle',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'mgs_extitle_shadow',
+                'label' => __('Subtitle Text Shadow', 'plugin-domain'),
+                'selector' => '{{WRAPPER}} .mgslide-content .mgs-extitle',
+            ]
+        );
+        $this->add_control(
             'mgs_heading_title',
             [
                 'type' => Controls_Manager::HEADING,
@@ -927,7 +1019,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
             'mgs_heading_subtitle',
             [
                 'type' => Controls_Manager::HEADING,
-                'label' => __('Subtitle', 'magical-addons-for-elementor'),
+                'label' => __('Description Style', 'magical-addons-for-elementor'),
                 'separator' => 'before'
             ]
         );
@@ -966,7 +1058,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'mgs_subtitle_shadow',
-                'label' => __('Title Text Shadow', 'plugin-domain'),
+                'label' => __('Description Text Shadow', 'plugin-domain'),
                 'selector' => '{{WRAPPER}} .mgslide-content .mgs-subtitle',
             ]
         );
@@ -1534,7 +1626,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
         $mgs_navigation = $settings['mgs_navigation'] ? 'true' : 'false';
 ?>
 
-        <div class="mgs-main swiper swiper-container" data-loop="<?php echo esc_attr($mgs_loop); ?>" data-effect="<?php echo esc_attr($settings['mgs_slide_effect']); ?>" data-direction="<?php echo esc_attr($settings['mgs_slide_direction']); ?>" data-speed="<?php echo esc_attr($settings['mgs_animation_speed']); ?>" data-autoplay="<?php echo esc_attr($mgs_autoplay); ?>" data-auto-delay="<?php echo esc_attr($settings['mgs_autoplay_delay']); ?>" data-grab-cursor="<?php echo esc_attr($mgs_grab_cursor); ?>" data-nav="<?php echo esc_attr($mgs_navigation); ?>" data-dots="<?php echo esc_attr($mgs_dots); ?>">
+        <div class="mgs-main swiper swiper-container <?php if ($settings['mgs_navigation_on_hover']): ?>mgs-navonhover<?php endif; ?>" data-loop="<?php echo esc_attr($mgs_loop); ?>" data-effect="<?php echo esc_attr($settings['mgs_slide_effect']); ?>" data-direction="<?php echo esc_attr($settings['mgs_slide_direction']); ?>" data-speed="<?php echo esc_attr($settings['mgs_animation_speed']); ?>" data-autoplay="<?php echo esc_attr($mgs_autoplay); ?>" data-auto-delay="<?php echo esc_attr($settings['mgs_autoplay_delay']); ?>" data-grab-cursor="<?php echo esc_attr($mgs_grab_cursor); ?>" data-nav="<?php echo esc_attr($mgs_navigation); ?>" data-dots="<?php echo esc_attr($mgs_dots); ?>">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
 
@@ -1566,16 +1658,21 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
                         <?php endif; ?>
                         <?php if ($slide['mgs_title'] || $slide['mgs_subtitle']) : ?>
                             <div class="mgs-overlay-outside">
-                                <div class="mgslide-content mgst-center mgs-overlay">
-                                    <?php if ($slide['mgs_title']) : ?>
-                                        <h2 class="mgs-title" data-swiper-parallax-scale="0.15"><?php echo mg_kses_tags($slide['mgs_title']); ?></h2>
-                                    <?php endif; ?>
-                                    <?php if ($slide['mgs_subtitle']) : ?>
-                                        <p class="mgs-subtitle" data-swiper-parallax-opacity="0.5"><?php echo mg_kses_tags($slide['mgs_subtitle']); ?></p>
-                                    <?php endif; ?>
-                                    <?php if ($slide['mgs_btn_use']) : ?>
-                                        <a <?php echo $this->get_render_attribute_string($key1); ?>><?php echo esc_html($slide['mgs_btn_title']); ?></a>
-                                    <?php endif; ?>
+                                <div class="container">
+                                    <div class="mgslide-content mgst-center mgs-overlay">
+                                        <?php if ($slide['mgs_extitle']) : ?>
+                                            <h4 class="mgs-extitle" data-swiper-parallax-scale="0.15"><?php echo mg_kses_tags($slide['mgs_extitle']); ?></h4>
+                                        <?php endif; ?>
+                                        <?php if ($slide['mgs_title']) : ?>
+                                            <h2 class="mgs-title" data-swiper-parallax-scale="0.15"><?php echo mg_kses_tags($slide['mgs_title']); ?></h2>
+                                        <?php endif; ?>
+                                        <?php if ($slide['mgs_subtitle']) : ?>
+                                            <p class="mgs-subtitle" data-swiper-parallax-opacity="0.5"><?php echo mg_kses_tags($slide['mgs_subtitle']); ?></p>
+                                        <?php endif; ?>
+                                        <?php if ($slide['mgs_btn_use']) : ?>
+                                            <a <?php echo $this->get_render_attribute_string($key1); ?>><?php echo esc_html($slide['mgs_btn_title']); ?></a>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         <?php endif; ?>

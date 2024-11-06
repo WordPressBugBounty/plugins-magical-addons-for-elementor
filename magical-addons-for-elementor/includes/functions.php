@@ -416,7 +416,7 @@ if (!function_exists('mg_display_posts_name')) {
         $options = array();
         $options['0'] = __('Select', 'bstoolkit-for-elementor');
         // $perpage = mp_display_get_option( 'loadproductlimit', 'mp_display_others_tabs', '20' );
-        $all_post = array('posts_per_page' => -1, 'post_type' => $post_type);
+        $all_post = array('posts_per_page' => -1, 'post_status'    => 'publish', 'post_type' => $post_type);
         $post_terms = get_posts($all_post);
         if (!empty($post_terms) && !is_wp_error($post_terms)) {
             foreach ($post_terms as $term) {

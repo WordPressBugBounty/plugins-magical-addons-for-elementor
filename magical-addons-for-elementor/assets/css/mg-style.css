@@ -334,7 +334,44 @@ figure.mg-round-img-style3 {
 .mg-team-member.mg-team-style3:hover .mg-team-content::after {
   background: #ff6a00;
 }
+.mg-team-member.mgt-social-style2 {
+  position: relative;
+  overflow: hidden
+}
 
+.mg-team-member.mgt-social-style2 .mg-social {
+  position: absolute;
+  top: 0;
+  left: -35px;
+  background: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-2px);
+  transition: all .4s;
+}
+
+.mg-team-member.mgt-social-style2:hover .mg-social {
+  visibility: visible;
+  opacity: 1;
+  left: 0;
+  transform: translateY(0);
+}
+
+.mg-team-member.mgt-social-style2 .mg-social ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.mg-team-member.mgt-social-style2 .mg-social ul li a i {
+  padding: 10px;
+  font-size: 18px;
+  color: var(--color-primary);
+
+}
+
+.mg-team-member.mgt-social-style2 .mg-social ul li {
+  margin: 0;
+}
 .mg-shadow {
   border-radius: 2px;
   box-shadow: 0 0.2rem 2.8rem rgba(36, 36, 36, 0.1);
