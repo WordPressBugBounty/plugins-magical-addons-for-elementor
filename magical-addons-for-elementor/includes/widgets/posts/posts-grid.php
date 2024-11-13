@@ -228,6 +228,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'options' => [
                     '1'   => __('Style One', 'magical-addons-for-elementor'),
                     '2'  => __('Style Two', 'magical-addons-for-elementor'),
+                    '3'  => __('Style Three', 'magical-addons-for-elementor'),
                 ]
             ]
         );
@@ -1059,7 +1060,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-meta .mgp-author' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgp-meta .mgp-author,{{WRAPPER}} .mgp3-meta .mgp3-author-meta' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'mgpg_author_show' => 'yes',
@@ -1073,7 +1074,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-meta .mgp-author' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgp-meta .mgp-author,{{WRAPPER}} .mgp3-meta .mgp3-author-meta' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'mgpg_author_show' => 'yes',
@@ -1086,7 +1087,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'label' => __('Text Color', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-meta .mgp-author a, {{WRAPPER}} .mgp-meta .mgp-author i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgp-meta .mgp-author a, {{WRAPPER}} .mgp-meta .mgp-author i,{{WRAPPER}} .mgp3-meta .mgp3-author-meta' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .mgp-meta .mgp-author svg' => 'fill: {{VALUE}};',
                 ],
                 'condition' => [
@@ -1100,7 +1101,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'label' => __('Background Color', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-meta .mgp-author' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .mgp-meta .mgp-author,{{WRAPPER}} .mgp3-meta .mgp3-author-meta' => 'background-color: {{VALUE}};',
                 ],
                 'condition' => [
                     'mgpg_author_show' => 'yes',
@@ -1112,7 +1113,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpg_meta_author_typography',
-                'selector' => '{{WRAPPER}} .mgp-meta .mgp-author, {{WRAPPER}} .mgp-meta .mgp-author a',
+                'selector' => '{{WRAPPER}} .mgp-meta .mgp-author, {{WRAPPER}} .mgp-meta .mgp-author a,{{WRAPPER}} .mgp3-meta .mgp3-author-meta',
                 'condition' => [
                     'mgpg_author_show' => 'yes',
                 ],
@@ -1124,7 +1125,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'mgpg_author_border',
-                'selector' => '{{WRAPPER}} .mgp-meta .mgp-author',
+                'selector' => '{{WRAPPER}} .mgp-meta .mgp-author,{{WRAPPER}} .mgp3-meta .mgp3-author-meta',
                 'condition' => [
                     'mgpg_author_show' => 'yes',
                 ],
@@ -1138,7 +1139,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-meta .mgp-author' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgp-meta .mgp-author,{{WRAPPER}} .mgp3-meta .mgp3-author-meta' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'mgpg_author_show' => 'yes',
@@ -1164,7 +1165,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-time' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgp-time,{{WRAPPER}} .mgp3-meta .mgp3-date-meta' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'mgpg_date_show' => 'yes',
@@ -1178,7 +1179,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-time' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgp-time,{{WRAPPER}} .mgp3-meta .mgp3-date-meta' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'mgpg_date_show' => 'yes',
@@ -1191,7 +1192,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'label' => __('Text Color', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-time' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgp-time,{{WRAPPER}} .mgp3-meta .mgp3-date-meta' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .mgp-time i' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .mgp-time svg' => 'fill: {{VALUE}};',
                 ],
@@ -1206,7 +1207,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'label' => __('Background Color', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-time' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .mgp-time,{{WRAPPER}} .mgp3-meta .mgp3-date-meta' => 'background-color: {{VALUE}};',
                 ],
                 'condition' => [
                     'mgpg_date_show' => 'yes',
@@ -1218,7 +1219,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpg_meta_date_typography',
-                'selector' => '{{WRAPPER}} .mgp-time',
+                'selector' => '{{WRAPPER}} .mgp-time,{{WRAPPER}} .mgp3-meta .mgp3-date-meta',
                 'condition' => [
                     'mgpg_date_show' => 'yes',
                 ],
@@ -1249,7 +1250,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'mgpg_date_border',
-                'selector' => '{{WRAPPER}} .mgp-time',
+                'selector' => '{{WRAPPER}} .mgp-time,{{WRAPPER}} .mgp3-meta .mgp3-date-meta',
                 'condition' => [
                     'mgpg_date_show' => 'yes',
                 ],
@@ -1263,7 +1264,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgp-time' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgp-time,{{WRAPPER}} .mgp3-meta .mgp3-date-meta' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'mgpg_date_show' => 'yes',
@@ -1519,251 +1520,205 @@ class mgPostGridWidget extends \Elementor\Widget_Base
      */
     protected function render()
     {
-
-
-
         $settings = $this->get_settings_for_display();
-        $mgpg_filter = $this->get_settings('mgpg_posts_filter');
-        $mgpg_posts_count = $this->get_settings('mgpg_posts_count');
-        $mgpg_custom_order = $this->get_settings('mgpg_custom_order');
-        $mgpg_grid_categories = $this->get_settings('mgpg_grid_categories');
-        $orderby = $this->get_settings('orderby');
-        $order = $this->get_settings('order');
+        $args = $this->build_query_args($settings);
 
+        // Define button class based on link type
+        $button_class = 'mg-card-btn ' . ($settings['mgpg_link_type'] === 'btn' ? 'mg-btn' : ($settings['mgpg_link_type'] === 'link2' ? 'mg-link2' : 'mg-link'));
+        $this->add_render_attribute('mgpg_btn_title', 'class', $button_class);
 
-        // Query Argument
-        $args = array(
-            'post_type'             => 'post',
-            'post_status'           => 'publish',
-            'ignore_sticky_posts'   => 1,
-            'posts_per_page'        => $mgpg_posts_count,
-        );
-
-        switch ($mgpg_filter) {
-
-
-            case 'featured':
-                $args['tax_query'][] = array(
-                    'taxonomy' => 'product_visibility',
-                    'field'    => 'name',
-                    'terms'    => 'featured',
-                    'operator' => 'IN',
-                );
-                break;
-
-            case 'random_order':
-                $args['orderby']    = 'rand';
-                break;
-
-            case 'show_byid':
-                $args['post__in'] = $settings['mgpg_product_id'];
-                break;
-
-            case 'show_byid_manually':
-                $args['post__in'] = explode(',', $settings['mgpg_product_ids_manually']);
-                break;
-
-            default: /* Recent */
-                $args['orderby']    = 'date';
-                $args['order']      = 'desc';
-                break;
-        }
-
-        // Custom Order
-        if ($mgpg_custom_order == 'yes') {
-            $args['orderby'] = $orderby;
-            $args['order'] = $order;
-        }
-
-        if (!(($mgpg_filter == "show_byid") || ($mgpg_filter == "show_byid_manually"))) {
-
-            $post_cats = str_replace(' ', '', $mgpg_grid_categories);
-            if ("0" != $mgpg_grid_categories) {
-                if (is_array($post_cats) && count($post_cats) > 0) {
-                    $field_name = is_numeric($post_cats[0]) ? 'term_id' : 'slug';
-                    $args['tax_query'][] = array(
-                        array(
-                            'taxonomy' => 'category',
-                            'terms' => $post_cats,
-                            'field' => $field_name,
-                            'include_children' => false
-                        )
-                    );
-                }
-            }
-        }
-
-
-
-        //grid layout
-        $mgpg_post_style = $this->get_settings('mgpg_post_style');
-        $mgpg_rownumber = $this->get_settings('mgpg_rownumber');
-        // grid content
-        $mgpg_post_img_show = $this->get_settings('mgpg_post_img_show');
-        $mgpg_show_title = $this->get_settings('mgpg_show_title');
-        $mgpg_crop_title = $this->get_settings('mgpg_crop_title');
-        $mgpg_title_tag = $this->get_settings('mgpg_title_tag');
-        $mgpg_desc_show = $this->get_settings('mgpg_desc_show');
-        $mgpg_crop_desc = $this->get_settings('mgpg_crop_desc');
-        $mgpg_post_btn = $this->get_settings('mgpg_post_btn');
-        $mgpg_category_show = $this->get_settings('mgpg_category_show');
-        $mgpg_usebtn_icon = $this->get_settings('mgpg_usebtn_icon');
-        $mgpg_btn_title = $this->get_settings('mgpg_btn_title');
-        $mgpg_btn_target = $this->get_settings('mgpg_btn_target');
-        $mgpg_btn_icon = $this->get_settings('mgpg_btn_icon');
-        $mgpg_btn_icon_position = $this->get_settings('mgpg_btn_icon_position');
-        if ($settings['mgpg_link_type'] == 'btn') {
-            $mgp_link_class = 'mg-card-btn mg-btn';
-        } else if ($settings['mgpg_link_type'] == 'link2') {
-            $mgp_link_class = 'mg-card-btn mg-link2';
-        } else {
-            $mgp_link_class = 'mg-card-btn mg-link';
-        }
-
-        $this->add_render_attribute('mgpg_btn_title', 'class', $mgp_link_class);
-
-
+        // WP Query
         $mgpg_posts = new WP_Query($args);
 
         if ($mgpg_posts->have_posts()) :
 ?>
-            <div id="mgp-items" class="mgp-items style<?php echo esc_attr($mgpg_post_style); ?>">
+            <div id="mgp-items" class="mgp-items style<?php echo esc_attr($settings['mgpg_post_style']); ?>">
                 <div class="row">
                     <?php while ($mgpg_posts->have_posts()) : $mgpg_posts->the_post(); ?>
-                        <?php
-                        $mpg_cat_list = get_the_category_list(esc_html__('/ ', 'magical-addons-for-elementor'));
-                        $categories = get_the_category();
-
-                        $mgp_tags_list = get_the_tag_list('', esc_html_x(', ', 'list item separator', 'magical-addons-for-elementor'));
-
-                        ?>
-                        <div class="col-lg-<?php echo esc_attr($mgpg_rownumber); ?>">
+                        <div class="col-lg-<?php echo esc_attr($settings['mgpg_rownumber']); ?>">
                             <div class="mg-card mg-shadow mgp-card mb-4">
-                                <?php if (has_post_thumbnail() && $mgpg_post_img_show == 'yes') : ?>
-                                    <div class="mg-card-img mg-post-img">
-                                        <figure>
-                                            <?php the_post_thumbnail('full'); ?>
-                                        </figure>
-                                    </div>
-                                <?php endif; ?>
-
-
+                                <?php $this->render_thumbnail($settings); ?>
                                 <div class="mg-card-text">
-                                    <?php if ($mpg_cat_list && $settings['mgpg_category_show'] && $settings['mgpg_cat_type'] == 'all') : ?>
-                                        <div class="mgp-cat cat-list grid-meta <?php if (!has_post_thumbnail()) : ?>empty-img<?php endif; ?>">
-                                            <?php
-                                            $mpg_cat_list_sanitized = sanitize_text_field($mpg_cat_list);
-                                            printf(
-                                                '<span class="mgp-post-cats">' . esc_html__(' %1$s', 'magical-addons-for-elementor') . '</span>',
-                                                esc_html($mpg_cat_list_sanitized)
-                                            );
-
-                                            ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <?php
-                                    if (!empty($categories) && $settings['mgpg_category_show'] && $settings['mgpg_cat_type'] == 'one') { ?>
-                                        <div class="mgp-cat cat-list grid-meta <?php if (!has_post_thumbnail()) : ?>empty-img<?php endif; ?>">
-                                            <?php
-                                            echo '<a href="' . esc_url(get_category_link($categories[0]->term_id)) . '"><span class="mgp-post-cats">' . esc_html($categories[0]->name) . '</span></a>';
-                                            ?>
-                                        </div>
-                                    <?php
-                                    }
+                                    <?php if ($settings['mgpg_post_style'] != '3') $this->render_category_list($settings); ?>
+                                    <?php if ($settings['mgpg_post_style'] == '3') $this->render_post_meta($settings);
                                     ?>
-
-                                    <?php if ($mgpg_show_title) : ?>
-                                        <a class="mgp-title-link" href="<?php the_permalink(); ?>">
-                                            <?php
-                                            printf(
-                                                '<%1$s class="mgp-ptitle">%2$s</%1$s>',
-                                                tag_escape($mgpg_title_tag),
-                                                esc_html(wp_trim_words(get_the_title(), $mgpg_crop_title))
-                                            );
-                                            ?>
-                                        </a>
-                                    <?php endif; ?>
-                                    <?php if ($mgpg_post_style == '1') : ?>
-                                        <div class="mgp-meta mb-3">
-                                            <?php if ($settings['mgpg_author_show']) : ?>
-                                                <?php mgp_post_author(); ?>
-                                            <?php endif; ?>
-                                            <?php if ($settings['mgpg_date_show']) : ?>
-                                                <span class="mgp-time">
-                                                    <i class="fas fa-calendar-alt"></i>
-                                                    <?php echo esc_html(get_the_date('d M Y')); ?>
-                                                </span>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endif; // meta if end 
-                                    ?>
-                                    <?php if ($mgpg_desc_show) : ?>
-                                        <p><?php echo esc_html(wp_trim_words(get_the_content(), $mgpg_crop_desc, '...')); ?></p>
-                                    <?php endif; ?>
-                                    <?php if ($mgpg_post_btn) : ?>
-                                        <?php if ($mgpg_usebtn_icon == 'yes') : ?>
-                                            <a href="<?php the_permalink(); ?>" target="<?php echo esc_attr($mgpg_btn_target); ?>" <?php echo $this->get_render_attribute_string('mgpg_btn_title'); ?>>
-                                                <?php if ($mgpg_btn_icon_position == 'left') : ?>
-
-                                                    <span class="left"><?php \Elementor\Icons_Manager::render_icon($settings['mgpg_btn_icon']); ?></span>
-
-                                                <?php endif; ?>
-                                                <span><?php echo mg_kses_tags($mgpg_btn_title); ?></span>
-                                                <?php if ($mgpg_btn_icon_position == 'right') : ?>
-                                                    <span class="right"><?php \Elementor\Icons_Manager::render_icon($settings['mgpg_btn_icon']); ?></span>
-                                                <?php endif; ?>
-                                            </a>
-                                        <?php else : ?>
-                                            <a href="<?php the_permalink(); ?>" target="<?php echo esc_attr($mgpg_btn_target); ?>" <?php echo $this->get_render_attribute_string('mgpg_btn_title'); ?>><?php echo  mg_kses_tags($mgpg_btn_title); ?></a>
-                                        <?php endif; ?>
-                                    <?php endif; ?>
-
-                                    <?php if ($mgpg_post_style == '2') : ?>
-                                        <div class="mgp-meta mgp-ms2 mt-3 text-right">
-                                            <div class="row">
-                                                <?php if ($settings['mgpg_author_show']) : ?>
-                                                    <div class="col-auto">
-                                                        <?php mgp_post_author(); ?>
-                                                    </div>
-                                                <?php endif; ?>
-                                                <?php if ($settings['mgpg_date_show']) : ?>
-                                                    <div class="col-auto ml-auto text-right">
-                                                        <span class="mgp-time">
-                                                            <i class="fas fa-clock"></i>
-                                                            <?php echo esc_html(get_the_date('d M Y')); ?>
-                                                        </span>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    <?php endif; // post meta if end 
+                                    <?php $this->render_post_title($settings); ?>
+                                    <?php if ($settings['mgpg_post_style'] == '1') $this->render_post_meta($settings);
                                     ?>
                                     <?php
-                                    if ($mgp_tags_list && $settings['mgpg_tag_show']) {
-                                        $mgp_tags_list_sanitized = sanitize_text_field($mgp_tags_list);
-                                        printf(
-                                            '<span class="mpg-tags-links"><i class="fas fa-tag"></i>' . esc_html__(' %1$s', 'magical-addons-for-elementor') . '</span>',
-                                            esc_html($mgp_tags_list_sanitized)
-                                        );
-                                    }
+                                    if ($settings['mgpg_post_style'] == '3') $this->render_category_list($settings); ?>
+                                    <?php $this->render_description($settings); ?>
+                                    <?php $this->render_button($settings); ?>
+                                    <?php $this->render_tags($settings); ?>
+                                    <?php if ($settings['mgpg_post_style'] == '2') $this->render_post_meta($settings); // Style 2 meta at bottom 
                                     ?>
-
                                 </div>
-
                             </div>
                         </div>
-                    <?php
-                    endwhile;
-                    wp_reset_query();
-                    wp_reset_postdata();
-                    ?>
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
                 </div>
             </div>
+        <?php
+        endif;
+    }
+
+    // Helper functions
+
+    protected function build_query_args($settings)
+    {
+        $args = [
+            'post_type'           => 'post',
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => 1,
+            'posts_per_page'      => $settings['mgpg_posts_count'],
+        ];
+
+        switch ($settings['mgpg_posts_filter']) {
+            case 'featured':
+                $args['tax_query'][] = [
+                    'taxonomy' => 'product_visibility',
+                    'field'    => 'name',
+                    'terms'    => 'featured',
+                    'operator' => 'IN',
+                ];
+                break;
+            case 'random_order':
+                $args['orderby'] = 'rand';
+                break;
+            case 'show_byid':
+                $args['post__in'] = $settings['mgpg_product_id'];
+                break;
+            case 'show_byid_manually':
+                $args['post__in'] = explode(',', $settings['mgpg_product_ids_manually']);
+                break;
+            default:
+                $args['orderby'] = 'date';
+                $args['order']   = 'desc';
+        }
+
+        if ($settings['mgpg_custom_order'] == 'yes') {
+            $args['orderby'] = $settings['orderby'];
+            $args['order'] = $settings['order'];
+        }
+
+        return $args;
+    }
+
+    protected function render_thumbnail($settings)
+    {
+        if (has_post_thumbnail() && $settings['mgpg_post_img_show'] == 'yes') :
+            echo '<div class="mg-card-img mg-post-img"><figure>';
+            the_post_thumbnail('full');
+            echo '</figure></div>';
+        endif;
+    }
+
+    protected function render_category_list($settings)
+    {
+        if ($settings['mgpg_category_show']) :
+            $category_type = $settings['mgpg_cat_type'];
+            $categories = get_the_category();
+            $category_output = $category_type === 'all' ? get_the_category_list(esc_html__('/ ', 'magical-addons-for-elementor')) : '<a href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . '</a>';
+
+            if ($category_output) :
+                echo '<div class="mgp-cat cat-list grid-meta' . (!has_post_thumbnail() ? ' empty-img' : '') . '">';
+                echo '<span class="mgp-post-cats">' . sanitize_text_field($category_output) . '</span>';
+                echo '</div>';
+            endif;
+        endif;
+    }
+
+    protected function render_post_title($settings)
+    {
+        if ($settings['mgpg_show_title']) :
+            echo '<a class="mgp-title-link" href="' . get_the_permalink() . '">';
+            printf('<%1$s class="mgp-ptitle">%2$s</%1$s>', tag_escape($settings['mgpg_title_tag']), esc_html(wp_trim_words(get_the_title(), $settings['mgpg_crop_title'])));
+            echo '</a>';
+        endif;
+    }
+
+    protected function render_post_meta($settings)
+    {
+        // Get author ID and name
+        $author_id = get_the_author_meta('ID');
+        $author_name = get_the_author();
+
+        // Get post date information
+        $year = get_post_time('Y');
+        $month = get_post_time('m');
+        $day = get_post_time('j');
 
 
+        $post_style = $settings['mgpg_post_style'];
+        if ($post_style == '3') : ?>
 
-
+            <p class="blog-meta mgp3-meta">
+                <i class="las la-user-circle"></i>
+                <a class="mgp3-author-meta" href="<?php echo esc_url(get_author_posts_url($author_id)); ?>"
+                    class="author-name"
+                    title="<?php echo esc_attr(sprintf(__('View all posts by %s', 'fossil'), $author_name)); ?>">
+                    <?php echo esc_html($author_name); ?>
+                </a> |
+                <i class="las la-calendar-check"></i>
+                <a class="mgp3-date-meta" href="<?php echo esc_url(get_day_link($year, $month, $day)); ?>"
+                    title="<?php echo esc_attr(get_the_date()); ?>">
+                    <?php echo esc_html(get_the_date('d M')); ?>
+                </a>
+            </p>
 <?php
+        elseif ($post_style == '2') :
+            echo '<div class="mgp-meta mgp-ms2 mt-3 text-right">';
+            echo '<div class="row">';
+            if ($settings['mgpg_author_show']) :
+                echo '<div class="col-auto">' . wp_kses_post(mgp_post_author()) . '</div>';
+            endif;
+            if ($settings['mgpg_date_show']) :
+                echo '<div class="col-auto ml-auto text-right"><span class="mgp-time"><i class="fas fa-clock"></i>' . esc_html(get_the_date('d M Y')) . '</span></div>';
+            endif;
+            echo '</div></div>';
+        else:
+            echo '<div class="mgp-meta mb-3">';
+            if ($settings['mgpg_author_show']) {
+                echo wp_kses_post(mgp_post_author());
+            }
+            if ($settings['mgpg_date_show']) :
+                echo '<span class="mgp-time"><i class="fas fa-calendar-alt"></i>' . esc_html(get_the_date('d M Y')) . '</span>';
+            endif;
+            echo '</div>';
+        endif;
+    }
+
+    protected function render_description($settings)
+    {
+        if ($settings['mgpg_desc_show']) :
+            echo '<p>' . esc_html(wp_trim_words(get_the_content(), $settings['mgpg_crop_desc'], '...')) . '</p>';
+        endif;
+    }
+
+    protected function render_button($settings)
+    {
+        if ($settings['mgpg_post_btn']) :
+            $icon_position = $settings['mgpg_btn_icon_position'];
+            $icon = \Elementor\Icons_Manager::render_icon($settings['mgpg_btn_icon'], ['aria-hidden' => 'true']);
+            $button_text = mg_kses_tags($settings['mgpg_btn_title']);
+            $button_class = $this->get_render_attribute_string('mgpg_btn_title');
+
+            echo '<a href="' . get_the_permalink() . '" target="' . esc_attr($settings['mgpg_btn_target']) . '" ' . $button_class . '>';
+            if ($settings['mgpg_usebtn_icon'] === 'yes' && $icon_position === 'left') echo '<span class="left">' . $icon . '</span>';
+            echo '<span>' . $button_text . '</span>';
+            if ($settings['mgpg_usebtn_icon'] === 'yes' && $icon_position === 'right') echo '<span class="right">' . $icon . '</span>';
+            echo '</a>';
+        endif;
+    }
+
+    protected function render_tags($settings)
+    {
+        if ($settings['mgpg_tag_show']) :
+            $tags_list = get_the_tag_list('', esc_html_x(', ', 'list item separator', 'magical-addons-for-elementor'));
+            if ($tags_list) :
+                echo '<span class="mpg-tags-links"><i class="fas fa-tag"></i>' . esc_html(sanitize_text_field($tags_list)) . '</span>';
+            endif;
         endif;
     }
 }

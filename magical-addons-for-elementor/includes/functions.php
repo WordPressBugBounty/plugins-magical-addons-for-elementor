@@ -181,7 +181,7 @@ if (!function_exists('mgp_post_author')) :
             '<span class="mgp-author"><i class="fas fa-user"></i><a class="mgp-author-link ml-1" href="' . esc_url($author_url) . '">' . esc_html($author_name) . '</a></span>'
         );
 
-        echo wp_kses_post($byline);
+        return $byline;
     }
 
 endif;

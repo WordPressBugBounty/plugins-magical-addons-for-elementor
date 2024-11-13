@@ -936,9 +936,11 @@ span.mgp-comment,
 
 span.mgp-post-cats a,
 .mgp-meta span {
-  margin-right: 3px;
+  margin-right: 8px;
 }
-
+.elementor-widget-mgposts_grid .style3 .mgp-cat {
+  margin: 5px 0;
+}
 .mgpl-cmeta {
   display: block;
   margin-top: 20px;
@@ -1000,14 +1002,19 @@ a.mg-card-btn.mg-link2:before {
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-
+.elementor-widget-mgposts_grid .mgp-items.style3 .blog-meta {
+  margin: 0;
+}
+.elementor-widget-mgposts_grid .mgp-items.style3 .blog-meta a {
+  color: #898a9c;
+}
 a.mg-card-btn.mg-link2:hover {
   text-decoration: none;
   color: inherit;
 }
 span.mpg-tags-links {
   display: block;
-  margin: 5px 0 0;
+  margin: 10px 0 0;
 }
 a.mg-card-btn.mg-link2:hover:before {
   width: 100%;
@@ -2304,12 +2311,21 @@ a.mg-lc-single {
   display: inline-flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
-
+.mg-taxonomy-list-horizontal .mg-taxonomy-list li a{
+    justify-content: center;
+}
+.mg-taxonomy-list.mg-taxonomy-icon-right .mg-tax-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row-reverse;
+  align-items: center;
+}
 .mg-term-count {
   display: block;
 }

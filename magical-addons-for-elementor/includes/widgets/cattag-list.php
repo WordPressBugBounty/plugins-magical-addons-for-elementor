@@ -54,6 +54,21 @@ class mgCatTag_List extends Widget_Base
 			];
 		}
 	}
+	public function get_all_terms($taxonomy = 'category')
+	{
+		$terms = get_terms([
+			'taxonomy' => $taxonomy,
+			'hide_empty' => false,
+		]);
+
+		$options = [];
+		foreach ($terms as $term) {
+			$options[$term->term_id] = $term->name;
+		}
+
+		return $options;
+	}
+
 
 	protected function register_controls()
 	{
@@ -77,7 +92,43 @@ class mgCatTag_List extends Widget_Base
 				'options' => $this->get_post_taxonomies(),
 			]
 		);
-
+		$this->add_control(
+			'specific_cat',
+			[
+				'label' => esc_html__('Select Categories to Display', 'magical-addons-for-elementor'),
+				'type' => Controls_Manager::SELECT2,
+				'options' => $this->get_all_terms(),
+				'multiple' => true,
+				'label_block' => true,
+				'condition' => [
+					'query_tax_selection' => 'category'
+				],
+			]
+		);
+		$this->add_control(
+			'specific_tags',
+			[
+				'label' => esc_html__('Select Tags to Display', 'magical-addons-for-elementor'),
+				'type' => Controls_Manager::SELECT2,
+				'options' => $this->get_all_terms('post_tag'),
+				'multiple' => true,
+				'label_block' => true,
+				'condition' => [
+					'query_tax_selection' => 'post_tag'
+				],
+			]
+		);
+		$this->add_control(
+			'max_items',
+			[
+				'label' => esc_html__('Max Number of Items', 'magical-addons-for-elementor'),
+				'type' => Controls_Manager::NUMBER,
+				'default' => 5,
+				'min' => 1,
+				'max' => 100,
+				'step' => 1,
+			]
+		);
 		$this->add_control(
 			'query_hide_empty',
 			[
@@ -139,6 +190,21 @@ class mgCatTag_List extends Widget_Base
 				'default' => [
 					'value' => 'fas fa-chevron-right',
 					'library' => 'fa-solid',
+				],
+				'condition' => [
+					'show_tax_list_icon' => 'yes'
+				]
+			]
+		);
+		$this->add_control(
+			'icon_position',
+			[
+				'label' => esc_html__('Icon Position', 'magical-addons-for-elementor'),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'left',
+				'options' => [
+					'left' => esc_html__('Left', 'magical-addons-for-elementor'),
+					'right' => esc_html__('Right', 'magical-addons-for-elementor'),
 				],
 				'condition' => [
 					'show_tax_list_icon' => 'yes'
@@ -493,13 +559,24 @@ class mgCatTag_List extends Widget_Base
 		$icon = ob_get_clean();
 		$icon_wrapper = !empty($settings['tax_list_icon']) ? '<span>' . $icon . '</span>' : '';
 
-		// Get Taxonomies
-		$terms = get_terms([
+		// Define arguments
+		$args = [
 			'taxonomy' => sanitize_text_field($settings['query_tax_selection']),
+			'number' => $settings['max_items'], // Limit the number of items displayed
 			'hide_empty' => 'yes' === $settings['query_hide_empty'],
-		]);
+		];
 
-		echo '<ul class="mg-taxonomy-list">';
+		// Include specific categories or tags if selected
+		if (!empty($settings['specific_cat'])) {
+			$args['include'] = $settings['specific_cat'];
+		} elseif (!empty($settings['specific_tags'])) {
+			$args['include'] = $settings['specific_tags'];
+		}
+
+		// Fetch terms based on the arguments
+		$terms = get_terms($args);
+
+		echo '<ul class="mg-taxonomy-list mg-taxonomy-icon-' . esc_attr($settings['icon_position']) . '">';
 
 		foreach ($terms as $key => $term) {
 			$sub_class = $term->parent > 0 ? ' mg-sub-taxonomy' : '';

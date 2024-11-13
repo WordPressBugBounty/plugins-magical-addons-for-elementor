@@ -21,7 +21,19 @@
   height: 15px;
   fill: #fff;
 }
+.mg-share-network svg,
+.mg-share-network i{
+  margin-right: 5px;
+}
+.mg-share-network svg,
+.mg-share-network i {
+  margin-right: 5px;
+}
 
+.mg-share-network {
+  display: inline-flex;
+  align-items: center;
+}
 .mg-share-button .elementor-social-icon-android {
   background-color: #a4c639
 }

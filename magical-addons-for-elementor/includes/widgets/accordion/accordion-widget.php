@@ -420,6 +420,17 @@ class MgAccordion extends \Elementor\Widget_Base
                 ],
             ]
         );
+        $this->add_responsive_control(
+            'mgac_acborder_margin',
+            [
+                'label' => __('Item Margin', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .card.mgrc-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_control(
             'mgac_border_color',
@@ -603,9 +614,6 @@ class MgAccordion extends \Elementor\Widget_Base
                 ],
             ]
         );
-
-
-
         $this->add_responsive_control(
             'mgac_title_margin_bottom',
             [
@@ -701,6 +709,25 @@ class MgAccordion extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .card-body.mgac-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+            ]
+        );
+        $this->add_responsive_control(
+            'mgac_content_margin',
+            [
+                'label' => __('Margin', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .card-body.mgac-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'mgac_content_border',
+                'label' => esc_html__('Border', 'magical-addons-for-elementor'),
+                'selector' => '{{WRAPPER}} .card-body.mgac-content',
             ]
         );
 

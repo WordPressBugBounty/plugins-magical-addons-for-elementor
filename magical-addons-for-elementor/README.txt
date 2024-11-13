@@ -3,14 +3,14 @@ Contributors: nalam
 Tags: elementor, page builder, Elementor addons, elementor widget, template library
 Donate link: https://wpthemespace.com/donation/
 Requires at least: 5.0
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 5.6
 Stable tag: trunk 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-Comes with 60+ Widgets, 100+ premade sections and blocks, Header Footer builder, 20+ template kits that help you build your websites in less time. 1600+ Line icons library
+Includes 60+ widgets, 100+ sections, 1600+ icons, header/footer builder, and 20+ template kits for faster, efficient website creation.
 
 == Description ==
 The best part of Magical Addons is that you can design anything without having to touch a single line of code. Magical Addons has a huge collection of premium and highly functional extensions that can be used in an Elementor page builder. This is really a premium plugin that you can get for free.
@@ -273,6 +273,12 @@ e.g.
 
 == Changelog ==
 
+= 1.2.6 =
+	* Added new opitons for social share addon
+	* Posts grid and list widges options and style added
+	* Updated accordion widges
+	* New style added for some widges
+	* Tested with WordPress 6.7
 = 1.2.5 =
 	* Added 1600+ custom line icons
 	* Added new features in several widgets

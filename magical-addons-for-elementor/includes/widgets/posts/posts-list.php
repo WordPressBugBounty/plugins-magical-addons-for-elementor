@@ -1730,7 +1730,7 @@ class mgPostListWidget extends \Elementor\Widget_Base
                             <?php if ($mgpl_post_style == '1') : ?>
                                 <div class="mgp-meta mb-3">
                                     <?php if ($settings['mgpl_author_show']) : ?>
-                                        <?php mgp_post_author(); ?>
+                                        <?php echo wp_kses_post(mgp_post_author()); ?>
                                     <?php endif; ?>
                                     <?php if ($settings['mgpl_date_show']) : ?>
                                         <span class="mgp-time">

@@ -82,7 +82,6 @@ class magicalWidgetInit
 			$widgets_manager->register(new \MgAddon_Timeline_Widget());
 		}
 		if (mg_get_addons_option('mg_accordion', 'on') == 'on') {
-			wp_enqueue_style('mg-accordion');
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/accordion/accordion-widget.php');
 			$widgets_manager->register(new \MgAccordion());
 		}
@@ -213,7 +212,7 @@ class magicalWidgetInit
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/banner.php');
 			$widgets_manager->register(new \MgAddon_Banner());
 		}
-		
+
 		// Advanced Skillbars
 		if (mg_get_addons_option('mg_skillbar', 'on') == 'on') {
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/advance-skill-bars.php');
