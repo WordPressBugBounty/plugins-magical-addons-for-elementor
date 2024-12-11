@@ -385,7 +385,17 @@ class mgSkillBars extends Widget_Base
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
-
+		$this->add_responsive_control(
+			'skill_info_margin',
+			[
+				'label' => __('Content Margin', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => ['px', 'em', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .mg-skill-info' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 		$this->add_control(
 			'color',
 			[
@@ -435,6 +445,34 @@ class mgSkillBars extends Widget_Base
 			[
 				'name' => 'info_text_shadow',
 				'selector' => '{{WRAPPER}} .mg-skill-info',
+			]
+		);
+		$this->add_control(
+			'skill_percentage_heading',
+			[
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'label' => __('Parcentage Style', 'magical-addons-for-elementor'),
+				'separator' => 'before'
+			]
+		);
+		$this->add_control(
+			'skill_percentage_color',
+			[
+				'label' => __('Parcentage Color', 'magical-addons-for-elementor'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mg-skill-info .mg-skill-level-text' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'precentage_typography',
+				'selector' => '{{WRAPPER}} .mg-skill-info .mg-skill-level-text',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 			]
 		);
 

@@ -193,6 +193,15 @@ class MgProgressbar extends \Elementor\Widget_Base
 
 			]
 		);
+		$this->add_control(
+			'mgp_bganimation_show',
+			[
+				'label' => __('Show background Animation', 'magical-addons-for-elementor'),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'default' => 'yes',
+
+			]
+		);
 
 		$this->end_controls_section();
 		$this->link_pro_added();
@@ -348,6 +357,14 @@ class MgProgressbar extends \Elementor\Widget_Base
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
+		$this->add_control(
+			'progress_title_heading',
+			[
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'label' => __('Title Style', 'magical-addons-for-elementor'),
+				'separator' => 'before'
+			]
+		);
 		$this->add_responsive_control(
 			'title_margin',
 			[
@@ -378,6 +395,14 @@ class MgProgressbar extends \Elementor\Widget_Base
 			[
 				'name'     => 'title_typography',
 				'selector' => '{{WRAPPER}} .mgp-title',
+			]
+		);
+		$this->add_control(
+			'progress_percentage_heading',
+			[
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'label' => __('Parcentage Style', 'magical-addons-for-elementor'),
+				'separator' => 'before'
 			]
 		);
 		$this->add_control(
@@ -477,7 +502,7 @@ class MgProgressbar extends \Elementor\Widget_Base
 
 ?>
 
-		<div class="mg-progress animate" data-percent="<?php echo esc_html($mgp_parcent['size'] . '%'); ?>" data-speed="2000">
+		<div class="mg-progress animate <?php if ($settings['mgp_bganimation_show'] != 'yes'): ?>bganimate-hide<?php endif; ?>" data-percent="<?php echo esc_html($mgp_parcent['size'] . '%'); ?>" data-speed="2000">
 			<div class="mgp-top-text">
 				<?php if ($mgp_title_use == 'yes') : ?>
 					<span <?php echo $this->get_render_attribute_string('mgp_title'); ?>><?php echo mg_kses_tags($mgp_title); ?></span>

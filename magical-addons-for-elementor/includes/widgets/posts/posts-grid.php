@@ -596,6 +596,17 @@ class mgPostGridWidget extends \Elementor\Widget_Base
             ]
         );
         $this->add_responsive_control(
+            'mgpg_content_padding',
+            [
+                'label' => __('Content Padding', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .mgp-items .mg-card-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
             'mgpg_margin',
             [
                 'label' => __('Margin', 'magical-addons-for-elementor'),

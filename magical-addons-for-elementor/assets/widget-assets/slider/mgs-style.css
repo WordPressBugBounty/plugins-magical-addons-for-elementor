@@ -60,15 +60,21 @@
     justify-content: center;
     padding: 30px 50px;
 }
-.mgslide-content.mgst-center {
+/* .mgslide-content.mgst-center {
   position: absolute;
   text-align:center;
 }
 .mgslide-content.mgst-left {
   position: absolute;
   text-align:left;
+} */
+.mgs-overlay-outside .container {
+    display: flex;
+    align-items: center;
 }
-
+.fossil-client-logo .swiper-slide-image {
+    max-width: 150px;
+}
 .mgs-item .mgslide-content{
     opacity: 0;
     transition: 0.9s;

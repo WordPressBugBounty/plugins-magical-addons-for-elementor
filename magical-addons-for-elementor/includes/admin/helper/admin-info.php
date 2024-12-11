@@ -74,7 +74,7 @@ class madAdminInfo
         $install_date = get_option('mg_install_date');
         if (!empty($install_date)) {
             $install_day = round((time() - strtotime($install_date)) / 24 / 60 / 60);
-            if ($install_day < 2) {
+            if ($install_day < 5) {
                 return;
             }
         }

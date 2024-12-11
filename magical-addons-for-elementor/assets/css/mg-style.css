@@ -522,11 +522,14 @@ p.mg-price-desc {
 }
 
 .mg-price-list ul {
-  display: inline-block;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   padding-left: 24px;
   padding-left: 1.5rem;
   margin-left: 0;
+  padding: 0;
 }
 
 .mg-price-list {
@@ -540,7 +543,32 @@ p.mg-price-desc {
   font-style: italic;
   margin-bottom: 10px;
 }
-
+.mg-price-list ul li i {
+  margin-right: 15px;
+  font-size: 12px;
+}
+.mg-price-list ul li svg {
+  margin-right: 15px;
+  width: 12px;
+}
+p.mg-price {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+.mgpt-currency-absolute strong{
+  position: absolute;
+  left: -10px;
+  top: 0;
+}
+p.mg-price span.mgext {
+  margin-left: 10px;
+  line-height: 0.8;
+}
+.mg-pricing .mg-price span.mgcur strong{
+  display: inline-block;
+}
 /*Team widget style*/
 
 .mg-team-member {
@@ -2595,7 +2623,21 @@ html body header.magical-header {
   width: 100%;
   padding: 10px;
 }
-
+.mg-progress span.progress-background {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+.mg-progress .mgp-percent {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+}
+.bganimate-hide .progress-line:after {
+  content: inherit;
+}
 .mgp-top-text {
   display: flex;
   justify-content: space-between;

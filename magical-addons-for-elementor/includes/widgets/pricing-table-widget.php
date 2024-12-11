@@ -429,10 +429,68 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 ],
             ]
         );
+        $this->add_control(
+            'mg_pr_list_icon_show',
+            [
+                'label' => __('Show List Icon', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'magical-addons-for-elementor'),
+                'label_off' => __('No', 'magical-addons-for-elementor'),
+                'default' => 'yes',
+                'condition' => [
+                    'mg_pr_list_item_show' => 'yes',
+                ],
+
+            ]
+        );
+        $this->add_control(
+            'mg_pr_list_icon',
+            [
+                'label' => __('Choose Icon', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'las la-check',
+                ],
+                'condition' => [
+                    'mg_pr_list_icon_show' => 'yes',
+                    'mg_pr_list_item_show' => 'yes',
+                ],
+            ]
+        );
         $this->add_responsive_control(
             'mg_pr_list_align',
             [
                 'label' => __('List Alignment', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => __('Left', 'magical-addons-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => __('Center', 'magical-addons-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'flex-end' => [
+                        'title' => __('Right', 'magical-addons-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+
+                ],
+                'default' => 'center',
+                'toggle' => false,
+                'selectors' => [
+                    '{{WRAPPER}} .mg-price-list ul' => 'align-items: {{VALUE}};',
+                ],
+                'condition' => [
+                    'mg_pr_list_item_show' => 'yes',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'mg_pr_list_text_align',
+            [
+                'label' => __('List Text Alignment', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -452,7 +510,10 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => false,
                 'selectors' => [
-                    '{{WRAPPER}} .mg-price-list' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .mg-price-list ul' => 'text-align: {{VALUE}};',
+                ],
+                'condition' => [
+                    'mg_pr_list_item_show' => 'yes',
                 ],
             ]
         );
@@ -490,7 +551,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 'label' => __('List Alignment', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => [
+                    'flex-start' => [
                         'title' => __('Left', 'magical-addons-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
@@ -498,16 +559,20 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                         'title' => __('Center', 'magical-addons-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
-                    'right' => [
+                    'flex-end' => [
                         'title' => __('Right', 'magical-addons-for-elementor'),
                         'icon' => 'eicon-text-align-right',
+                    ],
+                    'space-between' => [
+                        'title' => __('Space between', 'magical-addons-for-elementor'),
+                        'icon' => 'eicon-justify-space-between-h',
                     ],
 
                 ],
                 'default' => 'center',
                 'toggle' => false,
                 'selectors' => [
-                    '{{WRAPPER}} .mg-price' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .mg-price' => 'justify-content: {{VALUE}};',
                 ],
             ]
         );
@@ -587,7 +652,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 'label_block' => true,
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'fas fa-chevron-right',
+                    'value' => 'fas fa-check-circle',
                     'library' => 'fa-solid',
                 ],
                 'condition' => [
@@ -665,7 +730,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
      */
     protected function register_style_controls()
     {
-      
+
         $this->start_controls_section(
             'mg_pr_icon_style',
             [
@@ -1139,6 +1204,43 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .mg-price-list ul li',
             ]
         );
+        $this->add_control(
+            'mg_pc_list_icon_heading',
+            [
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'label' => __('Icon style', 'magical-addons-for-elementor'),
+                'separator' => 'before'
+            ]
+        );
+        $this->add_responsive_control(
+            'mg_pc_list_icon_size',
+            [
+                'label' => __('Icon Size', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 5,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .mg-price-list ul li i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .mg-price-list ul li svg' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'mg_pc_list_icon_color',
+            [
+                'label' => __('Icon Color', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mg-price-list ul li i' => 'color: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .mg-price-list ul li svg' => 'fill: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
         $this->start_controls_section(
@@ -1220,6 +1322,113 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .mg-price .mgcur',
             ]
         );
+        $this->add_control(
+            'mg_pc_price_currency_heading',
+            [
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'label' => __('Price Currency style', 'magical-addons-for-elementor'),
+                'separator' => 'before'
+            ]
+        );
+        $this->add_responsive_control(
+            'mg_pc_currency_size',
+            [
+                'label' => __('Currency Size', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .mg-pricing .mg-price span.mgcur strong' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'mg_pc_currency_color',
+            [
+                'label' => __('Currency Color', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mg-pricing .mg-price span.mgcur strong' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'mg_pc_currency_padding',
+            [
+                'label' => __('Currency Padding', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .mg-pricing .mg-price span.mgcur strong' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'mg_pc_currency_margin',
+            [
+                'label' => __('Currency Margin', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .mg-pricing .mg-price span.mgcur strong' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'mg_pc_currency_position',
+            [
+                'label' => esc_html__('Currency Absolute position', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'your-plugin'),
+                'label_off' => esc_html__('Hide', 'your-plugin'),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+        $this->add_control(
+            'mg_pc_currency_position_leftright',
+            [
+                'label' => esc_html__('Currency left/right position', 'magical-addons-for-elementor'),
+                'description' => esc_html__('PieChart Height & width will be fixed after reload the page.', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .mg-pricing .mgpt-currency-absolute strong' => 'left: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'mg_pc_currency_position' => 'yes',
+                ],
+            ]
+        );
+        $this->add_control(
+            'mg_pc_currency_position_topbottom',
+            [
+                'label' => esc_html__('Currency top/bottom position', 'magical-addons-for-elementor'),
+                'description' => esc_html__('PieChart Height & width will be fixed after reload the page.', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .mg-pricing .mgpt-currency-absolute strong' => 'top: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'mg_pc_currency_position' => 'yes',
+                ],
+            ]
+        );
+
         $this->add_control(
             'mg_pc_pextra_heading',
             [
@@ -1503,6 +1712,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
         $this->add_inline_editing_attributes('mg_pr_price');
         $this->add_inline_editing_attributes('mg_pr_price_text');
         $this->add_render_attribute('mg_pr_price', 'class', 'mgcur');
+        if ('yes' === $settings['mg_pc_currency_position']) {
+            $this->add_render_attribute('mg_pr_price', 'class', 'mgpt-currency-absolute');
+        }
         $this->add_render_attribute('mg_pr_price_text', 'class', 'mgext');
         //description
         $mg_pr_desc = $this->get_settings('mg_pr_desc');
@@ -1555,7 +1767,26 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 ?>
             </div>
             <?php if ($mg_pr_price && $settings['mgpr_style_select'] == 's1') : ?>
-                <p class="mg-price"><span <?php echo $this->get_render_attribute_string('mg_pr_price'); ?>><?php echo mg_kses_tags($mg_pr_price); ?></span> <span <?php echo $this->get_render_attribute_string('mg_pr_price_text'); ?>><?php echo mg_kses_tags($mg_pr_price_text); ?></span></p>
+                <p class="mg-price">
+                    <span <?php echo $this->get_render_attribute_string('mg_pr_price'); ?>>
+                        <?php
+                        // Match currency and price
+                        preg_match('/^(\D+)(\d+)$/', $mg_pr_price, $matches);
+
+                        if (!empty($matches)) {
+                            $currency = $matches[1];
+                            $price = $matches[2];
+
+                            echo '<strong>' . htmlspecialchars($currency, ENT_QUOTES, 'UTF-8') . '</strong>';
+                            echo mg_kses_tags($price);
+                        } else {
+                            echo mg_kses_tags($mg_pr_price);
+                        }
+                        ?>
+
+                    </span>
+                    <span <?php echo $this->get_render_attribute_string('mg_pr_price_text'); ?>><?php echo mg_kses_tags($mg_pr_price_text); ?></span>
+                </p>
             <?php endif; ?>
             <?php if ($mg_pr_desc) : ?>
                 <p <?php echo $this->get_render_attribute_string('mg_pr_desc'); ?>><?php echo wp_kses_post($mg_pr_desc); ?></p>
@@ -1568,13 +1799,41 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                             $key1 = $this->get_repeater_setting_key('mg_pr_list_text', 'mg_pr_list_item', $index);
                             $this->add_inline_editing_attributes($key1);
                         ?>
-                            <li <?php echo $this->get_render_attribute_string($key1); ?>><?php echo mg_kses_tags($item['mg_pr_list_text']); ?></li>
+                            <li <?php echo $this->get_render_attribute_string($key1); ?>>
+                                <?php
+                                if ($settings['mg_pr_list_icon_show'] === 'yes') {
+                                    \Elementor\Icons_Manager::render_icon($settings['mg_pr_list_icon'], ['aria-hidden' => 'true']);
+                                }
+
+                                ?>
+                                <?php echo mg_kses_tags($item['mg_pr_list_text']); ?>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
             <?php endif; ?>
             <?php if ($mg_pr_price && $settings['mgpr_style_select'] == 's2') : ?>
-                <p class="mg-price mgps2"><span <?php echo $this->get_render_attribute_string('mg_pr_price'); ?>><?php echo mg_kses_tags($mg_pr_price); ?></span> <span <?php echo $this->get_render_attribute_string('mg_pr_price_text'); ?>><?php echo mg_kses_tags($mg_pr_price_text); ?></span></p>
+                <p class="mg-price mgps2">
+                    <span <?php echo $this->get_render_attribute_string('mg_pr_price'); ?>>
+                        <?php
+                        // Match currency and price
+                        preg_match('/^(\D+)(\d+)$/', $mg_pr_price, $matches);
+
+                        if (!empty($matches)) {
+                            $currency = $matches[1];
+                            $price = $matches[2];
+
+                            echo '<strong>' . htmlspecialchars($currency, ENT_QUOTES, 'UTF-8') . '</strong>';
+                            echo mg_kses_tags($price);
+                        } else {
+                            echo mg_kses_tags($mg_pr_price);
+                        }
+                        ?>
+
+                    </span>
+                    <span <?php echo $this->get_render_attribute_string('mg_pr_price_text'); ?>><?php echo mg_kses_tags($mg_pr_price_text); ?></span>
+                </p>
+
             <?php endif; ?>
             <?php
             $btntitle = $this->get_settings('mg_pr_btntitle');
@@ -1616,167 +1875,199 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             </div>
         </div>
 
-<?php
+    <?php
     }
 
 
 
 
-    protected function content_template() {
-        ?>
+    protected function content_template()
+    {
+    ?>
         <#
-        var settings=settings; 
-        var mg_pr_title = settings.mg_pr_title;        
-        var mg_pr_title_tag = settings.mg_pr_title_tag;
-        view.addInlineEditingAttributes('mg_pr_title', 'basic');
-        view.addRenderAttribute('mg_pr_title', 'class', 'mg-pricing-title');
+            var settings=settings;
+            var mg_pr_title=settings.mg_pr_title;
+            var mg_pr_title_tag=settings.mg_pr_title_tag;
+            view.addInlineEditingAttributes('mg_pr_title', 'basic' );
+            view.addRenderAttribute('mg_pr_title', 'class' , 'mg-pricing-title' );
 
 
-        var mg_pr_price = settings.mg_pr_price;
-        view.addRenderAttribute('mg_pr_price', 'class', 'mgcur');
-        view.addInlineEditingAttributes('mg_pr_price', 'basic');
+            var mg_pr_price=settings.mg_pr_price;
+            view.addRenderAttribute('mg_pr_price', 'class' , 'mgcur mgpt-currency-absolute' );
+            view.addInlineEditingAttributes('mg_pr_price', 'basic' );
 
-        var mg_pr_price_text = settings.mg_pr_price_text;
-        view.addInlineEditingAttributes('mg_pr_price_text', 'basic');
-        view.addRenderAttribute('mg_pr_price_text', 'class', 'mgext');
+            var mg_pr_price_text=settings.mg_pr_price_text;
+            view.addInlineEditingAttributes('mg_pr_price_text', 'basic' );
+            view.addRenderAttribute('mg_pr_price_text', 'class' , 'mgext' );
 
-        var mg_pr_desc = settings.mg_pr_desc;
-        view.addInlineEditingAttributes('mg_pr_desc', 'basic');
-        view.addRenderAttribute('mg_pr_desc', 'class', 'mg-price-desc');
+            var mg_pr_desc=settings.mg_pr_desc;
+            view.addInlineEditingAttributes('mg_pr_desc', 'basic' );
+            view.addRenderAttribute('mg_pr_desc', 'class' , 'mg-price-desc' );
 
 
-            var mg_pr_list_item_show = settings.mg_pr_list_item_show;
-            var mg_pr_list_item = settings.mg_pr_list_item;
+            var mg_pr_list_item_show=settings.mg_pr_list_item_show;
+            var mg_pr_list_item=settings.mg_pr_list_item;
 
-            var mgpr_icon_posotion = settings.mgpr_icon_posotion;
-            var mgpr_style_select = settings.mgpr_style_select;
-            var mgpr_active_absulate = settings.mgpr_active_absulate;
-            var mg_pr_use_icon = settings.mg_pr_use_icon;
-            var mg_pr_main_icon_position = settings.mg_pr_main_icon_position;
-            var mg_pr_icon_type = settings.mg_pr_icon_type;
-            var mg_pr_type_selected_icon = settings.mg_pr_type_selected_icon;
+            var mgpr_icon_posotion=settings.mgpr_icon_posotion;
+            var mgpr_style_select=settings.mgpr_style_select;
+            var mgpr_active_absulate=settings.mgpr_active_absulate;
+            var mg_pr_use_icon=settings.mg_pr_use_icon;
+            var mg_pr_main_icon_position=settings.mg_pr_main_icon_position;
+            var mg_pr_icon_type=settings.mg_pr_icon_type;
+            var mg_pr_type_selected_icon=settings.mg_pr_type_selected_icon;
 
-            var mg_pr_btntitle = settings.mg_pr_btntitle;
-            var mg_pr_btn_link = settings.mg_pr_btn_link;
-            var mg_pr_usebtn_icon = settings.mg_pr_usebtn_icon;
-            var mg_pr_btn_icon = settings.mg_pr_btn_icon;
-            var mg_pr_icon_position = settings.mg_pr_icon_position;
-            
-        view.addRenderAttribute('mg_pr_btntitle', 'class', 'mg-btn');
-        view.addRenderAttribute('mg_pr_btntitle', 'class', 'mg-btn-text ');
+            var mg_pr_btntitle=settings.mg_pr_btntitle;
+            var mg_pr_btn_link=settings.mg_pr_btn_link;
+            var mg_pr_usebtn_icon=settings.mg_pr_usebtn_icon;
+            var mg_pr_btn_icon=settings.mg_pr_btn_icon;
+            var mg_pr_icon_position=settings.mg_pr_icon_position;
+
+            view.addRenderAttribute('mg_pr_btntitle', 'class' , 'mg-btn' );
+            view.addRenderAttribute('mg_pr_btntitle', 'class' , 'mg-btn-text ' );
 
 
             if (mg_pr_btn_link.is_external) {
-            view.addRenderAttribute('mg_pr_btntitle', 'target', '_blank');
-        }
-        if (mg_pr_btn_link.nofollow) {
-            view.addRenderAttribute('mg_pr_btntitle', 'rel', 'nofollow');
-        }
+            view.addRenderAttribute('mg_pr_btntitle', 'target' , '_blank' );
+            }
+            if (mg_pr_btn_link.nofollow) {
+            view.addRenderAttribute('mg_pr_btntitle', 'rel' , 'nofollow' );
+            }
 
 
 
-            var mgPrImage = {
-			id: settings.mg_pr_type_image.id,
-			url: settings.mg_pr_type_image.url,
-			size: settings.mg_pr_thumbnail_size,
-			dimension: settings.mg_pr_thumbnail_custom_dimension,
-			model: view.getEditModel()
-			};
-			var mgpr_image_url = elementor.imagesManager.getImageUrl( mgPrImage );
-
-    
-        #>
-        <div class="mg-pricing {{ mgpr_style_select }} {{ mgpr_active_absulate === 'yes' ? 'mg-has-absolute' : '' }}">
-            <div class="mg-pcicontitle">
-                <# if (mg_pr_title && mgpr_icon_posotion === 'middle') { #>
-
-                    <{{{ mg_pr_title_tag }}} {{{ view.getRenderAttributeString('mg_pr_title') }}}>{{{ mg_pr_title }}}</{{{ mg_pr_title_tag }}} >
+            var mgPrImage={
+            id: settings.mg_pr_type_image.id,
+            url: settings.mg_pr_type_image.url,
+            size: settings.mg_pr_thumbnail_size,
+            dimension: settings.mg_pr_thumbnail_custom_dimension,
+            model: view.getEditModel()
+            };
+            var mgpr_image_url=elementor.imagesManager.getImageUrl( mgPrImage );
 
 
-                <# } #>
-    
-                <# if (mg_pr_use_icon === 'yes') { #>
-                    <div class="mgprice-iconimg text-{{ mg_pr_main_icon_position }}">
-                        <# if (mg_pr_icon_type === 'image') { #>
-                            <figure class="mg-pricing-img {{ mgpr_active_absulate === 'yes' ? 'mg-absolute' : '' }}">
-                                <img src="{{{ mgpr_image_url }}}" />
-                            </figure>
-                        <# } else { #>
-                            <div class="mg-pricing-icon {{ mgpr_active_absulate === 'yes' ? 'mg-absolute' : '' }}">
-                                <i class="{{{ settings.mg_pr_type_selected_icon.value }}}"></i>
-                            </div>
+            #>
+            <div class="mg-pricing {{ mgpr_style_select }} {{ mgpr_active_absulate === 'yes' ? 'mg-has-absolute' : '' }}">
+                <div class="mg-pcicontitle">
+                    <# if (mg_pr_title && mgpr_icon_posotion==='middle' ) { #>
+
+                        <{{{ mg_pr_title_tag }}} {{{ view.getRenderAttributeString('mg_pr_title') }}}>{{{ mg_pr_title }}}</{{{ mg_pr_title_tag }}}>
+
+
                         <# } #>
-                    </div>
-                <# } #>
-    
-                <# if (mg_pr_title && mgpr_icon_posotion === 'top') { #>
 
-                    <{{{ mg_pr_title_tag }}} {{{ view.getRenderAttributeString('mg_pr_title') }}}>{{{ mg_pr_title }}}</{{{ mg_pr_title_tag }}} >
+                            <# if (mg_pr_use_icon==='yes' ) { #>
+                                <div class="mgprice-iconimg text-{{ mg_pr_main_icon_position }}">
+                                    <# if (mg_pr_icon_type==='image' ) { #>
+                                        <figure class="mg-pricing-img {{ mgpr_active_absulate === 'yes' ? 'mg-absolute' : '' }}">
+                                            <img src="{{{ mgpr_image_url }}}" />
+                                        </figure>
+                                        <# } else { #>
+                                            <div class="mg-pricing-icon {{ mgpr_active_absulate === 'yes' ? 'mg-absolute' : '' }}">
+                                                <i class="{{{ settings.mg_pr_type_selected_icon.value }}}"></i>
+                                            </div>
+                                            <# } #>
+                                </div>
+                                <# } #>
 
-                <# } #>
-            </div>
-    
-            <# if (mg_pr_price && mgpr_style_select === 's1') { #>
-                <p class="mg-price">
-                    <span {{{ view.getRenderAttributeString('mg_pr_price') }}}>{{{ mg_pr_price }}}</span>
-                 <span {{{ view.getRenderAttributeString('mg_pr_price_text') }}}>{{{ mg_pr_price_text }}}</span></p>
-            <# } #>
-    
-            <# if (mg_pr_desc) { #>
-                <p {{{ view.getRenderAttributeString('mg_pr_desc') }}}>{{{ mg_pr_desc }}}</p>
-            <# } #>
-    
-            <# if (mg_pr_list_item && mg_pr_list_item_show) { #>
-                <div class="mg-price-list">
-                    <ul>
-                        <# _.each(mg_pr_list_item, function(item) { #>
-                            <li {{{ view.getRenderAttributeString(item._id + '_mg_pr_list_text') }}}>{{{ item.mg_pr_list_text }}}</li>
-                        <# }); #>
-                    </ul>
+                                    <# if (mg_pr_title && mgpr_icon_posotion==='top' ) { #>
+
+                                        <{{{ mg_pr_title_tag }}} {{{ view.getRenderAttributeString('mg_pr_title') }}}>{{{ mg_pr_title }}}</{{{ mg_pr_title_tag }}}>
+
+                                        <# } #>
                 </div>
-            <# } #>
-    
-            <# if (mg_pr_price && mgpr_style_select === 's2') { #>
-                <p class="mg-price mgps2"><span {{{ view.getRenderAttributeString('mg_pr_price') }}}>{{{ mg_pr_price }}}</span> <span {{{ view.getRenderAttributeString('mg_pr_price_text') }}}>{{{ mg_pr_price_text }}}</span></p>
-            <# } #>
-    
+
+                <# if (mg_pr_price && mgpr_style_select==='s1' ) { #>
+
+                    <p class="mg-price">
+                        <span {{{ view.getRenderAttributeString('mg_pr_price') }}}>
+                            <#
+                                var matches=settings.mg_pr_price.match(/^(\D+)(\d+)$/);
+                                if ( matches ) {
+                                var currency=matches[1]; // Non-digit part (currency)
+                                var price=matches[2]; // Numeric part (price)
+                                #>
+                                <strong>{{{ currency }}}</strong>{{{ price }}}
+                                <# } else { #>
+                                    {{{ settings.mg_pr_price }}}
+                                    <# } #>
+                        </span>
+                        <span {{{ view.getRenderAttributeString('mg_pr_price_text') }}}>
+                            {{{ settings.mg_pr_price_text }}}
+                        </span>
+                    </p>
+                    <# } #>
+
+                        <# if (mg_pr_desc) { #>
+                            <p {{{ view.getRenderAttributeString('mg_pr_desc') }}}>{{{ mg_pr_desc }}}</p>
+                            <# } #>
+
+                                <# if (mg_pr_list_item && mg_pr_list_item_show) { #>
+                                    <div class="mg-price-list">
+                                        <ul>
+                                            <# _.each(mg_pr_list_item, function(item) { #>
+                                                <li {{{ view.getRenderAttributeString( item._id + '_mg_pr_list_text' ) }}}>
+                                                    <# if ( settings.mg_pr_list_icon_show==='yes' && settings.mg_pr_list_icon ) { #>
+                                                        <span class="elementor-icon">
+                                                            <# if ( settings.mg_pr_list_icon.library==='svg' ) { #>
+                                                                {{{ settings.mg_pr_list_icon.value }}}
+                                                                <# } else { #>
+                                                                    <i class="{{ settings.mg_pr_list_icon.value }}" aria-hidden="true"></i>
+                                                                    <# } #>
+                                                        </span>
+                                                        <# } #>
+                                                            {{{ item.mg_pr_list_text }}}
+                                                </li>
+                                                <# }); #>
+                                        </ul>
+                                    </div>
+                                    <# } #>
+
+                                        <# if (mg_pr_price && mgpr_style_select==='s2' ) { #>
+                                            <p class="mg-price mgps2">
+                                                <span {{{ view.getRenderAttributeString('mg_pr_price') }}}>
+                                                    <#
+                                                        var matches=settings.mg_pr_price.match(/^(\D+)(\d+)$/);
+                                                        if ( matches ) {
+                                                        var currency=matches[1]; // Non-digit part (currency)
+                                                        var price=matches[2]; // Numeric part (price)
+                                                        #>
+                                                        <strong>{{{ currency }}}</strong>{{{ price }}}
+                                                        <# } else { #>
+                                                            {{{ settings.mg_pr_price }}}
+                                                            <# } #>
+                                                </span>
+                                                <span {{{ view.getRenderAttributeString('mg_pr_price_text') }}}>
+                                                    {{{ settings.mg_pr_price_text }}}
+                                                </span>
+                                            </p>
+                                            <# } #>
+
+                                                <div class="mgprice-btn-wrap">
+                                                    <# if (mg_pr_usebtn_icon==='yes' ) { #>
+                                                        <a href="{{ mg_pr_btn_link.url }}" {{{ view.getRenderAttributeString('mg_pr_btntitle') }}} target="{{ mg_pr_btn_link.is_external ? '_blank' : '_self' }}" rel="{{ mg_pr_btn_link.nofollow ? 'nofollow' : '' }}">
+
+                                                            <# if (mg_pr_icon_position==='left' ) { #>
+                                                                <span class="left">
+                                                                    <i class="{{{ settings.mg_pr_btn_selected_icon.value }}}"></i>
+                                                                </span>
+                                                                <# } #>
+                                                                    <span>{{{ mg_pr_btntitle }}}</span>
+                                                                    <# if (mg_pr_icon_position==='right' ) { #>
+                                                                        <span class="right">
+                                                                            <i class="{{{ settings.mg_pr_btn_selected_icon.value }}}"></i>
+                                                                        </span>
+                                                                        <# } #>
+
+
+                                                        </a>
+                                                        <# } else { #>
+                                                            <a href="{{{ mg_pr_btn_link.url }}}" class="mg-btn-text mg-btn" target="{{{ mg_pr_btn_link.is_external ? '_blank' : '' }}}" {{{ mg_pr_btn_link.nofollow ? 'rel="nofollow"' : '' }}}>{{{ mg_pr_btntitle }}}</a>
+                                                            <# } #>
+                                                </div>
 
 
 
-            <div class="mgprice-btn-wrap">
-                <# if (mg_pr_usebtn_icon === 'yes') { #>
-                    <a href="{{ mg_pr_btn_link.url }}" {{{ view.getRenderAttributeString('mg_pr_btntitle') }}}    target="{{ mg_pr_btn_link.is_external ? '_blank' : '_self' }}" rel="{{ mg_pr_btn_link.nofollow ? 'nofollow' : '' }}">
-
-                        <# if (mg_pr_icon_position === 'left') { #>
-                            <span class="left">
-                                <i class="{{{ settings.mg_pr_btn_selected_icon.value }}}"></i>
-                            </span>
-                        <# } #>
-                        <span>{{{ mg_pr_btntitle }}}</span>
-                        <# if (mg_pr_icon_position === 'right') { #>
-                            <span class="right">
-                                <i class="{{{ settings.mg_pr_btn_selected_icon.value }}}"></i>
-                            </span>
-                        <# } #>
-
-
-                    </a>
-                <# } else { #>
-                    <a href="{{{ mg_pr_btn_link.url }}}" class="mg-btn-text mg-btn" target="{{{ mg_pr_btn_link.is_external ? '_blank' : '' }}}" {{{ mg_pr_btn_link.nofollow ? 'rel="nofollow"' : '' }}}>{{{ mg_pr_btntitle }}}</a>
-                <# } #>
             </div>
-
-
-
-        </div>
-        <?php
+    <?php
     }
-    
-
-    
-
-
-
-
-
 }

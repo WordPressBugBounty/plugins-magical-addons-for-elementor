@@ -443,6 +443,23 @@ class MgAccordion extends \Elementor\Widget_Base
                 ],
             ]
         );
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'mgac_color_bg',
+                'label' => esc_html__('Background', 'magical-addons-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .card.mgrc-item',
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'mgac_color_bg_shadow',
+                'label' => esc_html__('Box Shadow', 'magical-addons-for-elementor'),
+                'selector' => '{{WRAPPER}} .card.mgrc-item',
+            ]
+        );
 
         $this->end_controls_section();
         $this->start_controls_section(
@@ -981,9 +998,13 @@ class MgAccordion extends \Elementor\Widget_Base
                         </div>
 
                         <div id="mgc-item<?php echo esc_attr($index); ?><?php echo esc_attr($mgac_rand); ?>" class="collapse mgaccont <?php echo ($item['mgac_is_open'] == 'yes') ? 'show' : ''; ?>" aria-labelledby="heading<?php echo esc_attr($index); ?><?php echo esc_attr($mgac_rand); ?>" data-bs-parent="#mgAccordion<?php echo esc_attr($mgac_rand); ?>">
+
                             <div class="card-body mgac-content mgac-<?php echo esc_attr($settings['mgac_effect']); ?>">
-                                <p <?php echo $this->get_render_attribute_string($key2); ?>><?php echo wp_kses_post($item['mgac_content']); ?></p>
+                                <p <?php echo $this->get_render_attribute_string($key2); ?>>
+                                    <?php echo wp_kses($item['mgac_content'], array('br' => array(), 'span' => array())); ?>
+                                </p>
                             </div>
+
                         </div>
                     </div>
                 <?php endforeach; ?>
