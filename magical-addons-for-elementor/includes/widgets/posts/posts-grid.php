@@ -1559,7 +1559,8 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                                     <?php
                                     if ($settings['mgpg_post_style'] == '3') $this->render_category_list($settings); ?>
                                     <?php $this->render_description($settings); ?>
-                                    <?php $this->render_button($settings); ?>
+                                    <?php $this->render_button($settings);
+                                    ?>
                                     <?php $this->render_tags($settings); ?>
                                     <?php if ($settings['mgpg_post_style'] == '2') $this->render_post_meta($settings); // Style 2 meta at bottom 
                                     ?>
@@ -1709,19 +1710,56 @@ class mgPostGridWidget extends \Elementor\Widget_Base
 
     protected function render_button($settings)
     {
-        if ($settings['mgpg_post_btn']) :
-            $icon_position = $settings['mgpg_btn_icon_position'];
-            $icon = \Elementor\Icons_Manager::render_icon($settings['mgpg_btn_icon'], ['aria-hidden' => 'true']);
-            $button_text = mg_kses_tags($settings['mgpg_btn_title']);
+        // Check if the button is enabled
+        if (!empty($settings['mgpg_post_btn'])) {
+            // Retrieve necessary settings
+            $icon_position = !empty($settings['mgpg_btn_icon_position']) ? $settings['mgpg_btn_icon_position'] : 'right';
+            $icon = $this->render_elementor_icon($settings['mgpg_btn_icon']); // Use the helper function to safely retrieve the icon
+            $button_text = !empty($settings['mgpg_btn_title']) ? mg_kses_tags($settings['mgpg_btn_title']) :  __('Read More', 'magical-addons-for-elementor');
             $button_class = $this->get_render_attribute_string('mgpg_btn_title');
 
-            echo '<a href="' . get_the_permalink() . '" target="' . esc_attr($settings['mgpg_btn_target']) . '" ' . $button_class . '>';
-            if ($settings['mgpg_usebtn_icon'] === 'yes' && $icon_position === 'left') echo '<span class="left">' . $icon . '</span>';
+            // Sanitize the button target attribute to prevent XSS
+            $button_target = !empty($settings['mgpg_btn_target']) ? esc_attr($settings['mgpg_btn_target']) : '_self';
+
+            // Render the button
+            echo '<a href="' . esc_url(get_the_permalink()) . '" target="' . $button_target . '" ' . $button_class . '>';
+
+            // Add icon to the left if applicable
+            if (!empty($settings['mgpg_usebtn_icon']) && $settings['mgpg_usebtn_icon'] === 'yes' && $icon_position === 'left' && !empty($icon)) {
+                echo '<span class="left">' . $icon . '</span>';
+            }
+
+            // Add button text
             echo '<span>' . $button_text . '</span>';
-            if ($settings['mgpg_usebtn_icon'] === 'yes' && $icon_position === 'right') echo '<span class="right">' . $icon . '</span>';
+
+            // Add icon to the right if applicable
+            if (!empty($settings['mgpg_usebtn_icon']) && $settings['mgpg_usebtn_icon'] === 'yes' && $icon_position === 'right' && !empty($icon)) {
+                echo '<span class="right">' . $icon . '</span>';
+            }
+
             echo '</a>';
-        endif;
+        }
     }
+
+    /**
+     * Helper function to safely render Elementor icons.
+     *
+     * @param array $icon_settings The icon settings array.
+     * @return string The rendered icon HTML or an empty string.
+     */
+    protected function render_elementor_icon($icon_settings)
+    {
+        if (empty($icon_settings)) {
+            return '';
+        }
+
+        // Use output buffering to capture the rendered icon
+        ob_start();
+        \Elementor\Icons_Manager::render_icon($icon_settings, ['aria-hidden' => 'true']);
+        return ob_get_clean();
+    }
+
+
 
     protected function render_tags($settings)
     {
