@@ -124,7 +124,7 @@ class MgAddon_Dual_Heading extends \Elementor\Widget_Base
 		$this->add_control(
 			'mgheader_tag',
 			[
-				'label' => __('HTML Tag', 'elementor'),
+				'label' => __('HTML Tag', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
 					'h1' => 'H1',
@@ -143,7 +143,7 @@ class MgAddon_Dual_Heading extends \Elementor\Widget_Base
 		$this->add_control(
 			'mgheader_link',
 			[
-				'label' => __('Link', 'elementor'),
+				'label' => __('Link', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::URL,
 				'dynamic' => [
 					'active' => true,
@@ -157,23 +157,23 @@ class MgAddon_Dual_Heading extends \Elementor\Widget_Base
 		$this->add_responsive_control(
 			'mgheader_align',
 			[
-				'label' => __('Alignment', 'elementor'),
+				'label' => __('Alignment', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __('Left', 'elementor'),
+						'title' => __('Left', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'elementor'),
+						'title' => __('Center', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __('Right', 'elementor'),
+						'title' => __('Right', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __('Justified', 'elementor'),
+						'title' => __('Justified', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-justify',
 					],
 				],

@@ -15,7 +15,7 @@ trait mgProHelpLink
         $this->start_controls_section(
             'mgpl_gopro',
             [
-                'label' => esc_html__('Upgrade Pro | Start Only $21!!', 'magical-posts-display'),
+                'label' => esc_html__('Upgrade Pro | Start Only $21!!', 'magical-addons-for-elementor'),
             ]
         );
         $this->add_control(
@@ -23,8 +23,8 @@ trait mgProHelpLink
             [
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'raw' => mg_goprolink([
-                    'title' => esc_html__('Get All Pro Features', 'elementor'),
-                    'massage' => esc_html__('Unlock all pro templates, Pages, blocks and widgets. Upgrade pro to fully recharge your Elementor page builder.', 'magical-posts-display'),
+                    'title' => esc_html__('Get All Pro Features', 'magical-addons-for-elementor'),
+                    'massage' => esc_html__('Unlock all pro templates, Pages, blocks and widgets. Upgrade pro to fully recharge your Elementor page builder.', 'magical-addons-for-elementor'),
                     'link' => 'https://wpthemespace.com/product/magical-addons-pro/',
                 ]),
             ]

@@ -1712,7 +1712,8 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
         $this->add_inline_editing_attributes('mg_pr_price');
         $this->add_inline_editing_attributes('mg_pr_price_text');
         $this->add_render_attribute('mg_pr_price', 'class', 'mgcur');
-        if ('yes' === $settings['mg_pc_currency_position']) {
+
+        if (isset($settings['mg_pc_currency_position']) && 'yes' === $settings['mg_pc_currency_position']) {
             $this->add_render_attribute('mg_pr_price', 'class', 'mgpt-currency-absolute');
         }
         $this->add_render_attribute('mg_pr_price_text', 'class', 'mgext');
@@ -1893,7 +1894,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
 
 
             var mg_pr_price=settings.mg_pr_price;
+            if (settings.mg_pc_currency_position==='yes' ) {
             view.addRenderAttribute('mg_pr_price', 'class' , 'mgcur mgpt-currency-absolute' );
+            }
             view.addInlineEditingAttributes('mg_pr_price', 'basic' );
 
             var mg_pr_price_text=settings.mg_pr_price_text;

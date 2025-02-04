@@ -1222,7 +1222,7 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 		$this->add_responsive_control(
 			'mgab_icon_typography',
 			[
-				'label' => esc_html__('Size', 'elementor'),
+				'label' => esc_html__('Size', 'magical-addons-for-elementor'),
 				'type' =>  \Elementor\Controls_Manager::SLIDER,
 				'size_units' => ['px', 'em'],
 				'range' => [

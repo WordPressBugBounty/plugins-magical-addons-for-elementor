@@ -30,7 +30,7 @@ class madAdminInfo
                     $current_user = wp_get_current_user();
 
                     $pro_link = esc_url('https://wpthemespace.com/product/magical-addons-pro/?add-to-cart=7193');
-                    $pricing_link = esc_url('https://magic.wpcolors.net/pricing-plan/#mgpricing');
+                    $pricing_link = esc_url('https://wpthemespace.com/product/magical-addons-pro/');
 
                     esc_html_e('Hello, ', 'magical-addons-for-elementor');
                     echo esc_html($current_user->display_name);
@@ -39,15 +39,15 @@ class madAdminInfo
                     <?php esc_html_e('👋🏻', 'magical-addons-for-elementor'); ?>
                 </div>
                 <div class="mge-info-desc">
-                    <div><?php printf(esc_html__('Thanks for choosing %1$s. We\'re excited to announce that our pro version is now available, and it\'s packed with even more amazing features to take your web design game to the next level. Our library is growing, so you\'ll always have access to the latest and greatest features. So Upgrade pro now!!', 'magical-addons-for-elementor'), esc_html($addons_name)); ?></div>
-                    <div class="mge-offer"><?php printf(esc_html__('Upgrade to Magical Addons Pro today and unlock a world of possibilities for just $21! 🤑', 'magical-addons-for-elementor'), esc_html($addons_name)); ?></div>
+                    <div><?php printf(esc_html__('Thank you for choosing Magical Addons! ✨ We\'re excited to share that our Pro version is now available, loaded with advanced features to take your web design to the next level. Plus, our library keeps growing, so you’ll always have the latest and best tools at your fingertips🔥', 'magical-addons-for-elementor'), esc_html($addons_name)); ?></div>
+                    <div class="mge-offer"><?php printf(esc_html__('Upgrade to Magical Addons Pro today and unlock endless possibilities—all for just $21! 🚀', 'magical-addons-for-elementor'), esc_html($addons_name)); ?></div>
                 </div>
                 <div class="mge-info-actions">
                     <a href="<?php echo esc_url($pro_link); ?>" target="_blank" class="button button-primary upgrade-btn">
-                        <?php esc_html_e('Quick Upgrade', 'magical-addons-for-elementor'); ?>
+                        <?php esc_html_e('Upgrade Now', 'magical-addons-for-elementor'); ?>
                     </a>
                     <a href="<?php echo esc_url($pricing_link); ?>" target="_blank" class="button button-primary demo-btn">
-                        <?php esc_html_e('View All Pricing Plan', 'magical-addons-for-elementor'); ?>
+                        <?php esc_html_e('View Details', 'magical-addons-for-elementor'); ?>
                     </a>
                     <button class="button button-info mgad-dismiss"><?php esc_html_e('Dismiss this notice', 'magical-addons-for-elementor') ?></button>
                 </div>
@@ -63,7 +63,7 @@ class madAdminInfo
     public static function mp_display_admin_info()
     {
 
-        $hide_date = get_option('mg_info_date');
+        $hide_date = get_option('mg_info_text_date');
         if (!empty($hide_date)) {
             $clickhide = round((time() - strtotime($hide_date)) / 24 / 60 / 60);
             if ($clickhide < 25) {
@@ -91,7 +91,7 @@ class madAdminInfo
     public static function mp_display_admin_info_init()
     {
         if (isset($_GET['mgpdismissed']) && $_GET['mgpdismissed'] == 1) {
-            update_option('mg_info_date', current_time('mysql'));
+            update_option('mg_info_text_date', current_time('mysql'));
         }
         if (isset($_GET['tinfohide']) && $_GET['tinfohide'] == 1) {
             update_option('mg_hide_tinfo1', current_time('mysql'));

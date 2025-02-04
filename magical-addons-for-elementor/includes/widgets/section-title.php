@@ -114,7 +114,7 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 		$this->add_control(
 			'mgsectitle_tag',
 			[
-				'label' => __('HTML Tag', 'elementor'),
+				'label' => __('HTML Tag', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
 					'h1' => 'H1',
@@ -164,11 +164,11 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 				'default' => 'top',
 				'options' => [
 					'top' => [
-						'title' => __('Top', 'elementor'),
+						'title' => __('Top', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-arrow-up',
 					],
 					'bottom' => [
-						'title' => __('Bottom', 'elementor'),
+						'title' => __('Bottom', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-arrow-down',
 					],
 
@@ -205,23 +205,23 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 		$this->add_responsive_control(
 			'mgsectitle_align',
 			[
-				'label' => __('Alignment', 'elementor'),
+				'label' => __('Alignment', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __('Left', 'elementor'),
+						'title' => __('Left', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'elementor'),
+						'title' => __('Center', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __('Right', 'elementor'),
+						'title' => __('Right', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __('Justified', 'elementor'),
+						'title' => __('Justified', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-justify',
 					],
 				],
@@ -316,11 +316,11 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 				'default' => 'bottom',
 				'options' => [
 					'top' => [
-						'title' => __('Top', 'elementor'),
+						'title' => __('Top', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-arrow-up',
 					],
 					'bottom' => [
-						'title' => __('Bottom', 'elementor'),
+						'title' => __('Bottom', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-arrow-down',
 					],
 
@@ -500,19 +500,19 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 		$this->add_responsive_control(
 			'mgsectitle_balign',
 			[
-				'label' => __('Border Alignment', 'elementor'),
+				'label' => __('Border Alignment', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'start' => [
-						'title' => __('Left', 'elementor'),
+						'title' => __('Left', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'elementor'),
+						'title' => __('Center', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-center',
 					],
 					'end' => [
-						'title' => __('Right', 'elementor'),
+						'title' => __('Right', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-right',
 					],
 

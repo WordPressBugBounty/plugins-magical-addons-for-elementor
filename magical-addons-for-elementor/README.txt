@@ -273,6 +273,11 @@ e.g.
 
 == Changelog ==
 
+= 1.2.9 =
+	* Removed Elementor .elementor-widget-container class style
+	* Removed all deprecated PHP code
+	* Added new style some widges
+
 = 1.2.6 =
 	* Added new opitons for social share addon
 	* Posts grid and list widges options and style added

@@ -23,7 +23,7 @@ class mgproMailchimp extends Widget_Base
 
 	public function get_title()
 	{
-		return __('Mg MailChimp', 'mg-elementor');
+		return __('Mg MailChimp', 'magical-addons-for-elementor');
 	}
 
 	public function get_icon()
@@ -55,7 +55,8 @@ class mgproMailchimp extends Widget_Base
 	public function get_style_depends()
 	{
 		return [
-			'mg-mailchimp', 'elementor-icons-fa-solid',
+			'mg-mailchimp',
+			'elementor-icons-fa-solid',
 			'elementor-icons-fa-regular',
 		];
 	}
@@ -66,17 +67,17 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_form',
 			array(
-				'label' => __('MailChimp Settings', 'mg-elementor'),
+				'label' => __('MailChimp Settings', 'magical-addons-for-elementor'),
 			)
 		);
 
 		$this->add_control(
 			'mailchimp_lists',
 			[
-				'label'         => __('Mailchimp List', 'mg-elementor'),
+				'label'         => __('Mailchimp List', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SELECT,
 				'label_block'   => false,
-				'description'   => sprintf(__('You need to set your Api Key on the %1$ssettings page (Extra tab)%2$s', 'mg-elementor'), '<a href="' . add_query_arg(array('page' => 'magical-addons'), esc_url(admin_url('admin.php'))) . '" target="_blank">', '</a>'),
+				'description'   => sprintf(__('You need to set your Api Key on the %1$ssettings page (Extra tab)%2$s', 'magical-addons-for-elementor'), '<a href="' . add_query_arg(array('page' => 'magical-addons'), esc_url(admin_url('admin.php'))) . '" target="_blank">', '</a>'),
 				'options'       => mg_mailchimp_lists(),
 			]
 		);
@@ -86,18 +87,18 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_fields',
 			[
-				'label'         => __('Fields', 'mg-elementor'),
+				'label'         => __('Fields', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'mailchimp_layout',
 			[
-				'label'         => __('Layout', 'mg-elementor'),
+				'label'         => __('Layout', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SELECT,
 				'options'       => [
-					'blocks' => __('Blocks', 'mg-elementor'),
-					'inline' => __('Inline', 'mg-elementor'),
+					'blocks' => __('Blocks', 'magical-addons-for-elementor'),
+					'inline' => __('Inline', 'magical-addons-for-elementor'),
 				],
 				'default'       => 'inline',
 
@@ -107,7 +108,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'display_labels',
 			[
-				'label'         => __('Display Labels', 'mg-elementor'),
+				'label'         => __('Display Labels', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SWITCHER,
 				'default'       => '',
 				'return_value'  => 'yes',
@@ -116,7 +117,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'display_icons',
 			[
-				'label'         => __('Display Icons', 'mg-elementor'),
+				'label'         => __('Display Icons', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SWITCHER,
 				'default'       => 'yes',
 				'return_value'  => 'yes',
@@ -126,7 +127,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'display_first_name',
 			[
-				'label'         => __('Enable First Name', 'mg-elementor'),
+				'label'         => __('Enable First Name', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SWITCHER,
 				'default'       => '',
 				'return_value'  => 'yes',
@@ -135,7 +136,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'icon_fname',
 			[
-				'label' => esc_html__('First Name Icon', 'elementor'),
+				'label' => esc_html__('First Name Icon', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default' => [
@@ -152,13 +153,13 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'first_name_text',
 			[
-				'label'         => __('First Name Label', 'mg-elementor'),
+				'label'         => __('First Name Label', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::TEXT,
 				'dynamic'       => [
 					'active' => true,
 				],
 				'label_block'   => false,
-				'default'       => __('First Name', 'mg-elementor'),
+				'default'       => __('First Name', 'magical-addons-for-elementor'),
 				'condition'     => [
 					'display_first_name' => 'yes',
 				],
@@ -168,7 +169,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'display_last_name',
 			[
-				'label'         => __('Enable Last Name', 'mg-elementor'),
+				'label'         => __('Enable Last Name', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SWITCHER,
 				'default'       => '',
 				'return_value'  => 'yes',
@@ -177,7 +178,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'icon_lname',
 			[
-				'label' => esc_html__('Last Name Icon', 'elementor'),
+				'label' => esc_html__('Last Name Icon', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default' => [
@@ -194,13 +195,13 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'last_name_text',
 			[
-				'label'         => __('Last Name Label', 'mg-elementor'),
+				'label'         => __('Last Name Label', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::TEXT,
 				'dynamic'       => [
 					'active' => true,
 				],
 				'label_block'   => false,
-				'default'       => __('Last Name', 'mg-elementor'),
+				'default'       => __('Last Name', 'magical-addons-for-elementor'),
 				'condition'     => [
 					'display_last_name' => 'yes',
 				],
@@ -209,7 +210,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'icon_email',
 			[
-				'label' => esc_html__('Email Icon', 'elementor'),
+				'label' => esc_html__('Email Icon', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default' => [
@@ -225,13 +226,13 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'email_text',
 			[
-				'label'         => __('Email Label', 'mg-elementor'),
+				'label'         => __('Email Label', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::TEXT,
 				'dynamic'       => [
 					'active' => true,
 				],
 				'label_block'   => false,
-				'default'       => __('Email Address', 'mg-elementor'),
+				'default'       => __('Email Address', 'magical-addons-for-elementor'),
 			]
 		);
 
@@ -240,33 +241,33 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_button',
 			[
-				'label'         => __('Button', 'mg-elementor'),
+				'label'         => __('Button', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'button_text',
 			[
-				'label'         => __('Button Text', 'mg-elementor'),
+				'label'         => __('Button Text', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::TEXT,
 				'dynamic'       => [
 					'active' => true,
 				],
 				'label_block'   => false,
-				'default'       => __('Subscribe', 'mg-elementor'),
+				'default'       => __('Subscribe', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'loading_text',
 			[
-				'label'         => __('Loading Text', 'mg-elementor'),
+				'label'         => __('Loading Text', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::TEXT,
 				'dynamic'       => [
 					'active' => true,
 				],
 				'label_block'   => false,
-				'default'       => __('Submitting...', 'mg-elementor'),
+				'default'       => __('Submitting...', 'magical-addons-for-elementor'),
 			]
 		);
 
@@ -275,20 +276,20 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_message',
 			[
-				'label'         => __('Message', 'mg-elementor'),
+				'label'         => __('Message', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'success_text',
 			[
-				'label'         => __('Success Text', 'mg-elementor'),
+				'label'         => __('Success Text', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::TEXT,
 				'dynamic'       => [
 					'active' => true,
 				],
 				'label_block'   => true,
-				'default'       => __('You have subscribed successfully!', 'mg-elementor'),
+				'default'       => __('You have subscribed successfully!', 'magical-addons-for-elementor'),
 			]
 		);
 
@@ -298,7 +299,7 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_general_style',
 			[
-				'label'         => __('General', 'mg-elementor'),
+				'label'         => __('General', 'magical-addons-for-elementor'),
 				'tab'           => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -307,7 +308,7 @@ class mgproMailchimp extends Widget_Base
 			Group_Control_Background::get_type(),
 			[
 				'name'          => 'mailchimp_bg',
-				'label'         => __('Background', 'mg-elementor'),
+				'label'         => __('Background', 'magical-addons-for-elementor'),
 				'types'         => ['none', 'classic', 'gradient'],
 				'selector'      => '{{WRAPPER}} .mg-mailchimp-wrap',
 			]
@@ -316,7 +317,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'mailchimp_padding',
 			[
-				'label'         => __('Padding', 'mg-elementor'),
+				'label'         => __('Padding', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', 'em', '%'],
 				'selectors'     => [
@@ -328,7 +329,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'mailchimp_margin',
 			[
-				'label'         => __('Margin', 'mg-elementor'),
+				'label'         => __('Margin', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', 'em', '%'],
 				'selectors'     => [
@@ -341,7 +342,7 @@ class mgproMailchimp extends Widget_Base
 			Group_Control_Border::get_type(),
 			[
 				'name'          => 'mailchimp_border',
-				'label'         => __('Border', 'mg-elementor'),
+				'label'         => __('Border', 'magical-addons-for-elementor'),
 				'selector'      => '{{WRAPPER}} .mg-mailchimp-wrap',
 			]
 		);
@@ -349,7 +350,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'mailchimp_border_radius',
 			[
-				'label'         => __('Border Radius', 'mg-elementor'),
+				'label'         => __('Border Radius', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', 'em', '%'],
 				'selectors'     => [
@@ -371,14 +372,14 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_form_icon',
 			[
-				'label'         => __('Form Icons', 'mg-elementor'),
+				'label'         => __('Form Icons', 'magical-addons-for-elementor'),
 				'tab'           => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'icons_size',
 			[
-				'label'         => __('Icons Size', 'mg-elementor'),
+				'label'         => __('Icons Size', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SLIDER,
 				'range'         => [
 					'px' => [
@@ -455,7 +456,7 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_form_style',
 			[
-				'label'         => __('Form Fields', 'mg-elementor'),
+				'label'         => __('Form Fields', 'magical-addons-for-elementor'),
 				'tab'           => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -463,7 +464,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'fields_spacing',
 			[
-				'label'         => __('Fields Spacing', 'mg-elementor'),
+				'label'         => __('Fields Spacing', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SLIDER,
 				'range'         => [
 					'px' => [
@@ -482,7 +483,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'heading_labels_style',
 			[
-				'label'         => __('Layouts', 'mg-elementor'),
+				'label'         => __('Layouts', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::HEADING,
 				'condition'     => [
 					'display_labels' => 'yes',
@@ -505,7 +506,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'labels_margin',
 			[
-				'label'         => __('Margin', 'mg-elementor'),
+				'label'         => __('Margin', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', 'em', '%'],
 				'selectors'     => [
@@ -520,7 +521,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'heading_inputs_style',
 			[
-				'label'         => __('Inputs', 'mg-elementor'),
+				'label'         => __('Inputs', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::HEADING,
 				'condition'     => [
 					'display_labels' => 'yes',
@@ -532,7 +533,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'inputs_width',
 			[
-				'label'         => __('Width', 'mg-elementor'),
+				'label'         => __('Width', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SLIDER,
 				'size_units'    => ['px', 'em', '%'],
 				'range'         => [
@@ -553,7 +554,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'inputs_height',
 			[
-				'label'         => __('Height', 'mg-elementor'),
+				'label'         => __('Height', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SLIDER,
 				'size_units'    => ['px', 'em', '%'],
 				'range'         => [
@@ -585,14 +586,14 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_tab(
 			'tab_inputs_normal',
 			[
-				'label'         => __('Normal', 'mg-elementor'),
+				'label'         => __('Normal', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'inputs_background_color',
 			[
-				'label'         => __('Background Color', 'mg-elementor'),
+				'label'         => __('Background Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-input' => 'background-color: {{VALUE}};',
@@ -603,7 +604,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'inputs_text_color',
 			[
-				'label'         => __('Text Color', 'mg-elementor'),
+				'label'         => __('Text Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'default'       => '',
 				'selectors'     => [
@@ -617,14 +618,14 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_tab(
 			'tab_inputs_hover',
 			[
-				'label'         => __('Hover', 'mg-elementor'),
+				'label'         => __('Hover', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'inputs_background_hover_color',
 			[
-				'label'         => __('Background Color', 'mg-elementor'),
+				'label'         => __('Background Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-input:hover' => 'background-color: {{VALUE}};',
@@ -635,7 +636,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'inputs_hover_color',
 			[
-				'label'         => __('Text Color', 'mg-elementor'),
+				'label'         => __('Text Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-input:hover' => 'color: {{VALUE}};',
@@ -646,7 +647,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'inputs_hover_border_color',
 			[
-				'label'         => __('Border Color', 'mg-elementor'),
+				'label'         => __('Border Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-input:hover' => 'border-color: {{VALUE}};',
@@ -659,14 +660,14 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_tab(
 			'tab_inputs_focus',
 			[
-				'label'         => __('Focus', 'mg-elementor'),
+				'label'         => __('Focus', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'inputs_background_focus_color',
 			[
-				'label'         => __('Background Color', 'mg-elementor'),
+				'label'         => __('Background Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-input:focus' => 'background-color: {{VALUE}};',
@@ -677,7 +678,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'inputs_focus_color',
 			[
-				'label'         => __('Text Color', 'mg-elementor'),
+				'label'         => __('Text Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-input:focus' => 'color: {{VALUE}};',
@@ -688,7 +689,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'inputs_focus_border_color',
 			[
-				'label'         => __('Border Color', 'mg-elementor'),
+				'label'         => __('Border Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-input:focus' => 'border-color: {{VALUE}};',
@@ -703,7 +704,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'inputs_placeholder_color',
 			[
-				'label'         => __('Placeholder Color', 'mg-elementor'),
+				'label'         => __('Placeholder Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-input::-webkit-input-placeholder' => 'color: {{VALUE}};',
@@ -726,7 +727,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'inputs_border_radius',
 			[
-				'label'         => __('Border Radius', 'mg-elementor'),
+				'label'         => __('Border Radius', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', '%'],
 				'selectors'     => [
@@ -746,7 +747,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'inputs_padding',
 			[
-				'label'         => __('Padding', 'mg-elementor'),
+				'label'         => __('Padding', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', 'em', '%'],
 				'selectors'     => [
@@ -760,7 +761,7 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_btn_style',
 			[
-				'label'         => __('Button', 'mg-elementor'),
+				'label'         => __('Button', 'magical-addons-for-elementor'),
 				'tab'           => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -778,14 +779,14 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_tab(
 			'tab_button_normal',
 			[
-				'label'         => __('Normal', 'mg-elementor'),
+				'label'         => __('Normal', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'button_background_color',
 			[
-				'label'         => __('Background Color', 'mg-elementor'),
+				'label'         => __('Background Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-subscribe' => 'background-color: {{VALUE}};',
@@ -796,7 +797,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'button_text_color',
 			[
-				'label'         => __('Text Color', 'mg-elementor'),
+				'label'         => __('Text Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'default'       => '',
 				'selectors'     => [
@@ -810,14 +811,14 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_tab(
 			'tab_button_hover',
 			[
-				'label'         => __('Hover', 'mg-elementor'),
+				'label'         => __('Hover', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'button_background_hover_color',
 			[
-				'label'         => __('Background Color', 'mg-elementor'),
+				'label'         => __('Background Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-subscribe:hover' => 'background-color: {{VALUE}};',
@@ -828,7 +829,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'button_hover_color',
 			[
-				'label'         => __('Text Color', 'mg-elementor'),
+				'label'         => __('Text Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-subscribe:hover' => 'color: {{VALUE}};',
@@ -839,7 +840,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'button_hover_border_color',
 			[
-				'label'         => __('Border Color', 'mg-elementor'),
+				'label'         => __('Border Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-field .mg-mc-subscribe:hover' => 'border-color: {{VALUE}};',
@@ -864,7 +865,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'button_border_radius',
 			[
-				'label'         => __('Border Radius', 'mg-elementor'),
+				'label'         => __('Border Radius', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', '%'],
 				'selectors'     => [
@@ -884,7 +885,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'button_padding',
 			[
-				'label'         => __('Padding', 'mg-elementor'),
+				'label'         => __('Padding', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', 'em', '%'],
 				'selectors'     => [
@@ -898,7 +899,7 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_section(
 			'section_msg_style',
 			[
-				'label'         => __('Message', 'mg-elementor'),
+				'label'         => __('Message', 'magical-addons-for-elementor'),
 				'tab'           => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -914,19 +915,19 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'msg_align',
 			[
-				'label'         => __('Alignment', 'mg-elementor'),
+				'label'         => __('Alignment', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::CHOOSE,
 				'options'       => [
 					'left'    => [
-						'title' => __('Left', 'mg-elementor'),
+						'title' => __('Left', 'magical-addons-for-elementor'),
 						'icon'  => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'mg-elementor'),
+						'title' => __('Center', 'magical-addons-for-elementor'),
 						'icon'  => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __('Right', 'mg-elementor'),
+						'title' => __('Right', 'magical-addons-for-elementor'),
 						'icon'  => 'eicon-text-align-right',
 					],
 				],
@@ -942,14 +943,14 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_tab(
 			'tab_success_msg',
 			[
-				'label'         => __('Success', 'mg-elementor'),
+				'label'         => __('Success', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'success_background_color',
 			[
-				'label'         => __('Background Color', 'mg-elementor'),
+				'label'         => __('Background Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-mc-message.mg-mc-success-text' => 'background-color: {{VALUE}};',
@@ -960,7 +961,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'success_text_color',
 			[
-				'label'         => __('Text Color', 'mg-elementor'),
+				'label'         => __('Text Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'default'       => '',
 				'selectors'     => [
@@ -974,14 +975,14 @@ class mgproMailchimp extends Widget_Base
 		$this->start_controls_tab(
 			'tab_error_msg',
 			[
-				'label'         => __('Error', 'mg-elementor'),
+				'label'         => __('Error', 'magical-addons-for-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'error_background_color',
 			[
-				'label'         => __('Background Color', 'mg-elementor'),
+				'label'         => __('Background Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'selectors'     => [
 					'{{WRAPPER}} .mg-mailchimp-wrap .mg-mc-message.mg-mc-error-text' => 'background-color: {{VALUE}};',
@@ -992,7 +993,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'error_text_color',
 			[
-				'label'         => __('Text Color', 'mg-elementor'),
+				'label'         => __('Text Color', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::COLOR,
 				'default'       => '',
 				'selectors'     => [
@@ -1018,7 +1019,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_control(
 			'msg_border_radius',
 			[
-				'label'         => __('Border Radius', 'mg-elementor'),
+				'label'         => __('Border Radius', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', '%'],
 				'selectors'     => [
@@ -1038,7 +1039,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'msg_padding',
 			[
-				'label'         => __('Padding', 'mg-elementor'),
+				'label'         => __('Padding', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', 'em', '%'],
 				'selectors'     => [
@@ -1050,7 +1051,7 @@ class mgproMailchimp extends Widget_Base
 		$this->add_responsive_control(
 			'msg_margin',
 			[
-				'label'         => __('Margin', 'mg-elementor'),
+				'label'         => __('Margin', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::DIMENSIONS,
 				'size_units'    => ['px', 'em', '%'],
 				'selectors'     => [
@@ -1205,7 +1206,7 @@ class mgproMailchimp extends Widget_Base
 
 		<?php
 		} else { ?>
-			<p class="mg-mc-error"><?php echo esc_html__('Please insert your api key', 'mg-elementor'); ?></p>
+			<p class="mg-mc-error"><?php echo esc_html__('Please insert your api key', 'magical-addons-for-elementor'); ?></p>
 <?php
 		}
 	}

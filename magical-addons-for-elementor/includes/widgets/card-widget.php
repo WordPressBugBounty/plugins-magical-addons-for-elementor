@@ -525,7 +525,7 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'mg_card_content_shadow',
-                'selector' => '{{WRAPPER}}.elementor-widget-mgcard_widget .elementor-widget-container'
+                'selector' => '{{WRAPPER}}.elementor-widget-mgcard_widget'
             ]
         );
         $this->end_controls_section();
@@ -542,22 +542,22 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
             'image_width_set',
             [
                 'label' => __('Width', 'magical-addons-for-elementor'),
-				'type' =>  \Elementor\Controls_Manager::SLIDER,
+                'type' =>  \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['%'],
-				'range' => [
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => '%',
-				],
+                'range' => [
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => '%',
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .mg-card-img' => 'flex: 0 0 {{SIZE}}{{UNIT}}; max-width: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}}.mg-card-img-right .mg-card-text, {{WRAPPER}}.mg-card-img-left .mg-card-text' => 'flex: 0 0 calc(100% - {{SIZE}}{{UNIT}}); max-width: calc(100% - {{SIZE}}{{UNIT}});',
                 ],
-               
+
             ]
         );
 
@@ -1145,30 +1145,30 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
     protected function content_template()
     {
     ?>
-        <# 
-        var iconHTML=elementor.helpers.renderIcon( view, settings.mg_card_btn_selected_icon, { 'aria-hidden' : true }, 'i' , 'object' ), migrated=elementor.helpers.isIconMigrated( settings, 'mg_card_btn_selected_icon' ); 
-        view.addInlineEditingAttributes( 'mg_card_title' );
-        view.addRenderAttribute( 'mg_card_title' , 'class' , 'mg-card-title' );
-        view.addInlineEditingAttributes( 'mg_card_desc' );
-        view.addRenderAttribute( 'mg_card_btn_title' , 'class' , 'mg-btn mg-card-btn' );
-        view.addRenderAttribute( 'mg_card_btn_title' , 'href' , settings.mg_card_btn_link.url ); 
+        <#
+            var iconHTML=elementor.helpers.renderIcon( view, settings.mg_card_btn_selected_icon, { 'aria-hidden' : true }, 'i' , 'object' ), migrated=elementor.helpers.isIconMigrated( settings, 'mg_card_btn_selected_icon' );
+            view.addInlineEditingAttributes( 'mg_card_title' );
+            view.addRenderAttribute( 'mg_card_title' , 'class' , 'mg-card-title' );
+            view.addInlineEditingAttributes( 'mg_card_desc' );
+            view.addRenderAttribute( 'mg_card_btn_title' , 'class' , 'mg-btn mg-card-btn' );
+            view.addRenderAttribute( 'mg_card_btn_title' , 'href' , settings.mg_card_btn_link.url );
 
-        
-        if ( settings.mg_card_img.url || settings.mg_card_img.id ) {
-        var image={ 
+
+            if ( settings.mg_card_img.url || settings.mg_card_img.id ) {
+            var image={
             id: settings.mg_card_img.id,
-            url: settings.mg_card_img.url, 
-            size: settings.thumbnail_size, 
-            dimension: settings.thumbnail_custom_dimension, 
-            model: view.getEditModel() 
-        }; 
-        var image_url=elementor.imagesManager.getImageUrl( image ); 
-        if ( ! image_url ) {
-		    return;
-		}
-         } 
+            url: settings.mg_card_img.url,
+            size: settings.thumbnail_size,
+            dimension: settings.thumbnail_custom_dimension,
+            model: view.getEditModel()
+            };
+            var image_url=elementor.imagesManager.getImageUrl( image );
+            if ( ! image_url ) {
+            return;
+            }
+            }
 
-                 #>
+            #>
 
             <div class="mg-card">
                 <# if ( settings.mg_card_img_show &&( settings.mg_card_img.url || settings.mg_card_img.id) ) { #>
@@ -1193,25 +1193,25 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
 
 
 
-    <# if (settings.mg_card_btn_use) { #>
-        <# if (settings.mg_card_usebtn_icon==='yes' ) { #>
-            <a {{{ view.getRenderAttributeString( 'mg_card_btn_title' ) }}}>
-                <# if (settings.mg_cardbtn_icon_position==='left' ) { #>
-                    <span class="left">
-                    {{{ iconHTML.value }}}
-                    </span>
-                    <# } #>
-                        <span>{{{ settings.mg_card_btn_title }}}</span>
-                        <# if (settings.mg_cardbtn_icon_position==='right' ) { #>
-                            <span class="right">                               
-                            {{{ iconHTML.value }}}
-                            </span>
-                            <# } #>
-            </a>
-            <# }else{ #>
-                <a {{{ view.getRenderAttributeString( 'mg_card_btn_title' ) }}}>{{{ settings.mg_card_btn_title }}}</a>
-                <# } #>
-                    <# } #>
+                                            <# if (settings.mg_card_btn_use) { #>
+                                                <# if (settings.mg_card_usebtn_icon==='yes' ) { #>
+                                                    <a {{{ view.getRenderAttributeString( 'mg_card_btn_title' ) }}}>
+                                                        <# if (settings.mg_cardbtn_icon_position==='left' ) { #>
+                                                            <span class="left">
+                                                                {{{ iconHTML.value }}}
+                                                            </span>
+                                                            <# } #>
+                                                                <span>{{{ settings.mg_card_btn_title }}}</span>
+                                                                <# if (settings.mg_cardbtn_icon_position==='right' ) { #>
+                                                                    <span class="right">
+                                                                        {{{ iconHTML.value }}}
+                                                                    </span>
+                                                                    <# } #>
+                                                    </a>
+                                                    <# }else{ #>
+                                                        <a {{{ view.getRenderAttributeString( 'mg_card_btn_title' ) }}}>{{{ settings.mg_card_btn_title }}}</a>
+                                                        <# } #>
+                                                            <# } #>
 
 
                         </div>

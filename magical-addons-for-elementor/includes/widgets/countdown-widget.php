@@ -198,19 +198,19 @@ class MgCountdown extends \Elementor\Widget_Base
 		$this->add_responsive_control(
 			'mgcountdown_align',
 			[
-				'label' => __('Countdown Alignment', 'elementor'),
+				'label' => __('Countdown Alignment', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __('Left', 'elementor'),
+						'title' => __('Left', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'elementor'),
+						'title' => __('Center', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __('Right', 'elementor'),
+						'title' => __('Right', 'magical-addons-for-elementor'),
 						'icon' => 'eicon-text-align-right',
 					],
 

@@ -210,7 +210,7 @@ if (!function_exists('mg_plugin_comment_icon')) :
                 sprintf(
                     wp_kses(
                         /* translators: %s: post title */
-                        __('<span class="screen-reader-text"> on %s</span>', 'xblog-pro'),
+                        __('<span class="screen-reader-text"> on %s</span>', 'magical-addons-for-elementor'),
                         array(
                             'span' => array(
                                 'class' => array(),
@@ -219,8 +219,8 @@ if (!function_exists('mg_plugin_comment_icon')) :
                     ),
                     get_the_title()
                 ),
-                __('1 Comment', 'xblog-pro'),
-                __('% Comments', 'xblog-pro'),
+                __('1 Comment', 'magical-addons-for-elementor'),
+                __('% Comments', 'magical-addons-for-elementor'),
                 'comments-link',
                 ' '
             );
@@ -414,7 +414,7 @@ if (!function_exists('mg_display_posts_name')) {
     function mg_display_posts_name($post_type = 'post')
     {
         $options = array();
-        $options['0'] = __('Select', 'bstoolkit-for-elementor');
+        $options['0'] = __('Select', 'magical-addons-for-elementor');
         // $perpage = mp_display_get_option( 'loadproductlimit', 'mp_display_others_tabs', '20' );
         $all_post = array('posts_per_page' => -1, 'post_status'    => 'publish', 'post_type' => $post_type);
         $post_terms = get_posts($all_post);
@@ -475,7 +475,7 @@ if (!function_exists('mg_mailchimp_lists')) {
             $response = json_decode(wp_remote_retrieve_body($response));
 
             if (!empty($response) && !empty($response->lists)) {
-                $lists[''] = __('Select One', 'mg-elementor');
+                $lists[''] = __('Select One', 'magical-addons-for-elementor');
 
                 for ($i = 0; $i < count($response->lists); $i++) {
                     $lists[$response->lists[$i]->id] = $response->lists[$i]->name;
@@ -724,14 +724,14 @@ function magical_el_template_list_desc($section = ' ', $vid_link = '#')
 {
     $help_main = '';
     if (did_action('elementor/loaded')) {
-        $help_message = __('don\'t available ', 'magic-elementor');
+        $help_message = __('don\'t available ', 'magical-addons-for-elementor');
         $help_link = admin_url() . '/edit.php?post_type=elementor_library&tabs_group=library&elementor_library_type=section';
-        $help_link_text = __('Create A', 'magic-elementor');
+        $help_link_text = __('Create A', 'magical-addons-for-elementor');
         $help_main = sprintf('%1$s %2$s <a target="_blank" href="%3$s">%4$s %2$s</a>', $help_message, $section, esc_url($help_link), $help_link_text);
     }
 
-    $vid_message = __('How To Set', 'magic-elementor');
-    $vid_link_text = __('See Short Video', 'magic-elementor');
+    $vid_message = __('How To Set', 'magical-addons-for-elementor');
+    $vid_link_text = __('See Short Video', 'magical-addons-for-elementor');
     $video_output = sprintf('%s %s <a target="_blank" href="%s">%s</a>', $vid_message, $section, esc_url($vid_link), $vid_link_text);
 
     $output = $help_main . ' | ' . $video_output;

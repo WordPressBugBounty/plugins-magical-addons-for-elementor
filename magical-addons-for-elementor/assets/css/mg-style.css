@@ -265,10 +265,10 @@ span.mgheading_two {
 
 /*Info box style*/
 
-.elementor-widget-mgcard_widget .elementor-widget-container,
-.elementor-widget-mgteamber_widget .elementor-widget-container,
+.elementor-widget-mgcard_widget,
+.elementor-widget-mgteamber_widget,
 .mg-infobox,
-.elementor-widget-mgpricing_widget .elementor-widget-container,
+.elementor-widget-mgpricing_widget,
 .card.mgrc-item {
   border-radius: 2px;
   background-color: #fff;
@@ -458,7 +458,7 @@ a.mg-btn:hover {
 
 /*Pricing table*/
 
-.elementor-widget-mgpricing_widget .elementor-widget-container {
+.elementor-widget-mgpricing_widget {
   padding: 48px 24px;
   padding: 3rem 1.5rem;
 }
@@ -808,8 +808,8 @@ span.mgc-badge.mgcb-top {
   top: 0;
   left: 0;
 }
-.mg-card-img-left > .elementor-widget-container .mg-card,
-.mg-card-img-right > .elementor-widget-container .mg-card {
+.mg-card-img-left .mg-card,
+.mg-card-img-right .mg-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -818,7 +818,7 @@ span.mgc-badge.mgcb-top {
   -ms-flex-align: center;
 }
 
-.mg-card-img-left > .elementor-widget-container .mg-card {
+.mg-card-img-left .mg-card {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -853,7 +853,7 @@ span.mgc-badge.mgcb-top {
   border-radius: calc(0.5rem - 1px) 0 0 calc(0.5rem - 1px);
 }
 
-.mg-card-img-right > .elementor-widget-container .mg-card {
+.mg-card-img-right .mg-card {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
   -ms-flex-direction: row-reverse;
@@ -1049,8 +1049,8 @@ a.mg-card-btn.mg-link2:hover:before {
 }
 
 @media (max-width: 767px) {
-  .mg-card-img-left > .elementor-widget-container .mg-card,
-  .mg-card-img-right > .elementor-widget-container .mg-card {
+  .mg-card-img-left .mg-card,
+  .mg-card-img-right .mg-card {
     display: block;
   }
 
@@ -2517,7 +2517,7 @@ html body header.magical-header {
 }
 
 /*Skill bar*/
-.mg-skills > .elementor-widget-container {
+.mg-skills {
   padding-top: 1px;
 }
 

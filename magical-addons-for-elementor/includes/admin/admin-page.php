@@ -526,7 +526,10 @@ if (!class_exists('mgAdmin_Info_Items')) :
                     array(
                         'name'  => 'mg_mailchamp_api',
                         'label'  => __('MailChamp API key', 'magical-addons-for-elementor'),
-                        'desc'  => sprintf(__('Insert your MailChamp API key. See artical <a href="%s" target="_blank">How to get my MailChamp API key</a>', 'magical-addons-for-elementor'), 'https://support.checkfront.com/hc/en-us/articles/115004180154-Introduction-to-Mailchimp-and-API-Keys'),
+                        'desc'  => sprintf(
+                            __('Insert your Mailchimp API key. See article <a href="%s" target="_blank">How to get my Mailchimp API key</a>', 'magical-addons-for-elementor'),
+                            esc_url('https://support.checkfront.com/hc/en-us/articles/115004180154-Introduction-to-Mailchimp-and-API-Keys')
+                        ),
                         'type'  => 'text',
                     ),
                 ),
