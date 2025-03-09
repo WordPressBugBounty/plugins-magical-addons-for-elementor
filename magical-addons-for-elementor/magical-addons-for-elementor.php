@@ -9,7 +9,7 @@
  * Plugin Name:       Magical Addons For Elementor
  * Plugin URI:        
  * Description:       Premium addons for Elementor page builder
- * Version:           1.2.9
+ * Version:           1.3.0
  * Author:            Noor alam
  * Author URI:        https://profiles.wordpress.org/nalam-1
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class Magical_Addons_Elementor
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.2.8';
+	const VERSION = '1.3.0';
 
 	/**
 	 * Minimum Elementor Version
@@ -100,13 +100,17 @@ final class Magical_Addons_Elementor
 	 */
 	public function __construct()
 	{
-		add_action('init', [$this, 'i18n']);
 
+		add_action('init', [$this, 'i18n']);
 		$this->define_main();
 		$this->call_main_file();
 		//	add_action('activated_plugin', [$this, 'go_welcome_page']);
-		add_action('plugins_loaded', [$this, 'init']);
 		add_filter('plugin_action_links_' . plugin_basename(__FILE__), [$this, 'admin_adminpro_link']);
+
+		if (!did_action('elementor/loaded')) {
+			return;
+		}
+		add_action('plugins_loaded', [$this, 'init']);
 	}
 	/**
 	 * Constract define
@@ -116,12 +120,25 @@ final class Magical_Addons_Elementor
 	 */
 	public function define_main()
 	{
-		//define('MAGICAL_ADDON_VERSION', self::VERSION);
-		define('MAGICAL_ADDON_VERSION', time());
-		define('MAGICAL_ADDON_URL', plugin_dir_url(__FILE__));
-		define('MAGICAL_ADDON_ASSETS', plugin_dir_url(__FILE__) . '/assets/');
-		define('MAGICAL_ADDON_PATH', plugin_dir_path(__FILE__));
-		define('MAGICAL_ADDON_ROOT', __FILE__);
+		if (!defined('MAGICAL_ADDON_VERSION')) {
+			define('MAGICAL_ADDON_VERSION', (defined('WP_DEBUG') && WP_DEBUG) ? time() : self::VERSION);
+		}
+
+		if (!defined('MAGICAL_ADDON_URL')) {
+			define('MAGICAL_ADDON_URL', plugin_dir_url(__FILE__));
+		}
+
+		if (!defined('MAGICAL_ADDON_ASSETS')) {
+			define('MAGICAL_ADDON_ASSETS', plugin_dir_url(__FILE__) . 'assets/'); // Removed extra slash
+		}
+
+		if (!defined('MAGICAL_ADDON_PATH')) {
+			define('MAGICAL_ADDON_PATH', plugin_dir_path(__FILE__));
+		}
+
+		if (!defined('MAGICAL_ADDON_ROOT')) {
+			define('MAGICAL_ADDON_ROOT', __FILE__);
+		}
 	}
 
 
@@ -272,7 +289,11 @@ final class Magical_Addons_Elementor
 	 */
 	public function call_main_file()
 	{
-
+		//admin notice 
+		require_once(MAGICAL_ADDON_PATH . '/includes/basic/mg-admin-notice.php');
+		if (!did_action('elementor/loaded')) {
+			return;
+		}
 		// include file
 		require_once(MAGICAL_ADDON_PATH . '/includes/magical-init-widgets.php');
 

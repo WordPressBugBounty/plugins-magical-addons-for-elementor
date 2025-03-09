@@ -10,14 +10,14 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-Includes 60+ widgets, 100+ sections, 1600+ icons, header/footer builder, and 20+ template kits for faster, efficient website creation.
+Includes 60+ widgets, 100+ sections, 1600+ icons, free custom CSS, header/footer builder, and 20+ template kits for faster website creation.
 
 == Description ==
 The best part of Magical Addons is that you can design anything without having to touch a single line of code. Magical Addons has a huge collection of premium and highly functional extensions that can be used in an Elementor page builder. This is really a premium plugin that you can get for free.
 
 [**Check Elementor Magical Addons Demo Pages**](https://magic.wpcolors.net/)
 
-Comes with 60+ Widgets, 100+ premade sections and blocks, 1600+ premium line icons, 20+ template kits that help you build your websites in less time with no coding. our blocks and template library growing every week. 
+Comes with 60+ Widgets, 100+ premade sections and blocks, 1600+ premium line icons, custom CSS sections, 20+ template kits that help you build your websites in less time with no coding. our blocks and template library growing every week. 
 ### See Short video
 [youtube https://www.youtube.com/watch?v=bKLwBrxVjno]
 
@@ -273,14 +273,14 @@ e.g.
 
 == Changelog ==
 
+= 1.3.0 =
+	* Added custom CSS sections for more styling flexibility
+	* Updated coding standards for better compatibility
+
 = 1.2.9 =
 	* Removed Elementor .elementor-widget-container class style
 	* Removed all deprecated PHP code
 	* Added new style some widges
-
-= 1.2.6 =
-	* Added new opitons for social share addon
-	* Posts grid and list widges options and style added
 	* Updated accordion widges
 	* New style added for some widges
 	* Tested with WordPress 6.7

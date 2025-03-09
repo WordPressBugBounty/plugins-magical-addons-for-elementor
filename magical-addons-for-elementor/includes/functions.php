@@ -9,8 +9,9 @@
 // include file
 require_once(MAGICAL_ADDON_PATH . '/includes/basic/style-script.php');
 
-require_once(MAGICAL_ADDON_PATH . '/includes/basic/mg-admin-notice.php');
+
 require_once(MAGICAL_ADDON_PATH . '/includes/helplink.php');
+require_once(MAGICAL_ADDON_PATH . '/includes/extra/customcss.php');
 
 
 function mg_get_allowed_html_tags()
