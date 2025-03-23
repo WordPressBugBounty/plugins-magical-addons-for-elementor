@@ -20,3 +20,61 @@
 .elementor-control-mgpl_gopro i {
     color: red;
 }
+
+/* Conditional Display Pro Controls Styling */
+.mg-pro-control {
+    position: relative;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.mg-pro-control .elementor-control-title:after {
+    font-family: eicons;
+    content: "\e98f";
+    color: #ed4b82;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.mg-pro-control .elementor-control-input-wrapper:after {
+    font-family: eicons;
+    content: "\e98f";
+    color: #ed4b82;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    font-size: 14px;
+    background: rgba(255,255,255,0.7);
+    padding: 2px;
+    border-radius: 3px;
+}
+
+.eicon-lock {
+    color: #ed4b82;
+    margin-left: 5px;
+}
+
+.mg-pro-notice {
+    margin-top: 10px;
+    pointer-events: auto;
+}
+
+.mg-pro-notice a {
+    pointer-events: auto;
+}
+.elementor-control-mg_conditional_display_condition .elementor-control-input-wrapper:after {
+    font-family: eicons;
+    content: "\e98f";
+    color: #ed4b82;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(255,255,255,0.7);
+    padding: 2px;
+    border-radius: 3px;
+}

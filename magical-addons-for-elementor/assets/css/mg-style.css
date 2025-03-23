@@ -2770,3 +2770,18 @@ html body header.magical-header {
   text-align: right;
   transition: all 0.4s ease-in-out;
 }
+
+/* Conitional display style */
+.elementor-control-mg_section_conditional_display .elementor-panel-heading-title {
+  color: #4054B2;
+}
+
+.elementor-control-mg_conditional_display_notice .elementor-control-content {
+  font-size: 12px;
+  padding: 5px 0;
+}
+
+.elementor-control-mg_conditional_user_role .elementor-control-input-wrapper,
+.elementor-control-mg_conditional_day_of_week .elementor-control-input-wrapper {
+  min-width: 135px;
+}

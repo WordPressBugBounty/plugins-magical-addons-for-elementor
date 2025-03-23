@@ -10,19 +10,25 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-Includes 60+ widgets, 100+ sections, 1600+ icons, free custom CSS, header/footer builder, and 20+ template kits for faster website creation.
+60+ widgets, 100+ sections, 1600+ icons, free custom CSS, Conditional content display, header/footer builder, and 20+ template kits.
 
 == Description ==
 The best part of Magical Addons is that you can design anything without having to touch a single line of code. Magical Addons has a huge collection of premium and highly functional extensions that can be used in an Elementor page builder. This is really a premium plugin that you can get for free.
 
 [**Check Elementor Magical Addons Demo Pages**](https://magic.wpcolors.net/)
 
-Comes with 60+ Widgets, 100+ premade sections and blocks, 1600+ premium line icons, custom CSS sections, 20+ template kits that help you build your websites in less time with no coding. our blocks and template library growing every week. 
+Comes with 60+ Widgets, 100+ premade sections and blocks, 1600+ premium line icons, custom CSS sections, Conditional content display, 20+ template kits that help you build your websites in less time with no coding. our blocks and template library growing every week. 
+
+
 ### See Short video
 [youtube https://www.youtube.com/watch?v=bKLwBrxVjno]
 
 ### Header & Footer builder Short video
 [youtube https://www.youtube.com/watch?v=qOCqMaPNads]
+
+### Conditional Display Feature
+The Magical Conditional Display feature allows you to show or hide any Elementor widget, section, or column based on specific conditions. This powerful feature gives you complete control over when and to whom your content is displayed.
+
 
 ## Magical Addons Widgets List: 
 
@@ -32,7 +38,7 @@ Comes with 60+ Widgets, 100+ premade sections and blocks, 1600+ premium line ico
 Create your website banner with the banner widget advance options. The banner widget has two different styles with huge options.
 
 2. [**Animation Slider**](https://magic.wpcolors.net/magical-slider/)
-You can create an awesome animation slider with images and text with our Animation Slider widget. The widget gives you a huge number of customizable options with animation so you can create elegant-looking sliders in a minute!!
+You can create an awesome animation slider with images and text with our Animation Slider widget.
 
 3. [**Info Box**](https://magic.wpcolors.net/magical-info-box/) 
  Show any kind of information with a beautiful design. A magical info box creates your website more attractive.
@@ -104,7 +110,7 @@ You can fit long text in a small area by the Content Reveal /Unfold widget. Elem
 You cat crate list with icon by Elementor magical icon list widget. You can set any icon from the icon library with huge options.
 
 26. [**Pricing Table**](https://magic.wpcolors.net/pricing-table/)
-You can display detailed single prices or comparison pricing plans with the Elementor magical pricing table. Pricing table is a great way to boost your sales and engage more potential buyers.
+You can display detailed single prices or comparison pricing plans with the Elementor magical pricing table. 
 
 27. Data Table
 Elementor magical data table widget will let you create data tables with advanced styling options and features. Now show your data with a customizable table.
@@ -128,22 +134,12 @@ Elementor magical image smooth scroll allows you to display an image attractive 
 Display your website posts in many different grid styles with advanced posts query 
 
 34. **Posts List**
-You can easily display your website posts in many different list styles with Elementor magical posts list widget.
-
 35. **Site Logo**
-The Magical Site Logo Elementor widget is a versatile tool that allows you to easily add a logo to your website. With this widget, you can upload your own logo image or add text logo. You can also adjust the size, color, and position of your logo. This widget is a quick and easy way to add a professional touch to your website.
-
 36. **Nav Menu**
-Now, you build outstanding navigation menus in Elementor using the nav menu Widget with dozens of options.
-
 37. **Category/tag list**
-Now, You can easily display posts category or tag lists on pages or sections.
-
 38. **Mailchimp Widget**
- Now you can personalize your Mailchimp sign-up form with attractive and multiple styles With our Mailchimp Elementor addons. 
 
 39. **advanced Skillbar**
-The Magical Advanced Skillbar Elementor widget is a great way to display your skills and expertise on your website. It allows you to easily create a beautiful and professional looking skillbar, without having to code or design anything yourself. The widget is extremely easy to use and comes with a variety of options to customize it to your needs
 
 40. **Search Bar**
 Now, you can customize your WordPress search bar in a unique way with Multiple styles.
@@ -159,63 +155,42 @@ Display easily WPForms plugin forms ease way using the Elementor magical WPForms
 - **All Pro Widgets List:**
 
 [**Portfolio/Filter Gallery**](https://magic.wpcolors.net/filter-gallery/)
-Portfolio gallery is an a awesome for display portfolio items or filter image gallery.
 
 [**Lottie Animations**](https://magic.wpcolors.net/lottie/)
-The Lottie Animation pro Elementor widget makes it easy to add Lottie animations to your Elementor-based website. With this addon, you can easily add Lottie animations to any Elementor widget or section. You can also control the playback of the animation, as well as the animation speed.
 
 [**Info Box Carousel**](https://magic.wpcolors.net/info-carousel/)
-The Magical Info Box Carousel Elementor widget is a great way to showcase important information on your website in a carousel format. This widget is highly customizable, allowing you to change the number of slides, the order of the slides, the layout of the slides, and more. This widget is a great way to draw attention to important information on your website.
 
 [**Bar Chart**](https://magic.wpcolors.net/bar-chart-pro/)
-The Magical Bar Chart Elementor widget is a great way to display data in a visually appealing way. This widget allows you to choose from a variety of chart types and customize the look and feel of your chart. You can also add a variety of data labels to your chart to make it even more informative.
 
 [**Testimonial Carousel**](https://magic.wpcolors.net/testmonial-pro/)
-The Magical Testimonial Carousel Elementor widget is an excellent way to display testimonials on your website. The widget is fully responsive and looks great on all devices. It is also very easy to customize and change the look and feel of the widget to match your website's style. Overall, the Testimonial Carousel Elementor widget is a great way to display testimonials on your website.
 
 [**Promo Box**](https://magic.wpcolors.net/promo-box-pro/)
-The Magical Promo Box Elementor widget is a great way to promote your products or services on your website. It allows you to add a title, text, image, and button to your promotion, making it easy to grab attention and get your message across. The widget is also fully customizable, so you can change the colors, font, and size of your promotion to match your website's look and feel.
 
 [**Price Menu**](https://magic.wpcolors.net/price-menu-pro/)
-The Magical Price Menu Elementor widget is a great way to add a pricing menu to your website. It's easy to use and lets you create a beautiful, responsive pricing menu that will look great on any device.
 
 [**Photo Bunch**](https://magic.wpcolors.net/photo-bunch/)
-The Magical Photo Bunch widget is a great way to display a bunch of photos in a grid. It's perfect for displaying a portfolio of photos, or a gallery of photos. The widget is responsive, so it will look great on all devices. The widget is easy to use, and it's a great way to showcase a bunch of photos.
 
 [**PDF View**](https://magic.wpcolors.net/pdf-view/)
-The Magical PDF View Elementor widget allows you to embed a PDF document in your web page. This is a great way to share documents with your audience, and the widget makes it easy to embed the PDF into your page. The PDF View Elementor widget is a great way to share documents with your audience.
 
 [**One Page Nav**]
-The Magical One Page Nav Elementor widget is a powerful tool that allows you to quickly and easily create a custom one page navigation menu for your website. With this widget, you can easily add new pages, change the order of your pages, and even add custom CSS to further customize your menu. This widget is the perfect solution for creating a custom one page navigation menu for your website.
 
 [**Off Canvas**](https://magic.wpcolors.net/off-canvas/)
-The Magical Off-canvas is an Elementor widget that allows you to create a hidden sidebar, which can be revealed by clicking on a button or icon. This is a useful way to create a hidden menu, or to display additional information that you don't want to clutter up your main content area.
 
 [**Modal/Popup**](https://magic.wpcolors.net/modal-popup/)
-The Magical Popup Elementor widget is a great way to display important information on your website in a modal window. This widget is easy to use and configure, and it offers a variety of options to customize the look and feel of the popup. You can use the Popup Elementor widget to display a contact form, newsletter signup form, or any other content that you want to highlight on your website.
 
 [**Image Hotspots**](https://magic.wpcolors.net/hotspot-pro/)
-The Magical Image Hotspots Elementor widget is a great way to add interactive hotspots to your images. You can use it to create custom hotspots with text and links, or to simply add dots or other markers to your image. This widget is extremely easy to use and is a great way to add some interactivity to your images.
 
 [**Mg Counter**](https://magic.wpcolors.net/counter-pro/)
-The Mg Counter Elementor widget is a great way to display important statistics on your website. It's easy to use and highly customizable, making it a great choice for any website. Plus, the widget is responsive and retina-ready, so it looks great on any device.
 
 [**Content Switcher**](https://magic.wpcolors.net/content-switcher/)
-The Magical Content Switcher Elementor widget allows you to switch between different pieces of content on your page. This is a great way to showcase different pieces of content, or to create a more interactive experience for your users. The widget is very easy to use and is a great way to add more interactivity to your pages.
 
 [**Price comparison**]
-Magical "Price Comparison" widget is a great way to compare prices of products and services. By using this widget, you can easily compare the prices of two or more products or services side by side. This is a great way to make sure you are getting the best deal possible.
 
 [**Animated Heading**](https://magic.wpcolors.net/animated-heading/)
-Magical Animated Heading widget allows you to add an animated heading to your website, which can really help to grab attention and make your site stand out. The widget is easy to use and highly customizable, so you can really make it your own. Plus, the widget is responsive, so it will look great on all devices.
 
 [**Ajax Search**]
-Magical ajax search Elementor widget is the perfect way to add a search box to your Elementor-based website. This widget allows you to add a search box to any page or post, and it will search your site for the terms you enter. You can also use it to search for specific posts or pages.
 
 [**Advanced Ticker**](https://magic.wpcolors.net/advance-ticker/)
-The Advanced Ticker Elementor widget is a powerful tool that allows you to easily create and manage tickers for your website. With this widget, you can create a variety of tickers, including news tickers, sports tickers, and stock tickers. You can also customize the look and feel of your tickers, and manage their settings from a central location. This widget is an essential tool for any website that wants to offer a variety of tickers to its visitors.
-
-
 
 
 <strong>Note:</strong> This plugin is an addon of Elementor Page Builder. So the plugin only work with Elementor Page Builder plugin.
@@ -272,6 +247,13 @@ e.g.
 
 
 == Changelog ==
+
+= 1.3.1 =
+	* Added Conditional Display feature for widgets, sections, and columns
+	* Added user login status conditions (logged in/out)
+	* Added device type condition (desktop/tablet/mobile)
+	* Added Pro conditions support (user role, day/time, date range, browser type, etc.)
+	* Improved widget styling and compatibility
 
 = 1.3.0 =
 	* Added custom CSS sections for more styling flexibility
