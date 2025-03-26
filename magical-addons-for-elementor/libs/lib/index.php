@@ -38,13 +38,13 @@ if (!class_exists('Magcial_Addon_Cloud_Library')) {
 		public function __clone()
 		{
 
-			_doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'xlmega'), '1.0.0');
+			_doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'magical-addons-for-elementor'), '1.0.0');
 		}
 
 		public function __wakeup()
 		{
 
-			_doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'xlmega'), '1.0.0');
+			_doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'magical-addons-for-elementor'), '1.0.0');
 		}
 
 		public function include_files()

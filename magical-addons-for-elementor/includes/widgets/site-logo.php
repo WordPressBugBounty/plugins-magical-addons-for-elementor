@@ -725,12 +725,12 @@ class MG_Addon_siteLogo extends Widget_Base
 			<?php if (!empty($title) || !empty($description)) : ?>
 				<div class="mg-logo-text">
 					<?php if (!empty($title)) : ?>
-						<h1 class="mg-logo-title"><?php echo esc_html__($title); ?></h1>
+						<h1 class="mg-logo-title"><?php echo esc_html($title); ?></h1>
 					<?php endif; ?>
 
 					<?php
 					if (!empty($description)) : ?>
-						<p class="mg-logo-description"><?php echo esc_html__($description); ?></p>
+						<p class="mg-logo-description"><?php echo esc_html($description); ?></p>
 					<?php endif; ?>
 				</div>
 				<?php if ($this->logo_is_linked()) : ?>

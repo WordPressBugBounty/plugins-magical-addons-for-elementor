@@ -1378,8 +1378,8 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Currency Absolute position', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'your-plugin'),
-                'label_off' => esc_html__('Hide', 'your-plugin'),
+                'label_on' => esc_html__('Show', 'magical-addons-for-elementor'),
+                'label_off' => esc_html__('Hide', 'magical-addons-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -1594,7 +1594,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
         $this->add_control(
             'mg_pc_button_color',
             [
-                'label' => __('Button color', 'plugin-name'),
+                'label' => __('Button color', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]

@@ -963,7 +963,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'mgs_extitle_shadow',
-                'label' => __('Subtitle Text Shadow', 'plugin-domain'),
+                'label' => __('Subtitle Text Shadow', 'magical-addons-for-elementor'),
                 'selector' => '{{WRAPPER}} .mgslide-content .mgs-extitle',
             ]
         );
@@ -1010,7 +1010,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'mgs_title_shadow',
-                'label' => __('Title Text Shadow', 'plugin-domain'),
+                'label' => __('Title Text Shadow', 'magical-addons-for-elementor'),
                 'selector' => '{{WRAPPER}} .mgslide-content .mgs-title',
             ]
         );
@@ -1058,7 +1058,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'mgs_subtitle_shadow',
-                'label' => __('Description Text Shadow', 'plugin-domain'),
+                'label' => __('Description Text Shadow', 'magical-addons-for-elementor'),
                 'selector' => '{{WRAPPER}} .mgslide-content .mgs-subtitle',
             ]
         );

@@ -73,12 +73,12 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
     {
         return ['snap-svg', 'mgpiechart', 'listtopie-active'];
     }
-    
+
     public function get_style_depends()
     {
         return ['mgpiechart-css'];
     }
-    
+
     /**
      * Register Blank widget controls.
      *
@@ -189,8 +189,8 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Show Title', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'your-plugin'),
-                'label_off' => esc_html__('Hide', 'your-plugin'),
+                'label_on' => esc_html__('Show', 'magical-addons-for-elementor'),
+                'label_off' => esc_html__('Hide', 'magical-addons-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -238,8 +238,8 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Show Item List', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'your-plugin'),
-                'label_off' => esc_html__('Hide', 'your-plugin'),
+                'label_on' => esc_html__('Show', 'magical-addons-for-elementor'),
+                'label_off' => esc_html__('Hide', 'magical-addons-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -249,8 +249,8 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Show Item Color Box', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'your-plugin'),
-                'label_off' => esc_html__('Hide', 'your-plugin'),
+                'label_on' => esc_html__('Show', 'magical-addons-for-elementor'),
+                'label_off' => esc_html__('Hide', 'magical-addons-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -706,18 +706,18 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
                         </ul>
                     <?php endif; ?>
                 </div>
-                
+
                 <div class="mg-pstatic" data-strokecolor="<?php echo esc_attr($strokecolor); ?>" data-hvborderc="<?php echo esc_attr($hoverbordercolor); ?>" data-percent="<?php echo esc_attr($mgpyc_show_percent); ?>" data-infotext="<?php echo esc_attr($mgpyc_show_infotext); ?>" data-textcolor="<?php echo esc_attr($mgpyc_textcolor); ?>" data-textsize="<?php echo esc_attr($mgpyc_txtsize); ?>">
-                        <?php foreach ($mgpchart as $item) : ?>
-                            <div data-lcolor="<?php echo esc_attr($item['pchart_color']); ?>"><?php echo esc_html($item['pchart_percentage']); ?></div>
-                        <?php endforeach; ?>
-                    </div>
+                    <?php foreach ($mgpchart as $item) : ?>
+                        <div data-lcolor="<?php echo esc_attr($item['pchart_color']); ?>"><?php echo esc_html($item['pchart_percentage']); ?></div>
+                    <?php endforeach; ?>
+                </div>
 
             <?php endif; ?>
         </div>
 
 
-<?php
+    <?php
 
 
     }
@@ -732,51 +732,51 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
      * @since 1.0.0
      * @access protected
      */
-    protected function content_template() {
-        ?>
+    protected function content_template()
+    {
+    ?>
 
         <#
-            var settings=settings;       
+            var settings=settings;
 
-        var mgpyc_title = settings.mgpyc_title;
-        var title_tag = settings.mgpyc_title_tag;
-
-        
-        view.addRenderAttribute('mgpyc_title', 'class', 'mgpy-title');
-        #>
+            var mgpyc_title=settings.mgpyc_title;
+            var title_tag=settings.mgpyc_title_tag;
 
 
-        <div class="mg-pchart">
-    
-            <# if (settings.mgpyc_show_title && mgpyc_title) { #>
-                    <{{{ title_tag }}} {{{ view.getRenderAttributeString('mgpyc_title') }}}>{{{ mgpyc_title }}}</{{{ title_tag }}} >
-                <# } #>
+            view.addRenderAttribute('mgpyc_title', 'class' , 'mgpy-title' );
+            #>
 
 
+            <div class="mg-pchart">
 
-            <# if ( settings.mgpchart ) { #>
-                <div class="mgpchart-base">
-                    <# if ( settings.mgpyc_show_list ) { #>
-                        <ul class="mgpchart-name">
-                            <# _.each( settings.mgpchart, function( item ) { #>
-                                <li>
-                                    <# if ( settings.mgpyc_show_cbox ) { #>
-                                        <span style="background: {{ item.pchart_color }};" class="mgpc-box"></span>
-                                    <# } #>
-                                    <span>{{{ item.pchart_title }}}</span>
-                                </li>
-                            <# } ); #>
-                        </ul>
+                <# if (settings.mgpyc_show_title && mgpyc_title) { #>
+                    <{{{ title_tag }}} {{{ view.getRenderAttributeString('mgpyc_title') }}}>{{{ mgpyc_title }}}</{{{ title_tag }}}>
                     <# } #>
-                </div>
-                    <div class="mg-pstatic" data-strokecolor="{{{ settings.mgpyc_strokecolor }}}" data-hvborderc="{{{ settings.mgpyc_hoverbordercolor }}}" data-percent="{{{ settings.mgpyc_show_percent }}}" data-infotext="{{{ settings.mgpyc_show_infotext }}}" data-textcolor="{{{ settings.mgpyc_textcolor }}}" data-textsize="{{{ settings.mgpyc_txtsize }}}">
-                        <# _.each( settings.mgpchart, function( item ) { #>
-                            <div data-lcolor="{{{ item.pchart_color }}}">{{{ item.pchart_percentage }}}</div>
-                        <# } ); #>
-                    </div>
-            <# } #>
-        </div>
-        <?php
+
+
+
+                        <# if ( settings.mgpchart ) { #>
+                            <div class="mgpchart-base">
+                                <# if ( settings.mgpyc_show_list ) { #>
+                                    <ul class="mgpchart-name">
+                                        <# _.each( settings.mgpchart, function( item ) { #>
+                                            <li>
+                                                <# if ( settings.mgpyc_show_cbox ) { #>
+                                                    <span style="background: {{ item.pchart_color }};" class="mgpc-box"></span>
+                                                    <# } #>
+                                                        <span>{{{ item.pchart_title }}}</span>
+                                            </li>
+                                            <# } ); #>
+                                    </ul>
+                                    <# } #>
+                            </div>
+                            <div class="mg-pstatic" data-strokecolor="{{{ settings.mgpyc_strokecolor }}}" data-hvborderc="{{{ settings.mgpyc_hoverbordercolor }}}" data-percent="{{{ settings.mgpyc_show_percent }}}" data-infotext="{{{ settings.mgpyc_show_infotext }}}" data-textcolor="{{{ settings.mgpyc_textcolor }}}" data-textsize="{{{ settings.mgpyc_txtsize }}}">
+                                <# _.each( settings.mgpchart, function( item ) { #>
+                                    <div data-lcolor="{{{ item.pchart_color }}}">{{{ item.pchart_percentage }}}</div>
+                                    <# } ); #>
+                            </div>
+                            <# } #>
+            </div>
+    <?php
     }
-    
 }

@@ -163,13 +163,33 @@ class Magical_Conditional_Display
 
             case 'day_of_week':
                 $days = $settings['mg_conditional_day_of_week'];
-                $current_day = date('w');
+                $current_day = gmdate('w', current_time('timestamp', true));
 
                 if (empty($days)) {
                     return false;
                 }
 
                 return in_array($current_day, $days);
+
+            case 'recurring_schedule':
+                // First check if today is one of the selected days
+                $days = $settings['mg_conditional_recurring_days'];
+                $current_day = gmdate('w', current_time('timestamp', true));
+
+                if (empty($days) || !in_array($current_day, $days)) {
+                    return false;
+                }
+
+                // Then check if current time is within the time range
+                $start_time = $this->format_time($settings['mg_conditional_recurring_time_start']);
+                $end_time = $this->format_time($settings['mg_conditional_recurring_time_end']);
+
+                if (empty($start_time) || empty($end_time)) {
+                    return false;
+                }
+
+                $current_time = gmdate('H:i', current_time('timestamp', true));
+                return ($current_time >= $start_time && $current_time <= $end_time);
 
             case 'time_of_day':
                 $start_time = $this->format_time($settings['mg_conditional_time_start']);
@@ -192,26 +212,6 @@ class Magical_Conditional_Display
 
                 $current_date = current_time('Y-m-d');
                 return ($current_date >= $start_date && $current_date <= $end_date);
-
-            case 'recurring_schedule':
-                // First check if today is one of the selected days
-                $days = $settings['mg_conditional_recurring_days'];
-                $current_day = date('w');
-
-                if (empty($days) || !in_array($current_day, $days)) {
-                    return false;
-                }
-
-                // Then check if current time is within the time range
-                $start_time = $this->format_time($settings['mg_conditional_recurring_time_start']);
-                $end_time = $this->format_time($settings['mg_conditional_recurring_time_end']);
-
-                if (empty($start_time) || empty($end_time)) {
-                    return false;
-                }
-
-                $current_time = current_time('H:i');
-                return ($current_time >= $start_time && $current_time <= $end_time);
 
             case 'post_type':
                 $post_types = $settings['mg_conditional_post_type'];
@@ -309,7 +309,7 @@ class Magical_Conditional_Display
             return '00:00';
         }
 
-        return date('H:i', $timestamp);
+        return gmdate('H:i', $timestamp);
     }
 
     /**
@@ -329,10 +329,10 @@ class Magical_Conditional_Display
         // Try to parse the date string
         $timestamp = strtotime($date);
         if ($timestamp === false) {
-            return date('Y-m-d'); // Return current date as fallback
+            return gmdate('Y-m-d', current_time('timestamp', true)); // Return current date as fallback
         }
 
-        return date('Y-m-d', $timestamp);
+        return gmdate('Y-m-d', $timestamp);
     }
 
     /**

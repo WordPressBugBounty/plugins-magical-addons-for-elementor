@@ -161,7 +161,7 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 			'view',
 			[
 
-				'label' => esc_html__('Layout', 'plugin-name'),
+				'label' => esc_html__('Layout', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'inherit' => [
@@ -1124,25 +1124,25 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 			<ul>
 				<?php if ($icon_list) : ?>
 					<?php
-						
-						
-						foreach ($icon_list as $index => $item) :
-							$key1 = $this->get_repeater_setting_key('link', 'icon_list', $index);
-	
-							$this->add_render_attribute($key1, 'href', esc_url($item['link']['url']));
-							$this->add_render_attribute($key1, 'class', 'mg-lc-single');
-							if (!empty($item['link']['is_external'])) {
-								$this->add_render_attribute($key1, 'target', '_blank');
-							}
-							if (!empty($item['link']['nofollow'])) {
-								$this->set_render_attribute($key1, 'rel', 'nofollow');
-							}
-	
-	
-						?>
-	
-							<li>
-								<a <?php echo $this->get_render_attribute_string($key1); ?>>
+
+
+					foreach ($icon_list as $index => $item) :
+						$key1 = $this->get_repeater_setting_key('link', 'icon_list', $index);
+
+						$this->add_render_attribute($key1, 'href', esc_url($item['link']['url']));
+						$this->add_render_attribute($key1, 'class', 'mg-lc-single');
+						if (!empty($item['link']['is_external'])) {
+							$this->add_render_attribute($key1, 'target', '_blank');
+						}
+						if (!empty($item['link']['nofollow'])) {
+							$this->set_render_attribute($key1, 'rel', 'nofollow');
+						}
+
+
+					?>
+
+						<li>
+							<a <?php echo $this->get_render_attribute_string($key1); ?>>
 
 								<div class="mg-lc-icon-img">
 									<?php if ($item['mglc_icon_type'] == 'image') : ?>
@@ -1177,128 +1177,104 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 	<?php
 	}
 
-	protected function content_template() {
-		?>
-			<# var settings = settings; #>
-			<# if (settings.mg_fl_styles === 'style1') { #>
+	protected function content_template()
+	{
+	?>
+		<# var settings=settings; #>
+			<# if (settings.mg_fl_styles==='style1' ) { #>
 				<div class="mg-features-list">
 					<ul>
 						<# if (settings.icon_list && settings.icon_list.length) {
 							settings.icon_list.forEach(function(item, index) {
-								var link = item.link || {};
-								var itemAttrs = {
-									'href': link.url,
-									'class': 'mg-lc-single',
-									'target': link.is_external ? '_blank' : '_self',
-									'rel': link.nofollow ? 'nofollow' : ''
-								};
-								view.addRenderAttribute('item' + index, itemAttrs); 
-								
-								var iconHTML = elementor.helpers.renderIcon( view, item.mglc_type_selected_icon, { 'aria-hidden': true }, 'i' , 'object' );
+							var link=item.link || {};
+							var itemAttrs={ 'href' : link.url, 'class' : 'mg-lc-single' , 'target' : link.is_external ? '_blank' : '_self' , 'rel' : link.nofollow ? 'nofollow' : ''
+							};
+							view.addRenderAttribute('item' + index, itemAttrs);
+
+							var iconHTML=elementor.helpers.renderIcon( view, item.mglc_type_selected_icon, { 'aria-hidden' : true }, 'i' , 'object' );
 
 
 
-								var mgIconListImage = {
-								id: item.mglc_img.id,
-								url: item.mglc_img.url,
-								model: view.getEditModel()
-								};
-								var mg_icon_list_image_url = elementor.imagesManager.getImageUrl( mgIconListImage );
+							var mgIconListImage={
+							id: item.mglc_img.id,
+							url: item.mglc_img.url,
+							model: view.getEditModel()
+							};
+							var mg_icon_list_image_url=elementor.imagesManager.getImageUrl( mgIconListImage );
 
 
 
 
-						#>
-								<li>
-									<a {{{ view.getRenderAttributeString('item' + index) }}}>
-										<div class="mg-lc-icon-img">
-											<# if (item.mglc_icon_type === 'image') { #>
-												<div class="mg-lc-img">
-													<figure>
-														<img src="{{{ mg_icon_list_image_url }}}" alt="{{{ item.mglc_img.alt }}}" />
-													</figure>
-												</div>
+							#>
+							<li>
+								<a {{{ view.getRenderAttributeString('item' + index) }}}>
+									<div class="mg-lc-icon-img">
+										<# if (item.mglc_icon_type==='image' ) { #>
+											<div class="mg-lc-img">
+												<figure>
+													<img src="{{{ mg_icon_list_image_url }}}" alt="{{{ item.mglc_img.alt }}}" />
+												</figure>
+											</div>
 											<# } else { #>
 												<div class="mg-ic-list">
 													{{{ iconHTML.value }}}
 												</div>
+												<# } #>
+									</div>
+									<div class="mg-lc-content">
+										<# if (settings.mglc_show_title) { #>
+											<span class="mg-lc-title">{{{ item.text }}}</span>
 											<# } #>
-										</div>
-										<div class="mg-lc-content">
-											<# if (settings.mglc_show_title) { #>
-												<span class="mg-lc-title">{{{ item.text }}}</span>
-											<# } #>
-											<# if (settings.mglc_show_sub_title) { #>
-												<span class="mg-lc-subtitle">{{{ item.mg_subtitle }}}</span>
-											<# } #>
-										</div>
-									</a>
-								</li>
-						<# }); } #>
+												<# if (settings.mglc_show_sub_title) { #>
+													<span class="mg-lc-subtitle">{{{ item.mg_subtitle }}}</span>
+													<# } #>
+									</div>
+								</a>
+							</li>
+							<# }); } #>
 					</ul>
 				</div>
-			<# } else { #>
-				<div class="mg-features-list">
-					<ul>
-						<# if (settings.icon_list && settings.icon_list.length) {
-							settings.icon_list.forEach(function(item, index) {
-								var link = item.link || {};
-								var itemAttrs = {
-									'href': link.url,
-									'class': 'mg-lc-single',
-									'target': link.is_external ? '_blank' : '_self',
-									'rel': link.nofollow ? 'nofollow' : ''
+				<# } else { #>
+					<div class="mg-features-list">
+						<ul>
+							<# if (settings.icon_list && settings.icon_list.length) {
+								settings.icon_list.forEach(function(item, index) {
+								var link=item.link || {};
+								var itemAttrs={ 'href' : link.url, 'class' : 'mg-lc-single' , 'target' : link.is_external ? '_blank' : '_self' , 'rel' : link.nofollow ? 'nofollow' : ''
 								};
-								view.addRenderAttribute('item' + index, itemAttrs); 
-								var mgIconListImage = {
+								view.addRenderAttribute('item' + index, itemAttrs);
+								var mgIconListImage={
 								id: item.mglc_img.id,
 								url: item.mglc_img.url,
 								model: view.getEditModel()
 								};
-								var mg_icon_list_image_url = elementor.imagesManager.getImageUrl( mgIconListImage );
+								var mg_icon_list_image_url=elementor.imagesManager.getImageUrl( mgIconListImage );
 
-						#>
+								#>
 								<li>
 									<a {{{ view.getRenderAttributeString('item' + index) }}}>
 										<div class="mg-lc-icon-img">
-											<# if (item.mglc_icon_type === 'image') { #>
+											<# if (item.mglc_icon_type==='image' ) { #>
 												<div class="mg-lc-img">
 													<figure>
 														<img src="{{{ mg_icon_list_image_url }}}" alt="{{{ item.mglc_img.alt }}}" />
 													</figure>
 												</div>
-											<# } else { #>
-												<div class="mg-ic-list">
-													<i class="{{{ item.mglc_type_selected_icon.value }}}"></i>
-												</div>
-											<# } #>
+												<# } else { #>
+													<div class="mg-ic-list">
+														<i class="{{{ item.mglc_type_selected_icon.value }}}"></i>
+													</div>
+													<# } #>
 										</div>
 										<div class="mg-lc-content">
 											<span class="mg-lc-subtitle">{{{ item.mg_subtitle }}}</span>
 										</div>
 									</a>
 								</li>
-						<# }); } #>
-					</ul>
-				</div>
-			<# } #>
-		<?php
+								<# }); } #>
+						</ul>
+					</div>
+					<# } #>
+				<?php
+			}
 		}
-		
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	}
