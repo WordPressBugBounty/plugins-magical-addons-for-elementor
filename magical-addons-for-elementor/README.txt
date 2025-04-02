@@ -19,6 +19,7 @@ The best part of Magical Addons is that you can design anything without having t
 - ** Custom Css Free **
 - ** Custom Attributes Free **
 - ** Custom Code Entire Site Free **
+- ** Advanced WordPress user role manager **
 - ** Conditional display Free **
 
 
@@ -254,6 +255,15 @@ e.g.
 
 
 == Changelog ==
+
+= 1.3.3 =
+    * Added custom WordPress user role manager
+    * Added new style for admin page 
+    * Admin menu now only for options edit access
+
+= 1.3.2 =
+    * Custom Attributes section added in widges advanced tab free
+    * PHP bug fix
 
 = 1.3.2 =
     * Added custom code feature with syntax highlighting 
