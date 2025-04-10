@@ -141,7 +141,7 @@ class madAdminInfo
     public static function display_features_notice()
     {
         // Check if notice is dismissed
-        if (get_option('magical_features_notice_dismissed1')) {
+        if (get_option('magical_features_notice_dismissed2')) {
             return;
         }
 
@@ -190,7 +190,7 @@ class madAdminInfo
         $notice_type = isset($_POST['notice_type']) ? sanitize_text_field($_POST['notice_type']) : 'review';
 
         if ($notice_type === 'features') {
-            update_option('magical_features_notice_dismissed1', true);
+            update_option('magical_features_notice_dismissed2', true);
         } else {
             update_option('magical_review_notice_dismissed', true);
         }

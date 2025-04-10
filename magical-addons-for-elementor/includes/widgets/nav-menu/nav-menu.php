@@ -959,7 +959,7 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
         $this->end_controls_section();
     }
 
-    protected function render($instance = [])
+    protected function render()
     {
         $exclass = [];
 
@@ -972,6 +972,7 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
         $exclass[] = $settings['menu_bottomline'];
 
         $this->add_render_attribute('area_attr', 'class', 'mgnav-menu no-load mgnav-menu-' . $settings['menu_style']);
+        $this->add_render_attribute('area_attr', 'class', 'mgnav-menu-' . $settings['menu_source']);
 
         $this->add_render_attribute('area_attr', 'class', implode(" ", $exclass));
 
@@ -1014,7 +1015,13 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
                     <?php
                     endif;
                     if (!empty($settings['mobile_menu_toggler_icon']['value'])) : ?>
-                        <button class="mgnav-menu-toggle"><span class="mgmnav-open"><?php Icons_Manager::render_icon($settings['mobile_menu_toggler_icon'], array('aria-hidden' => 'true')); ?></span><span class="mgmnav-close">&nbsp;</span></button>
+                        <button class="mgnav-menu-toggle">
+                            <span class="mgmnav-open"><?php Icons_Manager::render_icon($settings['mobile_menu_toggler_icon'], array('aria-hidden' => 'true')); ?></span>
+                            <span class="mgmnav-close">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.83,16l8.59-8.59a2,2,0,0,0-2.83-2.83L16,13.17,7.41,4.59A2,2,0,0,0,4.59,7.41L13.17,16,4.59,24.59a2,2,0,1,0,2.83,2.83L16,18.83l8.59,8.59a2,2,0,0,0,2.83-2.83Z" />
+                                </svg>
+                            </span></button>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

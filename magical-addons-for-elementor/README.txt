@@ -3,7 +3,7 @@ Contributors: nalam
 Tags: elementor, page builder, Elementor addons, elementor widget, template library
 Donate link: https://wpthemespace.com/donation/
 Requires at least: 5.0
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 5.6
 Stable tag: trunk 
 License: GPLv2 or later
@@ -256,12 +256,17 @@ e.g.
 
 == Changelog ==
 
-= 1.3.3 =
+= 1.3.5 =
+    * Nav Menu widget style added
+    * Nav Menu widget mobile responsive issue fixed
+    * Magical Addons menu and custom code now avilable for editor
+
+= 1.3.4 =
     * Added custom WordPress user role manager
     * Added new style for admin page 
     * Admin menu now only for options edit access
 
-= 1.3.2 =
+= 1.3.3 =
     * Custom Attributes section added in widges advanced tab free
     * PHP bug fix
 

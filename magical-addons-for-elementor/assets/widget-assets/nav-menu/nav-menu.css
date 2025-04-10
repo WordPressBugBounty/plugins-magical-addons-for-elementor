@@ -300,30 +300,7 @@
 
 .mgmnav-close {
     display: none;
-    position: absolute;
-    right: 0;
-    top: 8px;
-    width: 32px;
-    height: 32px;
-}
-
-.mgmnav-close::before,
-.mgmnav-close::after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 25px;
-    width: 2px;
-    background-color: #333;
-    top: 3px;
-}
-
-.mgmnav-close:before {
-    transform: rotate(45deg);
-}
-
-.mgmnav-close:after {
-    transform: rotate(-45deg);
+    position: relative;
 }
 
 @media only screen and (max-width: 767px) {
@@ -338,8 +315,11 @@
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+        justify-content: flex-end;
     }
-
+    .mgnav-menu .mgnav-menu-head .mgnav-menu-title {
+        margin-right: 10px;
+    }
     .mgnav-menu>.mgnav-menu-list {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -389,6 +369,29 @@
         margin-left: 5px;
         display: none;
     }
+        .mgnav-menu.mgnav-menu-one {
+            position: relative;
+            min-width: 50px;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .mgnav-menu ul {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            min-width: 250px;
+            background: #fff;
+            z-index: 999;
+            padding: 20px 10px;
+        }
+    
+        .mgnav-menu ul li {
+            padding: 10px;
+        }
+        .mgnav-menu ul li:first-child {
+            border-top: inherit;
+        }
 
 }
 

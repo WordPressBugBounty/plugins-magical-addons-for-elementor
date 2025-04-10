@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Custom Code Module for Magical Addons for Elementor
  * 
@@ -18,32 +19,36 @@ if (!defined('MAGICAL_CUSTOM_CODE_PATH')) {
 // Include meta handling
 require_once MAGICAL_CUSTOM_CODE_PATH . 'custom-code-meta.php';
 
-class Magical_Custom_Code {
+class Magical_Custom_Code
+{
     private $post_type = 'magical_custom_code';
     private static $instance = null;
 
-    public static function get_instance() {
+    public static function get_instance()
+    {
         if (is_null(self::$instance)) {
             self::$instance = new self();
         }
         return self::$instance;
     }
 
-    public function __construct() {
+    public function __construct()
+    {
         // Initialize meta handler
         Magical_Custom_Code_Meta::get_instance();
-        
+
         add_action('init', array($this, 'register_post_type'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
-        
+
         // Frontend code output
         add_action('wp_head', array($this, 'output_header_code'));
         add_action('wp_footer', array($this, 'output_footer_code'));
         add_action('wp_body_open', array($this, 'output_body_code'));
     }
 
-    public function register_post_type() {
+    public function register_post_type()
+    {
         $labels = array(
             'name'               => __('Custom Code', 'magical-addons-for-elementor'),
             'singular_name'      => __('Custom Code', 'magical-addons-for-elementor'),
@@ -77,17 +82,19 @@ class Magical_Custom_Code {
         register_post_type($this->post_type, $args);
     }
 
-    public function add_admin_menu() {
+    public function add_admin_menu()
+    {
         add_submenu_page(
             'magical-addons',
             __('Custom Code', 'magical-addons-for-elementor'),
             __('Custom Code', 'magical-addons-for-elementor'),
-            'manage_options',
+            'edit_pages',
             'edit.php?post_type=' . $this->post_type
         );
     }
 
-    public function enqueue_scripts($hook) {
+    public function enqueue_scripts($hook)
+    {
         global $post_type;
 
         if ($this->post_type !== $post_type) {
@@ -123,7 +130,8 @@ class Magical_Custom_Code {
         );
     }
 
-    private function get_custom_code_by_location($location) {
+    private function get_custom_code_by_location($location)
+    {
         $args = array(
             'post_type'      => $this->post_type,
             'posts_per_page' => -1,
@@ -164,23 +172,28 @@ class Magical_Custom_Code {
         return apply_filters('magical_custom_code_output', $output, $location);
     }
 
-    private function output_code($location) {
+    private function output_code($location)
+    {
         echo $this->get_custom_code_by_location($location);
     }
 
-    public function output_header_code() {
+    public function output_header_code()
+    {
         $this->output_code('head');
     }
 
-    public function output_body_code() {
+    public function output_body_code()
+    {
         $this->output_code('body_open');
     }
 
-    public function output_footer_code() {
+    public function output_footer_code()
+    {
         $this->output_code('footer');
     }
 
-    private function check_conditions($conditions) {
+    private function check_conditions($conditions)
+    {
         if (empty($conditions) || !isset($conditions['type'])) {
             return true;
         }
@@ -242,7 +255,8 @@ class Magical_Custom_Code {
 }
 
 // Initialize the class
-function magical_custom_code_init() {
+function magical_custom_code_init()
+{
     Magical_Custom_Code::get_instance();
 }
 add_action('plugins_loaded', 'magical_custom_code_init');

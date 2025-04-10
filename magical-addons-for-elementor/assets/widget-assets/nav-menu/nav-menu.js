@@ -46,7 +46,7 @@
             });
 
             // add extra class for #section menu items
-    	$('.mgnav-menu li a').each(function(){
+    	$('.mgnav-menu.mgnav-menu-wpnav li a').each(function(){
 			 let menu_url = $(this).attr('href');
 			let pxm_fist = menu_url.charAt(0);
 			let pxm_len = menu_url.length;

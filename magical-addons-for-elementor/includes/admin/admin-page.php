@@ -33,7 +33,7 @@ if (!class_exists('mgAdmin_Info_Items')) :
         function admin_menu()
         {
             //add_options_page( 'Settings API', 'Settings API', 'delete_posts', 'settings_api_test', array($this, 'plugin_page') );
-            add_menu_page(esc_html__('Magical Addons', 'magical-addons-for-elementor'), esc_html__('Magical Addons', 'magical-addons-for-elementor'), 'manage_options', 'magical-addons', array($this, 'plugin_page'), esc_url(MAGICAL_ADDON_URL . 'assets/img/mg-icons.png'), 60);
+            add_menu_page(esc_html__('Magical Addons', 'magical-addons-for-elementor'), esc_html__('Magical Addons', 'magical-addons-for-elementor'), 'edit_pages', 'magical-addons', array($this, 'plugin_page'), esc_url(MAGICAL_ADDON_URL . 'assets/img/mg-icons.png'), 60);
         }
 
         function get_settings_sections()
