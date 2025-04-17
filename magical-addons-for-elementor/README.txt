@@ -256,6 +256,10 @@ e.g.
 
 == Changelog ==
 
+= 1.3.6 =
+    * vulnerable Security code issue fixed
+    * WordPress 6.8 translate error fixed 
+
 = 1.3.5 =
     * Nav Menu widget style added
     * Nav Menu widget mobile responsive issue fixed

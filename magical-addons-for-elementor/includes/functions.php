@@ -500,10 +500,9 @@ if (!function_exists('mg_mc_form')) {
             wp_die();
         }
 
-        //  $api_key = sanitize_text_field($_POST['apiKey']);
         $api_key = mg_get_extra_option('mg_mailchamp_api');
-        $fname = sanitize_file_name($_POST['firstname']);
-        $lname = sanitize_file_name($_POST['lastname']);
+        $fname = sanitize_text_field(isset($_POST['firstname']) ? $_POST['firstname'] : '');
+        $lname = sanitize_text_field(isset($_POST['lastname']) ? $_POST['lastname'] : '');
 
         $merge_fields = array(
             'FNAME' => !empty($fname) ? $fname : '',
@@ -553,11 +552,10 @@ if (!function_exists('mg_mc_form')) {
 if (!function_exists('mg_site_protocol')) {
     function mg_site_protocol()
     {
-        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ||
-            $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        return $protocol;
+        return is_ssl() ? 'https://' : 'http://';
     }
 }
+
 
 
 // all avilable widgets list

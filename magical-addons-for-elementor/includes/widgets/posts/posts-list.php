@@ -1765,8 +1765,13 @@ class mgPostListWidget extends \Elementor\Widget_Base
                             <?php if ($mgp_tags_list && $settings['mgpl_tag_show'] == 'yes' || $settings['mgpl_comment_show'] == 'yes') : ?>
                                 <div class="mgpl-cmeta text-right">
                                     <?php
+
+
                                     if ($mgp_tags_list && $settings['mgpl_tag_show'] == 'yes') {
-                                        printf('<span class="mpg-tags-links"><i class="fas fa-tag"></i>' . esc_html__(' %1$s', 'magical-addons-for-elementor') . '</span>', $mgp_tags_list);
+                                        printf(
+                                            '<span class="mpg-tags-links"><i class="fas fa-tag"></i> %s</span>',
+                                            wp_kses_post($mgp_tags_list)
+                                        );
                                     }
                                     if ($settings['mgpl_comment_show'] == 'yes') {
                                         mg_plugin_comment_icon();

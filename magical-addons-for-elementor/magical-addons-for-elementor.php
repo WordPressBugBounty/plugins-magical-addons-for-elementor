@@ -9,7 +9,7 @@
  * Plugin Name:       Magical Addons For Elementor
  * Plugin URI:        
  * Description:       Premium addons for Elementor page builder
- * Version:           1.3.5
+ * Version:           1.3.6
  * Author:            Noor alam
  * Author URI:        https://profiles.wordpress.org/nalam-1
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class Magical_Addons_Elementor
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.3.5';
+	const VERSION = '1.3.6';
 
 	/**
 	 * Minimum Elementor Version
@@ -101,17 +101,34 @@ final class Magical_Addons_Elementor
 	public function __construct()
 	{
 
-		add_action('init', [$this, 'i18n']);
 		$this->define_main();
+
+		// Load text domain at init hook to prevent "too early" errors in WP 6.7+
+		add_action('init', [$this, 'load_plugin_textdomain']);
+
 		$this->call_main_file();
 		//	add_action('activated_plugin', [$this, 'go_welcome_page']);
 		add_filter('plugin_action_links_' . plugin_basename(__FILE__), [$this, 'admin_adminpro_link']);
+
+
 
 		if (!did_action('elementor/loaded')) {
 			return;
 		}
 		add_action('plugins_loaded', [$this, 'init']);
 	}
+
+	/**
+	 * Load plugin textdomain
+	 * 
+	 * @since 1.3.7
+	 * @access public
+	 */
+	public function load_plugin_textdomain()
+	{
+		load_plugin_textdomain('magical-addons-for-elementor', false, dirname(plugin_basename(__FILE__)) . '/languages');
+	}
+
 	/**
 	 * Constract define
 	 * @since 1.0.0
@@ -157,23 +174,6 @@ final class Magical_Addons_Elementor
 			wp_redirect(admin_url('admin.php?page=magical-addons'));
 			die();
 		}
-	}
-
-	/**
-	 * Load Textdomain
-	 *
-	 * Load plugin localization files.
-	 *
-	 * Fired by `init` action hook.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @access public
-	 */
-	public function i18n()
-	{
-
-		load_plugin_textdomain('magical-addons-for-elementor');
 	}
 
 
@@ -281,7 +281,7 @@ final class Magical_Addons_Elementor
 	/**
 	 * Call base file
 	 *
-	 * Include  files 
+	 * Include files 
 	 *
 	 * @since 1.0.0
 	 *
@@ -289,11 +289,14 @@ final class Magical_Addons_Elementor
 	 */
 	public function call_main_file()
 	{
-		//admin notice 
+		//admin notice - load this first and unconditionally
 		require_once(MAGICAL_ADDON_PATH . '/includes/basic/mg-admin-notice.php');
+		new mgAdminNotice();
+		
 		if (!did_action('elementor/loaded')) {
 			return;
 		}
+		
 		// include file
 		require_once(MAGICAL_ADDON_PATH . '/includes/magical-init-widgets.php');
 

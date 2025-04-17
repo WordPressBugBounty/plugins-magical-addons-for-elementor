@@ -1635,16 +1635,17 @@ class mgPostGridWidget extends \Elementor\Widget_Base
 
             if ($category_output) :
                 echo '<div class="mgp-cat cat-list grid-meta' . (!has_post_thumbnail() ? ' empty-img' : '') . '">';
-                echo '<span class="mgp-post-cats">' . sanitize_text_field($category_output) . '</span>';
+                echo '<span class="mgp-post-cats">' . wp_kses_post($category_output) . '</span>';
                 echo '</div>';
             endif;
+
         endif;
     }
 
     protected function render_post_title($settings)
     {
         if ($settings['mgpg_show_title']) :
-            echo '<a class="mgp-title-link" href="' . get_the_permalink() . '">';
+            echo '<a class="mgp-title-link" href="' . esc_url(get_the_permalink()) . '">';
             printf('<%1$s class="mgp-ptitle">%2$s</%1$s>', tag_escape($settings['mgpg_title_tag']), esc_html(wp_trim_words(get_the_title(), $settings['mgpg_crop_title'])));
             echo '</a>';
         endif;
@@ -1722,19 +1723,31 @@ class mgPostGridWidget extends \Elementor\Widget_Base
             $button_target = !empty($settings['mgpg_btn_target']) ? esc_attr($settings['mgpg_btn_target']) : '_self';
 
             // Render the button
-            echo '<a href="' . esc_url(get_the_permalink()) . '" target="' . $button_target . '" ' . $button_class . '>';
+            echo '<a href="' . esc_url(get_the_permalink()) . '" target="' . esc_attr($button_target) . '" class="' . esc_attr($button_class) . '">';
+
 
             // Add icon to the left if applicable
-            if (!empty($settings['mgpg_usebtn_icon']) && $settings['mgpg_usebtn_icon'] === 'yes' && $icon_position === 'left' && !empty($icon)) {
-                echo '<span class="left">' . $icon . '</span>';
+
+            if (
+                !empty($settings['mgpg_usebtn_icon']) &&
+                $settings['mgpg_usebtn_icon'] === 'yes' &&
+                $icon_position === 'left' &&
+                !empty($icon)
+            ) {
+                echo '<span class="left">' . wp_kses_post($icon) . '</span>';
             }
 
             // Add button text
-            echo '<span>' . $button_text . '</span>';
+            echo '<span>' . esc_html($button_text) . '</span>';
 
             // Add icon to the right if applicable
-            if (!empty($settings['mgpg_usebtn_icon']) && $settings['mgpg_usebtn_icon'] === 'yes' && $icon_position === 'right' && !empty($icon)) {
-                echo '<span class="right">' . $icon . '</span>';
+            if (
+                !empty($settings['mgpg_usebtn_icon']) &&
+                $settings['mgpg_usebtn_icon'] === 'yes' &&
+                $icon_position === 'right' &&
+                !empty($icon)
+            ) {
+                echo '<span class="right">' . wp_kses_post($icon) . '</span>';
             }
 
             echo '</a>';

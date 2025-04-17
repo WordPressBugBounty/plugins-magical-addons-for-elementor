@@ -1258,7 +1258,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 		$mg_memeber_icon_list = $this->get_settings('mg_memeber_icon_list'); //Repeater
 
 ?>
-		<div class="mg-team-member <?php if ($all_basic_style == 'style1') : ?>style1<?php elseif ($all_basic_style == 'style2') : ?>mg-team-style2<?php elseif ($all_basic_style == 'style3') : ?>mg-team-style3<?php endif; ?> mgt-social-<?php echo isset($mgteam_social_style) ? $mgteam_social_style : 'default'; ?>">
+		<div class="mg-team-member <?php if ($all_basic_style == 'style1') : ?>style1<?php elseif ($all_basic_style == 'style2') : ?>mg-team-style2<?php elseif ($all_basic_style == 'style3') : ?>mg-team-style3<?php endif; ?> mgt-social-<?php echo isset($mgteam_social_style) ? esc_attr($mgteam_social_style) : esc_attr('default'); ?>">
 			<?php if ($all_basic_style == 'style1') : ?>
 				<?php if ($member_img['url'] || $member_img['id']) : ?>
 					<div class="mg-team-img">

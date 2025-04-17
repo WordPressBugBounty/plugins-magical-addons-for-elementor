@@ -67,7 +67,7 @@ class Magical_Addons_Custom_CSS
             if (is_array($elements)) {
                 $css = $this->get_custom_css_from_elements($elements);
                 if (!empty($css)) {
-                    echo '<style id="magical-custom-css">' . $css . '</style>';
+                    echo '<style id="magical-custom-css">' . wp_strip_all_tags($css) . '</style>';
                 }
             }
         }
@@ -85,7 +85,7 @@ class Magical_Addons_Custom_CSS
             if (is_array($elements)) {
                 $css = $this->get_custom_css_from_elements($elements);
                 if (!empty($css)) {
-                    echo '<style id="magical-custom-css-editor">' . $css . '</style>';
+                    echo '<style id="magical-custom-css-editor">' . wp_strip_all_tags($css) . '</style>';
                 }
             }
         }
