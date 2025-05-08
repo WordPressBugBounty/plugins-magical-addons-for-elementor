@@ -377,7 +377,7 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 			array(
 				'label'   => __('Title HTML Tag', 'magical-addons-for-elementor'),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'div',
+				'default' => 'h4',
 				'options' => array(
 					'h1'   => __('H1', 'magical-addons-for-elementor'),
 					'h2'   => __('H2', 'magical-addons-for-elementor'),
@@ -1257,24 +1257,24 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 			)
 		);
 
-		
-        $this->add_responsive_control(
-            'mg_info_list_icon_size',
-            [
-                'label'     => __('Icon Size', 'magical-addons-for-elementor'),
-                'type'      => Controls_Manager::SLIDER,
-                'separator' => 'before',
-                'range'     => [
-                    'px' => [
-                        'min' => 5,
-                        'max' => 300,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .mg-info-list-item .mg-info-list-button svg' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
+
+		$this->add_responsive_control(
+			'mg_info_list_icon_size',
+			[
+				'label'     => __('Icon Size', 'magical-addons-for-elementor'),
+				'type'      => Controls_Manager::SLIDER,
+				'separator' => 'before',
+				'range'     => [
+					'px' => [
+						'min' => 5,
+						'max' => 300,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .mg-info-list-item .mg-info-list-button svg' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
 		$this->add_responsive_control(
 			'button_padding',
@@ -1476,7 +1476,7 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 										if ($item['text']) {
 											$title_tag = $settings['title_html_tag'];
 										?>
-											<<?php echo esc_html($title_tag); ?> <?php echo wp_kses_post($this->get_render_attribute_string($text_key)); ?>>
+											<<?php echo mg_validate_html_tag($title_tag, 'h4'); ?> <?php echo wp_kses_post($this->get_render_attribute_string($text_key)); ?>>
 												<?php if (!empty($item['link']['url']) && 'title' === $item['link_type']) { ?>
 													<a <?php echo wp_kses_post($this->get_render_attribute_string($link_key)); ?>>
 													<?php } ?>
@@ -1484,7 +1484,7 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 													<?php if (!empty($item['link']['url']) && 'title' === $item['link_type']) { ?>
 													</a>
 												<?php } ?>
-											</<?php echo esc_html($title_tag); ?>>
+											</<?php echo mg_validate_html_tag($title_tag, 'h4'); ?>>
 										<?php } ?>
 										<?php
 										if ($item['description']) {
@@ -1671,9 +1671,9 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 	{
 		?>
 		<# view.addRenderAttribute( 'info-list' , { 'class' : [ 'mg-info-list-container' , 'mg-list-container' ], } ); if ( settings.connector=='yes' ) { view.addRenderAttribute( 'info-list' , 'class' , 'mg-info-list-connector' );
-			
+
 			if ( settings.corner_lines=='yes' ) { view.addRenderAttribute( 'info-list' , 'class' , 'mg-info-list-corners-hide' ); } }
-		 var iconsHTML={}, migrated={}, buttonIconHTML={}, buttonMigrated={}; #>
+			var iconsHTML={}, migrated={}, buttonIconHTML={}, buttonMigrated={}; #>
 			<div {{{ view.getRenderAttributeString( 'info-list' ) }}}>
 				<ul class="mg-list-items">
 					<# var i=1; #>

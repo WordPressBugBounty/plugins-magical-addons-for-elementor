@@ -1234,7 +1234,7 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 					if ($mg_vcard_title) :
 						printf(
 							'<%1$s %2$s>%3$s</%1$s>',
-							tag_escape($mg_vcard_title_tag),
+							mg_validate_html_tag($mg_vcard_title_tag),
 							$this->get_render_attribute_string('mg_vcard_title'),
 							esc_html($mg_vcard_title)
 						);

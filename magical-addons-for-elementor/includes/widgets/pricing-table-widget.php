@@ -1114,7 +1114,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label' => __('List Style', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'disc',
+                'default' => 'none',
                 'options' => [
                     'none'  => __('None', 'magical-addons-for-elementor'),
                     'disc'  => __('Disc', 'magical-addons-for-elementor'),
@@ -1736,7 +1736,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 if ($mg_pr_title && $mgpr_icon_posotion == 'middle') :
                     printf(
                         '<%1$s %2$s>%3$s</%1$s>',
-                        tag_escape($mg_pr_title_tag),
+                        mg_validate_html_tag($mg_pr_title_tag),
                         $this->get_render_attribute_string('mg_pr_title'),
                         mg_kses_tags($mg_pr_title)
                     );
@@ -1760,7 +1760,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 if ($mg_pr_title && $mgpr_icon_posotion == 'top') :
                     printf(
                         '<%1$s %2$s>%3$s</%1$s>',
-                        tag_escape($mg_pr_title_tag),
+                        mg_validate_html_tag($mg_pr_title_tag),
                         $this->get_render_attribute_string('mg_pr_title'),
                         mg_kses_tags($mg_pr_title)
                     );

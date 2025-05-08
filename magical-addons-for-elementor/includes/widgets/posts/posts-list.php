@@ -1721,7 +1721,7 @@ class mgPostListWidget extends \Elementor\Widget_Base
                                     <?php
                                     printf(
                                         '<%1$s class="mgp-ptitle">%2$s</%1$s>',
-                                        tag_escape($mgpl_title_tag),
+                                        mg_validate_html_tag($mgpl_title_tag, 'h4'),
                                         esc_html(wp_trim_words(get_the_title(), $mgpl_crop_title))
                                     );
                                     ?>

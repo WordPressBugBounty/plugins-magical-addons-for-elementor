@@ -1213,9 +1213,9 @@ class MgAddon_imgAccordion extends \Elementor\Widget_Base
 							<div <?php echo wp_kses_post($this->get_render_attribute_string($content_key)); ?>>
 								<div class="mg-image-accordion-content">
 									<?php $title_tag = $settings['title_html_tag']; ?>
-									<<?php echo tag_escape($title_tag); ?> class="mg-image-accordion-title">
+									<<?php echo mg_validate_html_tag($title_tag); ?> class="mg-image-accordion-title">
 										<?php echo wp_kses_post($item['title']); ?>
-									</<?php echo tag_escape($title_tag); ?>>
+									</<?php echo mg_validate_html_tag($title_tag); ?>>
 									<div class="mg-image-accordion-description">
 										<?php echo $this->parse_text_editor($item['description']); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 										?>

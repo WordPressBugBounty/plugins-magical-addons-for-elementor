@@ -377,20 +377,20 @@ class MgAddon_Dual_Heading extends \Elementor\Widget_Base
 
 ?>
 			<a <?php echo $this->get_render_attribute_string('url'); ?>>
-				<<?php echo tag_escape($mgheader_tag); ?>>
+				<<?php echo mg_validate_html_tag($mgheader_tag); ?>>
 					<span <?php echo $this->get_render_attribute_string('mgheading_one'); ?>><?php echo mg_kses_tags($mgheading_one); ?></span>
 					<span <?php echo $this->get_render_attribute_string('mgheading_two'); ?>><?php echo mg_kses_tags($mgheading_two); ?></span>
-				</<?php echo tag_escape($mgheader_tag); ?>>
+				</<?php echo mg_validate_html_tag($mgheader_tag); ?>>
 			</a>
 		<?php
 		} else {
 
 		?>
-			<<?php echo tag_escape($mgheader_tag); ?>>
+			<<?php echo mg_validate_html_tag($mgheader_tag); ?>>
 				<span <?php echo $this->get_render_attribute_string('mgheading_one'); ?>><?php echo mg_kses_tags($mgheading_one); ?></span>
 				<span <?php echo $this->get_render_attribute_string('mgheading_two'); ?>><?php echo mg_kses_tags($mgheading_two); ?></span>
 
-			</<?php echo tag_escape($mgheader_tag); ?>>
+			</<?php echo mg_validate_html_tag($mgheader_tag); ?>>
 		<?php
 		}
 	}

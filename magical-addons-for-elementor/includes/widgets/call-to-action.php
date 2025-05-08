@@ -1832,7 +1832,7 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
                 if ($mg_cta_title) :
                     printf(
                         '<%1$s %2$s>%3$s %4$s</%1$s>',
-                        tag_escape($mg_cta_title_tag),
+                        mg_validate_html_tag($mg_cta_title_tag),
                         $this->get_render_attribute_string('mg_cta_title'),
                         mg_kses_tags($mg_cta_title),
                         '<span>' . wp_kses_post($mg_cta_highlight) . '</span>'
@@ -1891,7 +1891,7 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
                 if ($mg_cta_title) :
                     printf(
                         '<%1$s %2$s>%3$s %4$s</%1$s>',
-                        tag_escape($mg_cta_title_tag),
+                        mg_validate_html_tag($mg_cta_title_tag),
                         $this->get_render_attribute_string('mg_cta_title'),
                         mg_kses_tags($mg_cta_title),
                         '<span>' . wp_kses_post($mg_cta_highlight) . '</span>'

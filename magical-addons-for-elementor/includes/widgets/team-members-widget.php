@@ -1298,7 +1298,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 					if ($mg_member_name) :
 						printf(
 							'<%1$s %2$s>%3$s</%1$s>',
-							tag_escape($mg_member_name_tag),
+							mg_validate_html_tag($mg_member_name_tag, 'h3'),
 							$this->get_render_attribute_string('mg_member_name'),
 							mg_kses_tags($mg_member_name)
 						);

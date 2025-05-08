@@ -737,3 +737,17 @@ function magical_el_template_list_desc($section = ' ', $vid_link = '#')
 
     return $output;
 }
+
+
+function mg_validate_html_tag($tag, $default_tag = 'h2', $allowed_tags = array()) {
+    // Use the provided whitelist or fall back to a predefined set of safe tags
+    $safe_tags = !empty($allowed_tags) ? $allowed_tags : array(
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p'
+    );
+
+    // Make sure we're working with a string
+    $tag = is_string($tag) ? strtolower(trim($tag)) : '';
+
+    // Return the validated tag or default
+    return in_array($tag, $safe_tags, true) ? $tag : $default_tag;
+}

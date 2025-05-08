@@ -914,7 +914,7 @@ class MgAddon_Timeline_Widget extends \Elementor\Widget_Base
 										if ($value['mgtl_title'] && $mgtl_title_show == 'yes') :
 											printf(
 												'<%1$s %2$s>%3$s</%1$s>',
-												tag_escape($mgtl_title_tag),
+												mg_validate_html_tag($mgtl_title_tag),
 												$this->get_render_attribute_string($key1),
 												mg_kses_tags($value['mgtl_title'])
 											);

@@ -684,7 +684,7 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
             if ($mgpyc_show_title && $mgpyc_title) :
                 printf(
                     '<%1$s %2$s>%3$s</%1$s>',
-                    tag_escape($mgpyc_title_tag),
+                    mg_validate_html_tag($mgpyc_title_tag),
                     $this->get_render_attribute_string('mgpyc_title'),
                     mg_kses_tags($mgpyc_title)
                 );

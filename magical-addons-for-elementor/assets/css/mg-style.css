@@ -569,6 +569,9 @@ p.mg-price span.mgext {
 .mg-pricing .mg-price span.mgcur strong{
   display: inline-block;
 }
+.mg-text-effects h2 {
+  line-height: 1.1;
+}
 /*Team widget style*/
 
 .mg-team-member {

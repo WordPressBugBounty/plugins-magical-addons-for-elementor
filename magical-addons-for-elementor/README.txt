@@ -256,6 +256,11 @@ e.g.
 
 == Changelog ==
 
+= 1.3.7 =
+    * vulnerable Security code issue fixed
+    * new way wordpress tags escap
+    * Added new style
+
 = 1.3.6 =
     * vulnerable Security code issue fixed
     * WordPress 6.8 translate error fixed 

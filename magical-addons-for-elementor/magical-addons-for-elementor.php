@@ -9,7 +9,7 @@
  * Plugin Name:       Magical Addons For Elementor
  * Plugin URI:        
  * Description:       Premium addons for Elementor page builder
- * Version:           1.3.6
+ * Version:           1.3.7
  * Author:            Noor alam
  * Author URI:        https://profiles.wordpress.org/nalam-1
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class Magical_Addons_Elementor
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.3.6';
+	const VERSION = '1.3.7';
 
 	/**
 	 * Minimum Elementor Version
@@ -292,11 +292,11 @@ final class Magical_Addons_Elementor
 		//admin notice - load this first and unconditionally
 		require_once(MAGICAL_ADDON_PATH . '/includes/basic/mg-admin-notice.php');
 		new mgAdminNotice();
-		
+
 		if (!did_action('elementor/loaded')) {
 			return;
 		}
-		
+
 		// include file
 		require_once(MAGICAL_ADDON_PATH . '/includes/magical-init-widgets.php');
 

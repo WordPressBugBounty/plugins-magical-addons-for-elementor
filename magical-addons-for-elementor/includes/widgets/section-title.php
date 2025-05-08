@@ -1140,7 +1140,7 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 			<?php endif; ?>
 
 			<?php if ($mgsec_title) : ?>
-				<<?php echo tag_escape($mgsectitle_tag); ?> <?php echo $this->get_render_attribute_string('mgsec_title'); ?>><?php echo mg_kses_tags($mgsec_title); ?></<?php echo tag_escape($mgsectitle_tag); ?>>
+				<<?php echo mg_validate_html_tag($mgsectitle_tag); ?> <?php echo $this->get_render_attribute_string('mgsec_title'); ?>><?php echo mg_kses_tags($mgsec_title); ?></<?php echo mg_validate_html_tag($mgsectitle_tag); ?>>
 			<?php endif; ?>
 			<?php if ($settings['mgsec_subtitle_show'] && $settings['mgsec_subtitle'] && $settings['mgsecsub_position'] == 'bottom') : ?>
 				<h5 <?php echo $this->get_render_attribute_string('mgsec_subtitle'); ?>><?php echo mg_kses_tags($mgsec_subtitle); ?></h5>

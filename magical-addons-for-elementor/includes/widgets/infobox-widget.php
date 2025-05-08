@@ -1334,7 +1334,7 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
                         if ($title) :
                             printf(
                                 '<%1$s %2$s>%3$s</%1$s>',
-                                tag_escape($title_tag),
+                                mg_validate_html_tag($title_tag),
                                 $this->get_render_attribute_string('mginfo_title'),
                                 mg_kses_tags($title)
                             );

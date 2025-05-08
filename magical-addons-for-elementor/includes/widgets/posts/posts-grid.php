@@ -1646,7 +1646,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
     {
         if ($settings['mgpg_show_title']) :
             echo '<a class="mgp-title-link" href="' . esc_url(get_the_permalink()) . '">';
-            printf('<%1$s class="mgp-ptitle">%2$s</%1$s>', tag_escape($settings['mgpg_title_tag']), esc_html(wp_trim_words(get_the_title(), $settings['mgpg_crop_title'])));
+            printf('<%1$s class="mgp-ptitle">%2$s</%1$s>', mg_validate_html_tag($settings['mgpg_title_tag'], 'h4'), esc_html(wp_trim_words(get_the_title(), $settings['mgpg_crop_title'])));
             echo '</a>';
         endif;
     }

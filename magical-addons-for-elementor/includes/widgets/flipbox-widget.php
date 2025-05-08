@@ -2003,7 +2003,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
                         if ($mg_flip_normal_title) :
                             printf(
                                 '<%1$s %2$s>%3$s</%1$s>',
-                                tag_escape($mg_flip_normal_title_tag),
+                                mg_validate_html_tag($mg_flip_normal_title_tag),
                                 $this->get_render_attribute_string('mg_flip_normal_title'),
                                 mg_kses_tags($mg_flip_normal_title)
                             );
@@ -2021,7 +2021,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
                     if ($mg_flip_hover_title) :
                         printf(
                             '<%1$s %2$s>%3$s</%1$s>',
-                            tag_escape($mg_flip_hover_title_tag),
+                            mg_validate_html_tag($mg_flip_hover_title_tag),
                             $this->get_render_attribute_string('mg_flip_hover_title'),
                             mg_kses_tags($mg_flip_hover_title)
                         );
@@ -2094,7 +2094,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
                     if ($mg_flip_style_two_normal_title) :
                         printf(
                             '<%1$s %2$s>%3$s</%1$s>',
-                            tag_escape($mg_flip_style_two_normal_title_tag),
+                            mg_validate_html_tag($mg_flip_style_two_normal_title_tag, 'h3'),
                             $this->get_render_attribute_string('mg_flip_style_two_normal_title'),
                             mg_kses_tags($mg_flip_style_two_normal_title)
                         );
@@ -2107,7 +2107,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
                 if ($mg_flip_style_two_hover_title) :
                     printf(
                         '<%1$s %2$s>%3$s</%1$s>',
-                        tag_escape($mg_flip_style_two_hover_title_tag),
+                        mg_validate_html_tag($mg_flip_style_two_hover_title_tag, 'h1'),
                         $this->get_render_attribute_string('mg_flip_style_two_hover_title'),
                         mg_kses_tags($mg_flip_style_two_hover_title)
                     );
@@ -2160,7 +2160,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             <?php else : ?>
                 <a <?php echo $this->get_render_attribute_string('mg_flip_btn_title'); ?>><?php echo  mg_kses_tags($mg_flip_btn_title); ?></a>
             <?php endif; ?>
-<?php
+        <?php
         endif;
     }
 
@@ -2173,253 +2173,245 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
 
 
 
-    protected function content_template() {
+    protected function content_template()
+    {
         ?>
 
-<#
-		var mg_flip_styles = settings.mg_flip_styles;
+        <#
+            var mg_flip_styles=settings.mg_flip_styles;
 
 
 
-        <!-- Style One -->
+            <!-- Style One -->
 
-		var mg_flip_effects = settings.mg_flip_effects;
+            var mg_flip_effects = settings.mg_flip_effects;
 
-		var mgf_icon_type = settings.mgf_icon_type;
-
-
-        //Flip card normal Content
-		var mg_flip_normal_title = settings.mg_flip_normal_title;
-		var mg_flip_normal_title_tag = settings.mg_flip_normal_title_tag;
-        view.addInlineEditingAttributes('mg_flip_normal_title', 'none');
-        view.addRenderAttribute('mg_flip_normal_title', 'class', 'mg-flip-normal-title');
+            var mgf_icon_type = settings.mgf_icon_type;
 
 
-        //Flip card Hover Content
-		var mg_flip_hover_title = settings.mg_flip_hover_title;
-		var mg_flip_hover_title_tag = settings.mg_flip_hover_title_tag;
-        view.addInlineEditingAttributes('mg_flip_hover_title', 'none');
-        view.addRenderAttribute('mg_flip_hover_title', 'class', 'mg-flip-hover-title');
-
-        
-        //Normal description
-		var mg_flip_normal_desc = settings.mg_flip_normal_desc;
-        view.addInlineEditingAttributes('mg_flip_normal_desc', 'none');
+            //Flip card normal Content
+            var mg_flip_normal_title = settings.mg_flip_normal_title;
+            var mg_flip_normal_title_tag = settings.mg_flip_normal_title_tag;
+            view.addInlineEditingAttributes('mg_flip_normal_title', 'none');
+            view.addRenderAttribute('mg_flip_normal_title', 'class', 'mg-flip-normal-title');
 
 
-        //hover description
-		var mg_flip_hover_desc = settings.mg_flip_hover_desc;
-        view.addInlineEditingAttributes('mg_flip_hover_desc', 'none');
+            //Flip card Hover Content
+            var mg_flip_hover_title = settings.mg_flip_hover_title;
+            var mg_flip_hover_title_tag = settings.mg_flip_hover_title_tag;
+            view.addInlineEditingAttributes('mg_flip_hover_title', 'none');
+            view.addRenderAttribute('mg_flip_hover_title', 'class', 'mg-flip-hover-title');
 
 
-        <!-- Image -->
-
-        var mgFirstFlipImage = {
-			id: settings.mgf_flip_normal_img.id,
-			url: settings.mgf_flip_normal_img.url,
-			model: view.getEditModel()
-			};
-			var mg_first_flip_image_url = elementor.imagesManager.getImageUrl( mgFirstFlipImage );
+            //Normal description
+            var mg_flip_normal_desc = settings.mg_flip_normal_desc;
+            view.addInlineEditingAttributes('mg_flip_normal_desc', 'none');
 
 
-
-        <!-- Style Two -->
-
-
-		var mg_flip_style_two_effects = settings.mg_flip_style_two_effects;
-
-        //Flip card normal Content
-		var mg_flip_style_two_normal_title = settings.mg_flip_style_two_normal_title;
-		var mg_flip_style_two_normal_title_tag = settings.mg_flip_style_two_normal_title_tag;
-        view.addInlineEditingAttributes('mg_flip_style_two_normal_title', 'none');
-        view.addRenderAttribute('mg_flip_style_two_normal_title', 'class', 'mg-flip-style-two-normal-title');
+            //hover description
+            var mg_flip_hover_desc = settings.mg_flip_hover_desc;
+            view.addInlineEditingAttributes('mg_flip_hover_desc', 'none');
 
 
-        //Flip card Hover Content
-		var mg_flip_style_two_hover_title = settings.mg_flip_style_two_hover_title;
-		var mg_flip_style_two_hover_title_tag = settings.mg_flip_style_two_hover_title_tag;
-        view.addInlineEditingAttributes('mg_flip_style_two_hover_title', 'none');
-        view.addRenderAttribute('mg_flip_style_two_hover_title', 'class', 'mg-flip-style-two-hover-title');
+            <!-- Image -->
 
-        
-        //Hover description
-		var mg_flip_style_two_hover_desc = settings.mg_flip_style_two_hover_desc;
-        view.addInlineEditingAttributes('mg_flip_style_two_hover_desc', 'none');
+            var mgFirstFlipImage = {
+            id: settings.mgf_flip_normal_img.id,
+            url: settings.mgf_flip_normal_img.url,
+            model: view.getEditModel()
+            };
+            var mg_first_flip_image_url = elementor.imagesManager.getImageUrl( mgFirstFlipImage );
 
 
-        // Flip Btn item
 
-        var mg_flip_btn_link = settings.mg_flip_btn_link;
-        view.addInlineEditingAttributes('mg_flip_btn_title', 'none');
-        view.addRenderAttribute('mg_flip_btn_title', 'class', 'mg-flip-btn');
-        view.addRenderAttribute('mg_flip_btn_title', 'href', mg_flip_btn_link.url);
+            <!-- Style Two -->
 
-        if (mg_flip_btn_link.is_external) {
+
+            var mg_flip_style_two_effects = settings.mg_flip_style_two_effects;
+
+            //Flip card normal Content
+            var mg_flip_style_two_normal_title = settings.mg_flip_style_two_normal_title;
+            var mg_flip_style_two_normal_title_tag = settings.mg_flip_style_two_normal_title_tag;
+            view.addInlineEditingAttributes('mg_flip_style_two_normal_title', 'none');
+            view.addRenderAttribute('mg_flip_style_two_normal_title', 'class', 'mg-flip-style-two-normal-title');
+
+
+            //Flip card Hover Content
+            var mg_flip_style_two_hover_title = settings.mg_flip_style_two_hover_title;
+            var mg_flip_style_two_hover_title_tag = settings.mg_flip_style_two_hover_title_tag;
+            view.addInlineEditingAttributes('mg_flip_style_two_hover_title', 'none');
+            view.addRenderAttribute('mg_flip_style_two_hover_title', 'class', 'mg-flip-style-two-hover-title');
+
+
+            //Hover description
+            var mg_flip_style_two_hover_desc = settings.mg_flip_style_two_hover_desc;
+            view.addInlineEditingAttributes('mg_flip_style_two_hover_desc', 'none');
+
+
+            // Flip Btn item
+
+            var mg_flip_btn_link = settings.mg_flip_btn_link;
+            view.addInlineEditingAttributes('mg_flip_btn_title', 'none');
+            view.addRenderAttribute('mg_flip_btn_title', 'class', 'mg-flip-btn');
+            view.addRenderAttribute('mg_flip_btn_title', 'href', mg_flip_btn_link.url);
+
+            if (mg_flip_btn_link.is_external) {
             view.addRenderAttribute('mg_flip_btn_title', 'target', '_blank');
-        }
-        if (mg_flip_btn_link.nofollow) {
+            }
+            if (mg_flip_btn_link.nofollow) {
             view.addRenderAttribute('mg_flip_btn_title', 'rel', 'nofollow');
-        }
+            }
 
-        <!-- Image -->
+            <!-- Image -->
 
-        var mgTwoFlipImage = {
-			id: settings.mgf_flip_style_two_normal_img.id,
-			url: settings.mgf_flip_style_two_normal_img.url,
-			model: view.getEditModel()
-			};
-			var mg_two_flip_image_url = elementor.imagesManager.getImageUrl( mgTwoFlipImage );
-
-
-
-		#>
+            var mgTwoFlipImage = {
+            id: settings.mgf_flip_style_two_normal_img.id,
+            url: settings.mgf_flip_style_two_normal_img.url,
+            model: view.getEditModel()
+            };
+            var mg_two_flip_image_url = elementor.imagesManager.getImageUrl( mgTwoFlipImage );
 
 
 
+            #>
 
 
-<# if (mg_flip_styles === 'style1') { #>
 
 
-        <div class="flip-container mg-flip-{{ mg_flip_styles }} flip-container-{{ mg_flip_effects }}">
-            <div class="front side mg-shadow">
-                <div class="front-content">
-                    <#
-                    if ( mgf_icon_type === 'image' ) {
-                    #>
-                        <figure>
-                            <img src="{{{ mg_first_flip_image_url }}}" >
-                        </figure>
-                    <#
-                    } else {
-                    #>
-                        <div class="mgf-normal-icon">
-                            <i class="{{{ settings.mgf_type_selected_icon.value }}}"></i>
+
+            <# if (mg_flip_styles==='style1' ) { #>
+
+
+                <div class="flip-container mg-flip-{{ mg_flip_styles }} flip-container-{{ mg_flip_effects }}">
+                    <div class="front side mg-shadow">
+                        <div class="front-content">
+                            <#
+                                if ( mgf_icon_type==='image' ) {
+                                #>
+                                <figure>
+                                    <img src="{{{ mg_first_flip_image_url }}}">
+                                </figure>
+                                <#
+                                    } else {
+                                    #>
+                                    <div class="mgf-normal-icon">
+                                        <i class="{{{ settings.mgf_type_selected_icon.value }}}"></i>
+                                    </div>
+                                    <#
+                                        }
+                                        #>
+                                        <div class="front-details">
+                                            <#
+                                                if ( mg_flip_normal_title ) {
+                                                #>
+                                                <{{ mg_flip_normal_title_tag }} {{{ view.getRenderAttributeString('mg_flip_normal_title') }}}>{{{ mg_flip_normal_title }}}</{{ mg_flip_normal_title_tag }}>
+                                                <#
+                                                    }
+                                                    if ( mg_flip_normal_desc ) {
+                                                    #>
+                                                    <p>{{{ mg_flip_normal_desc }}}</p>
+                                                    <#
+                                                        }
+                                                        #>
+                                        </div>
                         </div>
-                    <#
-                    }
-                    #>
-                    <div class="front-details">
-                        <#
-                        if ( mg_flip_normal_title ) {
-                        #>
-                            <{{ mg_flip_normal_title_tag }} {{{ view.getRenderAttributeString('mg_flip_normal_title') }}} >{{{ mg_flip_normal_title }}}</{{ mg_flip_normal_title_tag }}>
-                        <#
-                        }
-                        if ( mg_flip_normal_desc ) {
-                        #>
-                            <p>{{{ mg_flip_normal_desc }}}</p>
-                        <#
-                        }
-                        #>
+                    </div>
+                    <div class="back back-{{ mg_flip_effects }} side mg-shadow">
+                        <div class="back-content">
+                            <#
+                                if (mg_flip_hover_title ) {
+                                #>
+                                <{{ mg_flip_hover_title_tag }} {{{ view.getRenderAttributeString('mg_flip_hover_title') }}}>{{{ mg_flip_hover_title }}}</{{ mg_flip_hover_title_tag }}>
+                                <#
+                                    }
+                                    if ( mg_flip_hover_desc ) {
+                                    #>
+                                    <p {{{ view.getRenderAttributeString('mg_flip_hover_desc') }}}>{{{ mg_flip_hover_desc }}}</p>
+                                    <#
+                                        }
+                                        print( mgf_button(settings) );
+                                        #>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="back back-{{ mg_flip_effects }} side mg-shadow">
-                <div class="back-content">
-                    <#
-                    if (mg_flip_hover_title ) {
-                    #>
-                        <{{ mg_flip_hover_title_tag }} {{{ view.getRenderAttributeString('mg_flip_hover_title') }}} >{{{ mg_flip_hover_title }}}</{{ mg_flip_hover_title_tag }}>
-                    <#
-                    }
-                    if ( mg_flip_hover_desc ) {
-                    #>
-                        <p {{{ view.getRenderAttributeString('mg_flip_hover_desc') }}}>{{{ mg_flip_hover_desc }}}</p>
-                    <#
-                        }
-                            print( mgf_button(settings) );       
-                        #>
-                </div>
-            </div>
-        </div>
-        <# } else { #>
-        <div class="mg-flip-boxs mg-flip-{{ mg_flip_style_two_effects }} mg-shadow mg-flip-{{ mg_flip_styles }}">
-            <div class="mg-flip-fornted">
-                <div class="mg-flip-image">
-                    <figure>
-                        <img src="{{{ mg_two_flip_image_url }}}" >
-                    </figure>
-                </div>
-                <div class="mg-flip-text">
-                    <#
-                    if ( mg_flip_style_two_normal_title ) {
-                    #>
-                        <{{ mg_flip_style_two_normal_title_tag }} {{{ view.getRenderAttributeString('mg_flip_style_two_normal_title') }}} >{{{ mg_flip_style_two_normal_title }}}</{{ mg_flip_style_two_normal_title_tag }}>
-                    <#
-                    }
-                    #>
-                </div>
-            </div>
-            <div class="mg-flip-backend mg-flip-{{ mg_flip_style_two_effects }}">
-                <#
-                if ( mg_flip_style_two_hover_title ) {
-                #>
-                    <{{ mg_flip_style_two_hover_title_tag }} {{{ view.getRenderAttributeString('mg_flip_style_two_hover_title') }}} >{{{ settings.mg_flip_style_two_hover_title }}}</{{ mg_flip_style_two_hover_title_tag }}>
-                <#
+                <# } else { #>
+                    <div class="mg-flip-boxs mg-flip-{{ mg_flip_style_two_effects }} mg-shadow mg-flip-{{ mg_flip_styles }}">
+                        <div class="mg-flip-fornted">
+                            <div class="mg-flip-image">
+                                <figure>
+                                    <img src="{{{ mg_two_flip_image_url }}}">
+                                </figure>
+                            </div>
+                            <div class="mg-flip-text">
+                                <#
+                                    if ( mg_flip_style_two_normal_title ) {
+                                    #>
+                                    <{{ mg_flip_style_two_normal_title_tag }} {{{ view.getRenderAttributeString('mg_flip_style_two_normal_title') }}}>{{{ mg_flip_style_two_normal_title }}}</{{ mg_flip_style_two_normal_title_tag }}>
+                                    <#
+                                        }
+                                        #>
+                            </div>
+                        </div>
+                        <div class="mg-flip-backend mg-flip-{{ mg_flip_style_two_effects }}">
+                            <#
+                                if ( mg_flip_style_two_hover_title ) {
+                                #>
+                                <{{ mg_flip_style_two_hover_title_tag }} {{{ view.getRenderAttributeString('mg_flip_style_two_hover_title') }}}>{{{ settings.mg_flip_style_two_hover_title }}}</{{ mg_flip_style_two_hover_title_tag }}>
+                                <#
+                                    }
+                                    if ( mg_flip_style_two_hover_desc ) {
+                                    #>
+                                    <p {{{ view.getRenderAttributeString('mg_flip_style_two_hover_desc') }}}>{{{ mg_flip_style_two_hover_desc }}}</p>
+                                    <#
+                                        }
+                                        print( mgf_button(settings) );
+                                        #>
+                        </div>
+                    </div>
+                    <# } #>
+
+
+                        <#
+                            function mgf_button(settings) {
+
+
+
+                            var mg_flipbtn_icon_position=settings.mg_flipbtn_icon_position;
+                            var mg_flip_btn_use=settings.mg_flip_btn_use;
+                            var mg_flip_usebtn_icon=settings.mg_flip_usebtn_icon;
+                            var mg_flip_btn_title=settings.mg_flip_btn_title;
+                            var mg_flip_btn_link=settings.mg_flip_btn_link;
+
+                            var linkAttributes='href="' + settings.mg_flip_btn_link.url + '"' ;
+                            if (settings.mg_flip_btn_link.is_external) {
+                            linkAttributes +=' target="_blank"' ;
+                            }
+                            if (settings.mg_flip_btn_link.nofollow) {
+                            linkAttributes +=' rel="nofollow"' ;
+                            }
+
+                            var buttonContent='' ;
+
+                            if (mg_flip_btn_use) {
+                            if (mg_flip_usebtn_icon==='yes' ) {
+                            buttonContent +='<a ' + linkAttributes + ' class="mg-flip-btn">' ;
+                            if (mg_flipbtn_icon_position==='left' ) {
+                            buttonContent +='<span class="left"><i class="' + settings.mg_flip_btn_selected_icon.value + '"></i></span>' ;
+                            }
+                            buttonContent +='<span>' + mg_flip_btn_title + '</span>' ;
+                            if (mg_flipbtn_icon_position==='right' ) {
+                            buttonContent +='<span class="right"><i class="' + settings.mg_flip_btn_selected_icon.value + '"></i></span>' ;
+                            }
+                            buttonContent +='</a>' ;
+                            } else {
+                            buttonContent +='<a ' + linkAttributes + ' class="mg-flip-btn">' + mg_flip_btn_title + '</a>' ;
+                            }
+                            }
+
+                            return buttonContent;
+                            }
+
+                            #>
+                    <?php
                 }
-                if ( mg_flip_style_two_hover_desc ) {
-                #>
-                    <p {{{ view.getRenderAttributeString('mg_flip_style_two_hover_desc') }}}>{{{ mg_flip_style_two_hover_desc }}}</p>
-                <#
-                }
-                    print( mgf_button(settings) );       
-                #>
-            </div>
-        </div>
-        <# } #>
-
-
-        <#
-    function mgf_button(settings) {
-
-
-        
-        var mg_flipbtn_icon_position = settings.mg_flipbtn_icon_position;
-        var mg_flip_btn_use = settings.mg_flip_btn_use;
-        var mg_flip_usebtn_icon = settings.mg_flip_usebtn_icon;
-        var mg_flip_btn_title = settings.mg_flip_btn_title;
-        var mg_flip_btn_link = settings.mg_flip_btn_link;
-
-        var linkAttributes = 'href="' + settings.mg_flip_btn_link.url + '"';
-        if (settings.mg_flip_btn_link.is_external) {
-            linkAttributes += ' target="_blank"';
-        }
-        if (settings.mg_flip_btn_link.nofollow) {
-            linkAttributes += ' rel="nofollow"';
-        }
-
-        var buttonContent = '';
-
-        if (mg_flip_btn_use) {
-            if (mg_flip_usebtn_icon === 'yes') {
-                buttonContent += '<a ' + linkAttributes + ' class="mg-flip-btn">';
-                if (mg_flipbtn_icon_position === 'left') {
-                    buttonContent += '<span class="left"><i class="' + settings.mg_flip_btn_selected_icon.value + '"></i></span>';
-                }
-                buttonContent += '<span>' + mg_flip_btn_title + '</span>';
-                if (mg_flipbtn_icon_position === 'right') {
-                    buttonContent += '<span class="right"><i class="' + settings.mg_flip_btn_selected_icon.value + '"></i></span>';
-                }
-                buttonContent += '</a>';
-            } else {
-                buttonContent += '<a ' + linkAttributes + ' class="mg-flip-btn">' + mg_flip_btn_title + '</a>';
             }
-        }
-
-        return buttonContent;
-    }
-
-    #>
-        <?php
-    }
-    
-
-
-
-
-
-
-
-
-}
