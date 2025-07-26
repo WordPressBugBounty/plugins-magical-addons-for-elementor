@@ -49,7 +49,7 @@ class madAdminInfo
                     <a href="<?php echo esc_url($pricing_link); ?>" target="_blank" class="button button-primary demo-btn">
                         <?php esc_html_e('View Details', 'magical-addons-for-elementor'); ?>
                     </a>
-                    <button class="button button-info mgad-dismiss"><?php esc_html_e('Dismiss this notice', 'magical-addons-for-elementor') ?></button>
+                    <a href="<?php echo esc_url(add_query_arg(array('mgpdismissed' => '1', '_wpnonce' => wp_create_nonce('mg_dismiss_notice')))); ?>" class="button button-info mgad-dismiss"><?php esc_html_e('Dismiss this notice', 'magical-addons-for-elementor') ?></a>
                 </div>
             </div>
 
@@ -90,10 +90,11 @@ class madAdminInfo
 
     public static function mp_display_admin_info_init()
     {
-        if (isset($_GET['mgpdismissed']) && $_GET['mgpdismissed'] == 1) {
+        // Verify nonce for security
+        if (isset($_GET['mgpdismissed']) && $_GET['mgpdismissed'] == 1 && isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'mg_dismiss_notice')) {
             update_option('mg_info_text_date2', current_time('mysql'));
         }
-        if (isset($_GET['tinfohide']) && $_GET['tinfohide'] == 1) {
+        if (isset($_GET['tinfohide']) && $_GET['tinfohide'] == 1 && isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'mg_dismiss_notice')) {
             update_option('mg_hide_tinfo1', current_time('mysql'));
         }
     }
@@ -183,11 +184,16 @@ class madAdminInfo
     // Modify the dismiss_review_notice method to handle both notices
     public static function dismiss_review_notice()
     {
+        // Verify nonce for security
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'magical_review_nonce')) {
+            wp_die('Security check failed');
+        }
+
         if (!current_user_can('manage_options')) {
             wp_die();
         }
 
-        $notice_type = isset($_POST['notice_type']) ? sanitize_text_field($_POST['notice_type']) : 'review';
+        $notice_type = isset($_POST['notice_type']) ? sanitize_text_field(wp_unslash($_POST['notice_type'])) : 'review';
 
         if ($notice_type === 'features') {
             update_option('magical_features_notice_dismissed2', true);

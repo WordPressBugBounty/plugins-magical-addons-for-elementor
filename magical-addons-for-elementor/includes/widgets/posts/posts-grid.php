@@ -1670,7 +1670,11 @@ class mgPostGridWidget extends \Elementor\Widget_Base
                 <i class="las la-user-circle"></i>
                 <a class="mgp3-author-meta" href="<?php echo esc_url(get_author_posts_url($author_id)); ?>"
                     class="author-name"
-                    title="<?php echo esc_attr(sprintf(__('View all posts by %s', 'magical-addons-for-elementor'), $author_name)); ?>">
+                    title="<?php echo esc_attr(sprintf(
+                        // translators: %s is the author name
+                        __('View all posts by %s', 'magical-addons-for-elementor'), 
+                        $author_name
+                    )); ?>">
                     <?php echo esc_html($author_name); ?>
                 </a> |
                 <i class="las la-calendar-check"></i>

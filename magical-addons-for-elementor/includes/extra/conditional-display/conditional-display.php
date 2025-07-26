@@ -227,7 +227,12 @@ class Magical_Conditional_Display
                     return false;
                 }
 
-                $user_agent = $_SERVER['HTTP_USER_AGENT'];
+                // Safely get and sanitize user agent
+                $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT'])) : '';
+                if (empty($user_agent)) {
+                    return false;
+                }
+
                 foreach ($browsers as $browser) {
                     switch ($browser) {
                         case 'chrome':
@@ -260,17 +265,23 @@ class Magical_Conditional_Display
                     return false;
                 }
 
+                // Safely check and get URL parameter
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- URL parameters for conditional display don't require nonce verification
                 if (!isset($_GET[$param_name])) {
                     return false;
                 }
 
+                // Sanitize the parameter value
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- URL parameters for conditional display don't require nonce verification
+                $get_param_value = sanitize_text_field(wp_unslash($_GET[$param_name]));
+
                 // If a specific value is required, check it
                 if (!empty($param_value)) {
-                    return $_GET[$param_name] == $param_value;
+                    return $get_param_value === $param_value;
                 }
 
-                // Otherwise, just check if parameter exists
-                return true;
+                // Otherwise, just check if parameter exists and has a value
+                return !empty($get_param_value);
 
             case 'referrer_source':
                 $referrer = $settings['mg_conditional_referrer_source'];
@@ -279,7 +290,12 @@ class Magical_Conditional_Display
                     return false;
                 }
 
-                $http_referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+                // Safely get and sanitize HTTP referrer
+                $http_referrer = isset($_SERVER['HTTP_REFERER']) ? sanitize_url(wp_unslash($_SERVER['HTTP_REFERER'])) : '';
+
+                if (empty($http_referrer)) {
+                    return false;
+                }
 
                 return strpos($http_referrer, $referrer) !== false;
 

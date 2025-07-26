@@ -82,6 +82,11 @@
                     success: function(data, textStatus, XMLHttpRequest) {
                         var xl_data = JSON.parse(data); 
                         elementor.getPreviewView().addChildModel(xl_data, {silent: 0});
+                        
+                        // Mark document as modified to enable publish button
+                        elementor.documents.getCurrent().container.model.set('isModified', true);
+                        elementor.saver.setFlagEditorChange(true);
+                        
                         $('.lib-content').removeClass('loading');
                         $('#elementor-editor-wrapper').find('.mg-lib-wrap').hide();
                     },
@@ -200,6 +205,7 @@
                     url: ajaxurl,
                     data: {
                       action: 'process_ajax',
+                      nonce: mg_lib_params.nonce,
                       data : $data,
                     },
 

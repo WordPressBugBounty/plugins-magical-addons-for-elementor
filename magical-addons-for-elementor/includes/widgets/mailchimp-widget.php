@@ -77,7 +77,12 @@ class mgproMailchimp extends Widget_Base
 				'label'         => __('Mailchimp List', 'magical-addons-for-elementor'),
 				'type'          => Controls_Manager::SELECT,
 				'label_block'   => false,
-				'description'   => sprintf(__('You need to set your Api Key on the %1$ssettings page (Extra tab)%2$s', 'magical-addons-for-elementor'), '<a href="' . add_query_arg(array('page' => 'magical-addons'), esc_url(admin_url('admin.php'))) . '" target="_blank">', '</a>'),
+				'description'   => sprintf(
+					// translators: %1$s is the opening link tag to settings page, %2$s is the closing link tag
+					__('You need to set your Api Key on the %1$ssettings page (Extra tab)%2$s', 'magical-addons-for-elementor'), 
+					'<a href="' . add_query_arg(array('page' => 'magical-addons'), esc_url(admin_url('admin.php'))) . '" target="_blank">', 
+					'</a>'
+				),
 				'options'       => mg_mailchimp_lists(),
 			]
 		);
@@ -1121,7 +1126,7 @@ class mgproMailchimp extends Widget_Base
 			<div <?php $this->print_render_attribute_string('wrapper'); ?>>
 				<?php if (empty($settings['mailchimp_lists'])) : ?>
 					<div class="mgmailchimp-error">
-						<?php esc_html_e('Please select a MailChimp list to activate the form. Otherwise your form not working.'); ?>
+						<?php esc_html_e('Please select a MailChimp list to activate the form. Otherwise your form not working.', 'magical-addons-for-elementor'); ?>
 					</div>
 				<?php endif; ?>
 				<form id="mg-mc-form-<?php echo esc_attr($this->get_id()); ?>" class="mg-mc-form" method="POST">

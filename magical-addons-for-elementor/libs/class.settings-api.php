@@ -467,7 +467,7 @@ if (!class_exists('WeDevs_Settings_API')) :
             $id = sanitize_key($args['id']);
 
             // Sanitize button label for safe HTML output (allow translation)
-            $label = isset($args['options']['button_label']) ? esc_html__($args['options']['button_label'], 'text-domain') : esc_html__('Choose File', 'text-domain');
+            $label = isset($args['options']['button_label']) ? esc_html__($args['options']['button_label'],'magical-addons-for-elementor') : esc_html__('Choose File','magical-addons-for-elementor');
 
             // Compose the input name and id attribute
             $input_name = sprintf('%s[%s]', $section, $id);
@@ -594,7 +594,7 @@ if (!class_exists('WeDevs_Settings_API')) :
                 'name'              => esc_attr($section . '[' . $id . ']'),
                 'id'                => esc_attr($section . '-' . $id),
                 'echo'              => 0,
-                'show_option_none'  => esc_html__('Select a page', 'text-domain'),
+                'show_option_none'  => esc_html__('Select a page','magical-addons-for-elementor'),
                 'option_none_value' => ''
             );
 

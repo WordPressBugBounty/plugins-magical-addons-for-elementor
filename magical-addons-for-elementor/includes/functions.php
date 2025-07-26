@@ -176,11 +176,7 @@ if (!function_exists('mgp_post_author')) :
         $author_name = get_the_author();
         $author_url = get_author_posts_url($author_id);
 
-        $byline = sprintf(
-            /* translators: %s: post author. */
-            esc_html_x(' %s', 'post author', 'magical-addons-for-elementor'),
-            '<span class="mgp-author"><i class="fas fa-user"></i><a class="mgp-author-link ml-1" href="' . esc_url($author_url) . '">' . esc_html($author_name) . '</a></span>'
-        );
+        $byline = '<span class="mgp-author"><i class="fas fa-user"></i><a class="mgp-author-link ml-1" href="' . esc_url($author_url) . '">' . esc_html($author_name) . '</a></span>';
 
         return $byline;
     }
@@ -202,32 +198,35 @@ if (!function_exists('mg_plugin_comment_icon')) :
     /**
      * Prints HTML with meta information for the categories, tags and comments.
      */
-    function mg_plugin_comment_icon()
-    {
-        if (!post_password_required() && (comments_open() && get_comments_number())) {
-            echo '<span class="mgp-comment">';
-            echo '<i class="fas fa-comment-alt"></i>';
-            comments_popup_link(
+   function mg_plugin_comment_icon()
+{
+    if (!post_password_required() && (comments_open() && get_comments_number())) {
+        echo '<span class="mgp-comment">';
+        echo '<i class="fas fa-comment-alt"></i>';
+        comments_popup_link(
+            wp_kses(
                 sprintf(
-                    wp_kses(
+                    '<span class="screen-reader-text">%s</span>',
+                    sprintf(
                         /* translators: %s: post title */
-                        __('<span class="screen-reader-text"> on %s</span>', 'magical-addons-for-elementor'),
-                        array(
-                            'span' => array(
-                                'class' => array(),
-                            ),
-                        )
-                    ),
-                    get_the_title()
+                        __(' on %s', 'magical-addons-for-elementor'),
+                        esc_html(get_the_title())
+                    )
                 ),
-                __('1 Comment', 'magical-addons-for-elementor'),
-                __('% Comments', 'magical-addons-for-elementor'),
-                'comments-link',
-                ' '
-            );
-            echo '</span>';
-        }
+                array(
+                    'span' => array(
+                        'class' => array(),
+                    ),
+                )
+            ),
+            __('1 Comment', 'magical-addons-for-elementor'),
+            __('% Comments', 'magical-addons-for-elementor'),
+            'comments-link',
+            ' '
+        );
+        echo '</span>';
     }
+}
 endif;
 
 

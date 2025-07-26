@@ -116,6 +116,7 @@ class MG_Addon_CF7 extends \Elementor\Widget_Base
 				[
 					'type' => Controls_Manager::RAW_HTML,
 					'raw' => sprintf(
+						// translators: %1$s is the plugin name with link, %2$s is the current user display name
 						__('Hello %2$s, looks like %1$s is missing in your site. Please click on the link below and install/activate %1$s. Make sure to refresh this page after installation or activation.', 'magical-addons-for-elementor'),
 						'<a href="' . esc_url(admin_url('plugin-install.php?s=Contact+Form+7&tab=search&type=term'))
 							. '" target="_blank" rel="noopener">Contact Form 7</a>',
@@ -140,7 +141,7 @@ class MG_Addon_CF7 extends \Elementor\Widget_Base
 					'label' => __('Select Your Form', 'magical-addons-for-elementor'),
 					'type' => Controls_Manager::SELECT,
 					'label_block' => true,
-					'options' => ['' => __('', 'magical-addons-for-elementor')] + \mg_get_cf7_forms(),
+					'options' => ['' => __('Select a form ', 'magical-addons-for-elementor')] + \mg_get_cf7_forms(),
 				]
 			);
 
@@ -677,10 +678,13 @@ class MG_Addon_CF7 extends \Elementor\Widget_Base
 		$settings = $this->get_settings_for_display();
 
 		if (!empty($settings['form_id'])) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Contact Form 7 handles its own output sanitization
 			echo mg_do_shortcode('contact-form-7', [
 				'id' => esc_attr($settings['form_id']),
 				'html_class' => 'mg-cf7-form ' . esc_attr(mg_sanitize_html_class_param($settings['html_class'])),
 			]);
+		}else {
+			echo esc_html__('Please select a form.', 'magical-addons-for-elementor');
 		}
 	}
 }

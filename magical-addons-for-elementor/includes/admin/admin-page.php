@@ -527,6 +527,7 @@ if (!class_exists('mgAdmin_Info_Items')) :
                         'name'  => 'mg_mailchimp_api', // Corrected spelling
                         'label'  => __('Mailchimp API Key', 'magical-addons-for-elementor'),
                         'desc'  => sprintf(
+                            // translators: %s is the URL to the Mailchimp API key documentation
                             __('Insert your Mailchimp API key. See article <a href="%s" target="_blank">How to get my Mailchimp API key</a>', 'magical-addons-for-elementor'),
                             esc_url('https://support.checkfront.com/hc/en-us/articles/115004180154-Introduction-to-Mailchimp-and-API-Keys')
                         ),

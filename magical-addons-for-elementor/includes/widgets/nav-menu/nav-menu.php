@@ -119,7 +119,11 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
                     'default' => array_keys(mg_addons_get_available_menus())[0],
                     'save_default' => true,
                     'separator' => 'after',
-                    'description' => sprintf(__('Go to the <a href="%s" target="_blank">Menus Option</a> to manage your menus.', 'magical-addons-for-elementor'), admin_url('nav-menus.php')),
+                    'description' => sprintf(
+                        // translators: %s is the URL to the WordPress Menus admin page
+                        __('Go to the <a href="%s" target="_blank">Menus Option</a> to manage your menus.', 'magical-addons-for-elementor'), 
+                        admin_url('nav-menus.php')
+                    ),
                     'condition' => [
                         'menu_source' => 'wpnav',
                     ],
@@ -130,7 +134,11 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
                 'inline_menu_notice',
                 [
                     'type' => Controls_Manager::RAW_HTML,
-                    'raw' => sprintf(__('<strong>There are no menus in your site.</strong><br>Go to the <a href="%s" target="_blank">Menus Option</a> to create one.', 'magical-addons-for-elementor'), admin_url('nav-menus.php?action=edit&menu=0')),
+                    'raw' => sprintf(
+                        // translators: %s is the URL to the WordPress Menus admin page for creating new menus
+                        __('<strong>There are no menus in your site.</strong><br>Go to the <a href="%s" target="_blank">Menus Option</a> to create one.', 'magical-addons-for-elementor'), 
+                        admin_url('nav-menus.php?action=edit&menu=0')
+                    ),
                     'separator' => 'after',
                     'condition' => [
                         'menu_source' => 'wpnav',

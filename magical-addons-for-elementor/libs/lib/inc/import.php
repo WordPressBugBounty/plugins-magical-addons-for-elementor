@@ -37,13 +37,13 @@ if (did_action('elementor/loaded')) {
 
 		public function xl_tab_import_data()
 		{
-			if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'mg_nonce')) {
+			if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'mg_nonce')) {
 				wp_send_json_error(array('error' => __('Invalid nonce. You are not allowed to perform this action.', 'magical-addons-for-elementor')), 403);
 				wp_die();
 			}
 
-			$id = isset($_POST['id']) ? sanitize_text_field($_POST['id']) : '';
-			$remote = isset($_POST['parent_site']) ? esc_url_raw($_POST['parent_site']) : '';
+			$id = isset($_POST['id']) ? sanitize_text_field(wp_unslash($_POST['id'])) : '';
+			$remote = isset($_POST['parent_site']) ? esc_url_raw(wp_unslash($_POST['parent_site'])) : '';
 			$end_point = \Magcial_Addon_Cloud_Library::$plugin_data["mgaddon_import_data"];
 
 			$url = esc_url_raw($remote . 'wp-json/mg/v1/' . $end_point . '/?id=' . urlencode($id));
@@ -64,6 +64,9 @@ if (did_action('elementor/loaded')) {
 			$content = $data['content'];
 			$content = $this->process_export_import_content($content, 'on_import');
 			$content = $this->replace_elements_ids($content);
+
+			// Add flag to trigger Elementor's dirty state for publish button
+			$content[0]['isDirty'] = true;
 
 			echo wp_json_encode($content);
 			wp_die();

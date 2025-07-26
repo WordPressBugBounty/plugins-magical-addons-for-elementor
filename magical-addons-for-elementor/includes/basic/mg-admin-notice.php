@@ -58,7 +58,10 @@ class mgAdminNotice
 			return;
 		}
 		
-		if (isset($_GET['activate'])) unset($_GET['activate']);
+		// Process activate parameter with nonce verification
+		if (isset($_GET['activate']) && isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'activate-plugin')) {
+			unset($_GET['activate']);
+		}
 
 		if (file_exists(WP_PLUGIN_DIR . '/elementor/elementor.php')) {
 			$magial_eactive_url = wp_nonce_url('plugins.php?action=activate&plugin=elementor/elementor.php&plugin_status=all&paged=1', 'activate-plugin_elementor/elementor.php');
@@ -94,8 +97,10 @@ class mgAdminNotice
 	 */
 	public function admin_notice_minimum_elementor_version()
 	{
-
-		if (isset($_GET['activate'])) unset($_GET['activate']);
+		// Process activate parameter with nonce verification
+		if (isset($_GET['activate']) && isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'activate-plugin')) {
+			unset($_GET['activate']);
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
@@ -118,8 +123,10 @@ class mgAdminNotice
 	 */
 	public function admin_notice_minimum_php_version()
 	{
-
-		if (isset($_GET['activate'])) unset($_GET['activate']);
+		// Process activate parameter with nonce verification
+		if (isset($_GET['activate']) && isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'activate-plugin')) {
+			unset($_GET['activate']);
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */

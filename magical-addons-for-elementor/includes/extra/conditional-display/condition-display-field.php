@@ -257,7 +257,7 @@ class Magical_Conditional_Display_field
             [
                 'label' => __('Start Date', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DATE_TIME,
-                'default' => date('Y-m-d'),
+                'default' => gmdate('Y-m-d'),
                 'picker_options' => [
                     'enableTime' => false,
                     'dateFormat' => 'Y-m-d',
@@ -275,7 +275,7 @@ class Magical_Conditional_Display_field
             [
                 'label' => __('End Date', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DATE_TIME,
-                'default' => date('Y-m-d', strtotime('+7 days')),
+                'default' => gmdate('Y-m-d', strtotime('+7 days')),
                 'picker_options' => [
                     'enableTime' => false,
                     'dateFormat' => 'Y-m-d',

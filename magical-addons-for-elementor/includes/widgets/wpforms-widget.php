@@ -111,6 +111,7 @@ class MG_Addon_WPForm extends \Elementor\Widget_Base
                 [
                     'type' => Controls_Manager::RAW_HTML,
                     'raw' => sprintf(
+                        // translators: %1$s is the plugin name with link, %2$s is the current user display name
                         __('Hello %2$s, looks like %1$s is missing in your site. Please click on the link below and install/activate %1$s. Make sure to refresh this page after installation or activation.', 'magical-addons-for-elementor'),
                         '<a href="' . esc_url(admin_url('plugin-install.php?s=WPForms&tab=search&type=term')) . '" target="_blank" rel="noopener">WPForms</a>',
                         mg_get_current_user_display_name()
@@ -387,7 +388,7 @@ class MG_Addon_WPForm extends \Elementor\Widget_Base
             [
                 'label' => __('Colors', 'magical-addons-for-elementor'),
                 'type' => Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __('', 'magical-addons-for-elementor'),
+                'label_off' => '', 
                 'label_on' => __('Custom', 'magical-addons-for-elementor'),
                 'return_value' => 'yes',
             ]

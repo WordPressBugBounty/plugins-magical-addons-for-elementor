@@ -348,7 +348,12 @@ class Magical_Elementor_Role_Manager
     {
     ?>
         <div id="tab-<?php echo esc_attr($role_key); ?>" class="magical-tab-content">
-            <h2><?php echo sprintf(esc_html__('%s Capabilities', 'magical-addons-for-elementor'), esc_html($role_name)); ?></h2>
+
+            <h2><?php echo sprintf(
+                // translators: %s is the role name (e.g., Administrator, Editor, etc.)
+                esc_html__('%s Capabilities', 'magical-addons-for-elementor'), 
+                esc_html($role_name)
+            ); ?></h2>
 
             <table class="form-table">
                 <tbody>

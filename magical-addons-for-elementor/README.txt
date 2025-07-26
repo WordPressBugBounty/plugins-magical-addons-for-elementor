@@ -13,7 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 60+ widgets, 100+ sections, 1600+ icons, free custom CSS, Custom Code, Conditional content display, header/footer builder, and 20+ template kits.
 
 == Description ==
-The best part of Magical Addons is that you can design anything without having to touch a single line of code. Magical Addons has a huge collection of premium and highly functional extensions that can be used in an Elementor page builder. This is really a premium plugin that you can get for free.
+Magical Addons for Elementor is an ultimate addons for Elementor users. Magical Addons has all the essential addons you need so no coding required to build modern WordPress websites. Enjoy advanced widgets, templates, and Elementor pro features completely free.
 
 ### New & Hot Features 
 - ** Custom Css Free **
@@ -255,6 +255,10 @@ e.g.
 
 
 == Changelog ==
+
+= 1.3.8 =
+    * Import error issue fixed
+    * PHP error fixed
 
 = 1.3.7 =
     * vulnerable Security code issue fixed

@@ -90,9 +90,16 @@ if (!class_exists('Magcial_Addon_Cloud_Library')) {
 
 		function ajax_data()
 		{
+			// Verify nonce for security
+			$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+			if (!wp_verify_nonce($nonce, 'mg_nonce')) {
+				wp_die('Security check failed');
+			}
+
 			$direct_data = json_decode(wp_remote_retrieve_body(wp_safe_remote_get(self::$plugin_data['remote_site'] . '/wp-json/mg/v1/' . self::$plugin_data['widget'] . '/')), true);
 
-			$option_type = $this->choose_option_table($_POST['data']['type']);
+			$post_type = isset($_POST['data']['type']) ? sanitize_text_field(wp_unslash($_POST['data']['type'])) : '';
+			$option_type = $this->choose_option_table($post_type);
 			$nav = '';
 			$data = get_option('mgaddon_ready_items');
 
@@ -105,9 +112,9 @@ if (!class_exists('Magcial_Addon_Cloud_Library')) {
 
 			if (is_array($products)) {
 
-				$category = isset($_POST['data']['category']) ? $_POST['data']['category'] : '';
-				$page_number = esc_attr($_POST['data']['page']);
-				$search = isset($_POST['data']['search']) ? $_POST['data']['search'] : '';
+				$category = isset($_POST['data']['category']) ? sanitize_text_field(wp_unslash($_POST['data']['category'])) : '';
+				$page_number = isset($_POST['data']['page']) ? esc_attr(sanitize_text_field(wp_unslash($_POST['data']['page']))) : '1';
+				$search = isset($_POST['data']['search']) ? sanitize_text_field(wp_unslash($_POST['data']['search'])) : '';
 				$limit = 30;
 				$offset = 0;
 
@@ -171,7 +178,7 @@ if (!class_exists('Magcial_Addon_Cloud_Library')) {
 					if ($total_pages > 1) {
 						echo '</div><div class="pagination-wrap"><ul>';
 						for ($page_number = 1; $page_number <= $total_pages; $page_number++) { ?>
-							<li class="page-item <?php echo $_POST['data']['page'] == $page_number ? 'active' : ''; ?>"><a class="page-link" href="#" data-page-number="<?php echo esc_attr($page_number); ?>"><?php echo esc_html($page_number); ?></a></li>
+							<li class="page-item <?php echo $current_page == $page_number ? 'active' : ''; ?>"><a class="page-link" href="#" data-page-number="<?php echo esc_attr($page_number); ?>"><?php echo esc_html($page_number); ?></a></li>
 
 <?php }
 						echo '</ul></div></div>';
