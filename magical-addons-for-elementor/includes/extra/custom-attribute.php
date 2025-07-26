@@ -19,7 +19,6 @@ class Magical_Elementor_Custom_Attributes
 
         // Render the custom attributes on the frontend
         add_action('elementor/frontend/before_render', [$this, 'before_render_attributes'], 10);
-        add_action('elementor/frontend/widget/before_render', [$this, 'render_custom_attributes'], 10);
     }
 
     /**
@@ -120,22 +119,6 @@ class Magical_Elementor_Custom_Attributes
     }
 
     /**
-     * Render the custom attributes on the frontend for widgets
-     *
-     * @param \Elementor\Widget_Base $widget
-     */
-    public function render_custom_attributes($widget)
-    {
-        $settings = $widget->get_settings_for_display();
-
-        if (empty($settings['magical_custom_attributes'])) {
-            return;
-        }
-
-        $this->add_attributes_to_element($widget, $settings);
-    }
-
-    /**
      * Add attributes to element
      *
      * @param \Elementor\Element_Base $element
@@ -154,10 +137,37 @@ class Magical_Elementor_Custom_Attributes
                 continue;
             }
 
-            // Do not sanitize the key with sanitize_key() as it removes dashes and non-alphanumeric chars
-            // Instead, just use esc_attr to maintain original attribute format (like data-* attributes)
-            $key = esc_attr($attribute['key']);
-            $value = esc_attr($attribute['value']);
+            // Sanitize the key to prevent XSS attacks
+            // Only allow alphanumeric characters, hyphens, underscores, and colons (for namespaced attributes)
+            $key = preg_replace('/[^a-zA-Z0-9\-_:]/', '', $attribute['key']);
+            
+            // Ensure key is not empty after sanitization
+            if (empty($key)) {
+                continue;
+            }
+            
+            // Additional security: prevent javascript: and other dangerous protocols
+            if (preg_match('/^(javascript|data|vbscript|about):/i', $key)) {
+                continue;
+            }
+            
+            // Sanitize the value to prevent XSS attacks
+            $value = $attribute['value'];
+            
+            // Remove any script tags and dangerous content
+            $value = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/mi', '', $value);
+            
+            // Remove javascript: and other dangerous protocols from values
+            $value = preg_replace('/javascript:/i', '', $value);
+            $value = preg_replace('/data:/i', '', $value);
+            $value = preg_replace('/vbscript:/i', '', $value);
+            $value = preg_replace('/about:/i', '', $value);
+            
+            // Remove on* event handlers (onclick, onmouseover, etc.)
+            $value = preg_replace('/\bon\w+\s*=/i', '', $value);
+            
+            // Final escaping for HTML attributes
+            $value = esc_attr($value);
 
             $custom_attributes[$key] = $value;
         }

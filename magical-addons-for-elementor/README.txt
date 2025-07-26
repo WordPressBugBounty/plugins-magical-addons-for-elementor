@@ -256,6 +256,10 @@ e.g.
 
 == Changelog ==
 
+= 1.3.9 =
+    * Attributes Vulnerability issue fixed
+    * PHP error fixed
+
 = 1.3.8 =
     * Import error issue fixed
     * PHP error fixed
