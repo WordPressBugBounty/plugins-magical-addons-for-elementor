@@ -256,6 +256,9 @@ e.g.
 
 == Changelog ==
 
+= 1.3.10 =
+    * More organize PHP code 
+
 = 1.3.9 =
     * Attributes Vulnerability issue fixed
     * PHP error fixed
