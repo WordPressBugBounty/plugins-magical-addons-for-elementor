@@ -418,7 +418,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'mgflip_normal_boxshadow',
-                'selectors' => '{{WRAPPER}} .flip-container,{{WRAPPER}} .mg-flip-boxs',
+                'selector' => '{{WRAPPER}} .flip-container,{{WRAPPER}} .mg-flip-boxs',
             ]
         );
         $this->end_controls_tab();
@@ -852,9 +852,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
                 'name' => 'mg_flip_normal_content_bg_color',
                 'label' => esc_html__('Background', 'magical-addons-for-elementor'),
                 'types' => ['classic', 'gradient', 'video'],
-                'selectors' => [
-                    '{{WRAPPER}} .front,{{WRAPPER}} .mg-flip-boxs' => 'background-color: {{VALUE}};',
-                ],
+                'selector' => '{{WRAPPER}} .front,{{WRAPPER}} .mg-flip-boxs',
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
@@ -937,9 +935,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
                 'name' => 'mg_flip_hover_content_bg_color',
                 'label' => esc_html__('Background', 'magical-addons-for-elementor'),
                 'types' => ['classic', 'gradient', 'video'],
-                'selectors' => [
-                    '{{WRAPPER}} .back,{{WRAPPER}} .mg-flip-backend' => 'background-color: {{VALUE}};',
-                ],
+                'selector' => '{{WRAPPER}} .back,{{WRAPPER}} .mg-flip-backend',
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],

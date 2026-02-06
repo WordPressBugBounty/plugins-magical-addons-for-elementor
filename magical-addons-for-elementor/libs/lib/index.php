@@ -67,6 +67,11 @@ if (!class_exists('Magcial_Addon_Cloud_Library')) {
 
 		function reload_library()
 		{
+			// Verify nonce and capability for security
+			$nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+			if (!wp_verify_nonce($nonce, 'mg_nonce') || !current_user_can('edit_posts')) {
+				wp_die('Security check failed');
+			}
 			Magcial_Addon_Activation_Class::init();
 			die();
 		}

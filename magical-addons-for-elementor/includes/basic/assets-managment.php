@@ -347,6 +347,33 @@ class mgAssetsManagement
                 'nonce'    => $mg_nonce,
             )
         );
+
+        // GSAP Core from CDN
+        wp_register_script(
+            'gsap',
+            'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+            [],
+            '3.12.5',
+            true
+        );
+
+        // GSAP ScrollTrigger Plugin
+        wp_register_script(
+            'gsap-scrolltrigger',
+            'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+            ['gsap'],
+            '3.12.5',
+            true
+        );
+
+        // GSAP Animations Handler
+        wp_register_script(
+            'mg-gsap-animations',
+            MAGICAL_ADDON_ASSETS . 'js/gsap/mg-gsap-animations.js',
+            ['jquery', 'gsap', 'gsap-scrolltrigger'],
+            MAGICAL_ADDON_VERSION,
+            true
+        );
     }
 
     public static function frontend_scripts_active()

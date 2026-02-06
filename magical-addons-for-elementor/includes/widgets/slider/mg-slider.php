@@ -300,7 +300,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
                 'toggle' => false,
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .mgs-overlay-outside' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .mgs-overlay-outside .container' => 'justify-content: {{VALUE}};',
                 ],
             ]
         );
@@ -1368,7 +1368,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
                 'label' => __('Background Color', 'magical-addons-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .swiper-button-next, {{WRAPPER}} .swiper-button-prev' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .swiper-button-next, {{WRAPPER}} .swiper-button-prev' => 'background-color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1400,7 +1400,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
                 'label' => __('Background Color', 'magical-addons-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .swiper-button-prev:hover, {{WRAPPER}} .swiper-button-next:hover' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .swiper-button-prev:hover, {{WRAPPER}} .swiper-button-next:hover' => 'background-color: {{VALUE}} !important;',
                 ],
             ]
         );

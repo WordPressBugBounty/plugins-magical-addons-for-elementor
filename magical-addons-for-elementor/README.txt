@@ -3,19 +3,20 @@ Contributors: nalam
 Tags: elementor, page builder, Elementor addons, elementor widget, template library
 Donate link: https://wpthemespace.com/donation/
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 5.6
 Stable tag: trunk 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-60+ widgets, 100+ sections, 1600+ icons, free custom CSS, Custom Code, Conditional content display, header/footer builder, and 20+ template kits.
+60+ widgets, 100+ sections, 1600+ icons, GSAP animations, custom CSS/code, conditional display, header/footer builder & role manager
 
 == Description ==
 Magical Addons for Elementor is an ultimate addons for Elementor users. Magical Addons has all the essential addons you need so no coding required to build modern WordPress websites. Enjoy advanced widgets, templates, and Elementor pro features completely free.
 
 ### New & Hot Features 
+- ** GSAP Scroll Animations - NEW! **
 - ** Custom Css Free **
 - ** Custom Attributes Free **
 - ** Custom Code Entire Site Free **
@@ -36,6 +37,25 @@ Comes with 60+ Widgets, 100+ premade sections and blocks, 1600+ premium line ico
 
 ### Conditional Display Feature
 The Magical Conditional Display feature allows you to show or hide any Elementor widget, section, or column based on specific conditions. This powerful feature gives you complete control over when and to whom your content is displayed.
+
+### 🎉 NEW: Magical GSAP Scroll Animations
+Transform your website with professional scroll-triggered animations powered by GSAP (GreenSock Animation Platform) - the same animation library used by Apple, Google, and Nike!
+
+**Key Features:**
+* **30+ Preset Animations** - Fade, slide, zoom, flip, bounce, rotate, elastic, and special effects
+* **Text Animations** - Typewriter, split characters, wave effect, text reveal, bounce letters
+* **Image Animations** - Parallax, ken burns, blur in, 3D tilt, reveal effects
+* **Background Animations** - Parallax scroll, gradient shift, color morph, reveal effects
+* **ScrollTrigger Support** - Customize when animations start based on scroll position
+* **Animation Controls** - Duration, delay, and 30+ professional easing options
+* **Play Modes** - Play once, reverse on leave, or repeat animations
+* **No Coding Required** - Just select any element, go to Advanced Tab → Magical GSAP Animation
+
+**Pro Features:**
+* Custom animation properties (X, Y, scale, rotation, skew, opacity)
+* Scrub animations linked to scroll position
+* Debug markers for fine-tuning
+* Advanced stagger animations
 
 
 ## Magical Addons Widgets List: 
@@ -255,6 +275,52 @@ e.g.
 
 
 == Changelog ==
+
+= 1.4.1 =
+	* Custom code issue fixed
+
+= 1.4.0 =
+	* NEW: Modern React-based Admin Dashboard with improved UI/UX
+	* NEW: Recommended Plugins tab with one-click install & activate
+	* NEW: Dashboard welcome notice for wp-admin
+	* Added Project Details widget to widget manager
+	* Improved Header & Footer builder with "Open Theme Builder" quick link
+	* Updated Dashboard with quick links (Support, Feature Request, Rate Us)
+	* Fixed Mailchimp API key not loading issue
+	* Fixed Mailchimp SVG icon display issue
+	* Enhanced Role Manager with free/pro capability badges
+	* Improved code security (nonce, escaping, sanitization)
+	* All admin text strings are now translatable
+	* Performance improvements and code optimization
+
+= 1.3.15 =
+	* NEW: Magical GSAP Scroll Animations - Professional scroll-triggered animations for any Elementor element
+	* Added 30+ preset animations (fade, slide, zoom, flip, bounce, rotate, elastic and more)
+	* Added text animations (typewriter, split characters, wave effect, text reveal)
+	* Added image animations (parallax, ken burns, blur in, tilt effects)
+	* Added background animations (parallax scroll, gradient shift, reveal effects)
+	* ScrollTrigger support with customizable trigger positions
+	* Animation controls: duration, delay, easing (30+ options)
+	* Play once, reverse on leave, or repeat animations
+	* Pro: Custom animation properties (X, Y, scale, rotation, skew, opacity)
+	* Pro: Scrub animations linked to scroll position
+	* Fully compatible with page caching plugins
+	* Admin notice for new GSAP feature announcement
+
+= 1.3.14 =
+	* Info box php error issue fixed
+	* custom code submenu menu issue fixed
+	* Role Manager submenu menu issue fixed
+	* Security issue fixed
+    
+
+= 1.3.12 =
+    * Slider content alignment issue fixed
+    * Slider icons issue fixed
+
+= 1.3.11 =
+    * Info box two new style added
+    * Info box style issue fixed
 
 = 1.3.10 =
     * More organize PHP code 

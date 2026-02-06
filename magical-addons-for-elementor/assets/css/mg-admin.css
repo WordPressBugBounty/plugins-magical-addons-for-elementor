@@ -407,3 +407,106 @@ tr.mgaddons_checkhead p.description {
     }
 
 }
+
+/* ===== GSAP Feature Admin Notice ===== */
+.mg-gsap-admin-notice {
+    background: #fff !important;
+    border-left: 4px solid #667eea !important;
+    padding: 15px 20px !important;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15) !important;
+    animation: mgGsapNoticeSlide 0.5s ease-out;
+}
+
+@keyframes mgGsapNoticeSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mg-gsap-admin-notice .mg-gsap-notice-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 10px 0;
+    font-size: 15px;
+}
+
+.mg-gsap-admin-notice .mg-gsap-notice-title .mg-gsap-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: mgGsapPulse 2s ease-in-out infinite;
+}
+
+@keyframes mgGsapPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(102, 126, 234, 0);
+    }
+}
+
+.mg-gsap-admin-notice .mg-gsap-notice-desc {
+    margin: 0 0 12px 0;
+    color: #444;
+    line-height: 1.6;
+}
+
+.mg-gsap-admin-notice .mg-gsap-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 0 0 12px 0;
+}
+
+.mg-gsap-admin-notice .mg-gsap-feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #555;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: all 0.3s ease;
+}
+
+.mg-gsap-admin-notice .mg-gsap-feature:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.4);
+}
+
+.mg-gsap-admin-notice .mg-gsap-feature strong {
+    color: #667eea;
+}
+
+.mg-gsap-admin-notice .mg-gsap-howto {
+    margin: 0;
+    padding: 10px 15px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    color: #666;
+    font-size: 13px;
+}
+
+.mg-gsap-admin-notice .mg-gsap-howto strong {
+    color: #667eea;
+}
+
+.mg-gsap-admin-notice .mg-gsap-arrow {
+    color: #764ba2;
+    font-weight: bold;
+}

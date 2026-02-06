@@ -189,7 +189,7 @@ if (!class_exists('WeDevs_Settings_API')) :
             $value       = esc_attr($this->get_option($args['id'], $args['section'], $args['std']));
             $size        = isset($args['size']) && !is_null($args['size']) ? $args['size'] : 'regular';
             $type        = isset($args['type']) ? $args['type'] : 'text';
-            $placeholder = empty($args['placeholder']) ? '' : ' placeholder="' . $args['placeholder'] . '"';
+            $placeholder = empty($args['placeholder']) ? '' : ' placeholder="' . esc_attr($args['placeholder']) . '"';
 
             $html        = sprintf('<input type="%1$s" class="%2$s-text" id="%3$s[%4$s]" name="%3$s[%4$s]" value="%5$s"%6$s/>', $type, $size, $args['section'], $args['id'], $value, $placeholder);
             $html       .= wp_kses_post($this->get_field_description($args));
@@ -401,7 +401,7 @@ if (!class_exists('WeDevs_Settings_API')) :
          */
         function callback_html($args)
         {
-            echo $this->get_field_description($args);
+            echo wp_kses_post($this->get_field_description($args));
         }
 
         /**
@@ -489,7 +489,7 @@ if (!class_exists('WeDevs_Settings_API')) :
 
             $html .= $this->get_field_description($args);
 
-            echo $html;
+            echo wp_kses_post($html);
         }
 
 
@@ -527,7 +527,7 @@ if (!class_exists('WeDevs_Settings_API')) :
             // Append the field description (assumed safe)
             $html .= $this->get_field_description($args);
 
-            echo $html;
+            echo wp_kses_post($html);
         }
 
 
@@ -569,7 +569,7 @@ if (!class_exists('WeDevs_Settings_API')) :
             // Append the field description (assumed safe)
             $html .= $this->get_field_description($args);
 
-            echo $html;
+            echo wp_kses_post($html);
         }
 
 

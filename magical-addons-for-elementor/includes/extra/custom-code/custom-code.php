@@ -132,17 +132,27 @@ class Magical_Custom_Code
 
     private function get_custom_code_by_location($location)
     {
+        // Don't run in admin
+        if (is_admin()) {
+            return '';
+        }
+
         $args = array(
-            'post_type'      => $this->post_type,
-            'posts_per_page' => -1,
-            'meta_query'     => array(
+            'post_type'        => $this->post_type,
+            'post_status'      => 'publish',
+            'posts_per_page'   => -1,
+            'suppress_filters' => false,
+            'meta_query'       => array(
+                'relation' => 'AND',
                 array(
-                    'key'   => '_magical_code_status',
-                    'value' => 'active',
+                    'key'     => '_magical_code_status',
+                    'value'   => 'active',
+                    'compare' => '=',
                 ),
                 array(
-                    'key'   => '_magical_code_location',
-                    'value' => sanitize_text_field($location),
+                    'key'     => '_magical_code_location',
+                    'value'   => sanitize_text_field($location),
+                    'compare' => '=',
                 ),
             ),
             'orderby'  => 'meta_value_num',
@@ -254,9 +264,16 @@ class Magical_Custom_Code
     }
 }
 
-// Initialize the class
+/**
+ * Initialize the Custom Code class
+ * 
+ * Since this file is loaded during the plugins_loaded hook,
+ * we need to initialize directly
+ */
 function magical_custom_code_init()
 {
     Magical_Custom_Code::get_instance();
 }
-add_action('plugins_loaded', 'magical_custom_code_init');
+
+// Initialize immediately since file is loaded after plugins_loaded
+magical_custom_code_init();

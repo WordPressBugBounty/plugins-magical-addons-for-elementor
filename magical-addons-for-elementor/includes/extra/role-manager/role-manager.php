@@ -50,7 +50,8 @@ class Magical_Elementor_Role_Manager
         $this->set_default_capabilities();
 
         add_action('init', [$this, 'load_caps']);
-        add_action('admin_menu', [$this, 'register_admin_menu'], 50);
+        // Removed: add_action('admin_menu', [$this, 'register_admin_menu'], 50);
+        // Role Manager is now integrated into the React admin panel
         add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('wp_ajax_magical_save_role_manager', [$this, 'save_role_settings']);
     }
@@ -258,7 +259,7 @@ class Magical_Elementor_Role_Manager
             }
 
             // Sanitize and validate roles data
-            $roles_json = isset($_POST['roles']) ? sanitize_text_field(stripslashes($_POST['roles'])) : '';
+            $roles_json = isset($_POST['roles']) ? sanitize_text_field(wp_unslash($_POST['roles'])) : '';
 
             if (empty($roles_json)) {
                 wp_send_json_error(['message' => esc_html__('No role data received', 'magical-addons-for-elementor')]);
@@ -439,7 +440,7 @@ class Magical_Elementor_Role_Manager
         }
 
         // Sanitize GET parameter
-        $updated = isset($_GET['updated']) ? sanitize_text_field($_GET['updated']) : '';
+        $updated = isset($_GET['updated']) ? sanitize_text_field(wp_unslash($_GET['updated'])) : '';
         if ($updated === '1') {
             $success_message = '<div class="notice notice-success is-dismissible"><p>' .
                 esc_html__('Role Manager settings updated successfully.', 'magical-addons-for-elementor') .
@@ -505,9 +506,17 @@ class Magical_Elementor_Role_Manager
 
 /**
  * Initialize the Role Manager
+ * 
+ * Since this file is loaded during the plugins_loaded hook,
+ * we need to initialize directly or use a later hook
  */
 function magical_initialize_role_manager()
 {
     new Magical_Elementor_Role_Manager();
 }
-add_action('plugins_loaded', 'magical_initialize_role_manager');
+
+// Initialize immediately since file is loaded after plugins_loaded
+// Check if we're in admin before initializing
+if (is_admin()) {
+    magical_initialize_role_manager();
+}

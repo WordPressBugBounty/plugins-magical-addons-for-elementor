@@ -393,7 +393,8 @@ class mgproMailchimp extends Widget_Base
 					],
 				],
 				'selectors'     => [
-					'{{WRAPPER}} .input-icon-wrap i' => 'font-size: {{SIZE}}{{UNIT}};'
+					'{{WRAPPER}} .input-icon-wrap i ' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .input-icon-wrap svg ' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};'
 				],
 			]
 		);
@@ -405,6 +406,7 @@ class mgproMailchimp extends Widget_Base
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} .input-icon-wrap i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .input-icon-wrap svg' => 'fill: {{VALUE}};'
 				],
 			]
 		);
@@ -412,7 +414,7 @@ class mgproMailchimp extends Widget_Base
 			\Elementor\Group_Control_Background::get_type(),
 			[
 				'name' => 'icons_bgcolor',
-				'selector' => '{{WRAPPER}} .input-icon-wrap i',
+				'selector' => '{{WRAPPER}} .input-icon-wrap i, {{WRAPPER}} .input-icon-wrap svg',
 			]
 		);
 		$this->add_responsive_control(
@@ -422,7 +424,7 @@ class mgproMailchimp extends Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .input-icon-wrap i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .input-icon-wrap i, {{WRAPPER}} .input-icon-wrap svg' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -433,7 +435,7 @@ class mgproMailchimp extends Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .input-icon-wrap i' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .input-icon-wrap i, {{WRAPPER}} .input-icon-wrap svg' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -442,7 +444,7 @@ class mgproMailchimp extends Widget_Base
 			[
 				'name'          => 'icons_border',
 				'placeholder'   => '1px',
-				'selector'      => '{{WRAPPER}} .input-icon-wrap i',
+				'selector'      => '{{WRAPPER}} .input-icon-wrap i, {{WRAPPER}} .input-icon-wrap svg',
 			]
 		);
 		$this->add_control(
@@ -452,7 +454,7 @@ class mgproMailchimp extends Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .input-icon-wrap i' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .input-icon-wrap i, {{WRAPPER}} .input-icon-wrap svg' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -1073,7 +1075,7 @@ class mgproMailchimp extends Widget_Base
 		$dfname = get_bloginfo('name');
 		$firstarr = explode(' ', trim($dfname));
 		$settings   = $this->get_settings_for_display();
-		$api_key    = mg_get_extra_option('mg_mailchamp_api');
+		$api_key    = mg_get_extra_option('mg_mailchimp_api');
 
 		$mc_layout  = $settings['mailchimp_layout'];
 		$labels     = $settings['display_labels'];

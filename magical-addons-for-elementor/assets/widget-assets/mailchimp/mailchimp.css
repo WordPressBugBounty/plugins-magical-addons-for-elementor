@@ -40,6 +40,14 @@ MailChimp
 	margin-right: -3px;
 	background: #ededed;
 }
+.input-icon-wrap i svg,
+.input-icon-wrap svg {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+	display: inline-block;
+	vertical-align: middle;
+}
 .mg-mailchimp-wrap .mg-field .mg-mc-subscribe {
 	display: block;
 	width: 100%;

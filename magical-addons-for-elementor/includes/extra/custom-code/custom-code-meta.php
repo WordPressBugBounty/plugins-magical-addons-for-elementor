@@ -177,7 +177,7 @@ class Magical_Custom_Code_Meta
             return $post_id;
         }
 
-        if (!isset($_POST['post_type']) || $this->post_type !== $_POST['post_type']) {
+        if (!isset($_POST['post_type']) || $this->post_type !== sanitize_text_field(wp_unslash($_POST['post_type']))) {
             return $post_id;
         }
 
@@ -185,14 +185,25 @@ class Magical_Custom_Code_Meta
             return $post_id;
         }
 
-        // Save location
+        // Save location (default to 'head' if not set)
         if (isset($_POST['magical_code_location'])) {
             update_post_meta($post_id, '_magical_code_location', sanitize_text_field(wp_unslash($_POST['magical_code_location'])));
+        } else {
+            $existing_location = get_post_meta($post_id, '_magical_code_location', true);
+            if (empty($existing_location)) {
+                update_post_meta($post_id, '_magical_code_location', 'head');
+            }
         }
 
-        // Save priority - only if pro is active
+        // Save priority
         if ($mgporv_active && isset($_POST['magical_code_priority'])) {
-            update_post_meta($post_id, '_magical_code_priority', absint($_POST['magical_code_priority']));
+            update_post_meta($post_id, '_magical_code_priority', absint(wp_unslash($_POST['magical_code_priority'])));
+        } else {
+            // Set default priority for free users if not already set
+            $existing_priority = get_post_meta($post_id, '_magical_code_priority', true);
+            if (empty($existing_priority)) {
+                update_post_meta($post_id, '_magical_code_priority', 10);
+            }
         }
 
         // Save code content
@@ -213,11 +224,21 @@ class Magical_Custom_Code_Meta
             
             $sanitized_conditions = $this->sanitize_array_recursive($conditions);
             update_post_meta($post_id, '_magical_code_conditions', $sanitized_conditions);
+        } else {
+            // Ensure conditions are set with default value for free users
+            $existing_conditions = get_post_meta($post_id, '_magical_code_conditions', true);
+            if (empty($existing_conditions)) {
+                update_post_meta($post_id, '_magical_code_conditions', array('type' => 'entire_site'));
+            }
         }
 
-        // Save status - only if pro is active
+        // Save status
         if ($mgporv_active && isset($_POST['magical_code_status'])) {
+            // Pro users can change the status
             update_post_meta($post_id, '_magical_code_status', sanitize_text_field(wp_unslash($_POST['magical_code_status'])));
+        } else {
+            // Free users always have status set to 'active'
+            update_post_meta($post_id, '_magical_code_status', 'active');
         }
     }
 

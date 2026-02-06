@@ -17,6 +17,7 @@ if (!class_exists('mgAdmin_Info_Items')) :
             //  add_action('wsa_form_top_magical_tabs_welcome', [$this, 'magical_welcome_tabs']);
             add_action('admin_init', array($this, 'admin_init'));
             add_action('admin_menu', array($this, 'admin_menu'));
+            add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
         }
 
         function admin_init()
@@ -555,7 +556,103 @@ if (!class_exists('mgAdmin_Info_Items')) :
             echo wp_kses_post($output);
         }
 
+        /**
+         * Enqueue React admin assets
+         */
+        public function enqueue_admin_assets($hook)
+        {
+            // Only load on our admin page
+            if ('toplevel_page_magical-addons' !== $hook) {
+                return;
+            }
+
+            $asset_file = MAGICAL_ADDON_PATH . 'assets/admin-react/build/index.asset.php';
+            
+            // Check if React build exists
+            if (!file_exists($asset_file)) {
+                // Fallback to legacy admin if React build not available
+                $this->plugin_page_legacy();
+                return;
+            }
+
+            $asset = require $asset_file;
+            $build_url = MAGICAL_ADDON_URL . 'assets/admin-react/build/';
+
+            // Enqueue React app styles
+            wp_enqueue_style(
+                'magical-addons-admin-react',
+                $build_url . 'index.css',
+                array('wp-components'),
+                $asset['version']
+            );
+
+            // Enqueue React app script
+            wp_enqueue_script(
+                'magical-addons-admin-react',
+                $build_url . 'index.js',
+                $asset['dependencies'],
+                $asset['version'],
+                true
+            );
+
+            // Get all editable roles for Role Manager
+            $editable_roles = get_editable_roles();
+            $roles = array();
+            foreach ($editable_roles as $role_slug => $role_info) {
+                if ($role_slug !== 'administrator') {
+                    $roles[$role_slug] = $role_info['name'];
+                }
+            }
+
+            // Localize script with data needed by React app
+            wp_localize_script(
+                'magical-addons-admin-react',
+                'magicalAddonsData',
+                array(
+                    'restUrl'     => esc_url_raw(rest_url('magical-addons/v1/')),
+                    'nonce'       => wp_create_nonce('wp_rest'),
+                    'isPro'       => class_exists('magicalAddonsProMain'),
+                    'version'     => defined('MAGICAL_ADDON_VERSION') ? MAGICAL_ADDON_VERSION : '1.0.0',
+                    'roles'       => $roles,
+                    'adminUrl'    => admin_url(),
+                    'pluginUrl'   => MAGICAL_ADDON_URL,
+                    'proUrl'      => 'https://wpthemespace.com/product/magical-addons-pro/',
+                    'docsUrl'     => 'https://developer.developer/#',
+                    'supportUrl'  => 'https://developer.developer/#',
+                )
+            );
+
+            // Set script translations
+            wp_set_script_translations(
+                'magical-addons-admin-react',
+                'magical-addons-for-elementor',
+                MAGICAL_ADDON_PATH . 'languages'
+            );
+        }
+
+        /**
+         * Render React admin page
+         */
         function plugin_page()
+        {
+            $asset_file = MAGICAL_ADDON_PATH . 'assets/admin-react/build/index.asset.php';
+            
+            // Check if React build exists, fallback to legacy if not
+            if (!file_exists($asset_file)) {
+                $this->plugin_page_legacy();
+                return;
+            }
+
+            $is_pro = class_exists('magicalAddonsProMain');
+            $wrap_class = $is_pro ? 'mghas-pro' : 'mghas-onlyfree';
+            
+            echo '<div id="magical-addons-root" class="magical-admin-wrap ' . esc_attr($wrap_class) . '"></div>';
+        }
+
+        /**
+         * Legacy plugin page (fallback when React build not available)
+         */
+        function plugin_page_legacy()
         {
             if (class_exists('magicalAddonsProMain')) {
                 echo '<div class="wrap magical-addons-page mghas-pro">';

@@ -62,3 +62,11 @@
 .elementor-add-section-area-button.mg-tmbtn i {
     transition: 0.5s;
 }
+
+/* GSAP Editor Preview - Ensure animated elements stay visible */
+.elementor-editor-active .mg-gsap-animated,
+.elementor-editor-preview .mg-gsap-animated,
+body.elementor-editor-active .mg-gsap-animated {
+    visibility: visible !important;
+    opacity: 1 !important;
+}

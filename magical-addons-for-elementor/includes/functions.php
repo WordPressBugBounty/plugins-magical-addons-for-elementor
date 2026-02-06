@@ -456,7 +456,7 @@ if (!function_exists('mg_mailchimp_lists')) {
     {
         $lists = [];
         // $api_key = '7ce60d52a16a614cf2a58923e0ba895b-us5';
-        $api_key = mg_get_extra_option('mg_mailchamp_api');
+        $api_key = mg_get_extra_option('mg_mailchimp_api');
         if (empty($api_key)) {
             return $lists;
         }
@@ -495,24 +495,27 @@ if (!function_exists('mg_mc_form')) {
 
     function mg_mc_form()
     {
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'mgchamp')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'mgchamp')) {
             wp_die();
         }
 
-        $api_key = mg_get_extra_option('mg_mailchamp_api');
-        $fname = sanitize_text_field(isset($_POST['firstname']) ? $_POST['firstname'] : '');
-        $lname = sanitize_text_field(isset($_POST['lastname']) ? $_POST['lastname'] : '');
+        $api_key = mg_get_extra_option('mg_mailchimp_api');
+        $fname = isset($_POST['firstname']) ? sanitize_text_field(wp_unslash($_POST['firstname'])) : '';
+        $lname = isset($_POST['lastname']) ? sanitize_text_field(wp_unslash($_POST['lastname'])) : '';
 
         $merge_fields = array(
             'FNAME' => !empty($fname) ? $fname : '',
             'LNAME' => !empty($lname) ? $lname : '',
         );
 
+        $list_id = isset($_POST['listId']) ? sanitize_text_field(wp_unslash($_POST['listId'])) : '';
+        $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
+
         $response = wp_remote_post(
             'https://' . substr($api_key, strpos(
                 $api_key,
                 '-'
-            ) + 1) . '.api.mailchimp.com/3.0/lists/' . sanitize_text_field($_POST['listId']) . '/members/' . md5(strtolower(sanitize_email($_POST['email']))),
+            ) + 1) . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members/' . md5(strtolower($email)),
             [
                 'method' => 'PUT',
                 'headers' => [
@@ -520,7 +523,7 @@ if (!function_exists('mg_mc_form')) {
                     'Authorization' => 'Basic ' . base64_encode('user:' . $api_key),
                 ],
                 'body' => wp_json_encode([
-                    'email_address' => sanitize_email($_POST['email']),
+                    'email_address' => $email,
                     'status' => 'subscribed',
                     'merge_fields' => $merge_fields,
                 ]),

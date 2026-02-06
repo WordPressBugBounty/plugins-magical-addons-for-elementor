@@ -118,26 +118,78 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             'mginfo_main_icon_position',
             [
                 'label' => __('Icon position', 'magical-addons-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'left' => [
-                        'title' => __('Left', 'magical-addons-for-elementor'),
-                        'icon' => 'fas fa-arrow-left',
-                    ],
-                    'top' => [
-                        'title' => __('Top', 'magical-addons-for-elementor'),
-                        'icon' => 'fas fa-arrow-up',
-                    ],
-                    'right' => [
-                        'title' => __('Right', 'magical-addons-for-elementor'),
-                        'icon' => 'fas fa-arrow-right',
-                    ],
-
+                    'top' => __('Top', 'magical-addons-for-elementor'),
+                    'title-left' => __('Title Left', 'magical-addons-for-elementor'),
+                    'title-right' => __('Title Right', 'magical-addons-for-elementor'),
+                    'left' => __('Left', 'magical-addons-for-elementor'),
+                    'right' => __('Right', 'magical-addons-for-elementor'), 
                 ],
                 'default' => 'top',
                 'toggle' => false,
                 'condition' => [
                     'mginfo_use_icon' => 'yes',
+                ]
+            ]
+        );
+        $this->add_control(
+            'mginfo_icon_alignment',
+            [
+                'label' => __('Icon Alignment', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'flex-start' => __('Left', 'magical-addons-for-elementor'),
+                        'icon' => 'fas fa-long-arrow-alt-left',
+                    ],
+                    'center' => [
+                        'title' => __('Center', 'magical-addons-for-elementor'),
+                        'icon' => 'fas fa-arrows-alt',
+                    ],
+                    'flex-end' => [
+                        'title' => __('Right', 'magical-addons-for-elementor'),
+                        'icon' => 'fas fa-long-arrow-alt-right',
+                    ],
+
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'condition' => [
+                    'mginfo_main_icon_position' => 'top',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .mgicon-area' => 'justify-content: {{VALUE}};',
+                ],
+            ]
+         );
+        $this->add_control(
+            'mginfo_icon_vertical_position',
+            [
+                'label' => __('Icon Vertical Position', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'flex-start' => __('Top', 'magical-addons-for-elementor'),
+                        'icon' => 'fas fa-long-arrow-alt-up',
+                    ],
+                    'center' => [
+                        'title' => __('Middle', 'magical-addons-for-elementor'),
+                        'icon' => 'fas fa-arrows-alt',
+                    ],
+                    'flex-end' => [
+                        'title' => __('Bottom', 'magical-addons-for-elementor'),
+                        'icon' => 'fas fa-long-arrow-alt-down',
+                    ],
+
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'condition' => [
+                    'mginfo_main_icon_position!' => 'top',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .mgicon-area, {{WRAPPER}} .mg-infobox-title-wrap' => 'align-items: {{VALUE}};',
                 ],
             ]
         );
@@ -1211,6 +1263,7 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .mg-infobox.active-fhover:hover .mg-infobox-icon i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mg-infobox.active-fhover:hover .mg-infobox-icon svg' => 'fill: {{VALUE}};',
                 ],
                 'condition' => [
                     'mginfo_fullhover' => 'yes',
@@ -1246,6 +1299,26 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
 
 
         $this->end_controls_section();
+    }
+
+
+    public function icon_output(){
+        $settings   = $this->get_settings_for_display();
+        $mginfo_icon_type = $this->get_settings('mginfo_icon_type');
+    ?>
+        <div class="mgicon-area">
+            <?php if ($mginfo_icon_type == 'image') : ?>
+                <figure class="mg-infobox-img">
+                    <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'mginfo_thumbnail', 'mginfo_type_image'); ?>
+                </figure>
+            <?php else : ?>
+                    <div class="mg-infobox-icon">
+                    <?php \Elementor\Icons_Manager::render_icon($settings['mginfo_type_selected_icon'], ['aria-hidden' => 'true']); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
+    <?php
     }
 
     /**
@@ -1305,32 +1378,25 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
         }
 ?>
 
-        <div class="mg-infobox <?php if ($settings['mginfo_fullhover']) : ?>active-fhover<?php endif; ?>">
+        <div class="mg-infobox <?php if ($settings['mginfo_fullhover']) : ?>active-fhover<?php endif; ?> mg-infobox-ps-<?php echo esc_attr($main_icon_position); ?> mg-infobox-ta-<?php echo esc_attr($title_align); ?>">
             <?php if ($mginfo_wraplinking) : ?>
                 <a <?php echo $this->get_render_attribute_string('mginfo_wraplink'); ?>>
-                <?php endif; ?>
-                <?php if ($main_icon_position == 'left') : ?>
-                    <div class="mgicon-area">
-                    <?php endif; ?>
-                    <?php if ($use_icon == 'yes' && $main_icon_position != 'right') : ?>
-                        <?php if ($mginfo_icon_type == 'image') : ?>
-                            <figure class="mg-infobox-img">
-                                <?php echo Group_Control_Image_Size::get_attachment_image_html($settings, 'mginfo_thumbnail', 'mginfo_type_image'); ?>
-                            </figure>
-                        <?php else : ?>
-                            <div class="mg-infobox-icon">
-                                <?php \Elementor\Icons_Manager::render_icon($settings['mginfo_type_selected_icon'], ['aria-hidden' => 'true']); ?>
-                            </div>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                    <?php if ($main_icon_position == 'left') : ?>
-                    </div>
-                <?php endif; ?>
-                <?php if ($main_icon_position != 'top') : ?>
-                    <div class="mgtext-area">
-                    <?php endif; ?>
+            <?php endif; ?>
+
+
+            <div class="mg-infobox-inner">
+            <?php
+             if ($use_icon == 'yes' && ($main_icon_position != 'title-left' && $main_icon_position != 'title-right')) {
+                $this->icon_output();
+             } 
+             ?>
+            
                     <div class="mg-infobox-text">
+                        <div class="mg-infobox-title-wrap">
                         <?php
+                         if ($use_icon == 'yes' && ($main_icon_position === 'title-left' || $main_icon_position === 'title-right')) {
+                            $this->icon_output();
+                        }
                         if ($title) :
                             printf(
                                 '<%1$s %2$s>%3$s</%1$s>',
@@ -1340,6 +1406,7 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
                             );
                         endif;
                         ?>
+                        </div>
                         <?php if ($desc) : ?>
                             <p <?php $this->print_render_attribute_string('mginfo_desc'); ?>><?php echo wp_kses_post($desc); ?></p>
                         <?php endif; ?>
@@ -1358,27 +1425,15 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
                                 <a <?php echo $this->get_render_attribute_string('mginfo_btntitle'); ?>><?php echo  mg_kses_tags($btntitle); ?></a>
                             <?php endif; ?>
                         <?php endif; ?>
-                    </div>
-                    <?php if ($main_icon_position != 'top') : ?>
-                    </div>
-                <?php endif; ?>
-                <?php if ($use_icon == 'yes' && $main_icon_position == 'right') : ?>
-                    <div class="mgicon-area">
 
-                        <?php if ($mginfo_icon_type == 'image') : ?>
-                            <figure class="mg-infobox-img">
-                                <?php echo Group_Control_Image_Size::get_attachment_image_html($settings, 'mginfo_thumbnail', 'mginfo_type_image'); ?>
-                            </figure>
-                        <?php else : ?>
-                            <div class="mg-infobox-icon">
-                                <?php \Elementor\Icons_Manager::render_icon($settings['mginfo_type_selected_icon'], ['aria-hidden' => 'true']); ?>
-                            </div>
-                        <?php endif; ?>
+
+
                     </div>
-                <?php endif; ?>
+
+             </div>
                 <?php if ($mginfo_wraplinking) : ?>
                 </a>
-            <?php endif; ?>
+                <?php endif; ?>
             <?php if ($settings['info_badge_use']) : ?>
                 <span class="mgc-badge mgcb-<?php echo esc_attr($settings['badge_position']); ?>"><?php echo mg_kses_tags($settings['badge_text']); ?></span>
             <?php endif; ?>
@@ -1395,154 +1450,120 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
      * @since 1.0.0
      * @access protected
      */
-    protected function content_template()
+     protected function content_template()
     {
     ?>
         <#
-            var settings=settings;
-            var use_icon=settings.mginfo_use_icon;
-            var mginfo_icon_type=settings.mginfo_icon_type;
-            var title=settings.mginfo_title;
-            var title_tag=settings.mginfo_title_tag;
-            var desc=settings.mginfo_desc;
-            var use_btn=settings.mginfo_use_btn;
-            var btntitle=settings.mginfo_btntitle;
-            var mginfo_wraplinking=settings.mginfo_wraplinking;
-            var mginfo_wraplink=settings.mginfo_wraplink;
-            var btn_link=settings.mginfo_btn_link;
-            var usebtn_icon=settings.mginfo_usebtn_icon;
-            var icon_position=settings.mginfo_icon_position;
-            var main_icon_position=settings.mginfo_main_icon_position;
+            var settings = settings;
+            var use_icon = settings.mginfo_use_icon;
+            var mginfo_icon_type = settings.mginfo_icon_type;
+            var title = settings.mginfo_title;
+            var title_tag = settings.mginfo_title_tag;
+            var desc = settings.mginfo_desc;
+            var title_align = settings.mginfo_title_align;
+            var use_btn = settings.mginfo_use_btn;
+            var btntitle = settings.mginfo_btntitle;
+            var mginfo_wraplinking = settings.mginfo_wraplinking;
+            var mginfo_wraplink = settings.mginfo_wraplink;
+            var btn_link = settings.mginfo_btn_link;
+            var usebtn_icon = settings.mginfo_usebtn_icon;
+            var icon_position = settings.mginfo_icon_position;
+            var main_icon_position = settings.mginfo_main_icon_position;
 
-            view.addInlineEditingAttributes('mginfo_title', 'basic' );
-            view.addRenderAttribute('mginfo_title', 'class' , 'mg-infobox-title' );
+            view.addInlineEditingAttributes('mginfo_title', 'basic');
+            view.addRenderAttribute('mginfo_title', 'class', 'mg-infobox-title');
 
-            view.addInlineEditingAttributes('mginfo_desc', 'basic' );
-            view.addRenderAttribute('mginfo_desc', 'class' , 'mg-infobox-desc' );
+            view.addInlineEditingAttributes('mginfo_desc');
+            view.addRenderAttribute('mginfo_desc', 'class', 'mg-infobox-desc');
 
-
-            view.addRenderAttribute('btntitle', 'class' , 'mg-btn-text mg-infolink' );
-            view.addRenderAttribute('btntitle', 'href' , btn_link.url);
+            view.addRenderAttribute('mginfo_btntitle', 'class', 'mg-btn-text');
+            view.addRenderAttribute('mginfo_btntitle', 'class', 'mg-infolink');
+            view.addRenderAttribute('mginfo_btntitle', 'href', btn_link.url);
             if (btn_link.is_external) {
-            view.addRenderAttribute('btntitle', 'target' , '_blank' );
+                view.addRenderAttribute('mginfo_btntitle', 'target', '_blank');
             }
             if (btn_link.nofollow) {
-            view.addRenderAttribute('btntitle', 'rel' , 'nofollow' );
+                view.addRenderAttribute('mginfo_btntitle', 'rel', 'nofollow');
             }
 
-
-            view.addRenderAttribute('mginfo_wraplink', 'href' , mginfo_wraplink.url);
+            // wrapper linking
+            view.addRenderAttribute('mginfo_wraplink', 'href', mginfo_wraplink.url);
             if (mginfo_wraplink.is_external) {
-            view.addRenderAttribute('mginfo_wraplink', 'target' , '_blank' );
+                view.addRenderAttribute('mginfo_wraplink', 'target', '_blank');
             }
             if (mginfo_wraplink.nofollow) {
-            view.addRenderAttribute('mginfo_wraplink', 'rel' , 'nofollow' );
+                view.addRenderAttribute('mginfo_wraplink', 'rel', 'nofollow');
             }
 
-
-            var mgInfoImage={
-            id: settings.mginfo_type_image.id,
-            url: settings.mginfo_type_image.url,
-            size: settings.mginfo_thumbnail_size,
-            dimension: settings.mginfo_thumbnail_custom_dimension,
-            model: view.getEditModel()
+            var mgInfoImage = {
+                id: settings.mginfo_type_image.id,
+                url: settings.mginfo_type_image.url,
+                size: settings.mginfo_thumbnail_size,
+                dimension: settings.mginfo_thumbnail_custom_dimension,
+                model: view.getEditModel()
             };
-            var mginfo_image_url=elementor.imagesManager.getImageUrl( mgInfoImage );
+            var mginfo_image_url = elementor.imagesManager.getImageUrl(mgInfoImage);
 
-            #>
-            <div class="mg-infobox {{ settings.mginfo_fullhover ? 'active-fhover' : '' }}">
+            function iconOutput() {
+                if (mginfo_icon_type === 'image') {
+                    return '<div class="mgicon-area"><figure class="mg-infobox-img"><img src="' + mginfo_image_url + '" /></figure></div>';
+                } else {
+                    var iconHTML = elementor.helpers.renderIcon(view, settings.mginfo_type_selected_icon, { 'aria-hidden': true }, 'i', 'object');
+                    return '<div class="mgicon-area"><div class="mg-infobox-icon">' + iconHTML.value + '</div></div>';
+                }
+            }
+        #>
 
+        <div class="mg-infobox {{ settings.mginfo_fullhover ? 'active-fhover' : '' }} mg-infobox-ps-{{ main_icon_position }} mg-infobox-ta-{{ title_align }}">
+            <# if (mginfo_wraplinking) { #>
+                <a {{{ view.getRenderAttributeString('mginfo_wraplink') }}}>
+            <# } #>
 
-                <# if (mginfo_wraplinking) { #>
-                    <a href="{{ mginfo_wraplink.url }}" target="{{ mginfo_wraplink.is_external ? '_blank' : '_self' }}" rel="{{ mginfo_wraplink.nofollow ? 'nofollow' : '' }}">
+            <div class="mg-infobox-inner">
+                <# if (use_icon === 'yes' && (main_icon_position !== 'title-left' && main_icon_position !== 'title-right')) { #>
+                    {{{ iconOutput() }}}
+                <# } #>
+            
+                <div class="mg-infobox-text">
+                    <div class="mg-infobox-title-wrap">
+                        <# if (use_icon === 'yes' && (main_icon_position === 'title-left' || main_icon_position === 'title-right')) { #>
+                            {{{ iconOutput() }}}
                         <# } #>
-
-
-
-                            <# if (main_icon_position==='left' ) { #>
-                                <div class="mgicon-area">
-                                    <# } #>
-                                        <# if (use_icon==='yes' && main_icon_position !=='right' ) { #>
-                                            <# if (mginfo_icon_type==='image' ) { #>
-                                                <figure class="mg-infobox-img">
-                                                    <img src="{{{ mginfo_image_url }}}" />
-                                                </figure>
-                                                <# } else { #>
-                                                    <div class="mg-infobox-icon">
-                                                        <i class="{{{ settings.mginfo_type_selected_icon.value }}}"></i>
-                                                    </div>
-                                                    <# } #>
-                                                        <# } #>
-                                                            <# if (main_icon_position==='left' ) { #>
-                                </div>
-                                <# } #>
-                                    <# if (main_icon_position !=='top' ) { #>
-                                        <div class="mgtext-area">
-                                            <# } #>
-
-
-
-                                                <div class="mg-infobox-text">
-                                                    <# if (title) { #>
-                                                        <{{{ title_tag }}} {{{ view.getRenderAttributeString('mginfo_title') }}}>{{{ title }}}</{{{ title_tag }}}>
-                                                        <# } #>
-                                                            <# if (desc) { #>
-                                                                <p {{{ view.getRenderAttributeString('mginfo_desc') }}}>{{{ desc }}}</p>
-                                                                <# } #>
-
-
-
-                                                                    <# if ( use_btn ) { #>
-                                                                        <# if ( usebtn_icon==='yes' ) { #>
-                                                                            <a href="{{ btn_link.url }}" {{{ view.getRenderAttributeString('btntitle') }}} target="{{ btn_link.is_external ? '_blank' : '_self' }}" rel="{{ btn_link.nofollow ? 'nofollow' : '' }}">
-
-                                                                                <#
-                                                                                    if ( icon_position==='left' ) {
-                                                                                    #>
-                                                                                    <i class="left {{{ settings.mginfo_btn_selected_icon.value }}}"></i>
-                                                                                    <span>{{{ btntitle }}}</span>
-                                                                                    <#
-                                                                                        } else if ( icon_position==='right' ) {
-                                                                                        #>
-                                                                                        <span>{{{ btntitle }}}</span>
-                                                                                        <i class="right {{{ settings.mginfo_btn_selected_icon.value }}}"></i>
-                                                                                        <#
-                                                                                            }
-                                                                                            #>
-                                                                            </a>
-                                                                            <# } else { #>
-                                                                                <a href="{{ btn_link.url }}" {{{ view.getRenderAttributeString('btntitle') }}} target="{{ btn_link.is_external ? '_blank' : '_self' }}" rel="{{ btn_link.nofollow ? 'nofollow' : '' }}">{{{ btntitle }}}</a>
-                                                                                <# } #>
-                                                                                    <# } #>
-                                                </div>
-
-                                                <# if (main_icon_position !=='top' ) { #>
-                                        </div>
-                                        <# } #>
-
-
-                                            <# if (use_icon==='yes' && main_icon_position==='right' ) { #>
-                                                <div class="mgicon-area">
-                                                    <# if (mginfo_icon_type==='image' ) { #>
-                                                        <figure class="mg-infobox-img">
-                                                            <img src="{{{ mginfo_image_url }}}" />
-                                                        </figure>
-                                                        <# } else { #>
-                                                            <div class="mg-infobox-icon">
-                                                                <i class="{{{ settings.mginfo_type_selected_icon.value }}}"></i>
-                                                            </div>
-                                                            <# } #>
-                                                </div>
-                                                <# } #>
-
-
-                                                    <# if (mginfo_wraplinking) { #>
-                    </a>
+                        <# if (title) { #>
+                            <{{{ title_tag }}} {{{ view.getRenderAttributeString('mginfo_title') }}}>{{{ title }}}</{{{ title_tag }}}>
+                        <# } #>
+                    </div>
+                    <# if (desc) { #>
+                        <p {{{ view.getRenderAttributeString('mginfo_desc') }}}>{{{ desc }}}</p>
                     <# } #>
-                        <# if (settings.info_badge_use) { #>
-                            <span class="mgc-badge mgcb-{{ settings.badge_position }}">{{{ settings.badge_text }}}</span>
-                            <# } #>
+                    <# if (use_btn) { #>
+                        <# if (usebtn_icon === 'yes') { #>
+                            <a {{{ view.getRenderAttributeString('mginfo_btntitle') }}}>
+                                <# if (icon_position === 'left') { #>
+                                    <# var btnIconHTML = elementor.helpers.renderIcon(view, settings.mginfo_btn_selected_icon, { 'class': 'left' }, 'i', 'object'); #>
+                                    {{{ btnIconHTML.value }}}
+                                <# } #>
+                                <span>{{{ btntitle }}}</span>
+                                <# if (icon_position === 'right') { #>
+                                    <# var btnIconHTML = elementor.helpers.renderIcon(view, settings.mginfo_btn_selected_icon, { 'class': 'right' }, 'i', 'object'); #>
+                                    {{{ btnIconHTML.value }}}
+                                <# } #>
+                            </a>
+                        <# } else { #>
+                            <a {{{ view.getRenderAttributeString('mginfo_btntitle') }}}>{{{ btntitle }}}</a>
+                        <# } #>
+                    <# } #>
+                </div>
             </div>
+
+            <# if (mginfo_wraplinking) { #>
+                </a>
+            <# } #>
+            <# if (settings.info_badge_use) { #>
+                <span class="mgc-badge mgcb-{{ settings.badge_position }}">{{{ settings.badge_text }}}</span>
+            <# } #>
+        </div>
+
     <?php
-    }
+    } 
 }

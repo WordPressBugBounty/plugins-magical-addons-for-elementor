@@ -19,7 +19,7 @@ class mgProWidgets
 
     function editor_scripts()
     {
-        wp_enqueue_script("mgadmin-el-editor", MAGICAL_ADDON_URL . 'assets/js/el-editor.js', array('jquery'), '5.1.3', true);
+        wp_enqueue_script("mgadmin-el-editor", MAGICAL_ADDON_URL . 'assets/js/el-editor.js', array('jquery'), MAGICAL_ADDON_VERSION, true);
     }
 
     public function get_promotion_widgets($config)

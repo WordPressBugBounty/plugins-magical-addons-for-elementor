@@ -444,16 +444,45 @@ a.mg-btn:hover {
   width: 100%;
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s ease-in-out;
+  justify-content: center;
 }
 
+.mg-infobox .mg-infobox-inner,
+.mg-infobox.mg-infobox-ps-title-left .mg-infobox-title-wrap,
+.mg-infobox.mg-infobox-ps-title-right .mg-infobox-title-wrap {
+    display: flex;
+    gap: 5px;
+}
+.mg-infobox.mg-infobox-ps-top .mg-infobox-inner {
+    flex-direction: column;
+    gap: 10px;
+}
+.mg-infobox.mg-infobox-ps-left .mg-infobox-inner {
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+}
+.mg-infobox.mg-infobox-ps-right .mg-infobox-inner {
+    flex-direction: row-reverse;
+    gap: 10px;
+    justify-content: space-between;
+}
+.mg-infobox.mg-infobox-ps-title-left .mg-infobox-title-wrap{
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+.mg-infobox.mg-infobox-ps-title-right .mg-infobox-title-wrap{
+    flex-direction: row-reverse;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
 .mgicon-area {
-  float: left;
-  width: 30%;
-}
-
-.mgtext-area {
-  width: 70%;
-  float: left;
+    display: flex;
 }
 
 /*Pricing table*/

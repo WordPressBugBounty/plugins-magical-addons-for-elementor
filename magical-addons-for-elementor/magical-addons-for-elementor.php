@@ -9,7 +9,7 @@
  * Plugin Name:       Magical Addons For Elementor
  * Plugin URI:        https://wpthemespace.com/product/magical-addons-pro/
  * Description:       Premium addons for Elementor page builder
- * Version:           1.3.10
+ * Version:           1.4.1
  * Author:            Noor alam
  * Author URI:        https://wpthemespace.com/
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class Magical_Addons_Elementor
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.3.10';
+	const VERSION = '1.4.1';
 
 	/**
 	 * Minimum Elementor Version
@@ -248,9 +248,12 @@ final class Magical_Addons_Elementor
 	 */
 	private function initialize_classes()
 	{
-		$mgadmin_notices = new mgAdminNotice();
 		$enque_file = new mgAddonsEnqueueFile();
 		$widget_init = new magicalWidgetInit();
+		
+		// Initialize REST API and Settings Defaults for React admin
+		new Magical_Addons_REST_API();
+		new Magical_Addons_Settings_Defaults();
 	}
 
 	/**
@@ -393,6 +396,8 @@ final class Magical_Addons_Elementor
 
 		// Admin functionality
 		require_once(MAGICAL_ADDON_PATH . '/includes/admin/admin-page.php');
+		require_once(MAGICAL_ADDON_PATH . '/includes/admin/class-rest-api.php');
+		require_once(MAGICAL_ADDON_PATH . '/includes/admin/class-settings-defaults.php');
 		include_once MAGICAL_ADDON_PATH . '/includes/admin/helper/activation.php';
 
 		// Icons and buttons
@@ -408,11 +413,15 @@ final class Magical_Addons_Elementor
 		require_once MAGICAL_ADDON_PATH . 'includes/extra/custom-attribute.php';
 		require_once MAGICAL_ADDON_PATH . 'includes/extra/role-manager/role-manager.php';
 
+		//gsap animations
+		require_once MAGICAL_ADDON_PATH . 'includes/extra/gsap-animations/gsap-animations.php';
 		// Pro widgets (if not already loaded)
 		if (!class_exists('magicalAddonsProMain')) {
 			include_once MAGICAL_ADDON_PATH . '/includes/admin/helper/admin-info.php';
 			require_once(MAGICAL_ADDON_PATH . '/includes/pro-widgets.php');
 		}
+
+	
 
 		// Commented out tools - uncomment if needed
 		/* require_once(MAGICAL_ADDON_PATH . '/libs/tools/generate-icons-json.php'); */
