@@ -18,6 +18,8 @@ class mgAssetsManagement
 
         add_action('wp_enqueue_scripts', [__CLASS__, 'frontend_style_register']);
         add_action("elementor/frontend/after_enqueue_scripts", [__CLASS__, 'frontend_scripts_register']);
+        add_action('elementor/editor/after_enqueue_styles', [__CLASS__, 'editor_style_register']);
+        add_action('elementor/editor/before_enqueue_scripts', [__CLASS__, 'editor_scripts_register']);
     }
 
     public static function frontend_style_register()
@@ -146,6 +148,14 @@ class mgAssetsManagement
         wp_register_style(
             'mg-tabs',
             MAGICAL_ADDON_ASSETS . 'widget-assets/mg-tabs/mg-tabs.css',
+            [],
+            MAGICAL_ADDON_VERSION,
+            'all'
+        );
+        // Anything Carousel - Frontend styles
+        wp_register_style(
+            'mg-anything-carousel',
+            MAGICAL_ADDON_ASSETS . 'widget-assets/anything-carousel/anything-carousel.css',
             [],
             MAGICAL_ADDON_VERSION,
             'all'
@@ -374,6 +384,15 @@ class mgAssetsManagement
             MAGICAL_ADDON_VERSION,
             true
         );
+
+        // Anything Carousel - Swiper initialization
+        wp_register_script(
+            'mg-carousel-init',
+            MAGICAL_ADDON_ASSETS . 'widget-assets/anything-carousel/carousel-init.js',
+            array('jquery', 'swiper'),
+            MAGICAL_ADDON_VERSION,
+            true
+        );
     }
 
     public static function frontend_scripts_active()
@@ -387,6 +406,32 @@ class mgAssetsManagement
             true
         );
         */
+    }
+
+    public static function editor_style_register()
+    {
+        // Anything Carousel - Editor styles
+        wp_enqueue_style(
+            'mg-anything-carousel-editor',
+            MAGICAL_ADDON_ASSETS . 'widget-assets/anything-carousel/anything-carousel-editor.css',
+            [],
+            MAGICAL_ADDON_VERSION
+        );
+    }
+
+    /**
+     * Enqueue editor scripts - registers nested element types in the Elementor editor.
+     */
+    public static function editor_scripts_register()
+    {
+        // Anything Carousel - Editor JS (registers nested element type)
+        wp_enqueue_script(
+            'mg-anything-carousel-editor',
+            MAGICAL_ADDON_ASSETS . 'widget-assets/anything-carousel/anything-carousel-editor.js',
+            ['nested-elements'],
+            MAGICAL_ADDON_VERSION,
+            true
+        );
     }
 }
 mgAssetsManagement::init();

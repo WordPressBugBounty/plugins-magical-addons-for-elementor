@@ -1011,7 +1011,7 @@ class MgAddon_contentReveal extends \Elementor\Widget_Base
 
 		switch ($content_type) {
 			case 'content':
-				$output = $settings['content'];
+				$output = wp_kses_post($settings['content']);
 				break;
 
 			case 'template':

@@ -3,17 +3,7 @@
 
 jQuery(document).ready(function($) {
 
-	$('.mgad-dismiss').on('click',function(){
-			var url = new URL(location.href);
-			url.searchParams.append('mgpdismissed',1);
-			location.href= url;
-		});
-		$('.tinfo-hide').on('click',function(){
-			var url = new URL(location.href);
-			url.searchParams.append('tinfohide',1);
-			location.href= url;
-		});
-
+    // Review notice AJAX dismiss
     $(document).on('click', '.magical-dismiss-review-notice', function(e) {
         e.preventDefault();
 
@@ -30,19 +20,6 @@ jQuery(document).ready(function($) {
         });
     });
 
-    // Features notice dismissal
-    $(document).on('click', '.magical-dismiss-features-notice', function(e) {
-        e.preventDefault();
-        var $notice = $(this).closest('.magical-features-notice');
-        
-        $.post(magicalAdminInfo.ajaxurl, {
-            action: 'magical_dismiss_review',
-            notice_type: 'features',
-            nonce: magicalAdminInfo.nonce
-        });
-        
-        $notice.fadeOut();
-    });
 });
 
 })(jQuery);

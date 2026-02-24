@@ -1217,8 +1217,7 @@ class MgAddon_imgAccordion extends \Elementor\Widget_Base
 										<?php echo wp_kses_post($item['title']); ?>
 									</<?php echo mg_validate_html_tag($title_tag); ?>>
 									<div class="mg-image-accordion-description">
-										<?php echo $this->parse_text_editor($item['description']); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-										?>
+										<?php echo wp_kses_post($this->parse_text_editor($item['description'])); ?>
 									</div>
 								</div>
 								<?php if ('yes' === $item['show_button'] && $item['link']['url']) { ?>

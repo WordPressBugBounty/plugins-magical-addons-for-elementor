@@ -1490,8 +1490,7 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 										if ($item['description']) {
 										?>
 											<div <?php echo wp_kses_post($this->get_render_attribute_string($description_key)); ?>>
-												<?php echo $this->parse_text_editor($item['description']); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-												?>
+												<?php echo wp_kses_post($this->parse_text_editor($item['description'])); ?>
 											</div>
 										<?php
 										}

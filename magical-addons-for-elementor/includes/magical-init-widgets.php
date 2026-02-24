@@ -218,5 +218,15 @@ class magicalWidgetInit
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/advance-skill-bars.php');
 			$widgets_manager->register(new \mgSkillBars());
 		}
+
+		// Anything Carousel (requires Elementor 3.16+ for Nested Elements API)
+		if (
+			mg_get_addons_option('mg_carousel_everything', 'on') == 'on'
+			&& defined('ELEMENTOR_VERSION')
+			&& version_compare(ELEMENTOR_VERSION, '3.16.0', '>=')
+		) {
+			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/anything-carousel/anything-carousel.php');
+			$widgets_manager->register(new \MgAddon_Anything_Carousel());
+		}
 	}
 }

@@ -30,11 +30,7 @@ class mgAdminNotice
 	 */
 	const GSAP_NOTICE_META_KEY = 'mg_gsap_admin_notice_dismissed';
 
-	/**
-	 * User meta key for new dashboard notice dismissal
-	 * @var string
-	 */
-	const NEW_DASHBOARD_NOTICE_META_KEY = 'mg_new_dashboard_notice_dismissed';
+
 
 	function __construct()
 	{
@@ -58,9 +54,7 @@ class mgAdminNotice
 		add_action('admin_enqueue_scripts', [$this, 'enqueue_gsap_notice_assets']);
 		add_action('wp_ajax_mg_dismiss_gsap_notice', [$this, 'ajax_dismiss_gsap_notice']);
 
-		// New dashboard notice
-		add_action('admin_notices', [$this, 'admin_notice_new_dashboard']);
-		add_action('wp_ajax_mg_dismiss_new_dashboard_notice', [$this, 'ajax_dismiss_new_dashboard_notice']);
+
 	}
 
 	/**
@@ -312,88 +306,5 @@ class mgAdminNotice
 		wp_send_json_success();
 	}
 
-	/**
-	 * Display admin notice for new dashboard
-	 *
-	 * @since 1.4.0
-	 * @access public
-	 */
-	public function admin_notice_new_dashboard()
-	{
-		// Don't show on the magical-addons page itself
-		$screen = get_current_screen();
-		if ($screen && $screen->id === 'toplevel_page_magical-addons') {
-			return;
-		}
 
-		// Check if already dismissed
-		if (get_user_meta(get_current_user_id(), self::NEW_DASHBOARD_NOTICE_META_KEY, true)) {
-			return;
-		}
-
-		// Only show for users who can manage options
-		if (!current_user_can('manage_options')) {
-			return;
-		}
-
-		$dashboard_url = admin_url('admin.php?page=magical-addons');
-		$nonce = wp_create_nonce('mg_new_dashboard_notice_nonce');
-		?>
-		<div class="notice notice-info mg-new-dashboard-notice is-dismissible" data-nonce="<?php echo esc_attr($nonce); ?>">
-			<div style="display: flex; align-items: center; gap: 15px; padding: 10px 0;">
-				<span style="font-size: 32px;">🎉</span>
-				<div style="flex: 1;">
-					<h3 style="margin: 0 0 5px 0; font-size: 16px;">
-						<?php esc_html_e('Magical Addons: New Modern Dashboard!', 'magical-addons-for-elementor'); ?>
-					</h3>
-					<p style="margin: 0; color: #666;">
-						<?php esc_html_e("We've completely redesigned the Magical Addons settings panel with a modern, intuitive interface. Enjoy faster navigation, better organization, and a cleaner look!", 'magical-addons-for-elementor'); ?>
-					</p>
-				</div>
-				<a href="<?php echo esc_url($dashboard_url); ?>" class="button button-primary" style="white-space: nowrap;">
-					<?php esc_html_e('View New Dashboard', 'magical-addons-for-elementor'); ?>
-				</a>
-			</div>
-		</div>
-		<script>
-		jQuery(document).ready(function($) {
-			$('.mg-new-dashboard-notice').on('click', '.notice-dismiss', function() {
-				var nonce = $(this).closest('.mg-new-dashboard-notice').data('nonce');
-				$.ajax({
-					url: ajaxurl,
-					type: 'POST',
-					data: {
-						action: 'mg_dismiss_new_dashboard_notice',
-						nonce: nonce
-					}
-				});
-			});
-		});
-		</script>
-		<?php
-	}
-
-	/**
-	 * AJAX handler for dismissing new dashboard notice
-	 *
-	 * @since 1.4.0
-	 * @access public
-	 */
-	public function ajax_dismiss_new_dashboard_notice()
-	{
-		// Verify nonce
-		if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'mg_new_dashboard_notice_nonce')) {
-			wp_send_json_error(array('message' => esc_html__('Security check failed', 'magical-addons-for-elementor')));
-		}
-
-		// Check user capability
-		if (!current_user_can('manage_options')) {
-			wp_send_json_error(array('message' => esc_html__('Permission denied', 'magical-addons-for-elementor')));
-		}
-
-		// Update user meta
-		update_user_meta(get_current_user_id(), self::NEW_DASHBOARD_NOTICE_META_KEY, true);
-
-		wp_send_json_success();
-	}
 }

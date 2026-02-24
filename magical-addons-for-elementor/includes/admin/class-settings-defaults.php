@@ -72,6 +72,7 @@ class Magical_Addons_Settings_Defaults {
             'mg_mailchimp'       => 'on',
             'mg_skillbar'        => 'on',
             'mg_project_details' => 'on',
+            'mg_carousel_everything' => 'on',
         );
     }
 

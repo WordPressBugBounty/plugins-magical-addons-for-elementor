@@ -16,7 +16,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Magical Addons for Elementor is an ultimate addons for Elementor users. Magical Addons has all the essential addons you need so no coding required to build modern WordPress websites. Enjoy advanced widgets, templates, and Elementor pro features completely free.
 
 ### New & Hot Features 
-- ** GSAP Scroll Animations - NEW! **
+- ** Anything Carousel - NEW! **
+- ** GSAP Scroll Animations **
 - ** Custom Css Free **
 - ** Custom Attributes Free **
 - ** Custom Code Entire Site Free **
@@ -275,6 +276,12 @@ e.g.
 
 
 == Changelog ==
+
+= 1.4.2 =
+	* NEW: Anything Carousel widget — a powerful nested Elementor carousel that lets you place any widget or content inside each slide. Features include autoplay, loop, navigation arrows, pagination dots, marquee mode, custom Swiper options, and full editor preview with drag-and-drop support.
+	* Fixed Stored XSS vulnerability in Info List widget description field
+	* Cleaned up admin JavaScript and CSS for better performance
+	* Improved security with proper output escaping using wp_kses_post
 
 = 1.4.1 =
 	* Custom code issue fixed
