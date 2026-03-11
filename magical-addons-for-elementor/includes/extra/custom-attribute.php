@@ -31,6 +31,12 @@ class Magical_Elementor_Custom_Attributes
     public function add_custom_attributes_section($element, $section_id, $args)
     {
         if ($section_id === 'section_custom_css' || $section_id === 'section_custom_css_pro') {
+            // Prevent registering controls twice when both free and Pro CSS sections exist.
+            $existing_controls = $element->get_controls();
+            if (isset($existing_controls['section_magical_custom_attributes'])) {
+                return;
+            }
+
             $element->start_controls_section(
                 'section_magical_custom_attributes',
                 [

@@ -278,6 +278,10 @@ e.g.
 == Changelog ==
 
 = 1.4.2 =
+	* Elementor Pro conflict fixed
+
+
+= 1.4.2 =
 	* NEW: Anything Carousel widget — a powerful nested Elementor carousel that lets you place any widget or content inside each slide. Features include autoplay, loop, navigation arrows, pagination dots, marquee mode, custom Swiper options, and full editor preview with drag-and-drop support.
 	* Fixed Stored XSS vulnerability in Info List widget description field
 	* Cleaned up admin JavaScript and CSS for better performance
