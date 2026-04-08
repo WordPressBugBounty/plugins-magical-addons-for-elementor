@@ -421,7 +421,7 @@ if (!class_exists('mgAdmin_Info_Items')) :
                         'class' => 'mgaddons_checkbox',
                     ),
                     array(
-                        'name'  => 'mgp_adticker',
+                        'name'  => 'mgp_cswitcher',
                         'label'  => __('MG Content Switcher', 'magical-addons-for-elementor'),
                         'type'  => 'checkbox',
                         'default' => 'on',
@@ -611,7 +611,7 @@ if (!class_exists('mgAdmin_Info_Items')) :
                 array(
                     'restUrl'     => esc_url_raw(rest_url('magical-addons/v1/')),
                     'nonce'       => wp_create_nonce('wp_rest'),
-                    'isPro'       => class_exists('magicalAddonsProMain'),
+                    'isPro'       => (bool) get_option('mgporv_active', false),
                     'version'     => defined('MAGICAL_ADDON_VERSION') ? MAGICAL_ADDON_VERSION : '1.0.0',
                     'roles'       => $roles,
                     'adminUrl'    => admin_url(),

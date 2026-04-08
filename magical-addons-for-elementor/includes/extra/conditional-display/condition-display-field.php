@@ -134,10 +134,10 @@ class Magical_Conditional_Display_field
                 [
                     'type' => \Elementor\Controls_Manager::RAW_HTML,
                     'raw' => '<div style="text-align:center;padding:10px;background-color:#f7f7f7;border-left:3px solid #ed4b82;">
-                                <p style="margin-bottom:5px;"><strong>' . __('This is a PRO feature', 'magical-addons-for-elementor') . '</strong></p>
-                                <p>' . __('Upgrade to Magical Addons PRO version to unlock all conditional display options', 'magical-addons-for-elementor') . '</p>
-                                <a href="https://wpthemespace.com/product/magical-addons-pro/" target="_blank" class="elementor-button elementor-button-success" style="margin-top:10px;">
-                                    ' . __('Upgrade to PRO', 'magical-addons-for-elementor') . '
+                                <p style="margin-bottom:5px;"><strong>' . __('🔒 PRO Feature — Unlock All Conditions', 'magical-addons-for-elementor') . '</strong></p>
+                                <p>' . __('Get advanced conditional display, GSAP scroll animations, role manager, custom code, pro templates & 18+ premium widgets.', 'magical-addons-for-elementor') . '</p>
+                                <a href="https://magic.wpcolors.net/pricing-plan/#mgpricing" target="_blank" class="elementor-button elementor-button-success" style="margin-top:10px;">
+                                    ' . __('🚀 Upgrade — From $21/year', 'magical-addons-for-elementor') . '
                                 </a>
                             </div>',
                     'content_classes' => 'mg-pro-notice',

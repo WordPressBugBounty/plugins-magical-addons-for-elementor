@@ -249,7 +249,7 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
             $this->widget_container_selector = $this->optimized_markup ? '' : ' > .elementor-widget-container';
         }
 
-        $is_pro = defined('MAGICAL_ADDONS_PRO_VERSION');
+        $is_pro = (bool) get_option('mgporv_active', false);
 
         // ══════════════════════════════════════════
         // SECTION: Layout (Content Tab)
@@ -527,9 +527,9 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
         } else {
             $this->add_control('mg_ce_marquee_pro_notice', [
                 'type' => Controls_Manager::RAW_HTML,
-                'raw'  => '<p style="font-size:12px;color:#888;">'
-                    . esc_html__('Smooth continuous scrolling (marquee) is available in', 'magical-addons-for-elementor')
-                    . ' <a href="https://wpthemespace.com/product/magical-addons-pro/" target="_blank" style="color:#9b59b6;font-weight:bold;">Magical Addons Pro</a></p>',
+                'raw'  => '<p style="font-size:12px;color:#888;">' 
+                    . esc_html__('Smooth continuous scrolling (marquee) + 18 more pro widgets, GSAP animations, conditional display & pro templates available in', 'magical-addons-for-elementor')
+                    . ' <a href="https://magic.wpcolors.net/pricing-plan/#mgpricing" target="_blank" style="color:#9b59b6;font-weight:bold;">Magical Addons Pro — From $21/yr</a></p>',
             ]);
         }
 
@@ -720,8 +720,8 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
                 'type' => Controls_Manager::RAW_HTML,
                 'raw'  => '<div style="text-align:center;padding:15px;">
                     <p style="font-size:13px;color:#666;">'
-                    . esc_html__('Advanced carousel options are available in', 'magical-addons-for-elementor')
-                    . ' <a href="https://wpthemespace.com/product/magical-addons-pro/" target="_blank" style="color:#9b59b6;font-weight:bold;">Magical Addons Pro</a></p>
+                    . esc_html__('Advanced carousel options + GSAP animations, conditional display, role manager & pro templates available in', 'magical-addons-for-elementor')
+                    . ' <a href="https://magic.wpcolors.net/pricing-plan/#mgpricing" target="_blank" style="color:#9b59b6;font-weight:bold;">Magical Addons Pro</a></p>
                     <ul style="text-align:left;font-size:12px;color:#888;margin-top:10px;">
                         <li>&#10022; Centered Slides</li>
                         <li>&#10022; Free Mode</li>
@@ -733,6 +733,8 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
                         <li>&#10022; Advanced Effects (Fade, Cube, Flip, etc.)</li>
                         <li>&#10022; Continuous Scroll (Marquee)</li>
                     </ul>
+                    <a href="https://magic.wpcolors.net/pricing-plan/#mgpricing" target="_blank" class="elementor-button elementor-button-success" style="margin-top:10px;">🚀 '
+                    . esc_html__('Get Pro — From $21/year', 'magical-addons-for-elementor') . '</a>
                 </div>',
             ]);
 
@@ -833,7 +835,7 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
             'type'       => Controls_Manager::SLIDER,
             'size_units' => ['px'],
             'range'      => ['px' => ['min' => 10, 'max' => 80]],
-            'default'    => ['size' => 24, 'unit' => 'px'],
+            'default'    => ['size' => 16, 'unit' => 'px'],
             'selectors'  => [
                 '{{WRAPPER}} .mg-ce-arrow' => 'font-size: {{SIZE}}{{UNIT}};',
                 '{{WRAPPER}} .mg-ce-arrow svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
@@ -858,7 +860,7 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
         $this->add_control('mg_ce_arrow_bg_color', [
             'label'     => esc_html__('Background Color', 'magical-addons-for-elementor'),
             'type'      => Controls_Manager::COLOR,
-            'default'   => '#ffffff',
+            'default'   => '#ffffff4c',
             'selectors' => [
                 '{{WRAPPER}} .mg-ce-arrow' => 'background-color: {{VALUE}};',
             ],
@@ -1061,7 +1063,7 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
             return;
         }
 
-        $is_pro = defined('MAGICAL_ADDONS_PRO_VERSION');
+        $is_pro = (bool) get_option('mgporv_active', false);
 
         // Build Swiper data attributes
         $swiper_data = [

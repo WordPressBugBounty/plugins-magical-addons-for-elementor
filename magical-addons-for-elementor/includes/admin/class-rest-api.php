@@ -185,10 +185,12 @@ class Magical_Addons_REST_API {
             update_option( 'magical_addons', $widgets );
         }
 
-        // Save pro widgets
+        // Save pro widgets (requires active pro license)
         if ( isset( $params['proWidgets'] ) && is_array( $params['proWidgets'] ) ) {
-            $pro_widgets = $this->sanitize_widget_settings( $params['proWidgets'] );
-            update_option( 'magical_addons_pro', $pro_widgets );
+            if ( get_option( 'mgporv_active', false ) ) {
+                $pro_widgets = $this->sanitize_widget_settings( $params['proWidgets'] );
+                update_option( 'magical_addons_pro', $pro_widgets );
+            }
         }
 
         // Save header/footer settings
@@ -245,8 +247,10 @@ class Magical_Addons_REST_API {
         }
 
         if ( isset( $params['proWidgets'] ) && is_array( $params['proWidgets'] ) ) {
-            $pro_widgets = $this->sanitize_widget_settings( $params['proWidgets'] );
-            update_option( 'magical_addons_pro', $pro_widgets );
+            if ( get_option( 'mgporv_active', false ) ) {
+                $pro_widgets = $this->sanitize_widget_settings( $params['proWidgets'] );
+                update_option( 'magical_addons_pro', $pro_widgets );
+            }
         }
 
         return rest_ensure_response( array(

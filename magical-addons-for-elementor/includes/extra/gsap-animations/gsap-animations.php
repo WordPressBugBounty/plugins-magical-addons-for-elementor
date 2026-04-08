@@ -155,10 +155,10 @@ class Magical_GSAP_Animations
                     'type' => \Elementor\Controls_Manager::RAW_HTML,
                     'raw' => '<div class="mg-gsap-pro-notice">
                                 <span class="mg-gsap-pro-badge"><i class="eicon-lock"></i> PRO</span>
-                                <p><strong>' . __('Custom Mode is a PRO Feature', 'magical-addons-for-elementor') . '</strong></p>
-                                <p>' . __('Unlock custom animations with text, image, background effects, and advanced controls.', 'magical-addons-for-elementor') . '</p>
-                                <a href="https://wpthemespace.com/product/magical-addons-pro/" target="_blank" class="elementor-button elementor-button-success mg-gsap-upgrade-btn">
-                                    <i class="eicon-external-link-square"></i> ' . __('Upgrade to PRO', 'magical-addons-for-elementor') . '
+                                <p><strong>' . __('🔥 Custom GSAP Mode — PRO Feature', 'magical-addons-for-elementor') . '</strong></p>
+                                <p>' . __('Create custom scroll animations with text effects, image transitions, background parallax & advanced controls. Also includes 18+ pro widgets, role manager, conditional display & pro templates.', 'magical-addons-for-elementor') . '</p>
+                                <a href="https://magic.wpcolors.net/pricing-plan/#mgpricing" target="_blank" class="elementor-button elementor-button-success mg-gsap-upgrade-btn">
+                                    <i class="eicon-external-link-square"></i> ' . __('Upgrade — From $21/year', 'magical-addons-for-elementor') . '
                                 </a>
                             </div>',
                     'content_classes' => 'mg-gsap-pro-notice-wrapper',

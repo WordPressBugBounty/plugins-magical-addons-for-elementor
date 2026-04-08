@@ -39,6 +39,7 @@ const PRO_WIDGET_META = {
     mgp_animatedh: { label: 'Animated Heading', description: 'Text animation effects', icon: '✨' },
     mgp_popup: { label: 'Popup', description: 'Modal popup windows', icon: '🪟' },
     mgp_ajsearch: { label: 'Ajax Search', description: 'Live search results', icon: '⚡' },
+    mgp_cswitcher: { label: 'Content Switcher', description: 'Toggle between content sections', icon: '🔄' },
 };
 
 /**
@@ -122,8 +123,8 @@ const ProWidgets = () => {
                     <div className="magical-admin__pro-notice-content">
                         <span className="magical-admin__pro-notice-icon">🔒</span>
                         <div className="magical-admin__pro-notice-text">
-                            <strong>{ __( 'Pro License Required', 'magical-addons-for-elementor' ) }</strong>
-                            <p>{ __( 'These widgets are available with Magical Addons Pro. Upgrade to unlock all premium features.', 'magical-addons-for-elementor' ) }</p>
+                            <strong>{ __( '🔥 Unlock 18+ Pro Widgets + Premium Features', 'magical-addons-for-elementor' ) }</strong>
+                            <p>{ __( 'Get Lottie animations, image hotspots, carousels, post filters, popups & more. Plus advanced role manager, custom code, conditional display, GSAP scroll animations & pro templates — all from $21/year!', 'magical-addons-for-elementor' ) }</p>
                         </div>
                         <a
                             href="https://magic.wpcolors.net/pricing-plan/#mgpricing"
@@ -131,7 +132,7 @@ const ProWidgets = () => {
                             rel="noopener noreferrer"
                             className="magical-admin__pro-notice-btn"
                         >
-                            { __( 'Upgrade Now', 'magical-addons-for-elementor' ) }
+                            { __( '🚀 Get Pro Now', 'magical-addons-for-elementor' ) }
                         </a>
                     </div>
                 </div>

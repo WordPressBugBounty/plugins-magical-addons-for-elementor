@@ -130,14 +130,15 @@ class Magical_Custom_Code_Meta
         if (!$mgporv_active) {
             ?>
             <div class="magical-pro-notice">
-                <p><?php esc_html_e('Unlock advanced features with Magical Addons Pro:', 'magical-addons-for-elementor'); ?></p>
+                <p><?php esc_html_e('🔥 Supercharge Custom Code with Magical Addons Pro:', 'magical-addons-for-elementor'); ?></p>
                 <ul>
                     <li><?php esc_html_e('• Custom Priority Control', 'magical-addons-for-elementor'); ?></li>
                     <li><?php esc_html_e('• Advanced Display Conditions', 'magical-addons-for-elementor'); ?></li>
                     <li><?php esc_html_e('• Singular & Archive Options', 'magical-addons-for-elementor'); ?></li>
+                    <li><?php esc_html_e('• Plus 18+ Pro Widgets, Role Manager, GSAP Animations & Pro Templates', 'magical-addons-for-elementor'); ?></li>
                 </ul>
                 <a href="https://magic.wpcolors.net/pricing-plan/#mgpricing" target="_blank" class="magical-upgrade-button">
-                    <?php esc_html_e('Upgrade to Pro', 'magical-addons-for-elementor'); ?>
+                    <?php esc_html_e('🚀 Upgrade Now — From $21/year', 'magical-addons-for-elementor'); ?>
                 </a>
             </div>
         <?php

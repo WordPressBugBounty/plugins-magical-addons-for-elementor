@@ -27,9 +27,10 @@ const RECOMMENDED_PLUGINS = [
     },
     {
         slug: 'wp-edit-password-protected',
-        name: __( 'WP Edit Password Protected', 'magical-addons-for-elementor' ),
-        description: __( 'Easily password protect your WordPress posts and pages with customizable options.', 'magical-addons-for-elementor' ),
+        name: __( 'WPEPP – Login Security, Password Protect & Login Page Customizer', 'magical-addons-for-elementor' ),
+        description: __( 'Login security, password protect pages, block AI crawlers, and customize your login page.', 'magical-addons-for-elementor' ),
         wpUrl: 'https://wordpress.org/plugins/wp-edit-password-protected/',
+        iconUrl: 'https://ps.w.org/wp-edit-password-protected/assets/icon-128x128.gif?rev=3499151',
     },
     {
         slug: 'easy-share-solution',
@@ -112,7 +113,7 @@ const PluginCard = ( { plugin, pluginStatus, onInstall, onActivate, isProcessing
                     <div className="magical-plugin-card__icon">
                         { ! iconError ? (
                             <img 
-                                src={ getPluginIconUrl( plugin.slug ) } 
+                                src={ plugin.iconUrl || getPluginIconUrl( plugin.slug ) } 
                                 alt={ plugin.name }
                                 onError={ handleIconError }
                             />

@@ -52,7 +52,7 @@ function mg_kses_tags($string = '')
  * @param string $operator
  * @return bool
  */
-function mg_elementor_version_check($operator = '<', $version = '2.6.0')
+function mg_elementor_version_check($operator = '<', $version = '3.5.0')
 {
     return defined('ELEMENTOR_VERSION') && version_compare(ELEMENTOR_VERSION, $version, $operator);
 }
@@ -640,7 +640,7 @@ if (!function_exists('mg_goprolink')) :
             // Show a `Go Pro` button only if the user doesn't have Pro.
             if ($texts['link']) { ?>
                 <a class="elementor-nerd-box-link elementor-button elementor-button-default elementor-button-go-pro" href="<?php echo esc_url($texts['link']); ?>" target="_blank">
-                    <?php echo esc_html__('UPGRADE NOW', 'magical-addons-for-elementor'); ?>
+                    <?php echo esc_html__('🚀 UPGRADE NOW — Start at $21/yr', 'magical-addons-for-elementor'); ?>
                 </a>
             <?php } ?>
         </div>

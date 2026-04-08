@@ -207,20 +207,11 @@ class mgAssetsManagement
             true
         );
 
-        // swiper JS
-        wp_register_script(
-            'mg-swiper',
-            MAGICAL_ADDON_ASSETS . 'widget-assets/swiper/swiper.min.js',
-            ['jquery'],
-            '8.2.5',
-            true
-        );
-
-        // swiper JS
+        // swiper activation JS (uses Elementor's native swiper)
         wp_register_script(
             'swiper-active',
             MAGICAL_ADDON_URL . 'assets/widget-assets/slider/mgs-main.js',
-            ['jquery'],
+            ['jquery', 'swiper'],
             MAGICAL_ADDON_VERSION,
             true
         );

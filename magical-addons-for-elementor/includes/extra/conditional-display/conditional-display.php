@@ -131,6 +131,12 @@ class Magical_Conditional_Display
      */
     private function check_condition($condition, $settings)
     {
+        // Pro conditions require active pro license
+        $pro_conditions = ['user_role', 'day_of_week', 'time_of_day', 'date_range', 'recurring_schedule', 'post_type', 'browser_type', 'url_parameter', 'referrer_source'];
+        if (in_array($condition, $pro_conditions, true) && !get_option('mgporv_active', false)) {
+            return true; // Default to showing the element for free users
+        }
+
         switch ($condition) {
             case 'user_logged_in':
                 return is_user_logged_in();

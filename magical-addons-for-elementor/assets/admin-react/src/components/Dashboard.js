@@ -274,16 +274,16 @@ const Dashboard = () => {
                     <CardBody>
                         <div className="magical-admin__pro-banner-content">
                             <div className="magical-admin__pro-banner-text">
-                                <h3>{ __( 'Unlock Premium Features', 'magical-addons-for-elementor' ) }</h3>
+                                <h3>{ __( '🔥 Supercharge Your Site with Pro — From $21/year', 'magical-addons-for-elementor' ) }</h3>
                                 <p>
-                                    { __( 'Get access to 18+ premium widgets, priority support, and regular updates with Magical Addons Pro.', 'magical-addons-for-elementor' ) }
+                                    { __( 'Join 5,000+ happy users! Get 18+ premium widgets, priority support, and regular updates. Build stunning websites faster with zero coding.', 'magical-addons-for-elementor' ) }
                                 </p>
                                 <ul className="magical-admin__pro-features">
-                                    <li>✓ { __( 'Lottie Animation Widget', 'magical-addons-for-elementor' ) }</li>
-                                    <li>✓ { __( 'Advanced Image Hotspot', 'magical-addons-for-elementor' ) }</li>
-                                    <li>✓ { __( 'Post Filter & Grid', 'magical-addons-for-elementor' ) }</li>
-                                    <li>✓ { __( 'Team Carousel', 'magical-addons-for-elementor' ) }</li>
-                                    <li>✓ { __( 'And many more...', 'magical-addons-for-elementor' ) }</li>
+                                    <li>✓ { __( 'Lottie Animations & GSAP Scroll Effects', 'magical-addons-for-elementor' ) }</li>
+                                    <li>✓ { __( 'Advanced Image Hotspot & Carousel Widgets', 'magical-addons-for-elementor' ) }</li>
+                                    <li>✓ { __( 'Post Filter, Ajax Search & Price Comparison', 'magical-addons-for-elementor' ) }</li>
+                                    <li>✓ { __( 'Popup Builder, Off Canvas & Content Switcher', 'magical-addons-for-elementor' ) }</li>
+                                    <li>✓ { __( 'Priority Support & Lifetime Updates', 'magical-addons-for-elementor' ) }</li>
                                 </ul>
                             </div>
                             <div className="magical-admin__pro-banner-cta">

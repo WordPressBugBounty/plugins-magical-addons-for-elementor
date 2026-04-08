@@ -136,8 +136,8 @@ const RoleManager = () => {
                     <div className="magical-admin__pro-notice-content">
                         <span className="magical-admin__pro-notice-icon">🔓</span>
                         <div className="magical-admin__pro-notice-text">
-                            <h3>{ __( 'Unlock All Role Manager Features', 'magical-addons-for-elementor' ) }</h3>
-                            <p>{ __( 'Get access to advanced capabilities like Edit Posts, Edit Pages, Upload Files, Elementor access, and more with Pro!', 'magical-addons-for-elementor' ) }</p>
+                            <h3>{ __( '🔥 Unlock Full Role Manager + All Pro Features', 'magical-addons-for-elementor' ) }</h3>
+                            <p>{ __( 'Advanced role controls, file uploads, WooCommerce management — plus 18+ pro widgets, GSAP animations, conditional display, custom code & pro templates. All from $21/year!', 'magical-addons-for-elementor' ) }</p>
                         </div>
                         <a 
                             href="https://magic.wpcolors.net/pricing-plan/#mgpricing" 
@@ -145,7 +145,7 @@ const RoleManager = () => {
                             rel="noopener noreferrer"
                             className="magical-admin__pro-notice-btn"
                         >
-                            { __( 'Upgrade to Pro', 'magical-addons-for-elementor' ) }
+                            { __( '🚀 Get Pro Now', 'magical-addons-for-elementor' ) }
                         </a>
                     </div>
                 </div>

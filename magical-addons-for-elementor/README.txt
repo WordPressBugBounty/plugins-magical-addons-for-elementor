@@ -2,9 +2,9 @@
 Contributors: nalam
 Tags: elementor, page builder, Elementor addons, elementor widget, template library
 Donate link: https://wpthemespace.com/donation/
-Requires at least: 5.0
-Tested up to: 6.9
-Requires PHP: 5.6
+Requires at least: 6.6
+Tested up to: 7.0
+Requires PHP: 7.4
 Stable tag: trunk 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -276,6 +276,12 @@ e.g.
 
 
 == Changelog ==
+
+= 1.4.4 =
+	* Fixed: Anything Carousel marquee items responsive issue 
+	* Updated php error and issues
+	* Update all carousel slider and carousel
+	* Security: Server-side enforcement added to all pro feature gates
 
 = 1.4.2 =
 	* Elementor Pro conflict fixed

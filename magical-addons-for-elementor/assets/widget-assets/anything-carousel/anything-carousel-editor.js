@@ -231,6 +231,40 @@
 						}
 					);
 
+					// Re-init Swiper when carousel settings change in preview mode
+					var carouselSettings = [
+						'mg_ce_slides_per_view',
+						'mg_ce_slides_per_view_tablet',
+						'mg_ce_slides_per_view_mobile',
+						'mg_ce_slides_to_scroll',
+						'mg_ce_space_between',
+						'mg_ce_space_between_tablet',
+						'mg_ce_space_between_mobile',
+						'mg_ce_speed',
+						'mg_ce_loop',
+						'mg_ce_autoplay',
+						'mg_ce_autoplay_delay',
+						'mg_ce_effect',
+						'mg_ce_direction',
+						'mg_ce_show_arrows',
+						'mg_ce_show_dots',
+						'mg_ce_pagination_type',
+					];
+					carouselSettings.forEach(function (key) {
+						self.listenTo(
+							settingsModel,
+							'change:' + key,
+							function () {
+								var isOn = settingsModel.get(
+									'mg_ce_editor_preview_mode'
+								);
+								if (isOn === 'yes') {
+									self._setPreviewMode(true);
+								}
+							}
+						);
+					});
+
 					// Restore state if already on (e.g. returning to a widget)
 					// Note: onRender also handles restore, but this covers
 					// the first bind before onRender's setTimeout fires
@@ -439,6 +473,29 @@
 							pauseOnMouseEnter:
 								settings.mg_ce_marquee_pause_hover ===
 								'yes',
+						};
+					}
+
+					// Responsive breakpoints
+					var tabletSpv = parseInt(settings.mg_ce_slides_per_view_tablet) || 0;
+					var mobileSpv = parseInt(settings.mg_ce_slides_per_view_mobile) || 0;
+					var tabletSpace = parseInt(settings.mg_ce_space_between_tablet) || 0;
+					var mobileSpace = parseInt(settings.mg_ce_space_between_mobile) || 0;
+
+					if (tabletSpv || mobileSpv) {
+						config.breakpoints = {
+							320: {
+								slidesPerView: mobileSpv || 1,
+								spaceBetween: mobileSpace || 10,
+							},
+							768: {
+								slidesPerView: tabletSpv || 1,
+								spaceBetween: tabletSpace || 15,
+							},
+							1024: {
+								slidesPerView: config.slidesPerView,
+								spaceBetween: config.spaceBetween,
+							},
 						};
 					}
 

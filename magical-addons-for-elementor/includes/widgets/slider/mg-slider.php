@@ -88,7 +88,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
     public function get_script_depends()
     {
         return [
-            'mg-swiper',
+            'swiper',
             'swiper-active',
         ];
     }

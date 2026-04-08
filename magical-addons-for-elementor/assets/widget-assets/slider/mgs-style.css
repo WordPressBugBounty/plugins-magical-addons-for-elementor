@@ -48,6 +48,8 @@
 }
 .mgslide-content a.btn.btn-info.mgs-btn{
     color: #fff;
+    background: #222;
+    border: none;
 }
 .mgs-overlay-outside {
     position: absolute;

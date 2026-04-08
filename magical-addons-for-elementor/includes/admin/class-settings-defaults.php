@@ -101,6 +101,7 @@ class Magical_Addons_Settings_Defaults {
             'mgp_animatedh'    => 'on',
             'mgp_popup'        => 'on',
             'mgp_ajsearch'     => 'on',
+            'mgp_cswitcher'    => 'on',
         );
     }
 

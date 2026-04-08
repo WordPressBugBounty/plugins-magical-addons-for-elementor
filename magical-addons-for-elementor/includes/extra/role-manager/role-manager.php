@@ -483,17 +483,16 @@ class Magical_Elementor_Role_Manager
                 <?php if (!$mgporv_active) : ?>
                     <div class="magical-role-manager-sidebar">
                         <div class="magical-pro-notice">
-                            <p><?php esc_html_e('Unlock advanced Role Manager features with Magical Addons Pro:', 'magical-addons-for-elementor'); ?></p>
+                            <p><?php esc_html_e('🔥 Unlock Full Role Manager + All Pro Features:', 'magical-addons-for-elementor'); ?></p>
                             <ul>
                                 <li><?php esc_html_e('• Edit Posts & Pages Management', 'magical-addons-for-elementor'); ?></li>
                                 <li><?php esc_html_e('• File Upload Permissions', 'magical-addons-for-elementor'); ?></li>
                                 <li><?php esc_html_e('• Advanced Role Controls', 'magical-addons-for-elementor'); ?></li>
-                                <li><?php esc_html_e('• WooCommerce Products Management', 'magical-addons-for-elementor'); ?></li>
-                                <li><?php esc_html_e('• WooCommerce Reports Access', 'magical-addons-for-elementor'); ?></li>
-                                <li><?php esc_html_e('• Product Publishing Controls', 'magical-addons-for-elementor'); ?></li>
+                                <li><?php esc_html_e('• WooCommerce Products & Reports Access', 'magical-addons-for-elementor'); ?></li>
+                                <li><?php esc_html_e('• Plus Custom Code, Conditional Display, GSAP Animations & 18+ Pro Widgets', 'magical-addons-for-elementor'); ?></li>
                             </ul>
                             <a href="https://magic.wpcolors.net/pricing-plan/#mgpricing" target="_blank" class="magical-upgrade-button">
-                                <?php esc_html_e('Upgrade to Pro', 'magical-addons-for-elementor'); ?>
+                                <?php esc_html_e('🚀 Get Pro — From $21/year', 'magical-addons-for-elementor'); ?>
                             </a>
                         </div>
                     </div>

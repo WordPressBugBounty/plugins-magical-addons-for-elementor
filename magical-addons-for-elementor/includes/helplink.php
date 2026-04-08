@@ -9,13 +9,13 @@ trait mgProHelpLink
 {
     public function link_pro_added()
     {
-        if (class_exists('magicalAddonsProMain')) {
+        if (get_option('mgporv_active', false)) {
             return;
         }
         $this->start_controls_section(
             'mgpl_gopro',
             [
-                'label' => esc_html__('Upgrade Pro | Start Only $21!!', 'magical-addons-for-elementor'),
+                'label' => esc_html__('🔥 Go Pro — From Only $21/year', 'magical-addons-for-elementor'),
             ]
         );
         $this->add_control(
@@ -23,9 +23,9 @@ trait mgProHelpLink
             [
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'raw' => mg_goprolink([
-                    'title' => esc_html__('Get All Pro Features', 'magical-addons-for-elementor'),
-                    'massage' => esc_html__('Unlock all pro templates, Pages, blocks and widgets. Upgrade pro to fully recharge your Elementor page builder.', 'magical-addons-for-elementor'),
-                    'link' => 'https://wpthemespace.com/product/magical-addons-pro/',
+                    'title' => esc_html__('Unlock 18+ Pro Widgets & Premium Templates', 'magical-addons-for-elementor'),
+                    'massage' => esc_html__('Get Lottie animations, image hotspots, carousels, GSAP scroll effects, advanced post filters & more. Build stunning sites faster with priority support and regular updates.', 'magical-addons-for-elementor'),
+                    'link' => 'https://magic.wpcolors.net/pricing-plan/#mgpricing',
                 ]),
             ]
         );
