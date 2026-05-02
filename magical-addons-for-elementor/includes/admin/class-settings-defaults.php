@@ -58,6 +58,7 @@ class Magical_Addons_Settings_Defaults {
             'mg_imgaccordion'    => 'on',
             'mg_content_reveal'  => 'on',
             'mg_flipbox'         => 'on',
+            'mg_call_to_action'  => 'on',
             'mg_dualbtn'         => 'on',
             'mg_iconlist'        => 'on',
             'mg_imgsmooth_scroll' => 'on',

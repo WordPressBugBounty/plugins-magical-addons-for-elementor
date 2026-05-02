@@ -1,12 +1,18 @@
 /* Social Share widget css  */
 
+ul.mg-share-buttons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display:flex;
+    flex-flow: row wrap;
+    gap: 5px;
+}
+
 .mg-share-button a.mg-share-network i {
   color: #fff;
 }
 
-.mg-share-button {
-  margin-bottom: 20px;
-}
 
 .mg-share-button a,
 .mg-share-button a:hover {
@@ -226,7 +232,7 @@
 }
 
 .mg-share-button .elementor-social-icon-twitter {
-  background-color: #1da1f2
+  background-color: #000
 }
 
 .mg-share-button .elementor-social-icon-viber {

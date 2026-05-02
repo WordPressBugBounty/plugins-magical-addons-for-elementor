@@ -223,17 +223,16 @@
 }
 .mgnav-menu ul li.menu-item.menu-item-has-children>a:after {
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 2px;
     background: transparent;
     z-index: 99999;
-    content: "\f078";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 8px;
-    height: 100%;
-    align-items: center;
-    display: flex;
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-65%) rotate(45deg);
 }
 
 .mgnav-menu ul ul li.menu-item.menu-item-has-children>a:after {

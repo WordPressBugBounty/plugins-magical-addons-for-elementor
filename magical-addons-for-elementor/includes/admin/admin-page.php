@@ -272,6 +272,13 @@ if (!class_exists('mgAdmin_Info_Items')) :
                         'class' => 'mgaddons_checkbox',
                     ),
                     array(
+                        'name'  => 'mg_call_to_action',
+                        'label'  => __('MG Call To Action', 'magical-addons-for-elementor'),
+                        'type'  => 'checkbox',
+                        'default' => 'on',
+                        'class' => 'mgaddons_checkbox',
+                    ),
+                    array(
                         'name'  => 'mg_dualbtn',
                         'label'  => __('MG Dual Button', 'magical-addons-for-elementor'),
                         'type'  => 'checkbox',

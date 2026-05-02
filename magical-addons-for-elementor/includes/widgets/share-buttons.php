@@ -129,7 +129,7 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 'options' => [
                     'facebook'    => __('Facebook', 'magical-addons-for-elementor'),
                     'instagram'     => __('Instagram', 'magical-addons-for-elementor'),
-                    'twitter'     => __('Twitter', 'magical-addons-for-elementor'),
+                    'twitter'     => __('X.com', 'magical-addons-for-elementor'),
                     'linkedin'    => __('Linkedin', 'magical-addons-for-elementor'),
                     'email'       => __('Email', 'magical-addons-for-elementor'),
                     'whatsapp'    => __('Whatsapp', 'magical-addons-for-elementor'),
@@ -309,7 +309,7 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
         $repeater->add_control(
             'twitter_handle',
             [
-                'label'     => __('Twitter Handle', 'magical-addons-for-elementor'),
+                'label'     => __('X (Twitter) Handle', 'magical-addons-for-elementor'),
                 'description' => __('Write without @ sign.', 'magical-addons-for-elementor'),
                 'type'      => Controls_Manager::TEXT,
                 'condition' => [
@@ -481,21 +481,21 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 'title_field' => '{{ share_network }}',
                 'default'     => [
                     [
-                        'share_icon'    => [
+                        'custom_icon'    => [
                             'value'   => 'fab fa-facebook',
                             'library' => 'fa-brands',
                         ],
                         'share_network' => 'facebook',
                     ],
                     [
-                        'share_icon'    => [
+                        'custom_icon'    => [
                             'value'   => 'fab fa-x-twitter',
                             'library' => 'fa-brands',
                         ],
                         'share_network' => 'twitter',
                     ],
                     [
-                        'share_icon'    => [
+                        'custom_icon'    => [
                             'value'   => 'fab fa-linkedin',
                             'library' => 'fa-brands',
                         ],
@@ -526,22 +526,22 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 'label'       => __('Display', 'magical-addons-for-elementor'),
                 'type'        => Controls_Manager::CHOOSE,
                 'options'     => [
-                    'inline-block'   => [
+                    'row'   => [
                         'title' => __('Inline', 'magical-addons-for-elementor'),
                         'icon'  => 'eicon-ellipsis-h',
                     ],
-                    'block' => [
+                    'column' => [
                         'title' => __('Block', 'magical-addons-for-elementor'),
                         'icon'  => 'eicon-ellipsis-v',
                     ]
                 ],
-                'desktop_default' => 'inline-block',
-                'tablet_default' => 'inline-block',
-                'mobile_default' => 'block',
+                'desktop_default' => 'row',
+                'tablet_default' => 'row',
+                'mobile_default' => 'column',
                 'toggle' => false,
                 // 'prefix_class' => 'mg-display-',
                 'selectors'   => [
-                    '{{WRAPPER}} .mg-share-button' => 'display: {{VALUE}};'
+                    '{{WRAPPER}} ul.mg-share-buttons' => 'flex-direction: {{VALUE}};'
                 ],
             ]
         );
@@ -552,7 +552,7 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 'label'       => __('Alignment', 'magical-addons-for-elementor'),
                 'type'        => Controls_Manager::CHOOSE,
                 'options'     => [
-                    'left'   => [
+                    'flex-start'   => [
                         'title' => __('Left', 'magical-addons-for-elementor'),
                         'icon'  => 'eicon-text-align-left',
                     ],
@@ -560,14 +560,14 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                         'title' => __('Center', 'magical-addons-for-elementor'),
                         'icon'  => 'eicon-text-align-center',
                     ],
-                    'right'  => [
+                    'flex-end'  => [
                         'title' => __('Right', 'magical-addons-for-elementor'),
                         'icon'  => 'eicon-text-align-right',
                     ],
                 ],
                 'default'     => 'center',
                 'selectors'   => [
-                    '{{WRAPPER}} .mg-share-buttons' => 'text-align: {{VALUE}};'
+                    '{{WRAPPER}} .mg-share-buttons' => 'justify-content: {{VALUE}};'
                 ],
             ]
         );
@@ -813,20 +813,26 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
             <?php
             foreach ($social_icons as $index => $icon) :
                 $social_media_name  = sanitize_key($icon['share_network']);
+                $default_network_icons = [
+                    'twitter' => 'fab fa-x-twitter',
+                ];
+                $default_network_labels = [
+                    'twitter' => __('X.com', 'magical-addons-for-elementor'),
+                ];
 
                 // Check if a custom icon is selected; otherwise, use default icon settings.
                 $select_icon = !empty($icon['custom_icon']) ? $icon['custom_icon'] : [
-                    'value' => 'fab fa-' . $icon['share_network'],
+                    'value' => isset($default_network_icons[$social_media_name]) ? $default_network_icons[$social_media_name] : 'fab fa-' . $icon['share_network'],
                     'library' => 'fa-brands'
                 ];
 
-                $custom_share_title = esc_html($icon['share_title']);
-                $share_text = esc_html($icon['share_text']);
-                $default_share_text = esc_html(ucfirst($social_media_name));
+                $custom_share_title = !empty($icon['share_title']) ? esc_html($icon['share_title']) : esc_html(get_the_title());
+                $share_text = esc_html($icon['share_text'] ?? '');
+                $default_share_text = isset($default_network_labels[$social_media_name]) ? esc_html($default_network_labels[$social_media_name]) : esc_html(ucfirst($social_media_name));
                 $image = isset($icon['image']['url']) ? esc_url($icon['image']['url']) : '';
-                $twitter_handle = esc_html($icon['twitter_handle']);
+                $twitter_handle = esc_html($icon['twitter_handle'] ?? '');
                 $share_on_text = $share_text ? $share_text : $default_share_text;
-                $hashtags = esc_html($icon['hashtags']);
+                $hashtags = esc_html($icon['hashtags'] ?? '');
                 $url = esc_url(get_the_permalink());
                 $custom_share_url = isset($icon['custom_link']['url']) ? esc_url($icon['custom_link']['url']) : '';
                 $share_url = $custom_share_url ? $custom_share_url : $url;
@@ -834,7 +840,7 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 $key1 = $this->get_repeater_setting_key('list_classes', 'social_icons', $index);
                 $this->add_render_attribute($key1, 'class', [
                     'mg-share-button',
-                    'elementor-repeater-item-' . sanitize_html_class($icon['_id'])
+                    'elementor-repeater-item-' . sanitize_html_class($icon['_id'] ?? '')
                 ]);
 
                 $key2 = $this->get_repeater_setting_key('link_classes', 'social_icons', $index);
@@ -850,9 +856,19 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 $this->add_render_attribute($key2, 'data-title', esc_attr($custom_share_title));
                 $this->add_render_attribute($key2, 'data-image', esc_url($image));
 
+                if ($social_media_name !== 'email') {
+                    $this->add_render_attribute($key2, 'target', '_blank');
+                    $this->add_render_attribute($key2, 'rel', 'noopener noreferrer');
+                }
+
                 if ($social_media_name == 'email') {
-                    $this->add_render_attribute($key2, 'data-to', sanitize_email($icon['email_to']));
-                    $this->add_render_attribute($key2, 'data-subject', sanitize_text_field($icon['email_subject']));
+                    $this->add_render_attribute($key2, 'data-to', sanitize_email($icon['email_to'] ?? ''));
+                    $this->add_render_attribute($key2, 'data-subject', sanitize_text_field($icon['email_subject'] ?? ''));
+                }
+
+                if ('icon_only' === $network_view) {
+                    $aria_label_text = !empty($share_on_text) ? $share_on_text : sprintf(__('Share on %s', 'magical-addons-for-elementor'), $default_share_text);
+                    $this->add_render_attribute($key2, 'aria-label', esc_attr($aria_label_text));
                 }
 
             ?>

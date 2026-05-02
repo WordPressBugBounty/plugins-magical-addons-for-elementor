@@ -137,7 +137,7 @@ class magicalWidgetInit
 			$widgets_manager->register(new \MgAddon_Flip_Box());
 		}
 		// Call To Action Widget
-		if (mg_get_addons_option('mg_flipbox', 'on') == 'on') {
+		if (mg_get_addons_option('mg_call_to_action', 'on') == 'on') {
 			require_once(MAGICAL_ADDON_PATH . '/includes/widgets/call-to-action.php');
 			$widgets_manager->register(new \MgAddon_Call_To_Action());
 		}

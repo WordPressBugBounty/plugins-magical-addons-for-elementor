@@ -278,6 +278,11 @@ e.g.
 == Changelog ==
 
 = 1.4.4 =
+	* Fixed: Social Share widget 
+	* Fixed: nav menu widget 
+	* Fixed: bug fix
+
+= 1.4.4 =
 	* Fixed: Anything Carousel marquee items responsive issue 
 	* Updated php error and issues
 	* Update all carousel slider and carousel
