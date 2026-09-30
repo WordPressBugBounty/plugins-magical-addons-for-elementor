@@ -3,7 +3,7 @@ Contributors: nalam
 Tags: theme builder, elementor, header footer builder, elementor widget, template library
 Donate link: https://wpthemespace.com/donation/
 Requires at least: 6.6
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: trunk 
 License: GPLv2 or later
@@ -293,11 +293,21 @@ e.g.
 
 == Changelog ==
 
+= 1.5.1 =
+	* Fixed: Elementor editor loading hang caused by accordion hook initialization timing (TypeError: Cannot read properties of undefined reading 'addAction').
+	* Fixed: Prevented blocking remote API timeout on init during local development.
+	* Updated: Added defensive safeguards for elementorFrontend.hooks across widget and conditional display scripts.
+	* Performance: Optimized cloud library activation and template loading.
+
 = 1.5.0 =
-	* Added: Comprehensive Theme Builder (Header, Footer, Single, Archive, Search, 404 templates with display conditions)
-	* Updated: Admin dashboard and settings interface
-	* Fixed: Minor bug fixes and performance improvements
-	* Updated: Full compatibility checks for PHP 8.x and latest Elementor
+	* Added: 100% Free Complete Theme Builder — design headers, footers, single post/page, archive, search results, and 404 templates.
+	* Added: Smart Display Conditions engine with Include/Exclude rules (Entire Site, Singular, Archives, specific pages/posts).
+	* Added: Ready-to-import starter layout templates for headers, footers, single posts, archives, search, and 404 pages.
+	* Added: Dedicated Theme Builder tab in the modernized React admin dashboard.
+	* Updated: Posts Grid and Posts List widgets with shared query controls trait and enhanced taxonomy filtering.
+	* Updated: Upgrade sales banner notice with 25-day recurring cycle and smart Pro dual-active detection.
+	* Fixed: Cleaned up legacy header/footer builder code and resolved potential theme conflicts.
+	* Performance: Optimized asset enqueuing and full compatibility checks with PHP 8.x and latest Elementor 3.x.
 
 = 1.4.6 =
 	* Fixed: Security issues 
