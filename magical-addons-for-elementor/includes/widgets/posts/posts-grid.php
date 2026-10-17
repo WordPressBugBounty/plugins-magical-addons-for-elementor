@@ -481,6 +481,9 @@ class mgPostGridWidget extends \Elementor\Widget_Base
             [
                 'label'       => __('Link Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Read More', 'magical-addons-for-elementor'),
                 'default'     => __('Read More', 'magical-addons-for-elementor'),
@@ -1768,7 +1771,7 @@ class mgPostGridWidget extends \Elementor\Widget_Base
             $button_target = !empty($settings['mgpg_btn_target']) ? esc_attr($settings['mgpg_btn_target']) : '_self';
 
             // Render the button
-            echo '<a href="' . esc_url(get_the_permalink()) . '" target="' . esc_attr($button_target) . '" ';
+            echo '<a href="' . esc_url(get_the_permalink()) . '" target="' . esc_attr($button_target) . '" aria-label="' . esc_attr(sprintf(__('%1$s: %2$s', 'magical-addons-for-elementor'), $button_text, get_the_title())) . '" ';
             $this->print_render_attribute_string('mgpg_btn_title');
             echo '>';
 

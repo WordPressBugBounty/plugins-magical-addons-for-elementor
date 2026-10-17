@@ -119,6 +119,9 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Item Name', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'label_block' => true,
                 'default' => esc_html__('Demo Item', 'magical-addons-for-elementor'),
             ]
@@ -128,6 +131,9 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Percentage Number', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'label_block' => true,
                 'default' => esc_html__('25', 'magical-addons-for-elementor'),
 
@@ -200,6 +206,9 @@ class MG_AddonPieChart extends \Elementor\Widget_Base
             [
                 'label'       => __('Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Enter Card Title', 'magical-addons-for-elementor'),
                 'default'     => __('Magical PieChart', 'magical-addons-for-elementor'),

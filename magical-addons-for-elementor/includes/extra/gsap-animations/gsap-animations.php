@@ -59,9 +59,6 @@ class Magical_GSAP_Animations
 
         // Enqueue editor scripts for live preview
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_scripts']);
-        
-        // Enqueue GSAP notice script in editor
-        add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_gsap_notice_script']);
 
         // Enqueue preview scripts (for iframe)
         add_action('elementor/preview/enqueue_scripts', [$this, 'enqueue_preview_scripts']);
@@ -1404,75 +1401,6 @@ class Magical_GSAP_Animations
             MAGICAL_ADDON_VERSION,
             true
         );
-    }
-
-    /**
-     * Enqueue GSAP feature notice script in editor
-     */
-    public function enqueue_gsap_notice_script()
-    {
-        wp_add_inline_script('elementor-editor', $this->get_gsap_notice_script());
-    }
-
-    /**
-     * Get GSAP feature notice inline script
-     */
-    private function get_gsap_notice_script()
-    {
-        $new_text = esc_html__('New!', 'magical-addons-for-elementor');
-        $title_text = esc_html__('Magical GSAP Animations', 'magical-addons-for-elementor');
-        $desc_text = esc_html__('Scroll animations now available in Advanced Tab of any element.', 'magical-addons-for-elementor');
-        
-        return '
-        (function($) {
-            "use strict";
-            
-            function initGsapNotice() {
-                if (localStorage.getItem("mg_gsap_notice_dismissed") === "true") {
-                    return;
-                }
-                
-                if (document.getElementById("mg-gsap-feature-notice")) {
-                    return;
-                }
-                
-                var panelHeader = document.querySelector("#elementor-panel-header-wrapper");
-                
-                if (!panelHeader) {
-                    setTimeout(initGsapNotice, 1000);
-                    return;
-                }
-                
-                var notice = document.createElement("div");
-                notice.id = "mg-gsap-feature-notice";
-                notice.className = "mg-gsap-feature-notice";
-                notice.innerHTML = \'<div class="mg-gsap-notice-icon"><i class="eicon-animation"></i></div>\' +
-                    \'<div class="mg-gsap-notice-content">\' +
-                    \'<h4>🎉 ' . esc_js($new_text) . ' ' . esc_js($title_text) . '</h4>\' +
-                    \'<p>' . esc_js($desc_text) . '</p>\' +
-                    \'</div>\' +
-                    \'<button type="button" class="mg-gsap-notice-close"><i class="eicon-close"></i></button>\';
-                
-                panelHeader.parentNode.insertBefore(notice, panelHeader.nextSibling);
-                
-                $(document).on("click", ".mg-gsap-notice-close", function() {
-                    localStorage.setItem("mg_gsap_notice_dismissed", "true");
-                    $("#mg-gsap-feature-notice").slideUp(300, function() { $(this).remove(); });
-                });
-            }
-            
-            if (typeof elementor !== "undefined") {
-                elementor.on("panel:init", function() {
-                    setTimeout(initGsapNotice, 500);
-                });
-            }
-            
-            $(document).ready(function() {
-                setTimeout(initGsapNotice, 3000);
-            });
-            
-        })(jQuery);
-        ';
     }
 
     /**

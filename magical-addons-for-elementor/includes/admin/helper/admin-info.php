@@ -6,7 +6,7 @@
 
 class madAdminInfo
 {
-    const NOTICE_DISMISSED_META_KEY = 'mg_bundle_sales_notice_dismissed';
+    const NOTICE_DISMISSED_META_KEY = 'mg_bundle_sales_notice_v3_dismissed';
 
     public static function init()
     {
@@ -38,8 +38,9 @@ class madAdminInfo
             $hide_time = get_user_meta($user_id, self::NOTICE_DISMISSED_META_KEY, true);
             if (!empty($hide_time)) {
                 $dismissed_timestamp = is_numeric($hide_time) ? (int)$hide_time : strtotime($hide_time);
-                $days_passed = round((time() - $dismissed_timestamp) / (24 * 60 * 60));
-                if ($days_passed < 25) {
+                $seconds_passed      = time() - $dismissed_timestamp;
+                $day_in_seconds      = defined('DAY_IN_SECONDS') ? DAY_IN_SECONDS : 86400;
+                if ($seconds_passed < (25 * $day_in_seconds)) {
                     return;
                 }
             }
@@ -53,31 +54,38 @@ class madAdminInfo
             <div class="mg-sales-inner">
                 <div class="mg-sales-header">
                     <div class="mg-sales-badges">
-                        <span class="mg-sales-badge mg-sales-badge-new">
-                            <span class="mg-sales-badge-icon">🚀</span> <?php esc_html_e('NEW: THEME BUILDER', 'magical-addons-for-elementor'); ?>
+                        <span class="mg-sales-badge mg-sales-badge-pro">
+                            <span class="mg-sales-badge-icon">⚡</span> <?php esc_html_e('UPGRADE TO PRO', 'magical-addons-for-elementor'); ?>
                         </span>
                         <span class="mg-sales-badge mg-sales-badge-deal">
-                            <?php esc_html_e('🔥 SPECIAL 2-IN-1 BUNDLE', 'magical-addons-for-elementor'); ?>
+                            <?php esc_html_e('🔥 LIMITED-TIME 50% BUNDLE OFFER', 'magical-addons-for-elementor'); ?>
+                        </span>
+                        <span class="mg-sales-badge mg-sales-badge-new">
+                            <span class="mg-sales-badge-icon">🚀</span> <?php esc_html_e('THEME BUILDER INCLUDED', 'magical-addons-for-elementor'); ?>
                         </span>
                     </div>
                     <div class="mg-sales-pricing">
                         <span class="mg-sales-original-price"><del>$58</del></span>
                         <span class="mg-sales-current-price">$29</span>
-                        <span class="mg-sales-save-tag"><?php esc_html_e('50% OFF', 'magical-addons-for-elementor'); ?></span>
+                        <span class="mg-sales-save-tag"><?php esc_html_e('SAVE $29 (50% OFF)', 'magical-addons-for-elementor'); ?></span>
                     </div>
                 </div>
 
                 <div class="mg-sales-content">
                     <h3 class="mg-sales-title">
-                        <?php esc_html_e('Magical Theme Builder is Live! Get Magical Addons Pro + Magical Posts Display Pro for Just $29', 'magical-addons-for-elementor'); ?>
+                        <?php esc_html_e('Unlock the Full Power of Elementor with Magical Addons Pro + Magical Posts Display Pro', 'magical-addons-for-elementor'); ?>
                     </h3>
                     <p class="mg-sales-desc">
-                        <?php esc_html_e('Design unlimited Headers, Footers, Single Post & Archive templates with our brand-new Theme Builder. Supercharge your Elementor workflow with 70+ Pro Widgets, Anything Carousel, GSAP Animations, Post Grids, and more — both Pro plugins bundled together for only $29!', 'magical-addons-for-elementor'); ?>
+                        <?php esc_html_e('Build completely custom Headers, Footers, Single Post & Archive templates without Elementor Pro. Get instant access to 70+ Pro Widgets, Anything Carousel, 16+ Dynamic Tags with ACF support, GSAP Scroll Animations, and Priority Support — both Pro plugins bundled together for only $29!', 'magical-addons-for-elementor'); ?>
                     </p>
                     <div class="mg-sales-features">
                         <span class="mg-sales-feature">
                             <span class="mg-sales-feature-icon">🎨</span>
-                            <strong><?php esc_html_e('Theme Builder', 'magical-addons-for-elementor'); ?></strong>&nbsp;<?php esc_html_e('(Header, Footer, Single Post & Archive)', 'magical-addons-for-elementor'); ?>
+                            <strong><?php esc_html_e('Theme Builder Pro', 'magical-addons-for-elementor'); ?></strong>
+                        </span>
+                        <span class="mg-sales-feature">
+                            <span class="mg-sales-feature-icon">🏷️</span>
+                            <strong><?php esc_html_e('Dynamic Tags + ACF', 'magical-addons-for-elementor'); ?></strong>
                         </span>
                         <span class="mg-sales-feature">
                             <span class="mg-sales-feature-icon">🧩</span>
@@ -89,7 +97,7 @@ class madAdminInfo
                         </span>
                         <span class="mg-sales-feature">
                             <span class="mg-sales-feature-icon">🎠</span>
-                            <?php esc_html_e('Anything Carousel & Sliders', 'magical-addons-for-elementor'); ?>
+                            <?php esc_html_e('Anything Carousel (Nested)', 'magical-addons-for-elementor'); ?>
                         </span>
                         <span class="mg-sales-feature">
                             <span class="mg-sales-feature-icon">✨</span>
@@ -102,19 +110,22 @@ class madAdminInfo
                     </div>
                     <div class="mg-sales-actions">
                         <a href="<?php echo esc_url($bundle_link); ?>" class="mg-sales-btn mg-sales-btn-primary" target="_blank">
-                            <?php esc_html_e('Get Both Plugins for $29', 'magical-addons-for-elementor'); ?>
+                            <span class="mg-sales-btn-shine"></span>
+                            <span class="mg-sales-btn-icon">⚡</span>
+                            <?php esc_html_e('Get 2-in-1 Pro Bundle for $29', 'magical-addons-for-elementor'); ?>
                             <span class="mg-sales-btn-arrow">→</span>
                         </a>
                         <a href="<?php echo esc_url($theme_builder_link); ?>" class="mg-sales-btn mg-sales-btn-secondary">
+                            <span class="mg-sales-btn-icon">🎨</span>
                             <?php esc_html_e('Explore Theme Builder', 'magical-addons-for-elementor'); ?>
                         </a>
                         <a href="<?php echo esc_url($dismiss_url); ?>" class="mg-sales-btn mg-sales-btn-dismiss mg-sales-dismiss-btn">
-                            <?php esc_html_e('Dismiss Now', 'magical-addons-for-elementor'); ?>
+                            <?php esc_html_e('Dismiss the notice', 'magical-addons-for-elementor'); ?>
                         </a>
                     </div>
                 </div>
             </div>
-            <button type="button" class="notice-dismiss mg-sales-dismiss-btn"><span class="screen-reader-text"><?php esc_html_e('Dismiss this notice.', 'magical-addons-for-elementor'); ?></span></button>
+            <button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php esc_html_e('Dismiss this notice.', 'magical-addons-for-elementor'); ?></span></button>
         </div>
         <?php
     }
@@ -154,8 +165,9 @@ class madAdminInfo
 
     public static function mgaddons_admin_scripts()
     {
-        wp_enqueue_style('mgaddons-admin-info', MAGICAL_ADDON_URL . 'assets/css/mg-admin-info.css', array(), MAGICAL_ADDON_VERSION, 'all');
-        wp_enqueue_script('mgaddons-admin-info', MAGICAL_ADDON_URL . 'assets/js/mg-admin-info.js', array('jquery'), MAGICAL_ADDON_VERSION, true);
+        $version = defined('WP_DEBUG') && WP_DEBUG ? time() : MAGICAL_ADDON_VERSION . '.1';
+        wp_enqueue_style('mgaddons-admin-info', MAGICAL_ADDON_URL . 'assets/css/mg-admin-info.css', array(), $version, 'all');
+        wp_enqueue_script('mgaddons-admin-info', MAGICAL_ADDON_URL . 'assets/js/mg-admin-info.js', array('jquery'), $version, true);
 
         // Add AJAX URL & nonce for sales notice
         wp_localize_script('mgaddons-admin-info', 'magicalAdminInfo', array(

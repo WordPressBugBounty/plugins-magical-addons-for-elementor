@@ -321,6 +321,9 @@ class mg_ScrollTop extends Widget_Base
                 'label' => esc_html__('Text', 'magical-addons-for-elementor'),
                 'type' => Controls_Manager::TEXT,
                 'default' => 'Scroll To Top',
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'condition' => [
                     'button_txt_show' => 'yes',
                 ],
@@ -725,8 +728,9 @@ class mg_ScrollTop extends Widget_Base
         ];
 
 
+        $aria_label = !empty($settings['button_text']) ? $settings['button_text'] : __('Scroll to top', 'magical-addons-for-elementor');
         echo '<div class="mg-sct-wrapper">';
-        echo "<div class='mg-sct-btn' data-settings='" . wp_json_encode($stt_settings) . "'>";
+        echo "<div class='mg-sct-btn' role='button' tabindex='0' aria-label='" . esc_attr($aria_label) . "' data-settings='" . wp_json_encode($stt_settings) . "'>";
 
         if ('' !== $settings['select_icon']['value']) {
             echo '<span class="mg-sct-icon">';

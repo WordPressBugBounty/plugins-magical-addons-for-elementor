@@ -148,6 +148,9 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
                 'input_type'  => 'text',
                 'placeholder' => __('Connector Text', 'magical-addons-for-elementor'),
                 'default'     => __('OR', 'magical-addons-for-elementor'),
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'condition' => [
                     'mg_db_show_btn_joint' => 'yes',
                     'mg_db_styles' => 'style1',
@@ -212,6 +215,9 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('VIEW DEALS', 'magical-addons-for-elementor'),
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'condition' => [
                     'mg_db_btn_use' => 'yes',
                 ],
@@ -229,6 +235,9 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ],
                 'separator' => 'before',
                 'condition' => [
@@ -414,6 +423,9 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('VIEW DEALS', 'magical-addons-for-elementor'),
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'condition' => [
                     'mg_db_btn2_use' => 'yes',
                 ],
@@ -428,6 +440,9 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ],
                 'condition' => [
                     'mg_db_btn2_use' => 'yes',
@@ -1405,8 +1420,8 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
             $mg_db_btn_link = $settings['mg_db_btn_link'];
             $mg_db_btn_selected_icon = $settings['mg_db_btn_selected_icon'];
             $this->add_render_attribute('mg_db_btn_title', 'class', 'mg-dual-btn mg-dual-btn1');
-
             $this->add_render_attribute('mg_db_btn_title', 'href', esc_url($mg_db_btn_link['url']));
+            $this->add_render_attribute('mg_db_btn_title', 'aria-label', esc_attr(!empty($mg_db_btn_title) ? $mg_db_btn_title : __('Button', 'magical-addons-for-elementor')));
             if (!empty($mg_db_btn_link['is_external'])) {
                 $this->add_render_attribute('mg_db_btn_title', 'target', '_blank');
             }
@@ -1426,6 +1441,7 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
 
             $this->add_render_attribute('mg_db_btn2_title', 'class', 'mg-dual-btn mg-dual-btn2');
             $this->add_render_attribute('mg_db_btn2_title', 'href', esc_url($mg_db_btn_link['url']));
+            $this->add_render_attribute('mg_db_btn2_title', 'aria-label', esc_attr(!empty($mg_db_btn_title) ? $mg_db_btn_title : __('Button', 'magical-addons-for-elementor')));
             if (!empty($mg_db_btn_link['is_external'])) {
                 $this->add_render_attribute('mg_db_btn2_title', 'target', '_blank');
             }
@@ -1448,9 +1464,9 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
                     <span><?php echo mg_kses_tags($mg_db_btn_title); ?></span>
                     <?php if ($mg_flipbtn_icon_position == 'right') : ?>
                         <span class="right"><?php \Elementor\Icons_Manager::render_icon($mg_db_btn_selected_icon); ?></span>
+
                     <?php endif; ?>
                 </a>
-
                 <?php if ($btn == 1 && 'yes' === $settings['mg_db_show_btn_joint']) : ?>
                     <span class="mg-joint-btn"><?php echo mg_kses_tags($mg_db_btn_con_title); ?></span>
                 <?php endif; ?>
@@ -1470,7 +1486,7 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
     protected function content_template()
     {
     ?>
-        <# var settings=settings; var mg_db_styles=settings['mg_db_styles']; function mgf_button(settings, btn) { var mg_flipbtn_icon_position, mg_db_usebtn_icon, mg_db_btn_title, mg_db_btn_con_title, mg_db_btn_link, mg_db_btn_selected_icon, btn_attr; var btn_attr='' ; if (btn===1) { mg_flipbtn_icon_position=settings['mg_flipbtn_icon_position']; mg_db_usebtn_icon=settings['mg_db_usebtn_icon']; mg_db_usebtn2_icon='' ; mg_db_btn_title=settings['mg_db_btn_title']; mg_db_btn_con_title=settings['mg_db_btn_con_title']; mg_db_btn_selected_icon=settings['mg_db_btn_selected_icon']; btn_attr='class="mg-dual-btn mg-dual-btn1"' ; var btn1Link=settings.mg_db_btn_link; if ( btn1Link ) { btn_attr +=' href="' + _.escape(btn1Link.url) + '"' ; if ( btn1Link.is_external ) { btn_attr +=' target="_blank"' ; } if ( btn1Link.nofollow ) { btn_attr +=' rel="nofollow"' ; } } } else { mg_flipbtn_icon_position=settings['mg_flipbtn2_icon_position']; mg_db_usebtn2_icon=settings['mg_db_usebtn2_icon']; mg_db_usebtn_icon='' ; mg_db_btn_title=settings['mg_db_btn2_title']; mg_db_btn_con_title=settings['mg_db_btn_con_title']; mg_db_btn_link=settings['mg_db_btn2_link']; mg_db_btn_selected_icon=settings['mg_db_btn2_selected_icon']; btn_attr='class="mg-dual-btn mg-dual-btn2"' ; var btn2Link=settings.mg_db_btn2_link; if ( btn2Link ) { btn_attr +=' href="' + _.escape(btn2Link.url) + '"' ; if ( btn2Link.is_external ) { btn_attr +=' target="_blank"' ; } if ( btn2Link.nofollow ) { btn_attr +=' rel="nofollow"' ; } } } #>
+        <# var settings=settings; var mg_db_styles=settings['mg_db_styles']; function mgf_button(settings, btn) { var mg_flipbtn_icon_position, mg_db_usebtn_icon, mg_db_btn_title, mg_db_btn_con_title, mg_db_btn_link, mg_db_btn_selected_icon, btn_attr; var btn_attr='' ; if (btn===1) { mg_flipbtn_icon_position=settings['mg_flipbtn_icon_position']; mg_db_usebtn_icon=settings['mg_db_usebtn_icon']; mg_db_usebtn2_icon='' ; mg_db_btn_title=settings['mg_db_btn_title']; mg_db_btn_con_title=settings['mg_db_btn_con_title']; mg_db_btn_selected_icon=settings['mg_db_btn_selected_icon']; btn_attr='class="mg-dual-btn mg-dual-btn1" aria-label="' + _.escape(mg_db_btn_title ? mg_db_btn_title : 'Button') + '"' ; var btn1Link=settings.mg_db_btn_link; if ( btn1Link ) { btn_attr +=' href="' + _.escape(btn1Link.url) + '"' ; if ( btn1Link.is_external ) { btn_attr +=' target="_blank"' ; } if ( btn1Link.nofollow ) { btn_attr +=' rel="nofollow"' ; } } } else { mg_flipbtn_icon_position=settings['mg_flipbtn2_icon_position']; mg_db_usebtn2_icon=settings['mg_db_usebtn2_icon']; mg_db_usebtn_icon='' ; mg_db_btn_title=settings['mg_db_btn2_title']; mg_db_btn_con_title=settings['mg_db_btn_con_title']; mg_db_btn_link=settings['mg_db_btn2_link']; mg_db_btn_selected_icon=settings['mg_db_btn2_selected_icon']; btn_attr='class="mg-dual-btn mg-dual-btn2" aria-label="' + _.escape(mg_db_btn_title ? mg_db_btn_title : 'Button') + '"' ; var btn2Link=settings.mg_db_btn2_link; if ( btn2Link ) { btn_attr +=' href="' + _.escape(btn2Link.url) + '"' ; if ( btn2Link.is_external ) { btn_attr +=' target="_blank"' ; } if ( btn2Link.nofollow ) { btn_attr +=' rel="nofollow"' ; } } } #>
 
 
             <# if ((mg_db_usebtn_icon==='yes' && btn===1) || (mg_db_usebtn2_icon==='yes' && btn===2)) { #>
@@ -1494,7 +1510,7 @@ class MgAddon_Dual_Button extends \Elementor\Widget_Base
                 </div>
                 <# } else { #>
                     <div class="mg-dual-btn-one">
-                        <a {{{ btn_attr }}}>{{{ settings['mg_db_btn_title'] }}}</a>
+                        <a {{{ btn_attr }}}>{{{ mg_db_btn_title }}}</a>
                         <# if (btn===1 && settings['mg_db_show_btn_joint']==='yes' ) { #>
                             <span class="mg-joint-btn">{{{ settings['mg_db_btn_con_title'] }}}</span>
                             <# } #>

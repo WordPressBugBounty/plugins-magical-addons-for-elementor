@@ -1342,7 +1342,7 @@ class mgDataTable extends \Elementor\Widget_Base
 											}
 										?>
 											<div class="mg-table--body-row-cell-icon">
-												<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($table_cell[$j]['title']); ?>">
+												<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(!empty($table_cell[$j]['title']) ? $table_cell[$j]['title'] : __('Table Cell Image', 'magical-addons-for-elementor')); ?>">
 											</div>
 										<?php endif; ?>
 									</div>

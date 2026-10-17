@@ -2489,12 +2489,36 @@ a.mg-lc-single {
 }
 
 .mg-search-form-submit {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
   padding: 0 !important;
   cursor: pointer;
   border-style: solid;
   -webkit-transition: all 0.2s;
   -o-transition: all 0.2s;
   transition: all 0.2s;
+}
+
+.mg-search-form-submit i {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.mg-search-form-submit svg {
+  width: 16px;
+  height: 16px;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 .mg-search-form-disable-submit-btn-yes .mg-search-form-submit {

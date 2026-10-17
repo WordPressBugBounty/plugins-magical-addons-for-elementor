@@ -458,6 +458,7 @@ class MgAddon_imgSmoothScroll extends \Elementor\Widget_Base
 
 		if ('' !== $settings['link']['url']) {
 			$this->add_render_attribute('link', 'class', 'mg-image-scroll-link mg-media-content');
+			$this->add_render_attribute('link', 'aria-label', esc_attr(__('View image link', 'magical-addons-for-elementor')));
 
 			$this->add_link_attributes('link', $settings['link']);
 		}

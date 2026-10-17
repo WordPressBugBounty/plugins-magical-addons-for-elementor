@@ -52,7 +52,7 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 	 */
 	public function get_title()
 	{
-		return esc_html__('MG Iocn List', 'magical-addons-for-elementor');
+		return esc_html__('MG Icon List', 'magical-addons-for-elementor');
 	}
 
 	/**
@@ -281,6 +281,9 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 			[
 				'label' => __('Choose Image', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::MEDIA,
+				'dynamic' => [
+					'active' => true,
+				],
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
@@ -1062,6 +1065,7 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 
 						$this->add_render_attribute($key1, 'href', esc_url($item['link']['url']));
 						$this->add_render_attribute($key1, 'class', 'mg-lc-single');
+						$this->add_render_attribute($key1, 'aria-label', esc_attr(!empty($item['text']) ? $item['text'] : (!empty($item['mg_subtitle']) ? wp_strip_all_tags($item['mg_subtitle']) : __('List item', 'magical-addons-for-elementor'))));
 						if (!empty($item['link']['is_external'])) {
 							$this->add_render_attribute($key1, 'target', '_blank');
 						}
@@ -1131,6 +1135,7 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 
 						$this->add_render_attribute($key1, 'href', esc_url($item['link']['url']));
 						$this->add_render_attribute($key1, 'class', 'mg-lc-single');
+						$this->add_render_attribute($key1, 'aria-label', esc_attr(!empty($item['mg_subtitle']) ? wp_strip_all_tags($item['mg_subtitle']) : (!empty($item['text']) ? $item['text'] : __('List item', 'magical-addons-for-elementor'))));
 						if (!empty($item['link']['is_external'])) {
 							$this->add_render_attribute($key1, 'target', '_blank');
 						}
@@ -1212,7 +1217,7 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 										<# if (item.mglc_icon_type==='image' ) { #>
 											<div class="mg-lc-img">
 												<figure>
-													<img src="{{{ mg_icon_list_image_url }}}" alt="{{{ item.mglc_img.alt }}}" />
+													<img src="{{{ mg_icon_list_image_url }}}" alt="{{{ item.mglc_img.alt || item.text || 'List item' }}}" />
 												</figure>
 											</div>
 											<# } else { #>
@@ -1257,7 +1262,7 @@ class MgAddon_Icon_List extends \Elementor\Widget_Base
 											<# if (item.mglc_icon_type==='image' ) { #>
 												<div class="mg-lc-img">
 													<figure>
-														<img src="{{{ mg_icon_list_image_url }}}" alt="{{{ item.mglc_img.alt }}}" />
+														<img src="{{{ mg_icon_list_image_url }}}" alt="{{{ item.mglc_img.alt || item.text || 'List item' }}}" />
 													</figure>
 												</div>
 												<# } else { #>

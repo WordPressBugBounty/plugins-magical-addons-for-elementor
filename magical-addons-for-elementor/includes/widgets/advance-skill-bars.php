@@ -126,6 +126,9 @@ class mgSkillBars extends Widget_Base
 			'name',
 			[
 				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'label' => __('Name', 'magical-addons-for-elementor'),
 				'default' => __('Design', 'magical-addons-for-elementor'),
 				'placeholder' => __('Type a skill name', 'magical-addons-for-elementor'),

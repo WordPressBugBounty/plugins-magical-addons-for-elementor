@@ -143,7 +143,9 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 				'placeholder' => __('About me', 'magical-addons-for-elementor'),
 				'default'     => __('About me', 'magical-addons-for-elementor'),
 				'label_block'     => true,
-
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(
@@ -184,6 +186,9 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'dynamic' => [
+					'active' => true,
 				],
 			]
 		);
@@ -265,7 +270,9 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 				'placeholder' => __('John Doe', 'magical-addons-for-elementor'),
 				'default'     => __('John Doe', 'magical-addons-for-elementor'),
 				'label_block'     => true,
-
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -298,7 +305,9 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 				'placeholder' => __('Senior developer', 'magical-addons-for-elementor'),
 				'default'     => __('Senior developer', 'magical-addons-for-elementor'),
 				'label_block'     => true,
-
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(
@@ -309,6 +318,9 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 				'input_type'  => 'text',
 				'placeholder' => __('Team description goes here.', 'magical-addons-for-elementor'),
 				'default'     => __('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo, dummy text you can edit or remove it.', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -442,6 +454,9 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 				'placeholder' => 'https://your-link.com',
 				'default' => [
 					'url' => 'https://your-link.com',
+				],
+				'dynamic' => [
+					'active' => true,
 				],
 				'separator' => 'before',
 
@@ -1485,6 +1500,9 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 								if (!empty($memeber_icon['mg_member_icon_link']['nofollow'])) {
 									$this->set_render_attribute($key1, 'rel', 'nofollow');
 								}
+								$icon_val = !empty($memeber_icon['mgab_social_selected_icon']['value']) ? $memeber_icon['mgab_social_selected_icon']['value'] : (!empty($memeber_icon['mgab_social_icon']) ? $memeber_icon['mgab_social_icon'] : 'social');
+								$network_clean = ucfirst(str_replace(['fab fa-', 'fas fa-', 'far fa-', 'fa-'], '', $icon_val));
+								$this->add_render_attribute($key1, 'aria-label', sprintf(esc_attr__('%s profile', 'magical-addons-for-elementor'), $network_clean));
 							?>
 								<li><a <?php echo $this->get_render_attribute_string($key1); ?>>
 
@@ -1571,7 +1589,7 @@ class MgAddon_About_Widget extends \Elementor\Widget_Base
 																					<div class="mg-social">
 																						<ul>
 																							<# _.each(mg_memeber_icon_list, function(memeber_icon, index) { #>
-																								<# var key1=view.getRepeaterSettingKey('mg_member_icon_link', 'mg_memeber_icon_list' , index); view.addRenderAttribute(key1, 'href' , memeber_icon.mg_member_icon_link.url); if (memeber_icon.mg_member_icon_link.is_external) { view.addRenderAttribute(key1, 'target' , '_blank' ); } if (memeber_icon.mg_member_icon_link.nofollow) { view.addRenderAttribute(key1, 'rel' , 'nofollow' ); } #>
+																								<# var key1=view.getRepeaterSettingKey('mg_member_icon_link', 'mg_memeber_icon_list' , index); view.addRenderAttribute(key1, 'href' , memeber_icon.mg_member_icon_link.url); if (memeber_icon.mg_member_icon_link.is_external) { view.addRenderAttribute(key1, 'target' , '_blank' ); } if (memeber_icon.mg_member_icon_link.nofollow) { view.addRenderAttribute(key1, 'rel' , 'nofollow' ); } var iconVal = (memeber_icon.mgab_social_selected_icon && memeber_icon.mgab_social_selected_icon.value) ? memeber_icon.mgab_social_selected_icon.value.replace(/fa[brs]? fa-/, '') : 'social'; view.addRenderAttribute(key1, 'aria-label', iconVal + ' profile'); #>
 																									<li>
 																										<a {{{ view.getRenderAttributeString(key1) }}}>
 																											<i aria-hidden="true" class="{{{ memeber_icon.mgab_social_selected_icon.library }}} {{{ memeber_icon.mgab_social_selected_icon.value }}}"></i>

@@ -111,6 +111,9 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 				'label_block'  => true,
 				'placeholder' => __('Enter Section Title', 'magical-addons-for-elementor'),
 				'default'     => __('Section title', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(
@@ -153,6 +156,9 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 				'label_block'  => true,
 				'placeholder' => __('Enter subtitle', 'magical-addons-for-elementor'),
 				'default'     => __('Section Subtitle', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 				'condition' => [
 					'mgsec_subtitle_show' => 'yes',
 				],
@@ -199,6 +205,9 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 				'type'        => \Elementor\Controls_Manager::TEXTAREA,
 				'placeholder' => __('Enter Section Title', 'magical-addons-for-elementor'),
 				'default'     => __('Section title description goes here.', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 				'condition' => [
 					'mgsecdesc_show' => 'yes',
 				],
@@ -284,6 +293,9 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => '',
+				],
+				'dynamic' => [
+					'active' => true,
 				],
 				'condition' => [
 					'mgsecborder_type' => 'image',
@@ -1243,7 +1255,7 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 						<# } else { #>
 							<# if ( settings.mgsectitle_balign ) { #>
 								<div class="mgsimg mgsb-top text-{{ settings.mgsectitle_balign }}">
-									<img src="{{{ mgsec_image_url }}}" />
+									<img src="{{{ mgsec_image_url }}}" alt="{{ settings.mgsec_title ? settings.mgsec_title : 'Section Title Separator' }}" />
 								</div>
 								<# } #>
 									<# } #>
@@ -1277,7 +1289,7 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 																			<# } else { #>
 																				<# if ( settings.mgsectitle_balign ) { #>
 																					<div class="mgsimg mgsb-top text-{{ settings.mgsectitle_balign }}">
-																						<img src="{{{ mgsec_image_url }}}" />
+																						<img src="{{{ mgsec_image_url }}}" alt="{{ settings.mgsec_title ? settings.mgsec_title : 'Section Title Separator' }}" />
 																					</div>
 																					<# } #>
 																						<# } #>

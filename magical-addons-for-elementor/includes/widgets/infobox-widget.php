@@ -240,6 +240,9 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             [
                 'label' => __('Choose Image', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
@@ -284,6 +287,9 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Magical info box title', 'magical-addons-for-elementor'),
                 'default'     => __('Magical info box title', 'magical-addons-for-elementor'),
@@ -314,6 +320,9 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Description', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Magical info box description goes here.', 'magical-addons-for-elementor'),
                 'default'     => __('Magical info box description goes here.', 'magical-addons-for-elementor'),
@@ -370,6 +379,9 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Badge Text', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Badge Text', 'magical-addons-for-elementor'),
                 'default'     => __('Badge', 'magical-addons-for-elementor'),
@@ -433,6 +445,9 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             [
                 'label' => __('Wrapper Link', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -458,6 +473,9 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Button Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('Read More', 'magical-addons-for-elementor'),
@@ -471,6 +489,9 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             [
                 'label' => __('Button Link', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -491,35 +512,20 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
                 'default' => 'no',
             ]
         );
-        if (mg_elementor_version_check('<', '2.6.0')) {
-            $this->add_control(
-                'mginfo_btn_icon',
-                [
-                    'label' => __('Choose Icon', 'magical-addons-for-elementor'),
-                    'label_block' => true,
-                    'type' => \Elementor\Controls_Manager::ICON,
-                    'default' => 'fas fa-chevron-right',
-                    'condition' => [
-                        'mginfo_usebtn_icon' => 'yes',
-                    ],
-                ]
-            );
-        } else {
-            $this->add_control(
-                'mginfo_btn_selected_icon',
-                [
-                    'label' => __('Choose Icon', 'magical-addons-for-elementor'),
-                    'type' => \Elementor\Controls_Manager::ICONS,
-                    'default' => [
-                        'value' => 'fas fa-chevron-right',
-                        'library' => 'fa-solid',
-                    ],
-                    'condition' => [
-                        'mginfo_usebtn_icon' => 'yes',
-                    ],
-                ]
-            );
-        }
+        $this->add_control(
+            'mginfo_btn_selected_icon',
+            [
+                'label' => __('Choose Icon', 'magical-addons-for-elementor'),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-chevron-right',
+                    'library' => 'fa-solid',
+                ],
+                'condition' => [
+                    'mginfo_usebtn_icon' => 'yes',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
             'mginfo_icon_position',
@@ -1361,6 +1367,7 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
 
         $this->add_render_attribute('mginfo_btntitle', 'class', 'mg-btn-text');
         $this->add_render_attribute('mginfo_btntitle', 'class', 'mg-infolink');
+        $this->add_render_attribute('mginfo_btntitle', 'aria-label', esc_attr(!empty($btntitle) ? $btntitle : (!empty($title) ? $title : __('Read More', 'magical-addons-for-elementor'))));
         $this->add_render_attribute('mginfo_btntitle', 'href', esc_url($btn_link['url']));
         if (!empty($btn_link['is_external'])) {
             $this->add_render_attribute('mginfo_btntitle', 'target', '_blank');
@@ -1369,6 +1376,7 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             $this->set_render_attribute('mginfo_btntitle', 'rel', 'nofollow');
         }
         // wrapper  linking
+        $this->add_render_attribute('mginfo_wraplink', 'aria-label', esc_attr(!empty($title) ? $title : __('Info Box', 'magical-addons-for-elementor')));
         $this->add_render_attribute('mginfo_wraplink', 'href', esc_url($mginfo_wraplink['url']));
         if (!empty($mginfo_wraplink['is_external'])) {
             $this->add_render_attribute('mginfo_wraplink', 'target', '_blank');
@@ -1478,6 +1486,7 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
 
             view.addRenderAttribute('mginfo_btntitle', 'class', 'mg-btn-text');
             view.addRenderAttribute('mginfo_btntitle', 'class', 'mg-infolink');
+            view.addRenderAttribute('mginfo_btntitle', 'aria-label', btntitle || title || 'Read More');
             view.addRenderAttribute('mginfo_btntitle', 'href', btn_link.url);
             if (btn_link.is_external) {
                 view.addRenderAttribute('mginfo_btntitle', 'target', '_blank');
@@ -1487,6 +1496,7 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
             }
 
             // wrapper linking
+            view.addRenderAttribute('mginfo_wraplink', 'aria-label', title || 'Info Box');
             view.addRenderAttribute('mginfo_wraplink', 'href', mginfo_wraplink.url);
             if (mginfo_wraplink.is_external) {
                 view.addRenderAttribute('mginfo_wraplink', 'target', '_blank');
@@ -1506,7 +1516,7 @@ class MgAddon_Info_Box extends \Elementor\Widget_Base
 
             function iconOutput() {
                 if (mginfo_icon_type === 'image') {
-                    return '<div class="mgicon-area"><figure class="mg-infobox-img"><img src="' + mginfo_image_url + '" /></figure></div>';
+                    return '<div class="mgicon-area"><figure class="mg-infobox-img"><img src="' + mginfo_image_url + '" alt="' + (settings.mginfo_type_image.alt ? settings.mginfo_type_image.alt : (title ? title : 'Info Box')) + '" /></figure></div>';
                 } else {
                     var iconHTML = elementor.helpers.renderIcon(view, settings.mginfo_type_selected_icon, { 'aria-hidden': true }, 'i', 'object');
                     return '<div class="mgicon-area"><div class="mg-infobox-icon">' + iconHTML.value + '</div></div>';

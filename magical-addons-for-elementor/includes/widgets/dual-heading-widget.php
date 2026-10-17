@@ -109,6 +109,9 @@ class MgAddon_Dual_Heading extends \Elementor\Widget_Base
 				'input_type'  => 'text',
 				'placeholder' => __('Title Part one', 'magical-addons-for-elementor'),
 				'default'     => __('Part one', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(
@@ -119,6 +122,9 @@ class MgAddon_Dual_Heading extends \Elementor\Widget_Base
 				'input_type'  => 'text',
 				'placeholder' => __('Title Part two', 'magical-addons-for-elementor'),
 				'default'     => __('Part two', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(

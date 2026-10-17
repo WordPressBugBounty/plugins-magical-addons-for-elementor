@@ -242,18 +242,29 @@ i.notice-icon.dashicons-before.dashicons-smiley {
 }
 
 /* ============================
-   Sales Notice Styles
+   Sales / Upgrade Pro Notice Styles
    ============================ */
 .mg-sales-notice {
-    background: #fff;
-    border: 1px solid #e2e8f0;
+    background: linear-gradient(135deg, #ffffff 0%, #faf8ff 55%, #f3f0ff 100%);
+    border: 1px solid #e0e7ff;
     border-left: 5px solid #6366f1;
-    border-radius: 8px;
+    border-radius: 12px;
     margin: 20px 20px 15px 0;
     padding: 0;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.07);
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.12), 0 4px 10px rgba(15, 23, 42, 0.04);
     animation: mgSalesSlideIn 0.4s ease-out;
     position: relative;
+    overflow: hidden;
+}
+
+.mg-sales-notice::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
 }
 
 @keyframes mgSalesSlideIn {
@@ -268,7 +279,7 @@ i.notice-icon.dashicons-before.dashicons-smiley {
 }
 
 .mg-sales-inner {
-    padding: 22px 28px 24px 26px;
+    padding: 24px 28px 24px 28px;
     position: relative;
 }
 
@@ -276,10 +287,10 @@ i.notice-icon.dashicons-before.dashicons-smiley {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     flex-wrap: wrap;
     gap: 12px;
-    padding-right: 30px;
+    padding-right: 32px;
 }
 
 .mg-sales-badges {
@@ -292,26 +303,32 @@ i.notice-icon.dashicons-before.dashicons-smiley {
 .mg-sales-badge {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.5px;
-    padding: 4px 10px;
-    border-radius: 4px;
+    letter-spacing: 0.6px;
+    padding: 5px 11px;
+    border-radius: 6px;
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
+}
+
+.mg-sales-badge-pro {
+    background: linear-gradient(135deg, #4338ca, #6366f1);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(67, 56, 202, 0.3);
 }
 
 .mg-sales-badge-new {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    background: linear-gradient(135deg, #0284c7, #38bdf8);
     color: #fff;
-    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
 }
 
 .mg-sales-badge-deal {
-    background: linear-gradient(135deg, #ef4444, #f97316);
+    background: linear-gradient(135deg, #e11d48, #f43f5e);
     color: #fff;
-    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25);
-    animation: mgSalesPulse 2s infinite ease-in-out;
+    box-shadow: 0 2px 8px rgba(225, 29, 72, 0.35);
+    animation: mgSalesPulse 2.4s infinite ease-in-out;
 }
 
 @keyframes mgSalesPulse {
@@ -319,41 +336,44 @@ i.notice-icon.dashicons-before.dashicons-smiley {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.03);
+        transform: scale(1.04);
+        box-shadow: 0 3px 12px rgba(225, 29, 72, 0.5);
     }
 }
 
 .mg-sales-pricing {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    padding: 4px 12px;
+    gap: 10px;
+    background: #ffffff;
+    border: 1.5px solid #e0e7ff;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+    border-radius: 8px;
+    padding: 5px 14px;
 }
 
 .mg-sales-original-price del {
     color: #94a3b8;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
 }
 
 .mg-sales-current-price {
-    color: #0f172a;
-    font-size: 20px;
+    color: #312e81;
+    font-size: 22px;
     font-weight: 800;
     letter-spacing: -0.5px;
 }
 
 .mg-sales-save-tag {
-    background: #10b981;
+    background: linear-gradient(135deg, #10b981, #059669);
     color: #fff;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 3px 8px;
+    border-radius: 5px;
     letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
 }
 
 .mg-sales-content {
@@ -362,20 +382,21 @@ i.notice-icon.dashicons-before.dashicons-smiley {
 }
 
 .mg-sales-title {
-    margin: 0 0 8px;
-    font-size: 18px;
-    font-weight: 700;
-    color: #1e293b;
-    line-height: 1.4;
+    margin: 0 0 10px;
+    font-size: 19px;
+    font-weight: 800;
+    color: #1e1b4b;
+    line-height: 1.35;
     padding-right: 30px;
+    letter-spacing: -0.2px;
 }
 
 .mg-sales-desc {
-    margin: 0 0 16px;
-    font-size: 14px;
+    margin: 0 0 18px;
+    font-size: 14.5px;
     color: #475569;
     line-height: 1.6;
-    max-width: 1000px;
+    max-width: 1050px;
 }
 
 .mg-sales-features {
@@ -389,25 +410,28 @@ i.notice-icon.dashicons-before.dashicons-smiley {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    border: 1px solid #e0e7ff;
     border-radius: 20px;
-    padding: 6px 13px;
+    padding: 6px 14px;
     font-size: 12.5px;
     font-weight: 500;
     color: #334155;
-    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
 }
 
 .mg-sales-feature:hover {
-    background: #f1f5f9;
-    border-color: #cbd5e1;
-    transform: translateY(-1px);
+    background: #ffffff;
+    border-color: #818cf8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.15);
+    color: #1e1b4b;
 }
 
 .mg-sales-feature strong {
-    color: #0f172a;
+    color: #1e1b4b;
     font-weight: 600;
 }
 
@@ -426,28 +450,30 @@ i.notice-icon.dashicons-before.dashicons-smiley {
 .mg-sales-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 10px 22px;
-    border-radius: 6px;
+    gap: 8px;
+    padding: 11px 24px;
+    border-radius: 8px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: none;
     line-height: 1.4;
+    position: relative;
+    overflow: hidden;
 }
 
 .mg-sales-btn-primary {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
     color: #fff !important;
-    box-shadow: 0 3px 12px rgba(99, 102, 241, 0.35);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
 }
 
 .mg-sales-btn-primary:hover {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    box-shadow: 0 5px 16px rgba(99, 102, 241, 0.45);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #4338ca 0%, #6d28d9 50%, #db2777 100%);
+    box-shadow: 0 6px 22px rgba(99, 102, 241, 0.55);
+    transform: translateY(-2px);
     color: #fff !important;
 }
 
@@ -457,65 +483,97 @@ i.notice-icon.dashicons-before.dashicons-smiley {
     outline-offset: 2px;
 }
 
+/* Subtle Shimmer Effect on CTA */
+.mg-sales-btn-shine {
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    left: -100%;
+    width: 60%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: rotate(25deg);
+    animation: mgSalesShine 4s infinite ease-in-out;
+}
+
+@keyframes mgSalesShine {
+    0% { left: -100%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+}
+
+.mg-sales-btn-icon {
+    font-size: 14px;
+    line-height: 1;
+}
+
 .mg-sales-btn-arrow {
     font-size: 15px;
     transition: transform 0.2s ease;
 }
 
 .mg-sales-btn-primary:hover .mg-sales-btn-arrow {
-    transform: translateX(3px);
+    transform: translateX(4px);
 }
 
 .mg-sales-btn-secondary {
-    background: #f1f5f9;
-    color: #334155 !important;
-    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #4338ca !important;
+    border: 1.5px solid #c7d2fe;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .mg-sales-btn-secondary:hover {
-    background: #e2e8f0;
-    color: #0f172a !important;
-    border-color: #94a3b8;
+    background: #eef2ff;
+    color: #312e81 !important;
+    border-color: #818cf8;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(99, 102, 241, 0.12);
 }
 
 .mg-sales-btn-dismiss {
     background: transparent;
-    color: #94a3b8 !important;
-    padding: 10px 12px;
+    color: #64748b !important;
+    padding: 10px 14px;
     font-weight: 500;
     font-size: 13px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
 .mg-sales-btn-dismiss:hover {
-    color: #64748b !important;
-    text-decoration: underline;
+    color: #334155 !important;
+    background: rgba(100, 116, 139, 0.08);
 }
 
 /* Close button inside sales notice */
 .mg-sales-notice .notice-dismiss {
-    top: 14px;
-    right: 14px;
+    top: 16px;
+    right: 16px;
     text-decoration: none;
+    padding: 6px;
 }
 
 .mg-sales-notice .notice-dismiss:before {
     color: #94a3b8;
+    font-size: 18px;
+    transition: all 0.2s ease;
 }
 
 .mg-sales-notice .notice-dismiss:hover:before {
     color: #ef4444;
+    transform: scale(1.15);
 }
 
 /* Responsive */
 @media (max-width: 782px) {
     .mg-sales-inner {
-        padding: 18px 16px;
+        padding: 20px 18px;
     }
 
     .mg-sales-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 12px;
     }
 
     .mg-sales-features {
@@ -524,7 +582,7 @@ i.notice-icon.dashicons-before.dashicons-smiley {
 
     .mg-sales-feature {
         font-size: 12px;
-        padding: 5px 10px;
+        padding: 5px 11px;
     }
 
     .mg-sales-actions {

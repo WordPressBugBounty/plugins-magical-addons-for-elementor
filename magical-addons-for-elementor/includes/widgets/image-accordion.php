@@ -208,6 +208,9 @@ class MgAddon_imgAccordion extends \Elementor\Widget_Base
 			[
 				'label'                 => esc_html__('Link', 'magical-addons-for-elementor'),
 				'type'                  => Controls_Manager::URL,
+				'dynamic'               => [
+					'active'   => true,
+				],
 				'label_block'           => true,
 				'default'               => [
 					'url'           => '#',
@@ -1187,6 +1190,7 @@ class MgAddon_imgAccordion extends \Elementor\Widget_Base
 							'elementor-button',
 							'elementor-size-' . $settings['button_size'],
 						]);
+						$this->add_render_attribute($button_key, 'aria-label', esc_attr(!empty($item['button_text']) ? $item['button_text'] : (!empty($item['title']) ? $item['title'] : __('Learn More', 'magical-addons-for-elementor'))));
 
 						if ($settings['button_hover_animation']) {
 							$this->add_render_attribute($button_key, 'class', 'elementor-animation-' . $settings['button_hover_animation']);

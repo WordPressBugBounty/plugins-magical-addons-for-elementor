@@ -151,6 +151,9 @@ class MgBlockquote extends \Elementor\Widget_Base
 			[
 				'label'       => __('Description', 'magical-addons-for-elementor'),
 				'type'        => \Elementor\Controls_Manager::TEXTAREA,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'label_block'  => true,
 				'placeholder' => __('Enter Description', 'magical-addons-for-elementor'),
 				'default'     => __(' Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia, saepe. Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, nihil. Consectetur adipisicing elit. Quia, saepe. Rolor sit amet consectetur adipisicing elit. Deserunt, nihil.', 'magical-addons-for-elementor'),
@@ -217,6 +220,9 @@ class MgBlockquote extends \Elementor\Widget_Base
 			[
 				'label' => __('Name', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'placeholder' => __('Enter Name', 'magical-addons-for-elementor'),
 				'default' => 'Jone Dow',
 			]
@@ -228,6 +234,9 @@ class MgBlockquote extends \Elementor\Widget_Base
 			[
 				'label' => __('Place', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'placeholder' => __('Enter Place', 'magical-addons-for-elementor'),
 				'default' => __('In The USA', 'magical-addons-for-elementor'),
 			]
@@ -419,6 +428,9 @@ class MgBlockquote extends \Elementor\Widget_Base
 			[
 				'label' => __('Choose Image', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::MEDIA,
+				'dynamic' => [
+					'active' => true,
+				],
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
 				],
@@ -1238,7 +1250,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 					
 					<# if (settings.mgq_icon_type === 'image') { #>
 					<figure class="mg-quote-img">						
-					<img src="{{{ mgblock_image_url }}}" />
+					<img src="{{{ mgblock_image_url }}}" alt="{{{ settings.mgq_name || 'Quote Author' }}}" />
 					</figure>
 					<# } else { #>
 					<div class="mgq-quote-icon">						
@@ -1248,7 +1260,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 				
 				<div class="mg-quote-details">
 					<blockquote class="mg-blockquote">
-						<p>
+					<p>
 							<# if (settings.mgq_show_icon_top) { #>
 								<span class="mcq-icon-top">
 									<i class="{{{ settings.mgq_icon_top.value }}}"></i>
@@ -1314,7 +1326,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 				<div class="mgq-author">
 					<# if (settings.mgq_icon_type === 'image') { #>
 						<figure class="mg-quote-img">
-                			<img src="{{{ mgblock_image_url }}}" />
+                			<img src="{{{ mgblock_image_url }}}" alt="{{{ settings.mgq_name || 'Quote Author' }}}" />
 						</figure>
 					<# } else { #>
 						<div class="mgq-quote-icon">

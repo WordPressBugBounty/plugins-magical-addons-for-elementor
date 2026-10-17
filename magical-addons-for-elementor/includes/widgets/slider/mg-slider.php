@@ -201,6 +201,9 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
             [
                 'label'       => __('Button Title', 'magical-addons-for-elementor'),
                 'type'        => Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('Read More', 'magical-addons-for-elementor'),
@@ -214,6 +217,9 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
             [
                 'label' => __('Button Link', 'magical-addons-for-elementor'),
                 'type' => Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -1636,6 +1642,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
 
                     $this->add_render_attribute($key1, 'href', esc_url($slide['mgs_btn_link']['url']));
                     $this->add_render_attribute($key1, 'class', 'btn btn-info mgs-btn');
+                    $this->add_render_attribute($key1, 'aria-label', esc_attr(!empty($slide['mgs_btn_title']) ? $slide['mgs_btn_title'] : __('Read More', 'magical-addons-for-elementor')));
                     if (!empty($slide['mgs_btn_link']['is_external'])) {
                         $this->add_render_attribute($key1, 'target', '_blank');
                     }
@@ -1653,7 +1660,7 @@ class MgAddon_slider_lite extends \Elementor\Widget_Base
                     <div class="swiper-slide mgs-item">
                         <?php if ($mgs_image) : ?>
                             <div class="mgs-img-before">
-                                <img class="mgs-img" src="<?php echo esc_url($mgs_image); ?>" alt="<?php echo esc_attr($slide['mgs_title']); ?>">
+                                <img class="mgs-img" src="<?php echo esc_url($mgs_image); ?>" alt="<?php echo esc_attr(!empty($slide['mgs_title']) ? $slide['mgs_title'] : __('Slide Image', 'magical-addons-for-elementor')); ?>">
                             </div>
                         <?php endif; ?>
                         <?php if ($slide['mgs_title'] || $slide['mgs_subtitle']) : ?>

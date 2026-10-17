@@ -890,13 +890,13 @@ class MgAddon_Tabs extends \Elementor\Widget_Base
                                         <a class="<?php echo esc_attr($mglink_class); ?>" id="mgtab-<?php echo esc_attr($mgtab_rand . $index); ?>-tab" data-toggle="tab" href="#mgtab<?php echo esc_attr($mgtab_rand . $index); ?>" role="tab" aria-controls="mgtab-<?php echo esc_attr($mgtab_rand . $index); ?>" aria-selected="<?php if ($index == 0) : ?>true<?php else : ?>false<?php endif; ?>">
                                             <?php if ($item['mgtab_icon_show'] == 'yes' && ($settings['mgtab_icon_position'] == 'left' || $settings['mgtab_icon_position'] == 'top')) : ?>
                                                 <span class="mgt-icon-<?php echo esc_attr($settings['mgtab_icon_position']); ?>">
-                                                    <?php \Elementor\Icons_Manager::render_icon($item['mgtab_selected_icon']); ?>
+                                                    <?php \Elementor\Icons_Manager::render_icon($item['mgtab_selected_icon'], ['aria-hidden' => 'true']); ?>
                                                 </span>
                                             <?php endif; ?>
                                             <span <?php echo $this->get_render_attribute_string($key1); ?>><?php echo mg_kses_tags($item['mgtab_title']); ?></span>
                                             <?php if ($item['mgtab_icon_show'] == 'yes' && ($settings['mgtab_icon_position'] == 'right' || $settings['mgtab_icon_position'] == 'bottom')) : ?>
                                                 <span class="mgt-icon-<?php echo esc_attr($settings['mgtab_icon_position']); ?>">
-                                                    <?php \Elementor\Icons_Manager::render_icon($item['mgtab_selected_icon']); ?>
+                                                    <?php \Elementor\Icons_Manager::render_icon($item['mgtab_selected_icon'], ['aria-hidden' => 'true']); ?>
                                                 </span>
                                             <?php endif; ?>
                                         </a>

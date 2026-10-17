@@ -138,6 +138,9 @@ class MgProgressbar extends \Elementor\Widget_Base
 			[
 				'label' => __('Title', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'condition' => [
 					'mgp_title_use' => 'yes',
 				],

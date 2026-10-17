@@ -287,6 +287,9 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
             [
                 'label'     => __('To', 'magical-addons-for-elementor'),
                 'type'      => Controls_Manager::TEXT,
+                'dynamic'   => [
+                    'active' => true,
+                ],
                 'label_block' => true,
                 'condition' => [
                     'share_network' => 'email',
@@ -299,6 +302,9 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
             [
                 'label'     => __('Subject', 'magical-addons-for-elementor'),
                 'type'      => Controls_Manager::TEXT,
+                'dynamic'   => [
+                    'active' => true,
+                ],
                 'label_block' => true,
                 'condition' => [
                     'share_network' => 'email',
@@ -312,6 +318,9 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                 'label'     => __('X (Twitter) Handle', 'magical-addons-for-elementor'),
                 'description' => __('Write without @ sign.', 'magical-addons-for-elementor'),
                 'type'      => Controls_Manager::TEXT,
+                'dynamic'   => [
+                    'active' => true,
+                ],
                 'condition' => [
                     'share_network' => 'twitter',
                 ]
@@ -866,10 +875,8 @@ class MG_Addon_Sharebtn extends \Elementor\Widget_Base
                     $this->add_render_attribute($key2, 'data-subject', sanitize_text_field($icon['email_subject'] ?? ''));
                 }
 
-                if ('icon_only' === $network_view) {
-                    $aria_label_text = !empty($share_on_text) ? $share_on_text : sprintf(__('Share on %s', 'magical-addons-for-elementor'), $default_share_text);
-                    $this->add_render_attribute($key2, 'aria-label', esc_attr($aria_label_text));
-                }
+                $aria_label_text = !empty($share_on_text) ? sprintf(__('Share on %s', 'magical-addons-for-elementor'), $share_on_text) : sprintf(__('Share on %s', 'magical-addons-for-elementor'), $default_share_text);
+                $this->add_render_attribute($key2, 'aria-label', esc_attr($aria_label_text));
 
             ?>
                 <li <?php $this->print_render_attribute_string($key1); ?>>

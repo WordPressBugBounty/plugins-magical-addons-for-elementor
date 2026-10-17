@@ -5,7 +5,7 @@ Donate link: https://wpthemespace.com/donation/
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: trunk 
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,7 @@ Take complete control of your website design with the built-in Magical Theme Bui
 
 ### New & Hot Features 
 - ** Complete Theme Builder (Header, Footer, Single, Archive, 404) - 100% FREE! **
+- ** 100% Free Dynamic Tags (No Elementor Pro Needed!) **
 - ** Anything Carousel **
 - ** GSAP Scroll Animations **
 - ** Custom Css Free **
@@ -73,6 +74,15 @@ Transform your website with professional scroll-triggered animations powered by 
 * Scrub animations linked to scroll position
 * Debug markers for fine-tuning
 * Advanced stagger animations
+
+### 🏷️ 100% Free Dynamic Tags (No Elementor Pro Needed!)
+Take your website dynamic capabilities to the next level without purchasing Elementor Pro! Magical Addons introduces a native Dynamic Tags module for Elementor Free. Easily populate widget titles, texts, URLs, images, and author info dynamically from WordPress posts, pages, custom fields, and site settings:
+
+* **Post Data:** Post Title, Post Excerpt, Post Date, Post ID, Post URL, Author Info (Name, Bio, Email, Website), Post Featured Image (Data Tag).
+* **Meta & Custom Fields:** Post Custom Field (Native WordPress meta + Advanced Custom Fields / ACF support), URL Query Arg.
+* **Site Data:** Site Title, Site Tagline, Site URL, Site Logo (Data Tag), Current Date & Time.
+* **User & Archive Data:** User Info (Display Name, First/Last Name, Nickname, Email, Website, Bio), Archive Title.
+* **Advanced Text Formatting:** Complete support for Before text, After text, Fallback text, and HTML-safe sanitization.
 
 
 ## Magical Addons Widgets List: 
@@ -292,6 +302,23 @@ e.g.
 
 
 == Changelog ==
+
+= 1.5.2 =
+	* NEW: Built-in 100% Free Dynamic Tags Module for Elementor Free users (no Elementor Pro needed).
+	* Added: 16 native dynamic tags across 5 categories (Post Data, Meta & ACF, Site Info, User Info, Archive Data).
+	* Added: Post Custom Field & ACF dynamic tag with automatic fallbacks and string/array sanitization.
+	* Added: Post Featured Image and Site Logo dynamic image data tags.
+	* Added: URL Query Arg dynamic tag for extracting GET parameters into any widget control.
+	* Added: Advanced text wrapper controls (Before, After, Fallback) with security escaping for all text tags.
+	* Updated: Enabled dynamic tags capability ('dynamic' => ['active' => true]) across all widget text, URL, and image controls.
+	* Fixed: MG Countdown widget — updated default countdown target date to 1 year dynamically in the future.
+	* Fixed: MG Countdown widget — added safe cross-browser date parsing and automatic fallback for expired legacy dates.
+	* Fixed: MG Countdown widget — enabled dynamic tag support on target date and clock time settings.
+	* Fixed: MG Search Bar widget — fixed oversized search icon issue with flex centering and added responsive Icon Size control.
+	* Improved: Accessibility enhancements across widgets (added aria-label attributes, image alt fallbacks, and dialog roles).
+	* Updated: Standardized icon controls to Elementor Icons Manager format (Controls_Manager::ICONS).
+	* Fixed: Typos and label inconsistencies ('MG Iocn List', 'Mbbile', 'Addintional Options').
+	* Tested: 100% compatible with WordPress 6.8 & 6.9 and latest Elementor 3.x.
 
 = 1.5.1 =
 	* Fixed: Elementor editor loading hang caused by accordion hook initialization timing (TypeError: Cannot read properties of undefined reading 'addAction').

@@ -1048,6 +1048,9 @@ class MgAddon_contentReveal extends \Elementor\Widget_Base
 					'elementor-button',
 					'elementor-size-' . $settings['button_size'],
 				],
+				'role'            => 'button',
+				'tabindex'        => '0',
+				'aria-expanded'   => 'false',
 			],
 		]);
 

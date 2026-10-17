@@ -111,7 +111,10 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 				'label_block' => true,
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'placeholder' => 'Paste Youtube url here',
-				'default' => 'https://www.youtube.com/watch?v=LXb3EKWsInQ'
+				'default' => 'https://www.youtube.com/watch?v=LXb3EKWsInQ',
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(
@@ -131,6 +134,9 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'dynamic' => [
+					'active' => true,
 				],
 				'condition' => [
 					'mg_cvideo_thumb_type' => '',
@@ -241,7 +247,9 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 				'placeholder' => __('Enter Video Card Title', 'magical-addons-for-elementor'),
 				'default'     => __('Video Card Title', 'magical-addons-for-elementor'),
 				'label_block'     => true,
-
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(
@@ -282,6 +290,9 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 				'placeholder' => __('Enter Video Card Sub Title', 'magical-addons-for-elementor'),
 				'default'     => __('Video Card Sub Title', 'magical-addons-for-elementor'),
 				'label_block'     => true,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'condition' => [
 					'mg_cvideo_subtitle_show' => 'yes',
 				],
@@ -321,6 +332,9 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 				'input_type'  => 'text',
 				'placeholder' => __('Card description goes here.', 'magical-addons-for-elementor'),
 				'default'     => __('dummy text you can edit or remove it. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo.', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -381,6 +395,9 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 				'input_type'  => 'text',
 				'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
 				'default'     => __('Read More', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(
@@ -391,6 +408,9 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 				'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
 				'default' => [
 					'url' => '#',
+				],
+				'dynamic' => [
+					'active' => true,
 				],
 				'separator' => 'before',
 			]
@@ -1187,6 +1207,7 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 		$this->add_inline_editing_attributes('mg_vcard_btn_title', 'none');
 		$this->add_render_attribute('mg_vcard_btn_title', 'class', 'mg-btn mg-card-btn');
 		$this->add_render_attribute('mg_vcard_btn_title', 'href', esc_url($mg_vcard_btn_link['url']));
+		$this->add_render_attribute('mg_vcard_btn_title', 'aria-label', esc_attr(!empty($mg_vcard_btn_title) ? $mg_vcard_btn_title : __('Read More', 'magical-addons-for-elementor')));
 
 		if (!empty($mg_vcard_btn_link['is_external'])) {
 			$this->add_render_attribute('mg_vcard_btn_title', 'target', '_blank');
@@ -1199,16 +1220,19 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 		// For card subtitle
 		$this->add_inline_editing_attributes('mg_vcard_subtitle', 'none');
 		$this->add_render_attribute('mg_vcard_subtitle', 'class', 'mgc-subtitle');
+
+		$video_aria_label = !empty($mg_vcard_title) ? sprintf(__('Play video: %s', 'magical-addons-for-elementor'), $mg_vcard_title) : __('Play video', 'magical-addons-for-elementor');
+		$video_thumb_alt = !empty($mg_vcard_title) ? $mg_vcard_title : __('Card Video', 'magical-addons-for-elementor');
 ?>
 
 		<div class="mg-card <?php echo esc_attr(empty($mg_cvideo_contetnt) ? 'mgno-content' : ''); ?>">
 			<div class="mg-card-img mgvideo-thumb">
 				<figure>
-					<a class="mgvlight" data-autoplay="true" data-vbtype="video" href="<?php echo esc_url($settings['mg_vcard_video_url']); ?>">
+					<a class="mgvlight" data-autoplay="true" data-vbtype="video" href="<?php echo esc_url($settings['mg_vcard_video_url']); ?>" aria-label="<?php echo esc_attr($video_aria_label); ?>">
 						<?php if ($mg_cvideo_thumb_type != 'yes') : ?>
 							<?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'mg_cvideo_thumb'); ?>
 						<?php else : ?>
-							<img src="<?php echo esc_url('//img.youtube.com/vi/' . esc_attr(get_mg_youtube_id($settings['mg_vcard_video_url'])) . '/hqdefault.jpg'); ?>" alt="<?php esc_attr_e('Card Video', 'magical-addons-for-elementor'); ?>" />
+							<img src="<?php echo esc_url('//img.youtube.com/vi/' . esc_attr(get_mg_youtube_id($settings['mg_vcard_video_url'])) . '/hqdefault.jpg'); ?>" alt="<?php echo esc_attr($video_thumb_alt); ?>" />
 						<?php endif; ?>
 						<?php if ($mg_cvideo_playicon) : ?>
 							<div class="mgplay-btn">
@@ -1288,11 +1312,11 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 			<div class="mg-card {{ (mg_cvideo_contetnt === '') ? 'mgno-content' : '' }}">
 				<div class="mg-card-img mgvideo-thumb">
 					<figure>
-						<a class="mgvlight" data-autoplay="true" data-vbtype="video" href="{{ mg_vcard_video_url }}">
+						<a class="mgvlight" data-autoplay="true" data-vbtype="video" href="{{ mg_vcard_video_url }}" aria-label="{{ mg_vcard_title ? 'Play video: ' + mg_vcard_title : 'Play video' }}">
 							<# if (mg_cvideo_thumb_type !=='yes' ) { #>
-								<img src="{{{ mg_image_url }}}">
+								<img src="{{{ mg_image_url }}}" alt="{{ mg_vcard_title ? mg_vcard_title : 'Card Video' }}">
 								<# } else { #>
-									<img src="//img.youtube.com/vi/{{ youtubeId }}/hqdefault.jpg" />
+									<img src="//img.youtube.com/vi/{{ youtubeId }}/hqdefault.jpg" alt="{{ mg_vcard_title ? mg_vcard_title : 'Card Video' }}" />
 									<# } #>
 
 										<# if (mg_cvideo_playicon) { #>

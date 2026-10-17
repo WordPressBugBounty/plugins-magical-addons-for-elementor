@@ -122,6 +122,9 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'condition' => ['mg_card_img_show' => 'yes'],
 
             ]
@@ -193,7 +196,9 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
                 'placeholder' => __('Enter Card Title', 'magical-addons-for-elementor'),
                 'default'     => __('Card Title', 'magical-addons-for-elementor'),
                 'label_block'     => true,
-
+                'dynamic'     => [
+                    'active' => true,
+                ],
             ]
         );
         $this->add_control(
@@ -224,6 +229,9 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
                 'input_type'  => 'text',
                 'placeholder' => __('Card description goes here.', 'magical-addons-for-elementor'),
                 'default'     => __('dummy text you can edit or remove it. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo.', 'magical-addons-for-elementor'),
+                'dynamic'     => [
+                    'active' => true,
+                ],
             ]
         );
 
@@ -281,6 +289,9 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
                 'input_type'  => 'text',
                 'placeholder' => __('Badge Text', 'magical-addons-for-elementor'),
                 'default'     => __('Badge', 'magical-addons-for-elementor'),
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'condition' => [
                     'card_badge_use' => 'yes',
                 ],
@@ -345,6 +356,9 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('Read More', 'magical-addons-for-elementor'),
+                'dynamic'     => [
+                    'active' => true,
+                ],
             ]
         );
         $this->add_control(
@@ -355,6 +369,9 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ],
                 'separator' => 'before',
             ]
@@ -1152,6 +1169,7 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
             view.addInlineEditingAttributes( 'mg_card_desc' );
             view.addRenderAttribute( 'mg_card_btn_title' , 'class' , 'mg-btn mg-card-btn' );
             view.addRenderAttribute( 'mg_card_btn_title' , 'href' , settings.mg_card_btn_link.url );
+            view.addRenderAttribute( 'mg_card_btn_title' , 'aria-label' , settings.mg_card_btn_title ? settings.mg_card_btn_title : 'Read More' );
 
 
             if ( settings.mg_card_img.url || settings.mg_card_img.id ) {
@@ -1174,7 +1192,7 @@ class MgAddon_Card_Widget extends \Elementor\Widget_Base
                 <# if ( settings.mg_card_img_show &&( settings.mg_card_img.url || settings.mg_card_img.id) ) { #>
                     <div class="mg-card-img">
                         <figure>
-                            <img alt="Card Image" src="{{ image_url }}">
+                            <img alt="{{ settings.mg_card_title ? settings.mg_card_title : 'Card Image' }}" src="{{ image_url }}">
                         </figure>
                         <# if(settings.card_badge_use ){ #>
                             <span class="mgc-badge mgcb-{{{ settings.badge_position }}}">{{{ settings.badge_text }}}</span>

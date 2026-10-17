@@ -109,6 +109,9 @@ class BkProjectDetails extends \Elementor\Widget_Base
             [
                 'label' => __('Label', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => __('Clients', 'magical-addons-for-elementor'),
                 'label_block' => true,
             ]
@@ -118,6 +121,9 @@ class BkProjectDetails extends \Elementor\Widget_Base
             [
                 'label' => __('Value', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => __('Jarosław Sokołowski', 'magical-addons-for-elementor'),
                 'label_block' => true,
             ]

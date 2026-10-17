@@ -141,12 +141,17 @@ class MgCountdown extends \Elementor\Widget_Base
 				],
 			]
 		);
+		$default_target_time = gmdate('Y-m-d H:i', strtotime('+1 year'));
+
 		$this->add_control(
 			'target_clock_time',
 			[
 				'label' => __('Set time', 'magical-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::DATE_TIME,
-				'default' => '2024-11-01 23:57',
+				'dynamic' => [
+					'active' => true,
+				],
+				'default' => $default_target_time,
 				'condition' => [
 					'display_type' => 'timec',
 				],
@@ -240,6 +245,9 @@ class MgCountdown extends \Elementor\Widget_Base
 			[
 				'label'       => __('Days Label', 'magical-addons-for-elementor'),
 				'type'        => \Elementor\Controls_Manager::TEXT,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'input_type'  => 'text',
 				'placeholder' => __('Days', 'magical-addons-for-elementor'),
 				'default'     => __('Days', 'magical-addons-for-elementor'),
@@ -252,6 +260,9 @@ class MgCountdown extends \Elementor\Widget_Base
 			[
 				'label'       => __('Hours Label', 'magical-addons-for-elementor'),
 				'type'        => \Elementor\Controls_Manager::TEXT,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'input_type'  => 'text',
 				'placeholder' => __('Hours', 'magical-addons-for-elementor'),
 				'default'     => __('Hours', 'magical-addons-for-elementor'),
@@ -264,6 +275,9 @@ class MgCountdown extends \Elementor\Widget_Base
 			[
 				'label'       => __('Minutes Label', 'magical-addons-for-elementor'),
 				'type'        => \Elementor\Controls_Manager::TEXT,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'input_type'  => 'text',
 				'placeholder' => __('Minutes', 'magical-addons-for-elementor'),
 				'default'     => __('Minutes', 'magical-addons-for-elementor'),
@@ -276,6 +290,9 @@ class MgCountdown extends \Elementor\Widget_Base
 			[
 				'label'       => __('Seconds Label', 'magical-addons-for-elementor'),
 				'type'        => \Elementor\Controls_Manager::TEXT,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'input_type'  => 'text',
 				'placeholder' => __('Seconds', 'magical-addons-for-elementor'),
 				'default'     => __('Seconds', 'magical-addons-for-elementor'),
@@ -480,13 +497,24 @@ class MgCountdown extends \Elementor\Widget_Base
 	protected function render()
 	{
 		$settings = $this->get_settings_for_display();
-		$display_type = $this->get_settings('display_type');
-		$clock_format = $this->get_settings('clock_format');
-		$target_clock_time = $this->get_settings('target_clock_time');
-		$genericc_countdown = $this->get_settings('genericc_countdown');
-		$countdown_timing = $this->get_settings('countdown_timing');
+		$display_type = !empty($settings['display_type']) ? $settings['display_type'] : 'timec';
+		$clock_format = !empty($settings['clock_format']) ? $settings['clock_format'] : '12';
+		$target_clock_time = !empty($settings['target_clock_time']) ? $settings['target_clock_time'] : '';
+
+		// If empty or set to the old hardcoded 2024 date, automatically default to 1 year in the future
+		if (empty($target_clock_time) || strpos($target_clock_time, '2024-') === 0) {
+			$target_clock_time = gmdate('Y-m-d H:i', strtotime('+1 year'));
+		}
+
+		$genericc_countdown = isset($settings['genericc_countdown']) ? $settings['genericc_countdown'] : '500';
+		$countdown_timing = !empty($settings['countdown_timing']) ? $settings['countdown_timing'] : '1000';
+
+		$days_label = !empty($settings['mg_days_label']) ? $settings['mg_days_label'] : esc_html__('Days', 'magical-addons-for-elementor');
+		$hours_label = !empty($settings['mg_hours_label']) ? $settings['mg_hours_label'] : esc_html__('Hours', 'magical-addons-for-elementor');
+		$minutes_label = !empty($settings['mg_minutes_label']) ? $settings['mg_minutes_label'] : esc_html__('Minutes', 'magical-addons-for-elementor');
+		$seconds_label = !empty($settings['mg_seconds_label']) ? $settings['mg_seconds_label'] : esc_html__('Seconds', 'magical-addons-for-elementor');
 ?>
-		<div class="mga-clock" data-display-type="<?php echo esc_attr($display_type); ?>" data-clock-format="<?php echo esc_attr($clock_format); ?>" data-target-time="<?php echo esc_attr($target_clock_time); ?>" data-countdown="<?php echo esc_attr($genericc_countdown); ?>" data-timing="<?php echo esc_attr($countdown_timing); ?>" data-days-label="<?php echo esc_attr($settings['mg_days_label']); ?>" data-hours-label="<?php echo esc_attr($settings['mg_hours_label']); ?>" data-minutes-label="<?php echo esc_attr($settings['mg_minutes_label']); ?>" data-seconds-label="<?php echo esc_attr($settings['mg_seconds_label']); ?>">
+		<div class="mga-clock" data-display-type="<?php echo esc_attr($display_type); ?>" data-clock-format="<?php echo esc_attr($clock_format); ?>" data-target-time="<?php echo esc_attr($target_clock_time); ?>" data-countdown="<?php echo esc_attr($genericc_countdown); ?>" data-timing="<?php echo esc_attr($countdown_timing); ?>" data-days-label="<?php echo esc_attr($days_label); ?>" data-hours-label="<?php echo esc_attr($hours_label); ?>" data-minutes-label="<?php echo esc_attr($minutes_label); ?>" data-seconds-label="<?php echo esc_attr($seconds_label); ?>">
 		</div>
 	<?php
 	}
@@ -503,8 +531,19 @@ class MgCountdown extends \Elementor\Widget_Base
 
 	protected function content_template()
 	{
+		$default_target = gmdate('Y-m-d H:i', strtotime('+1 year'));
 	?>
-		<div class="mga-clock" data-display-type="{{ settings.display_type }}" data-clock-format="{{ settings.clock_format }}" data-target-time="{{ settings.target_clock_time }}" data-countdown="{{ settings.genericc_countdown }}" data-timing="{{ settings.countdown_timing }}" data-days-label="{{{ settings.mg_days_label }}}" data-hours-label="{{{ settings.mg_hours_label }}}" data-minutes-label="{{{ settings.mg_minutes_label }}}" data-seconds-label="{{{ settings.mg_seconds_label }}}"></div>
+		<#
+		var targetTime = settings.target_clock_time;
+		if ( ! targetTime || targetTime.indexOf('2024-') === 0 ) {
+			targetTime = '<?php echo esc_js($default_target); ?>';
+		}
+		var daysLabel = settings.mg_days_label || '<?php echo esc_js(__('Days', 'magical-addons-for-elementor')); ?>';
+		var hoursLabel = settings.mg_hours_label || '<?php echo esc_js(__('Hours', 'magical-addons-for-elementor')); ?>';
+		var minutesLabel = settings.mg_minutes_label || '<?php echo esc_js(__('Minutes', 'magical-addons-for-elementor')); ?>';
+		var secondsLabel = settings.mg_seconds_label || '<?php echo esc_js(__('Seconds', 'magical-addons-for-elementor')); ?>';
+		#>
+		<div class="mga-clock" data-display-type="{{ settings.display_type }}" data-clock-format="{{ settings.clock_format }}" data-target-time="{{ targetTime }}" data-countdown="{{ settings.genericc_countdown }}" data-timing="{{ settings.countdown_timing }}" data-days-label="{{{ daysLabel }}}" data-hours-label="{{{ hoursLabel }}}" data-minutes-label="{{{ minutesLabel }}}" data-seconds-label="{{{ secondsLabel }}}"></div>
 <?php
 	}
 }

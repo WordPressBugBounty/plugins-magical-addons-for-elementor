@@ -20,6 +20,7 @@ trait mgGlobalButton
 
         $this->add_render_attribute('mg_card_btn_title', 'class', 'mg-card-btn');
         $this->add_render_attribute('mg_card_btn_title', 'href', esc_url($mg_card_btn_link['url']));
+        $this->add_render_attribute('mg_card_btn_title', 'aria-label', esc_attr(!empty($mg_card_btn_title) ? $mg_card_btn_title : __('Read More', 'magical-addons-for-elementor')));
         if (!empty($mg_card_btn_link['is_external'])) {
             $this->add_render_attribute('mg_card_btn_title', 'target', '_blank');
         }

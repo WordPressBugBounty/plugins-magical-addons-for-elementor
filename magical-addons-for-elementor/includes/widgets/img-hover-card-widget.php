@@ -118,6 +118,9 @@ class MgimgHover_Card_Widget extends \Elementor\Widget_Base
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
+                'dynamic' => [
+                    'active' => true,
+                ],
             ]
         );
         $this->add_group_control(
@@ -180,7 +183,9 @@ class MgimgHover_Card_Widget extends \Elementor\Widget_Base
                 'placeholder' => __('Enter Card Title', 'magical-addons-for-elementor'),
                 'default'     => __('Card Title', 'magical-addons-for-elementor'),
                 'label_block'     => true,
-
+                'dynamic'     => [
+                    'active' => true,
+                ],
             ]
         );
         $this->add_control(
@@ -211,6 +216,9 @@ class MgimgHover_Card_Widget extends \Elementor\Widget_Base
                 'input_type'  => 'text',
                 'placeholder' => __('Card description goes here.', 'magical-addons-for-elementor'),
                 'default'     => __('dummy text you can edit or remove it. Lorem ipsum dolor sit amet.', 'magical-addons-for-elementor'),
+                'dynamic'     => [
+                    'active' => true,
+                ],
             ]
         );
 
@@ -267,6 +275,9 @@ class MgimgHover_Card_Widget extends \Elementor\Widget_Base
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('Read More', 'magical-addons-for-elementor'),
+                'dynamic'     => [
+                    'active' => true,
+                ],
             ]
         );
         $this->add_control(
@@ -277,6 +288,9 @@ class MgimgHover_Card_Widget extends \Elementor\Widget_Base
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
+                ],
+                'dynamic' => [
+                    'active' => true,
                 ],
                 'separator' => 'before',
             ]
@@ -914,6 +928,7 @@ class MgimgHover_Card_Widget extends \Elementor\Widget_Base
         $this->add_inline_editing_attributes('mg_hvrcard_btn_title');
         $this->add_render_attribute('mg_hvrcard_btn_title', 'class', 'mg-btn');
         $this->add_render_attribute('mg_hvrcard_btn_title', 'class', 'mg-hvrcard-btn');
+        $this->add_render_attribute('mg_hvrcard_btn_title', 'aria-label', esc_attr(!empty($mg_hvrcard_btn_title) ? $mg_hvrcard_btn_title : __('Card button', 'magical-addons-for-elementor')));
         $this->add_render_attribute('mg_hvrcard_btn_title', 'href', esc_url($mg_hvrcard_btn_link['url']));
         if (!empty($mg_hvrcard_btn_link['is_external'])) {
             $this->add_render_attribute('mg_hvrcard_btn_title', 'target', '_blank');
@@ -971,11 +986,11 @@ class MgimgHover_Card_Widget extends \Elementor\Widget_Base
     {
     ?>
 
-        <# var settings=settings; var mgCardImage={ id: settings.mg_hvrcard_img.id, url: settings.mg_hvrcard_img.url, size: settings.mghvr_thumbnail_size, dimension: settings.mghvr_thumbnail_custom_dimension, model: view.getEditModel() }; var mgcard_image_url=elementor.imagesManager.getImageUrl( mgCardImage ); var mg_hvrcard_desc=settings.mg_hvrcard_desc; view.addInlineEditingAttributes('mg_hvrcard_desc', 'none' ); var mg_hvrcard_title=settings.mg_hvrcard_title; view.addInlineEditingAttributes('mg_hvrcard_title', 'none' ); view.addRenderAttribute('mg_hvrcard_title', 'class' , 'mg-hvrcard-title' ); var mg_hvrcard_btn_title=settings.mg_hvrcard_btn_title; view.addInlineEditingAttributes('mg_hvrcard_btn_title', 'none' ); var title_tag=settings.mg_hvrcard_title_tag; view.addRenderAttribute('mg_hvrcard_btn_title', 'class' , 'mg-btn' ); view.addRenderAttribute('mg_hvrcard_btn_title', 'class' , 'mg-hvrcard-btn' ); var iconHTML=elementor.helpers.renderIcon( view, settings.mg_hvrcard_btn_selected_icon, { 'aria-hidden' : true }, 'i' , 'object' ), migrated=elementor.helpers.isIconMigrated( settings, 'mg_hvrcard_btn_selected_icon' ); #>
+        <# var settings=settings; var mgCardImage={ id: settings.mg_hvrcard_img.id, url: settings.mg_hvrcard_img.url, size: settings.mghvr_thumbnail_size, dimension: settings.mghvr_thumbnail_custom_dimension, model: view.getEditModel() }; var mgcard_image_url=elementor.imagesManager.getImageUrl( mgCardImage ); var mg_hvrcard_desc=settings.mg_hvrcard_desc; view.addInlineEditingAttributes('mg_hvrcard_desc', 'none' ); var mg_hvrcard_title=settings.mg_hvrcard_title; view.addInlineEditingAttributes('mg_hvrcard_title', 'none' ); view.addRenderAttribute('mg_hvrcard_title', 'class' , 'mg-hvrcard-title' ); var mg_hvrcard_btn_title=settings.mg_hvrcard_btn_title; view.addInlineEditingAttributes('mg_hvrcard_btn_title', 'none' ); var title_tag=settings.mg_hvrcard_title_tag; view.addRenderAttribute('mg_hvrcard_btn_title', 'class' , 'mg-btn' ); view.addRenderAttribute('mg_hvrcard_btn_title', 'class' , 'mg-hvrcard-btn' ); view.addRenderAttribute('mg_hvrcard_btn_title', 'aria-label', mg_hvrcard_btn_title || 'Card button'); var iconHTML=elementor.helpers.renderIcon( view, settings.mg_hvrcard_btn_selected_icon, { 'aria-hidden' : true }, 'i' , 'object' ), migrated=elementor.helpers.isIconMigrated( settings, 'mg_hvrcard_btn_selected_icon' ); #>
 
             <div class="mg-hvr-card">
                 <figure class="{{{ settings.mg_hvr_card_effects }}} mg-hcard-main">
-                    <img src="{{{ mgcard_image_url }}}" alt="{{ settings.mg_hvrcard_img.alt }}">
+                    <img src="{{{ mgcard_image_url }}}" alt="{{ settings.mg_hvrcard_img.alt ? settings.mg_hvrcard_img.alt : (mg_hvrcard_title ? mg_hvrcard_title : 'Hover Card') }}">
                     <figcaption>
                         <div class="mg-hvrcap-text">
 

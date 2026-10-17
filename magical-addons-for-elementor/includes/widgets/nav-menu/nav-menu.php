@@ -164,6 +164,9 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
             [
                 'label' => __('Link', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -243,7 +246,7 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
         $this->start_controls_section(
             'additional_option_section',
             [
-                'label' => esc_html__('Addintional Options', 'magical-addons-for-elementor'),
+                'label' => esc_html__('Additional Options', 'magical-addons-for-elementor'),
             ]
         );
         $this->add_control(
@@ -1023,7 +1026,7 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
                     <?php
                     endif;
                     if (!empty($settings['mobile_menu_toggler_icon']['value'])) : ?>
-                        <button class="mgnav-menu-toggle">
+                        <button class="mgnav-menu-toggle" aria-label="<?php esc_attr_e('Toggle navigation', 'magical-addons-for-elementor'); ?>" aria-expanded="false">
                             <span class="mgmnav-open"><?php Icons_Manager::render_icon($settings['mobile_menu_toggler_icon'], array('aria-hidden' => 'true')); ?></span>
                             <span class="mgmnav-close">
                                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -1058,6 +1061,7 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
 
                     $this->add_render_attribute($key1, 'href', esc_url($item['menu_url']['url']));
                     $this->add_render_attribute($key1, 'class', 'mg-menu-link');
+                    $this->add_render_attribute($key1, 'aria-label', esc_attr(!empty($item['menu_text']) ? $item['menu_text'] : __('Menu link', 'magical-addons-for-elementor')));
                     if (!empty($item['menu_url']['is_external'])) {
                         $this->add_render_attribute($key1, 'target', '_blank');
                     }
@@ -1065,7 +1069,7 @@ class MG_Addon_navMenu extends \Elementor\Widget_Base
                         $this->set_render_attribute($key1, 'rel', 'nofollow');
                     }
                 ?>
-                    <li id="nav-menu-item-117" class="main-menu-item ">
+                    <li id="nav-menu-item-<?php echo esc_attr($index); ?>" class="main-menu-item ">
                         <a <?php echo wp_kses_post($this->get_render_attribute_string($key1)); ?>><span class="mgnav-menu-text"><?php echo esc_html($item['menu_text']); ?></span></a>
                     </li>
                 <?php endforeach; ?>

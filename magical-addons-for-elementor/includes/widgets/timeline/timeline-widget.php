@@ -127,6 +127,9 @@ class MgAddon_Timeline_Widget extends \Elementor\Widget_Base
 			[
 				'label'       => __('Title', 'magical-addons-for-elementor'),
 				'type'        => \Elementor\Controls_Manager::TEXT,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'input_type'  => 'text',
 				'placeholder' => __('Enter Timeline Title', 'magical-addons-for-elementor'),
 				'default'     => __('Timeline Title', 'magical-addons-for-elementor'),
@@ -141,6 +144,9 @@ class MgAddon_Timeline_Widget extends \Elementor\Widget_Base
 			[
 				'label'       => __('Timeline Description', 'magical-addons-for-elementor'),
 				'type'        => \Elementor\Controls_Manager::TEXTAREA,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'input_type'  => 'text',
 				'placeholder' => __('Timeline description goes here.', 'magical-addons-for-elementor'),
 				'default'     => __('dummy text you can edit or remove it. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo.', 'magical-addons-for-elementor'),
@@ -153,6 +159,9 @@ class MgAddon_Timeline_Widget extends \Elementor\Widget_Base
 			[
 				'label'       => __('Timeline Date', 'magical-addons-for-elementor'),
 				'type'        => \Elementor\Controls_Manager::TEXT,
+				'dynamic'     => [
+					'active' => true,
+				],
 				'input_type'  => 'text',
 				'placeholder' => __('Enter date here.', 'magical-addons-for-elementor'),
 				'default'     => __('12-05-2020', 'magical-addons-for-elementor'),

@@ -135,6 +135,9 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
 				],
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_group_control(
@@ -207,7 +210,9 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'placeholder' => __('John Doe', 'magical-addons-for-elementor'),
 				'default'     => __('John Doe', 'magical-addons-for-elementor'),
 				'label_block'     => true,
-
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 		$this->add_control(
@@ -238,7 +243,9 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'placeholder' => __('Senior developer', 'magical-addons-for-elementor'),
 				'default'     => __('Senior developer', 'magical-addons-for-elementor'),
 				'label_block'     => true,
-
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -262,6 +269,9 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'input_type'  => 'text',
 				'placeholder' => __('Team description goes here.', 'magical-addons-for-elementor'),
 				'default'     => __('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo, dummy text you can edit or remove it.', 'magical-addons-for-elementor'),
+				'dynamic'     => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -410,83 +420,52 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 				'default' => [
 					'url' => 'https://your-link.com',
 				],
+				'dynamic' => [
+					'active' => true,
+				],
 				'separator' => 'before',
-
 			]
 		);
-		if (mg_elementor_version_check('<', '2.6.0')) {
-			$default = [
-				[
-					'$mg_team_social_icon' => 'fa fa-facebook',
-					'mg_member_icon_link' => [
-						'url' => 'https://facebook.com',
-					],
-				],
-				[
-					'$mg_team_social_icon' => 'fa fa-x-twitter',
-					'mg_member_icon_link' => [
-						'url' => 'https://twitter.com',
-					],
-				],
-				[
-					'$mg_team_social_icon' => 'fa fa-linkedin',
-					'mg_member_icon_link' => [
-						'url' => 'https://linkedin.com',
-					],
-				],
-				[
-					'$mg_team_social_icon' => 'fa fa-instagram',
-					'mg_member_icon_link' => [
-						'url' => 'https://instagram.com',
-					],
-				],
 
-
-			];
-			$title_field = '<i class="{{ $mg_team_social_icon }}"></i>';
-		} else {
-			$default = [
-				[
-					'mg_team_social_selected_icon' => [
-						'value' => 'fab fa-facebook',
-						'library' => 'fa-brands'
-					],
-					'mg_member_icon_link' => [
-						'url' => 'https://facebook.com',
-					],
+		$default = [
+			[
+				'mg_team_social_selected_icon' => [
+					'value' => 'fab fa-facebook',
+					'library' => 'fa-brands'
 				],
-				[
-					'mg_team_social_selected_icon' => [
-						'value' => 'fab fa-x-twitter',
-						'library' => 'fa-brands'
-					],
-					'mg_member_icon_link' => [
-						'url' => 'https://twitter.com',
-					],
+				'mg_member_icon_link' => [
+					'url' => 'https://facebook.com',
 				],
-				[
-					'mg_team_social_selected_icon' => [
-						'value' => 'fab fa-linkedin-in',
-						'library' => 'fa-brands'
-					],
-					'mg_member_icon_link' => [
-						'url' => 'https://linkedin.com',
-					],
+			],
+			[
+				'mg_team_social_selected_icon' => [
+					'value' => 'fab fa-x-twitter',
+					'library' => 'fa-brands'
 				],
-				[
-					'mg_team_social_selected_icon' => [
-						'value' => 'fab fa-instagram',
-						'library' => 'fa-brands'
-					],
-					'mg_member_icon_link' => [
-						'url' => 'https://instagram.com',
-					],
+				'mg_member_icon_link' => [
+					'url' => 'https://twitter.com',
 				],
-
-
-			];
-			$title_field = '<i class="{{ mg_team_social_selected_icon.value }}"></i>';
-		}
+			],
+			[
+				'mg_team_social_selected_icon' => [
+					'value' => 'fab fa-linkedin-in',
+					'library' => 'fa-brands'
+				],
+				'mg_member_icon_link' => [
+					'url' => 'https://linkedin.com',
+				],
+			],
+			[
+				'mg_team_social_selected_icon' => [
+					'value' => 'fab fa-instagram',
+					'library' => 'fa-brands'
+				],
+				'mg_member_icon_link' => [
+					'url' => 'https://instagram.com',
+				],
+			],
+		];
+		$title_field = '<i class="{{ mg_team_social_selected_icon.value }}"></i>';
 
 
 		$this->add_control(
@@ -1330,6 +1309,9 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 									if (!empty($memeber_icon['mg_member_icon_link']['nofollow'])) {
 										$this->set_render_attribute($key1, 'rel', 'nofollow');
 									}
+									$icon_val = !empty($memeber_icon['mg_team_social_selected_icon']['value']) ? $memeber_icon['mg_team_social_selected_icon']['value'] : (!empty($memeber_icon['$mg_team_social_icon']) ? $memeber_icon['$mg_team_social_icon'] : 'social');
+									$network_clean = ucfirst(str_replace(['fab fa-', 'fas fa-', 'far fa-', 'fa-'], '', $icon_val));
+									$this->add_render_attribute($key1, 'aria-label', sprintf(esc_attr__('%s profile', 'magical-addons-for-elementor'), $network_clean));
 								?>
 									<li><a <?php echo $this->get_render_attribute_string($key1); ?>>
 											<?php mg_icons_render($memeber_icon, 'mg_team_social_icon', 'mg_team_social_selected_icon'); ?>
@@ -1371,7 +1353,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 					<# if (settings.member_img.url || settings.member_img.id) { #>
 						<div class="mg-team-img">
 							<figure>
-								<img alt="Team Image" src="{{ image_url }}">
+								<img alt="{{ settings.mg_member_name ? settings.mg_member_name : 'Team Image' }}" src="{{ image_url }}">
 							</figure>
 						</div>
 						<# } #>
@@ -1392,7 +1374,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 										<# } #>
 											<# if (settings.member_img.url || settings.member_img.id) { #>
 												<figure class="mg-round-img">
-													<img alt="Team Image" src="{{ image_url }}">
+													<img alt="{{ settings.mg_member_name ? settings.mg_member_name : 'Team Image' }}" src="{{ image_url }}">
 												</figure>
 												<# } #>
 								</div>
@@ -1400,7 +1382,7 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 									<!-- <div class="mg-team-img mg-style3-img"> -->
 									<# if (settings.member_img.url || settings.member_img.id) { #>
 										<figure class="mg-round-img-style3">
-											<img alt="Team Image" src="{{ image_url }}">
+											<img alt="{{ settings.mg_member_name ? settings.mg_member_name : 'Team Image' }}" src="{{ image_url }}">
 										</figure>
 										<# } #>
 											<!-- </div> -->
@@ -1440,6 +1422,8 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 																								if (item.mg_member_icon_link.nofollow) {
 																								view.addRenderAttribute( key, 'rel' , 'nofollow' );
 																								}
+																								var iconVal = (item.mg_team_social_selected_icon && item.mg_team_social_selected_icon.value) ? item.mg_team_social_selected_icon.value.replace(/fa[brs]? fa-/, '') : 'social';
+																								view.addRenderAttribute( key, 'aria-label', iconVal + ' profile' );
 																								#>
 																								<li><a {{{ view.getRenderAttributeString( key ) }}}>
 																										{{{ iconHTML.value }}}

@@ -497,6 +497,9 @@ class mgPostListWidget extends \Elementor\Widget_Base
             [
                 'label'       => __('Link Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Read More', 'magical-addons-for-elementor'),
                 'default'     => __('Read More', 'magical-addons-for-elementor'),
@@ -1789,7 +1792,7 @@ class mgPostListWidget extends \Elementor\Widget_Base
                             <?php endif; ?>
                             <?php if ($mgpl_post_btn) : ?>
                                 <?php if ($mgpl_usebtn_icon == 'yes') : ?>
-                                    <a href="<?php the_permalink(); ?>" target="<?php echo esc_attr($mgpl_btn_target); ?>" <?php echo $this->get_render_attribute_string('mgpl_btn_title'); ?>>
+                                    <a href="<?php the_permalink(); ?>" target="<?php echo esc_attr($mgpl_btn_target); ?>" aria-label="<?php echo esc_attr(sprintf(__('%1$s: %2$s', 'magical-addons-for-elementor'), !empty($mgpl_btn_title) ? $mgpl_btn_title : __('Read More', 'magical-addons-for-elementor'), get_the_title())); ?>" <?php echo $this->get_render_attribute_string('mgpl_btn_title'); ?>>
                                         <?php if ($mgpl_btn_icon_position == 'left') : ?>
 
                                             <span class="left"><?php \Elementor\Icons_Manager::render_icon($settings['mgpl_btn_icon']); ?></span>
@@ -1801,7 +1804,7 @@ class mgPostListWidget extends \Elementor\Widget_Base
                                         <?php endif; ?>
                                     </a>
                                 <?php else : ?>
-                                    <a href="<?php the_permalink(); ?>" target="<?php echo esc_attr($mgpl_btn_target); ?>" <?php echo $this->get_render_attribute_string('mgpl_btn_title'); ?>><?php echo  mg_kses_tags($mgpl_btn_title); ?></a>
+                                    <a href="<?php the_permalink(); ?>" target="<?php echo esc_attr($mgpl_btn_target); ?>" aria-label="<?php echo esc_attr(sprintf(__('%1$s: %2$s', 'magical-addons-for-elementor'), !empty($mgpl_btn_title) ? $mgpl_btn_title : __('Read More', 'magical-addons-for-elementor'), get_the_title())); ?>" <?php echo $this->get_render_attribute_string('mgpl_btn_title'); ?>><?php echo  mg_kses_tags($mgpl_btn_title); ?></a>
                                 <?php endif; ?>
                             <?php endif; // use btn condition 
                             ?>

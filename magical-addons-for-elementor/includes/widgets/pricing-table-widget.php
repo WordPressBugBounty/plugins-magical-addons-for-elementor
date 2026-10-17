@@ -213,6 +213,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label' => __('Choose Image', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
@@ -279,6 +282,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label'       => __('Pricing title ', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Plane Name', 'magical-addons-for-elementor'),
                 'default'     => __('Standard', 'magical-addons-for-elementor'),
@@ -345,6 +351,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label'       => __('Description', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Pricing description goes here.', 'magical-addons-for-elementor'),
                 'default'     => __('Best pricing plan for you. It\' editable text you can edit it.', 'magical-addons-for-elementor'),
@@ -396,6 +405,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label' => __('List text', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 //'default' => __( 'List item' , 'magical-addons-for-elementor' ),
                 'description' => __('Some style not support list fields', 'magical-addons-for-elementor'),
                 'placeholder' => __('Enter List text', 'magical-addons-for-elementor'),
@@ -532,6 +544,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label' => __('Price', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => __('$99', 'magical-addons-for-elementor'),
                 'label_block' => true,
             ]
@@ -541,6 +556,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label' => __('Extra text', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => __('/Month', 'magical-addons-for-elementor'),
                 'label_block' => true,
             ]
@@ -590,6 +608,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label'       => __('Button Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('Choose Plan', 'magical-addons-for-elementor'),
@@ -600,6 +621,9 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             [
                 'label' => __('Button Link', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -1846,6 +1870,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
             $this->add_render_attribute('mg_pr_btntitle', 'class', 'mg-btn-text');
 
             $this->add_render_attribute('mg_pr_btntitle', 'class', 'mg-btn');
+            $this->add_render_attribute('mg_pr_btntitle', 'aria-label', esc_attr(!empty($btntitle) ? $btntitle : __('Choose Plan', 'magical-addons-for-elementor')));
             $this->add_render_attribute('mg_pr_btntitle', 'href', esc_url($btn_link['url']));
             if (!empty($btn_link['is_external'])) {
                 $this->add_render_attribute('mg_pr_btntitle', 'target', '_blank');
@@ -1927,6 +1952,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
 
             view.addRenderAttribute('mg_pr_btntitle', 'class' , 'mg-btn' );
             view.addRenderAttribute('mg_pr_btntitle', 'class' , 'mg-btn-text ' );
+            view.addRenderAttribute('mg_pr_btntitle', 'aria-label', mg_pr_btntitle || 'Choose Plan');
 
 
             if (mg_pr_btn_link.is_external) {
@@ -1962,7 +1988,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                                 <div class="mgprice-iconimg text-{{ mg_pr_main_icon_position }}">
                                     <# if (mg_pr_icon_type==='image' ) { #>
                                         <figure class="mg-pricing-img {{ mgpr_active_absulate === 'yes' ? 'mg-absolute' : '' }}">
-                                            <img src="{{{ mgpr_image_url }}}" />
+                                            <img src="{{{ mgpr_image_url }}}" alt="{{ settings.mg_pr_type_image.alt ? settings.mg_pr_type_image.alt : (mg_pr_title ? mg_pr_title : 'Pricing Image') }}" />
                                         </figure>
                                         <# } else { #>
                                             <div class="mg-pricing-icon {{ mgpr_active_absulate === 'yes' ? 'mg-absolute' : '' }}">

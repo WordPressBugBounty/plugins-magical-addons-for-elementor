@@ -234,6 +234,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label' => __('Choose Image', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
@@ -249,6 +252,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label' => __('Choose Image', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
@@ -272,6 +278,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Enter Normal Flip Title', 'magical-addons-for-elementor'),
                 'default'     => __('Burger', 'magical-addons-for-elementor'),
@@ -286,6 +295,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Enter Normal Flip Title', 'magical-addons-for-elementor'),
                 'default'     => __('Why You Should Bring Your Dog To Work', 'magical-addons-for-elementor'),
@@ -345,6 +357,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Description', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Flip subtitle goes here.', 'magical-addons-for-elementor'),
                 'default'     => __('Fresh tasty chicken burger', 'magical-addons-for-elementor'),
@@ -436,6 +451,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Enter Hover Flip Title', 'magical-addons-for-elementor'),
                 'default'     => __('Burger', 'magical-addons-for-elementor'),
@@ -450,6 +468,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Enter Hover Flip Title', 'magical-addons-for-elementor'),
                 'default'     => __('For sun lovers', 'magical-addons-for-elementor'),
@@ -509,6 +530,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Description', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Flip description goes here.', 'magical-addons-for-elementor'),
                 'default'     => __('Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, necessitatibus?', 'magical-addons-for-elementor'),
@@ -523,6 +547,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Description', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Flip description goes here.', 'magical-addons-for-elementor'),
                 'default'     => __('Relax akorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, illum.', 'magical-addons-for-elementor'),
@@ -618,6 +645,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label'       => __('Button Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('View Deals', 'magical-addons-for-elementor'),
@@ -628,6 +658,9 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             [
                 'label' => __('Button Link', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -2131,7 +2164,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
         $mg_flip_btn_link = $settings['mg_flip_btn_link'];
         $this->add_inline_editing_attributes('mg_flip_btn_title', 'none');
         $this->add_render_attribute('mg_flip_btn_title', 'class', 'mg-flip-btn');
-
+        $this->add_render_attribute('mg_flip_btn_title', 'aria-label', esc_attr(!empty($mg_flip_btn_title) ? $mg_flip_btn_title : __('Flip button', 'magical-addons-for-elementor')));
         $this->add_render_attribute('mg_flip_btn_title', 'href', esc_url($mg_flip_btn_link['url']));
         if (!empty($mg_flip_btn_link['is_external'])) {
             $this->add_render_attribute('mg_flip_btn_title', 'target', '_blank');
@@ -2249,6 +2282,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
             var mg_flip_btn_link = settings.mg_flip_btn_link;
             view.addInlineEditingAttributes('mg_flip_btn_title', 'none');
             view.addRenderAttribute('mg_flip_btn_title', 'class', 'mg-flip-btn');
+            view.addRenderAttribute('mg_flip_btn_title', 'aria-label', settings.mg_flip_btn_title || 'Flip button');
             view.addRenderAttribute('mg_flip_btn_title', 'href', mg_flip_btn_link.url);
 
             if (mg_flip_btn_link.is_external) {
@@ -2285,7 +2319,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
                                 if ( mgf_icon_type==='image' ) {
                                 #>
                                 <figure>
-                                    <img src="{{{ mg_first_flip_image_url }}}">
+                                    <img src="{{{ mg_first_flip_image_url }}}" alt="{{ settings.mgf_flip_normal_img.alt ? settings.mgf_flip_normal_img.alt : (mg_flip_normal_title ? mg_flip_normal_title : 'Flip Image') }}">
                                 </figure>
                                 <#
                                     } else {
@@ -2335,7 +2369,7 @@ class MgAddon_Flip_Box extends \Elementor\Widget_Base
                         <div class="mg-flip-fornted">
                             <div class="mg-flip-image">
                                 <figure>
-                                    <img src="{{{ mg_two_flip_image_url }}}">
+                                    <img src="{{{ mg_two_flip_image_url }}}" alt="{{ settings.mgf_flip_style_two_normal_img.alt ? settings.mgf_flip_style_two_normal_img.alt : (mg_flip_style_two_normal_title ? mg_flip_style_two_normal_title : 'Flip Image') }}">
                                 </figure>
                             </div>
                             <div class="mg-flip-text">

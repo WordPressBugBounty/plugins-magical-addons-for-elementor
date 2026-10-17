@@ -129,6 +129,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label'       => __('Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Enter Call To Action Title', 'magical-addons-for-elementor'),
                 'default'     => __('Beautiful Landing Page with', 'magical-addons-for-elementor'),
@@ -141,6 +144,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label'       => __('Highlight Text', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Enter Highlight Text', 'magical-addons-for-elementor'),
                 'default'     => __('Elements', 'magical-addons-for-elementor'),
@@ -173,6 +179,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label'       => __('Description', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Call to action description goes here.', 'magical-addons-for-elementor'),
                 'default'     => __('A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which', 'magical-addons-for-elementor'),
@@ -270,6 +279,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label' => __('Choose Image', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
@@ -339,6 +351,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label'       => __('Button Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('VIEW DEALS', 'magical-addons-for-elementor'),
@@ -414,6 +429,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label' => __('Button Link', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -604,6 +622,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label'       => __('Button Title', 'magical-addons-for-elementor'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
+                'dynamic'     => [
+                    'active' => true,
+                ],
                 'input_type'  => 'text',
                 'placeholder' => __('Button Text', 'magical-addons-for-elementor'),
                 'default'     => __('VIEW DEALS', 'magical-addons-for-elementor'),
@@ -643,6 +664,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label' => __('Button Link', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -659,6 +683,9 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             [
                 'label' => __('YouTube Video Link', 'magical-addons-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __('https://your-link.com', 'magical-addons-for-elementor'),
                 'default' => [
                     'url' => '#',
@@ -1945,6 +1972,7 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             $this->add_render_attribute('mg_flip_btn_title', 'class', 'mg-flip-btn');
 
             $this->add_render_attribute('mg_flip_btn_title', 'class', 'mgcla-btn');
+            $this->add_render_attribute('mg_flip_btn_title', 'aria-label', esc_attr(!empty($mg_flip_btn_title) ? $mg_flip_btn_title : __('Action button', 'magical-addons-for-elementor')));
             $this->add_render_attribute('mg_flip_btn_title', 'href', esc_url($mg_flip_btn_link['url']));
             if (!empty($mg_flip_btn_link['is_external'])) {
                 $this->add_render_attribute('mg_flip_btn_title', 'target', '_blank');
@@ -1970,6 +1998,7 @@ class MgAddon_Call_To_Action extends \Elementor\Widget_Base
             $mg_flip_btn_selected_icon = $settings['mg_flip_btn2_selected_icon'];
 
             $this->add_render_attribute('mg_flip_btn2_title', 'class', 'mgcla-btn2');
+            $this->add_render_attribute('mg_flip_btn2_title', 'aria-label', esc_attr(!empty($mg_flip_btn_title) ? $mg_flip_btn_title : __('Action button', 'magical-addons-for-elementor')));
             $this->add_render_attribute('mg_flip_btn2_title', 'href', esc_url($mg_flip_btn_link['url']));
             if (!empty($mg_flip_btn_link['is_external'])) {
                 $this->add_render_attribute('mg_flip_btn2_title', 'target', '_blank');

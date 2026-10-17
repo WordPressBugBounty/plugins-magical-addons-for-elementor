@@ -1150,7 +1150,7 @@ class mgproMailchimp extends Widget_Base
 										Icons_Manager::render_icon($settings['icon_fname'], ['aria-hidden' => 'true']);
 									}
 									?>
-									<input id="mg_mc_fn_<?php echo esc_attr($this->get_id()); ?>" type="text" name="mg_mc_firstname" class="mg-mc-input mg-mc-input-fn" placeholder="<?php echo esc_attr($fn_text); ?>">
+									<input id="mg_mc_fn_<?php echo esc_attr($this->get_id()); ?>" type="text" name="mg_mc_firstname" class="mg-mc-input mg-mc-input-fn" placeholder="<?php echo esc_attr($fn_text); ?>" aria-label="<?php echo esc_attr($fn_text); ?>">
 								</div>
 							</div>
 						<?php
@@ -1173,7 +1173,7 @@ class mgproMailchimp extends Widget_Base
 										Icons_Manager::render_icon($settings['icon_lname'], ['aria-hidden' => 'true']);
 									}
 									?>
-									<input id="mg_mc_ln_<?php echo esc_attr($this->get_id()); ?>" type="text" name="mg_mc_lastname" class="mg-mc-input mg-mc-input-ln" placeholder="<?php echo esc_attr($ln_text); ?>">
+									<input id="mg_mc_ln_<?php echo esc_attr($this->get_id()); ?>" type="text" name="mg_mc_lastname" class="mg-mc-input mg-mc-input-ln" placeholder="<?php echo esc_attr($ln_text); ?>" aria-label="<?php echo esc_attr($ln_text); ?>">
 
 								</div>
 							</div>
@@ -1196,12 +1196,12 @@ class mgproMailchimp extends Widget_Base
 									Icons_Manager::render_icon($settings['icon_email'], ['aria-hidden' => 'true']);
 								}
 								?>
-								<input id="mg_mc_e_<?php echo esc_attr($this->get_id()); ?>" type="email" name="mg_mc_email" class="mg-mc-input mg-mc-input-email" placeholder="<?php echo esc_attr($e_text); ?>" required="required">
+								<input id="mg_mc_e_<?php echo esc_attr($this->get_id()); ?>" type="email" name="mg_mc_email" class="mg-mc-input mg-mc-input-email" placeholder="<?php echo esc_attr($e_text); ?>" aria-label="<?php echo esc_attr($e_text); ?>" required="required">
 							</div>
 						</div>
 
 						<div class="mg-field mg-mc-submit">
-							<button type="submit" id="mg-subscribe-<?php echo esc_attr($this->get_id()); ?>" class="mg-button mg-mc-subscribe">
+							<button type="submit" id="mg-subscribe-<?php echo esc_attr($this->get_id()); ?>" class="mg-button mg-mc-subscribe" aria-label="<?php echo esc_attr(!empty($settings['button_text']) ? $settings['button_text'] : __('Subscribe', 'magical-addons-for-elementor')); ?>">
 								<div class="mg-btn-loader"></div>
 								<span><?php echo esc_attr($settings['button_text']); ?></span>
 							</button>

@@ -9,7 +9,7 @@
  * Plugin Name:       Magical Addons For Elementor
  * Plugin URI:        https://wpthemespace.com/product/magical-addons-pro/
  * Description:       Premium addons for Elementor page builder
- * Version:           1.5.1
+ * Version:           1.5.2
  * Author:            Noor alam
  * Author URI:        https://wpthemespace.com/
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class Magical_Addons_Elementor
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.5.1';
+	const VERSION = '1.5.2';
 
 	/**
 	 * Minimum Elementor Version
@@ -259,6 +259,9 @@ final class Magical_Addons_Elementor
 		// Initialize REST API and Settings Defaults for React admin
 		new Magical_Addons_REST_API();
 		new Magical_Addons_Settings_Defaults();
+
+		// Initialize Dynamic Tags
+		new \MagicalAddons\DynamicTags\Manager();
 	}
 
 	/**
@@ -412,6 +415,9 @@ final class Magical_Addons_Elementor
 		// Icons and buttons
 		require_once(MAGICAL_ADDON_PATH . '/includes/btn-icons-class.php');
 		require_once(MAGICAL_ADDON_PATH . '/includes/lions-icons.php');
+
+		// Dynamic Tags Module
+		require_once MAGICAL_ADDON_PATH . '/includes/dynamic-tags/class-dynamic-tags-manager.php';
 
 		// Theme Builder module
 		require_once(MAGICAL_ADDON_PATH . '/includes/theme-builder/module.php');

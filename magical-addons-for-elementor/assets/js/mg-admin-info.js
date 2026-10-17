@@ -2,8 +2,18 @@
 	"use strict";
 
 	jQuery(document).ready(function($) {
-		// Sales notice AJAX dismiss
-		$(document).on('click', '.mg-sales-notice .mg-sales-dismiss-btn, .mg-sales-notice .notice-dismiss', function(e) {
+		// Temporary hide on cross button (X) click - visual only, reappears on page reload
+		$(document).on('click', '.mg-sales-notice .notice-dismiss', function(e) {
+			e.preventDefault();
+			var $notice = $(this).closest('.mg-sales-notice');
+			$notice.slideUp(250, function() {
+				$notice.remove();
+			});
+			// Do NOT send AJAX dismissal request. It will show again on next page reload.
+		});
+
+		// 25-day persistent dismiss on clicking "Dismiss the notice" button
+		$(document).on('click', '.mg-sales-notice .mg-sales-dismiss-btn', function(e) {
 			e.preventDefault();
 			var $notice = $(this).closest('.mg-sales-notice');
 			$notice.slideUp(250, function() {

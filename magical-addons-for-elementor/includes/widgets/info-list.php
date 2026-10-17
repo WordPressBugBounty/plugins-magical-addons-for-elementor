@@ -229,6 +229,9 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 				'label'       => __('Image', 'magical-addons-for-elementor'),
 				'label_block' => true,
 				'type'        => Controls_Manager::MEDIA,
+				'dynamic'     => array(
+					'active' => true,
+				),
 				'default'     => array(
 					'url' => Utils::get_placeholder_image_src(),
 				),
@@ -244,6 +247,9 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 				'label'       => __('Icon Text', 'magical-addons-for-elementor'),
 				'label_block' => false,
 				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => array(
+					'active' => true,
+				),
 				'default'     => __('1', 'magical-addons-for-elementor'),
 				'condition'   => array(
 					'pp_icon_type' => 'text',
@@ -1464,6 +1470,8 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 									$link_key = 'link_' . $i;
 
 									$this->add_link_attributes($link_key, $item['link']);
+									$aria_label = !empty($item['text']) ? $item['text'] : (!empty($item['button_text']) ? $item['button_text'] : __('Info link', 'magical-addons-for-elementor'));
+									$this->add_render_attribute($link_key, 'aria-label', esc_attr($aria_label));
 								}
 
 								$this->render_infolist_icon($item, $i);
@@ -1643,7 +1651,7 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 					<?php
 					} else {
 					?>
-						<img src="<?php echo esc_url($item['list_image']['url']); ?>">
+						<img src="<?php echo esc_url($item['list_image']['url']); ?>" alt="<?php echo esc_attr(!empty($item['text']) ? $item['text'] : __('Info list image', 'magical-addons-for-elementor')); ?>">
 					<?php
 					}
 				} elseif ('text' === $item['pp_icon_type']) {
@@ -1696,7 +1704,7 @@ class MgAddon_infoList extends \Elementor\Widget_Base
 																<# } else if ( item.pp_icon_type=='image' ) { #>
 																	<span class="mg-info-list-image elementor-animation-{{ settings.icon_hover_animation }}">
 																		<# var image={ id: item.list_image.id, url: item.list_image.url, size: settings.thumbnail_size, dimension: settings.thumbnail_custom_dimension, model: view.getEditModel() }; var image_url=elementor.imagesManager.getImageUrl( image ); #>
-																			<img src="{{{ image_url }}}" />
+																			<img src="{{{ image_url }}}" alt="{{{ item.text || 'Info list image' }}}" />
 																	</span>
 																	<# } else if ( item.pp_icon_type=='text' ) { #>
 																		<span class="mg-info-list-icon mg-info-list-number elementor-animation-{{ settings.icon_hover_animation }}">

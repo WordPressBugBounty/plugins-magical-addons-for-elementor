@@ -99,6 +99,9 @@ class MG_Addon_siteLogo extends Widget_Base
 			[
 				'label' => esc_html__('Upload Image Logo', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::MEDIA,
+				'dynamic' => [
+					'active' => true,
+				],
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
@@ -116,13 +119,16 @@ class MG_Addon_siteLogo extends Widget_Base
 			[
 				'label' => esc_html__('Upload Image Logo', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::MEDIA,
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 		$this->end_controls_tab();
 		$this->start_controls_tab(
 			'_tab_mobile_logo',
 			[
-				'label' => __('Mbbile Logo', 'magical-addons-for-elementor'),
+				'label' => __('Mobile Logo', 'magical-addons-for-elementor'),
 			]
 		);
 		$this->add_control(
@@ -130,6 +136,9 @@ class MG_Addon_siteLogo extends Widget_Base
 			[
 				'label' => esc_html__('Upload Image Logo', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::MEDIA,
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 		$this->end_controls_tab();
@@ -157,6 +166,9 @@ class MG_Addon_siteLogo extends Widget_Base
 			[
 				'label' => esc_html__('Title Text', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'default' => 'My Custom Logo',
 				'condition' => [
 					'title_type' => 'custom',
@@ -184,6 +196,9 @@ class MG_Addon_siteLogo extends Widget_Base
 			[
 				'label' => esc_html__('Tagline Text', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'default' => 'Tagline',
 				'condition' => [
 					'description_type' => 'custom',
@@ -236,6 +251,9 @@ class MG_Addon_siteLogo extends Widget_Base
 			'custom_url',
 			[
 				'type' => Controls_Manager::URL,
+				'dynamic' => [
+					'active' => true,
+				],
 				'placeholder' => esc_html__('https://www.your-link.com', 'magical-addons-for-elementor'),
 				'condition' => [
 					'url_type' => 'custom',
@@ -662,6 +680,8 @@ class MG_Addon_siteLogo extends Widget_Base
 		// Logo URL
 		$this->add_render_attribute('url_attr', 'class', 'mg-logo-url');
 		$this->add_render_attribute('url_attr', 'rel', 'home');
+		$logo_aria_label = !empty($title) ? $title : get_bloginfo('name');
+		$this->add_render_attribute('url_attr', 'aria-label', esc_attr($logo_aria_label));
 
 		if ('default' === $settings['url_type']) {
 			$this->add_render_attribute('url_attr', 'href',  home_url('/'));
@@ -705,7 +725,7 @@ class MG_Addon_siteLogo extends Widget_Base
 							<source srcset="<?php echo esc_attr($image_src); ?> 1x, <?php echo esc_url($settings['retina_image']['url']); ?> 2x">
 						<?php endif; ?>
 
-						<img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr($title); ?>">
+						<img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr(!empty($title) ? $title : get_bloginfo('name')); ?>">
 
 						<?php if ($this->logo_is_linked()) : ?>
 							<a <?php echo $this->get_render_attribute_string('url_attr'); ?>></a>
@@ -713,7 +733,7 @@ class MG_Addon_siteLogo extends Widget_Base
 					</picture>
 				<?php else : ?>
 					<div <?php echo $this->get_render_attribute_string('image_attr'); ?>>
-						<img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr($title); ?>">
+						<img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr(!empty($title) ? $title : get_bloginfo('name')); ?>">
 
 						<?php if ($this->logo_is_linked()) : ?>
 							<a <?php echo $this->get_render_attribute_string('url_attr'); ?>></a>

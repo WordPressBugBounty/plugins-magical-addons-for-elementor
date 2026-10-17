@@ -1220,7 +1220,7 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
              id="mg-ce-<?php echo esc_attr($widget_id); ?>"
              data-swiper-config='<?php echo esc_attr(wp_json_encode($swiper_data)); ?>'>
 
-            <div class="swiper mg-ce-swiper">
+            <div class="swiper mg-ce-swiper" role="region" aria-roledescription="carousel" aria-label="<?php esc_attr_e('Carousel', 'magical-addons-for-elementor'); ?>">
                 <div class="swiper-wrapper mg-ce-swiper-wrapper">
                     <?php
                     foreach ($items as $index => $item) {
@@ -1233,10 +1233,10 @@ class MgAddon_Anything_Carousel extends \Elementor\Modules\NestedElements\Base\W
             </div>
 
             <?php if (!empty($settings['mg_ce_show_arrows']) && $settings['mg_ce_show_arrows'] === 'yes') : ?>
-                <div class="mg-ce-arrow mg-ce-arrow-prev">
+                <div class="mg-ce-arrow mg-ce-arrow-prev" role="button" tabindex="0" aria-label="<?php esc_attr_e('Previous slide', 'magical-addons-for-elementor'); ?>">
                     <?php Icons_Manager::render_icon($settings['mg_ce_arrow_prev_icon'], ['aria-hidden' => 'true']); ?>
                 </div>
-                <div class="mg-ce-arrow mg-ce-arrow-next">
+                <div class="mg-ce-arrow mg-ce-arrow-next" role="button" tabindex="0" aria-label="<?php esc_attr_e('Next slide', 'magical-addons-for-elementor'); ?>">
                     <?php Icons_Manager::render_icon($settings['mg_ce_arrow_next_icon'], ['aria-hidden' => 'true']); ?>
                 </div>
             <?php endif; ?>

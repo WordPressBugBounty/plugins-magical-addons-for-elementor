@@ -162,6 +162,9 @@ class MgAddon_imgComparison extends \Elementor\Widget_Base
 			[
 				'label'             => __('Label', 'magical-addons-for-elementor'),
 				'type'              => Controls_Manager::TEXT,
+				'dynamic'           => [
+					'active'   => true,
+				],
 				'default'           => __('Before', 'magical-addons-for-elementor'),
 			]
 		);
@@ -209,6 +212,9 @@ class MgAddon_imgComparison extends \Elementor\Widget_Base
 			[
 				'label'             => __('Label', 'magical-addons-for-elementor'),
 				'type'              => Controls_Manager::TEXT,
+				'dynamic'           => [
+					'active'   => true,
+				],
 				'default'           => __('After', 'magical-addons-for-elementor'),
 			]
 		);
@@ -864,7 +870,8 @@ class MgAddon_imgComparison extends \Elementor\Widget_Base
 				}
 
 
-				$this->add_render_attribute('before-image', 'alt', Control_Media::get_image_alt($settings['before_image']));
+				$before_alt = Control_Media::get_image_alt($settings['before_image']);
+				$this->add_render_attribute('before-image', 'alt', !empty($before_alt) ? $before_alt : (!empty($settings['before_label']) ? $settings['before_label'] : __('Before image', 'magical-addons-for-elementor')));
 				$this->add_render_attribute('before-image', 'title', Control_Media::get_image_title($settings['before_image']));
 				$this->add_render_attribute('before-image', 'class', 'mg-before-img');
 
@@ -879,7 +886,8 @@ class MgAddon_imgComparison extends \Elementor\Widget_Base
 					$this->add_render_attribute('after-image', 'src', $settings['after_image']['url']);
 				}
 
-				$this->add_render_attribute('after-image', 'alt', Control_Media::get_image_alt($settings['after_image']));
+				$after_alt = Control_Media::get_image_alt($settings['after_image']);
+				$this->add_render_attribute('after-image', 'alt', !empty($after_alt) ? $after_alt : (!empty($settings['after_label']) ? $settings['after_label'] : __('After image', 'magical-addons-for-elementor')));
 				$this->add_render_attribute('after-image', 'title', Control_Media::get_image_title($settings['after_image']));
 				$this->add_render_attribute('after-image', 'class', 'mg-after-img');
 

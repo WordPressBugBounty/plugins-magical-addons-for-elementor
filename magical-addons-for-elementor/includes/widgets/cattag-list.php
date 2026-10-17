@@ -186,7 +186,6 @@ class mgCatTag_List extends Widget_Base
 				'type' => Controls_Manager::ICONS,
 				'skin' => 'inline',
 				'label_block' => false,
-				'exclude_inline_options' => 'svg',
 				'default' => [
 					'value' => 'fas fa-chevron-right',
 					'library' => 'fa-solid',
@@ -585,7 +584,7 @@ class mgCatTag_List extends Widget_Base
 			$sub_class = $term->parent > 0 ? ' mg-sub-taxonomy' : '';
 
 			echo '<li class="' . esc_attr($sub_class) . '">';
-			echo '<a href="' . esc_url(get_term_link($term->term_id)) . '">';
+			echo '<a href="' . esc_url(get_term_link($term->term_id)) . '" aria-label="' . esc_attr($term->name) . '">';
 			echo '<span class="mg-tax-wrap">' . wp_kses_post($icon_wrapper) . '<span>' . esc_html($term->name) . '</span></span>';
 			echo $settings['show_tax_count'] ? '<span><span class="mg-term-count">&nbsp;(' . esc_html($term->count) . ')</span></span>' : '';
 			echo '</a>';

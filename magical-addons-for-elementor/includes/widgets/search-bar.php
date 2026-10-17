@@ -91,6 +91,9 @@ class MG_Addon_SearchBar extends Widget_Base
 			[
 				'label' => esc_html__('Placeholder', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'default' => esc_html__('Search...', 'magical-addons-for-elementor'),
 				'separator' => 'before',
 			]
@@ -159,6 +162,9 @@ class MG_Addon_SearchBar extends Widget_Base
 			[
 				'label' => esc_html__('Text', 'magical-addons-for-elementor'),
 				'type' => Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
 				'default' => 'Go',
 				'condition' => [
 					'search_btn_type' => 'text',
@@ -687,6 +693,35 @@ class MG_Addon_SearchBar extends Widget_Base
 				'name' => 'btn_typography',
 				'label' => esc_html__('Typography', 'magical-addons-for-elementor'),
 				'selector' => '{{WRAPPER}} .mg-search-form-submit',
+				'condition' => [
+					'search_btn_type' => 'text',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'btn_icon_size',
+			[
+				'label' => esc_html__('Icon Size', 'magical-addons-for-elementor'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 10,
+						'max' => 60,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 16,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .mg-search-form-submit i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mg-search-form-submit svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'search_btn_type' => 'icon',
+				],
 			]
 		);
 
@@ -735,11 +770,13 @@ class MG_Addon_SearchBar extends Widget_Base
 	{
 		$settings = $this->get_settings_for_display();
 
+		$btn_label = ('text' === $settings['search_btn_type'] && !empty($settings['search_btn_text'])) ? $settings['search_btn_text'] : esc_html__('Search', 'magical-addons-for-elementor');
 		$this->add_render_attribute(
 			'button',
 			[
 				'class' => 'mg-search-form-submit',
 				'type' => 'submit',
+				'aria-label' => esc_attr($btn_label),
 			]
 		);
 
@@ -750,8 +787,8 @@ class MG_Addon_SearchBar extends Widget_Base
 		if ('yes' === $settings['search_btn']) : ?>
 
 			<button <?php echo $this->get_render_attribute_string('button'); ?>>
-				<?php if ('icon' === $settings['search_btn_type'] && '' !== $settings['search_btn_icon']['value']) : ?>
-					<i class="<?php echo esc_attr($settings['search_btn_icon']['value']); ?>"></i>
+				<?php if ('icon' === $settings['search_btn_type'] && !empty($settings['search_btn_icon']['value'])) : ?>
+					<?php \Elementor\Icons_Manager::render_icon($settings['search_btn_icon'], ['aria-hidden' => 'true']); ?>
 				<?php elseif ('text' === $settings['search_btn_type'] && '' !== $settings['search_btn_text']) : ?>
 					<?php echo esc_html($settings['search_btn_text']); ?>
 				<?php endif; ?>
@@ -774,6 +811,7 @@ class MG_Addon_SearchBar extends Widget_Base
 				'type' => 'search',
 				'name' => 's',
 				'title' => esc_html__('Search', 'magical-addons-for-elementor'),
+				'aria-label' => esc_attr(!empty($settings['search_placeholder']) ? $settings['search_placeholder'] : esc_html__('Search', 'magical-addons-for-elementor')),
 				'value' => get_search_query(),
 			]
 		);
