@@ -1979,7 +1979,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                 <div class="mg-pcicontitle">
                     <# if (mg_pr_title && mgpr_icon_posotion==='middle' ) { #>
 
-                        <{{{ mg_pr_title_tag }}} {{{ view.getRenderAttributeString('mg_pr_title') }}}>{{{ mg_pr_title }}}</{{{ mg_pr_title_tag }}}>
+                        <{{{ mg_pr_title_tag }}} {{{ view.getRenderAttributeString('mg_pr_title') }}}>{{ mg_pr_title }}</{{{ mg_pr_title_tag }}}>
 
 
                         <# } #>
@@ -2000,7 +2000,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
 
                                     <# if (mg_pr_title && mgpr_icon_posotion==='top' ) { #>
 
-                                        <{{{ mg_pr_title_tag }}} {{{ view.getRenderAttributeString('mg_pr_title') }}}>{{{ mg_pr_title }}}</{{{ mg_pr_title_tag }}}>
+                                        <{{{ mg_pr_title_tag }}} {{{ view.getRenderAttributeString('mg_pr_title') }}}>{{ mg_pr_title }}</{{{ mg_pr_title_tag }}}>
 
                                         <# } #>
                 </div>
@@ -2015,19 +2015,19 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                                 var currency=matches[1]; // Non-digit part (currency)
                                 var price=matches[2]; // Numeric part (price)
                                 #>
-                                <strong>{{{ currency }}}</strong>{{{ price }}}
+                                <strong>{{ currency }}</strong>{{ price }}
                                 <# } else { #>
-                                    {{{ settings.mg_pr_price }}}
+                                    {{ settings.mg_pr_price }}
                                     <# } #>
                         </span>
                         <span {{{ view.getRenderAttributeString('mg_pr_price_text') }}}>
-                            {{{ settings.mg_pr_price_text }}}
+                            {{ settings.mg_pr_price_text }}
                         </span>
                     </p>
                     <# } #>
 
                         <# if (mg_pr_desc) { #>
-                            <p {{{ view.getRenderAttributeString('mg_pr_desc') }}}>{{{ mg_pr_desc }}}</p>
+                            <p {{{ view.getRenderAttributeString('mg_pr_desc') }}}>{{ mg_pr_desc }}</p>
                             <# } #>
 
                                 <# if (mg_pr_list_item && mg_pr_list_item_show) { #>
@@ -2044,7 +2044,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                                                                     <# } #>
                                                         </span>
                                                         <# } #>
-                                                            {{{ item.mg_pr_list_text }}}
+                                                            {{ item.mg_pr_list_text }}
                                                 </li>
                                                 <# }); #>
                                         </ul>
@@ -2060,13 +2060,13 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                                                         var currency=matches[1]; // Non-digit part (currency)
                                                         var price=matches[2]; // Numeric part (price)
                                                         #>
-                                                        <strong>{{{ currency }}}</strong>{{{ price }}}
+                                                        <strong>{{ currency }}</strong>{{ price }}
                                                         <# } else { #>
-                                                            {{{ settings.mg_pr_price }}}
+                                                            {{ settings.mg_pr_price }}
                                                             <# } #>
                                                 </span>
                                                 <span {{{ view.getRenderAttributeString('mg_pr_price_text') }}}>
-                                                    {{{ settings.mg_pr_price_text }}}
+                                                    {{ settings.mg_pr_price_text }}
                                                 </span>
                                             </p>
                                             <# } #>
@@ -2080,7 +2080,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
                                                                     <i class="{{{ settings.mg_pr_btn_selected_icon.value }}}"></i>
                                                                 </span>
                                                                 <# } #>
-                                                                    <span>{{{ mg_pr_btntitle }}}</span>
+                                                                    <span>{{ mg_pr_btntitle }}</span>
                                                                     <# if (mg_pr_icon_position==='right' ) { #>
                                                                         <span class="right">
                                                                             <i class="{{{ settings.mg_pr_btn_selected_icon.value }}}"></i>
@@ -2090,7 +2090,7 @@ class MgAddon_Pricing_Table extends \Elementor\Widget_Base
 
                                                         </a>
                                                         <# } else { #>
-                                                            <a href="{{{ mg_pr_btn_link.url }}}" class="mg-btn-text mg-btn" target="{{{ mg_pr_btn_link.is_external ? '_blank' : '' }}}" {{{ mg_pr_btn_link.nofollow ? 'rel="nofollow"' : '' }}}>{{{ mg_pr_btntitle }}}</a>
+                                                            <a href="{{{ mg_pr_btn_link.url }}}" class="mg-btn-text mg-btn" target="{{{ mg_pr_btn_link.is_external ? '_blank' : '' }}}" {{{ mg_pr_btn_link.nofollow ? 'rel="nofollow"' : '' }}}>{{ mg_pr_btntitle }}</a>
                                                             <# } #>
                                                 </div>
 

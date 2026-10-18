@@ -5,7 +5,7 @@ Donate link: https://wpthemespace.com/donation/
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -303,6 +303,13 @@ e.g.
 
 == Changelog ==
 
+= 1.5.3 =
+	* Security: Restricted Custom Code module and post type exclusively to administrators with 'manage_options' and 'unfiltered_html' capabilities.
+	* Security: Removed Mailchimp API key from frontend HTML data attributes and scripts.
+	* Security: Bounded Mailchimp AJAX subscription action to validated, authorized account list IDs with transient caching.
+	* Security: Escaped HTML output in Elementor editor templates across Pricing Table, Quote, Project Details, Section Title, Team Members, Video Card, and Timeline widgets to prevent stored XSS.
+	* Tested: 100% compatible with WordPress 7.1 and latest Elementor 3.x.
+
 = 1.5.2 =
 	* NEW: Built-in 100% Free Dynamic Tags Module for Elementor Free users (no Elementor Pro needed).
 	* Added: 16 native dynamic tags across 5 categories (Post Data, Meta & ACF, Site Info, User Info, Archive Data).
@@ -318,7 +325,7 @@ e.g.
 	* Improved: Accessibility enhancements across widgets (added aria-label attributes, image alt fallbacks, and dialog roles).
 	* Updated: Standardized icon controls to Elementor Icons Manager format (Controls_Manager::ICONS).
 	* Fixed: Typos and label inconsistencies ('MG Iocn List', 'Mbbile', 'Addintional Options').
-	* Tested: 100% compatible with WordPress 6.8 & 6.9 and latest Elementor 3.x.
+	* Tested: 100% compatible with WordPress 7.1 and latest Elementor 3.x.
 
 = 1.5.1 =
 	* Fixed: Elementor editor loading hang caused by accordion hook initialization timing (TypeError: Cannot read properties of undefined reading 'addAction').

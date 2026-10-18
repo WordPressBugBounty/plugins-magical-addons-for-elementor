@@ -1390,15 +1390,15 @@ class MgAddon_Team_Member extends \Elementor\Widget_Base
 												<div class="mg-team-content">
 													<div class="mg-single-team-details">
 														<# if (settings.mg_member_name) { #>
-															<{{ settings.mg_member_name_tag }} {{{ view.getRenderAttributeString( 'mg_member_name' ) }}}>{{{ settings.mg_member_name }}}</{{ settings.mg_member_name_tag }}>
+															<{{ settings.mg_member_name_tag }} {{{ view.getRenderAttributeString( 'mg_member_name' ) }}}>{{ settings.mg_member_name }}</{{ settings.mg_member_name_tag }}>
 															<# } #>
 																<# if (settings.mg_member_designation) { #>
-																	<span {{{ view.getRenderAttributeString( 'mg_member_designation' ) }}}>{{{ settings.mg_member_designation }}}</span>
+																	<span {{{ view.getRenderAttributeString( 'mg_member_designation' ) }}}>{{ settings.mg_member_designation }}</span>
 																	<# } #>
 
 																		<# if (settings.mg_show_description==='yes' && settings.mg_member_desc) { #>
 																			<p {{{ view.getRenderAttributeString('mg_member_desc') }}}>
-																				{{{ settings.mg_member_desc }}}
+																				{{ settings.mg_member_desc }}
 																			</p>
 																			<# } #>
 

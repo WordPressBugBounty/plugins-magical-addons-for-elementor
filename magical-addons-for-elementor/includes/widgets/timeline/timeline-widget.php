@@ -988,25 +988,25 @@ class MgAddon_Timeline_Widget extends \Elementor\Widget_Base
 																						<div class="timeline__item">
 																							<div class="timeline__content">
 																								<# if (value.mgtl_date && mgtl_date_show==='yes' && mgtl_date_position==='top' ) { #>
-																									<div class="mgt-time"><span {{{ view.getRenderAttributeString(key3) }}}>{{{ value.mgtl_date }}}</span></div>
+																									<div class="mgt-time"><span {{{ view.getRenderAttributeString(key3) }}}>{{ value.mgtl_date }}</span></div>
 																									<# } #>
 
 																										<# if (value.mgtl_title && mgtl_title_show==='yes' ) { #>
-																											<{{{ mgtl_title_tag }}} {{{ view.getRenderAttributeString(key1) }}}>{{{ value.mgtl_title }}}</{{{ mgtl_title_tag }}}>
+																											<{{{ mgtl_title_tag }}} {{{ view.getRenderAttributeString(key1) }}}>{{ value.mgtl_title }}</{{{ mgtl_title_tag }}}>
 																											<# } #>
 
 																												<# if (value.mgtl_date && mgtl_date_show==='yes' && mgtl_date_position==='middle' ) { #>
-																													<div class="mgt-time"><span {{{ view.getRenderAttributeString(key3) }}}>{{{ value.mgtl_date }}}</span></div>
+																													<div class="mgt-time"><span {{{ view.getRenderAttributeString(key3) }}}>{{ value.mgtl_date }}</span></div>
 																													<# } #>
 
 																														<# if (value.mgtl_desc && mgtl_desc_show==='yes' ) { #>
 																															<div class="mgt-content">
-																																<p {{{ view.getRenderAttributeString(key2) }}}>{{{ value.mgtl_desc }}}</p>
+																																<p {{{ view.getRenderAttributeString(key2) }}}>{{ value.mgtl_desc }}</p>
 																															</div>
 																															<# } #>
 
 																																<# if (value.mgtl_date && mgtl_date_show==='yes' && mgtl_date_position==='bottom' ) { #>
-																																	<div class="mgt-time"><span {{{ view.getRenderAttributeString(key3) }}}>{{{ value.mgtl_date }}}</span></div>
+																																	<div class="mgt-time"><span {{{ view.getRenderAttributeString(key3) }}}>{{ value.mgtl_date }}</span></div>
 																																	<# } #>
 																							</div>
 																						</div>

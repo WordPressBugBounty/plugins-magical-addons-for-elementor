@@ -72,7 +72,18 @@ class Magical_Custom_Code
             'show_ui'             => true,
             'show_in_menu'        => false,
             'query_var'           => true,
-            'capability_type'     => 'post',
+            'capability_type'     => array('magical_custom_code', 'magical_custom_codes'),
+            'map_meta_cap'        => false,
+            'capabilities'        => array(
+                'edit_post'          => 'manage_options',
+                'read_post'          => 'manage_options',
+                'delete_post'        => 'manage_options',
+                'edit_posts'         => 'manage_options',
+                'edit_others_posts'  => 'manage_options',
+                'publish_posts'      => 'manage_options',
+                'read_private_posts' => 'manage_options',
+                'create_posts'       => 'manage_options',
+            ),
             'has_archive'         => false,
             'hierarchical'        => false,
             'menu_position'       => null,
@@ -88,7 +99,7 @@ class Magical_Custom_Code
             'magical-addons',
             __('Custom Code', 'magical-addons-for-elementor'),
             __('Custom Code', 'magical-addons-for-elementor'),
-            'edit_pages',
+            'manage_options',
             'edit.php?post_type=' . $this->post_type
         );
     }
@@ -165,6 +176,11 @@ class Magical_Custom_Code
 
         if (!empty($custom_code_posts)) {
             foreach ($custom_code_posts as $post) {
+                // Security check: Only output code created by an administrator
+                if (!user_can($post->post_author, 'manage_options')) {
+                    continue;
+                }
+
                 $conditions = get_post_meta($post->ID, '_magical_code_conditions', true);
 
                 if (!$this->check_conditions($conditions)) {

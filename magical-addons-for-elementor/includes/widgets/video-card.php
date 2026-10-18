@@ -1337,19 +1337,19 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 				<# if (mg_cvideo_contetnt !=='' ) { #>
 					<div class="mg-card-text">
 						<# if (settings.mg_cvideo_subtitle_show && mg_vcard_subtile_position==='top' ) { #>
-							<h5 {{{ view.getRenderAttributeString('mg_vcard_subtitle') }}}>{{{ mg_vcard_subtitle }}}</h5>
+							<h5 {{{ view.getRenderAttributeString('mg_vcard_subtitle') }}}>{{ mg_vcard_subtitle }}</h5>
 							<# } #>
 
 								<# if (mg_vcard_title !=='' ) { #>
-									<{{{ mg_vcard_title_tag }}} {{{ view.getRenderAttributeString('mg_vcard_title') }}}>{{{ mg_vcard_title }}}</{{{ mg_vcard_title_tag }}}>
+									<{{{ mg_vcard_title_tag }}} {{{ view.getRenderAttributeString('mg_vcard_title') }}}>{{ mg_vcard_title }}</{{{ mg_vcard_title_tag }}}>
 									<# } #>
 
 										<# if (settings.mg_cvideo_subtitle_show && mg_vcard_subtile_position==='bottom' ) { #>
-											<h5 class="mgc-subtitle">{{{ mg_vcard_subtitle }}}</h5>
+											<h5 class="mgc-subtitle">{{ mg_vcard_subtitle }}</h5>
 											<# } #>
 
 												<# if (mg_vcard_desc !=='' ) { #>
-													<p {{{ view.getRenderAttributeString('mg_vcard_desc') }}}>{{{ mg_vcard_desc }}}</p>
+													<p {{{ view.getRenderAttributeString('mg_vcard_desc') }}}>{{ mg_vcard_desc }}</p>
 													<# } #>
 
 														<# if (mg_vcard_btn_use !=='' ) { #>
@@ -1361,14 +1361,14 @@ class MgAddon_Video_Card extends \Elementor\Widget_Base
 
 																			</i> </span>
 																		<# } #>
-																			<span>{{{ mg_vcard_btn_title }}}</span>
+																			<span>{{ mg_vcard_btn_title }}</span>
 																			<# if (mg_vcardbtn_icon_position==='right' ) { #>
 																				<span class="right"><i class="{{{ settings.mg_vcard_btn_selected_icon.value }}}"></i></span>
 																				<# } #>
 																</a>
 																<# } else { #>
 																	<a href="{{{ mg_vcard_btn_link.url }}}" {{{ view.getRenderAttributeString('mg_vcard_btn_title') }}} {{{ (mg_vcard_btn_link.is_external) ? 'target="_blank"' : '' }}} {{{ (mg_vcard_btn_link.nofollow) ? 'rel="nofollow"' : '' }}}>
-																		{{{ mg_vcard_btn_title }}}
+																		{{ mg_vcard_btn_title }}
 																	</a>
 																	<# } #>
 																		<# } #>

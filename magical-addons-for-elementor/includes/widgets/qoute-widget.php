@@ -1250,7 +1250,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 					
 					<# if (settings.mgq_icon_type === 'image') { #>
 					<figure class="mg-quote-img">						
-					<img src="{{{ mgblock_image_url }}}" alt="{{{ settings.mgq_name || 'Quote Author' }}}" />
+					<img src="{{{ mgblock_image_url }}}" alt="{{ settings.mgq_name || 'Quote Author' }}" />
 					</figure>
 					<# } else { #>
 					<div class="mgq-quote-icon">						
@@ -1266,7 +1266,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 									<i class="{{{ settings.mgq_icon_top.value }}}"></i>
 								</span>
 							<# } #>
-							{{{ settings.mgq_des }}}
+							{{ settings.mgq_des }}
 							<# if (settings.mgq_show_icon_bottom) { #>
 								<span class="mcq-icon-bottom">
 									<i class="{{{ settings.mgq_icon_bottom.value }}}"></i>									
@@ -1278,7 +1278,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 			</div>
 
 				<figcaption class="mg-quote-author">
-					{{{ settings.mgq_name }}} <cite>{{{ settings.mgq_place }}}</cite>
+					{{ settings.mgq_name }} <cite>{{ settings.mgq_place }}</cite>
 				</figcaption>
 			</div>
 		<# } else if (mgq_style_one) { #>
@@ -1291,7 +1291,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 									<i class="{{{ settings.mgq_icon_top.value }}}"></i>
 								</span>
 							<# } #>
-							{{{ settings.mgq_des }}}
+							{{ settings.mgq_des }}
 							<# if (settings.mgq_show_icon_bottom) { #>
 								<span class="mcq-icon-bottom">
 									<i class="{{{ settings.mgq_icon_bottom.value }}}"></i>									
@@ -1301,7 +1301,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 					</blockquote>
 				</div>
 				<figcaption class="mg-quote-author">
-					{{{ settings.mgq_name }}} <cite>{{{ settings.mgq_place }}}</cite>
+					{{ settings.mgq_name }} <cite>{{ settings.mgq_place }}</cite>
 				</figcaption>
 			</div>
 		<# } else if (mgq_style_three) { #>
@@ -1314,7 +1314,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 									<i class="{{{ settings.mgq_icon_top.value }}}"></i>
 								</span>
 							<# } #>
-							{{{ settings.mgq_des }}}
+							{{ settings.mgq_des }}
 							<# if (settings.mgq_show_icon_bottom) { #>
 								<span class="mcq-icon-bottom">
 									<i class="{{{ settings.mgq_icon_bottom.value }}}"></i>									
@@ -1326,7 +1326,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 				<div class="mgq-author">
 					<# if (settings.mgq_icon_type === 'image') { #>
 						<figure class="mg-quote-img">
-                			<img src="{{{ mgblock_image_url }}}" alt="{{{ settings.mgq_name || 'Quote Author' }}}" />
+                			<img src="{{{ mgblock_image_url }}}" alt="{{ settings.mgq_name || 'Quote Author' }}" />
 						</figure>
 					<# } else { #>
 						<div class="mgq-quote-icon">
@@ -1334,7 +1334,7 @@ class MgBlockquote extends \Elementor\Widget_Base
 						</div>
 					<# } #>
 					<figcaption class="mg-quote-author">
-						{{{ settings.mgq_name }}} <cite>{{{ settings.mgq_place }}}</cite>
+						{{ settings.mgq_name }} <cite>{{ settings.mgq_place }}</cite>
 					</figcaption>
 				</div>
 			</div>

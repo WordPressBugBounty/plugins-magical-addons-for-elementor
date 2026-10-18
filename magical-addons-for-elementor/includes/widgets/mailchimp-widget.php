@@ -1101,9 +1101,6 @@ class mgproMailchimp extends Widget_Base
 			'data-mailchimp-id' => [
 				esc_attr($this->get_id()),
 			],
-			'data-api-key' => [
-				esc_attr($api_key),
-			],
 			'data-list-id' => [
 				$settings['mailchimp_lists'],
 			],

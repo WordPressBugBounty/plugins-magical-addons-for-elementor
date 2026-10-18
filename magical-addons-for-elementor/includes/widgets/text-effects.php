@@ -398,15 +398,15 @@ class MgAddon_text_effects extends \Elementor\Widget_Base
 	{
 	?>
 		<# var title=settings.title; view.addInlineEditingAttributes( 'title' ); if ( '' !==settings.link.url ) { #>
-			<div class="mg-text-effects {{{ settings.mg_text_effect }}}">
+			<div class="mg-text-effects {{ settings.mg_text_effect }}">
 				<a href="{{{settings.link.url}}}">
-					<{{{ settings.header_size }}}><span {{{view.getRenderAttributeString( 'title' )}}}>{{{ settings.title }}}</span></{{{ settings.header_size }}}>
+					<{{{ settings.header_size }}}><span {{{view.getRenderAttributeString( 'title' )}}}>{{ settings.title }}</span></{{{ settings.header_size }}}>
 				</a>
 			</div>
 			<# } else{ #>
-				<div class="mg-text-effects {{{ settings.mg_text_effect }}}">
+				<div class="mg-text-effects {{ settings.mg_text_effect }}">
 					<{{{ settings.header_size }}}>
-						<span {{{view.getRenderAttributeString( 'title' )}}}>{{{ settings.title }}} </span>
+						<span {{{view.getRenderAttributeString( 'title' )}}}>{{ settings.title }} </span>
 					</{{{ settings.header_size }}}>
 				</div>
 				<# } #>

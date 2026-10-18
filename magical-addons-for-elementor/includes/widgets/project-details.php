@@ -914,9 +914,9 @@ class BkProjectDetails extends \Elementor\Widget_Base
             <div class="project-details">
                 <# _.each( settings.project_items, function( item ) { #>
                     <div class="project-item">
-                        <span class="project-label">{{{ item.project_label }}}</span>
+                        <span class="project-label">{{ item.project_label }}</span>
                         <span class="colon">:</span>
-                        <span class="project-value">{{{ item.project_value }}}</span>
+                        <span class="project-value">{{ item.project_value }}</span>
                     </div>
                     <# }); #>
             </div>

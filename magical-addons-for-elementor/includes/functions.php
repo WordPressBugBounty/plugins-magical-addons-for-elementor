@@ -442,13 +442,18 @@ if (!function_exists('mg_mailchimp_lists')) {
 
     function mg_mailchimp_lists()
     {
-        $lists = [];
-        // $api_key = '7ce60d52a16a614cf2a58923e0ba895b-us5';
         $api_key = mg_get_extra_option('mg_mailchimp_api');
         if (empty($api_key)) {
-            return $lists;
+            return [];
         }
 
+        $transient_key = 'mg_mc_lists_' . md5($api_key);
+        $cached_lists  = get_transient($transient_key);
+        if (false !== $cached_lists && is_array($cached_lists)) {
+            return $cached_lists;
+        }
+
+        $lists = [];
         $response = wp_safe_remote_get('https://' . substr(
             $api_key,
             strpos($api_key, '-') + 1
@@ -457,17 +462,19 @@ if (!function_exists('mg_mailchimp_lists')) {
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Basic ' . base64_encode('user:' . $api_key),
             ],
+            'timeout' => 15,
         ]);
 
         if (!is_wp_error($response)) {
-            $response = json_decode(wp_remote_retrieve_body($response));
+            $data = json_decode(wp_remote_retrieve_body($response));
 
-            if (!empty($response) && !empty($response->lists)) {
+            if (!empty($data) && !empty($data->lists)) {
                 $lists[''] = __('Select One', 'magical-addons-for-elementor');
 
-                for ($i = 0; $i < count($response->lists); $i++) {
-                    $lists[$response->lists[$i]->id] = $response->lists[$i]->name;
+                for ($i = 0; $i < count($data->lists); $i++) {
+                    $lists[$data->lists[$i]->id] = $data->lists[$i]->name;
                 }
+                set_transient($transient_key, $lists, HOUR_IN_SECONDS);
             }
         }
 
@@ -488,6 +495,32 @@ if (!function_exists('mg_mc_form')) {
         }
 
         $api_key = mg_get_extra_option('mg_mailchimp_api');
+        if (empty($api_key)) {
+            wp_send_json([
+                'status' => esc_html__('Mailchimp API key is not configured.', 'magical-addons-for-elementor'),
+            ]);
+            wp_die();
+        }
+
+        $list_id = isset($_POST['listId']) ? sanitize_text_field(wp_unslash($_POST['listId'])) : '';
+        $valid_lists = mg_mailchimp_lists();
+
+        // Verify that list_id belongs to the site's approved Mailchimp account lists
+        if (empty($list_id) || empty($valid_lists) || !array_key_exists($list_id, $valid_lists)) {
+            wp_send_json([
+                'status' => esc_html__('Invalid or unauthorized list ID.', 'magical-addons-for-elementor'),
+            ]);
+            wp_die();
+        }
+
+        $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
+        if (empty($email) || !is_email($email)) {
+            wp_send_json([
+                'status' => esc_html__('Please provide a valid email address.', 'magical-addons-for-elementor'),
+            ]);
+            wp_die();
+        }
+
         $fname = isset($_POST['firstname']) ? sanitize_text_field(wp_unslash($_POST['firstname'])) : '';
         $lname = isset($_POST['lastname']) ? sanitize_text_field(wp_unslash($_POST['lastname'])) : '';
 
@@ -495,9 +528,6 @@ if (!function_exists('mg_mc_form')) {
             'FNAME' => !empty($fname) ? $fname : '',
             'LNAME' => !empty($lname) ? $lname : '',
         );
-
-        $list_id = isset($_POST['listId']) ? sanitize_text_field(wp_unslash($_POST['listId'])) : '';
-        $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
 
         $response = wp_remote_post(
             'https://' . substr($api_key, strpos(
@@ -522,17 +552,23 @@ if (!function_exists('mg_mc_form')) {
             $response = json_decode(wp_remote_retrieve_body($response));
 
             if (!empty($response)) {
-                if ($response->status == 'subscribed') {
+                if (isset($response->status) && $response->status == 'subscribed') {
                     wp_send_json([
                         'status' => 'subscribed',
                     ]);
                 } else {
+                    $error_title = isset($response->title) ? esc_html($response->title) : esc_html__('Subscription failed', 'magical-addons-for-elementor');
                     wp_send_json([
-                        'status' => $response->title,
+                        'status' => $error_title,
                     ]);
                 }
             }
+        } else {
+            wp_send_json([
+                'status' => esc_html__('Connection error. Please try again later.', 'magical-addons-for-elementor'),
+            ]);
         }
+        wp_die();
     }
 
     add_action('wp_ajax_mg_mc_form', 'mg_mc_form');

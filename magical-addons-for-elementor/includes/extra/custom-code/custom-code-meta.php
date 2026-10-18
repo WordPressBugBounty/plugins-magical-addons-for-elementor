@@ -182,7 +182,7 @@ class Magical_Custom_Code_Meta
             return $post_id;
         }
 
-        if (!current_user_can('edit_post', $post_id)) {
+        if (!current_user_can('manage_options')) {
             return $post_id;
         }
 
@@ -207,9 +207,13 @@ class Magical_Custom_Code_Meta
             }
         }
 
-        // Save code content
+        // Save code content - only users with unfiltered_html can save raw script tags
         if (isset($_POST['magical_code_content'])) {
-            update_post_meta($post_id, '_magical_code_content', wp_unslash($_POST['magical_code_content']));
+            if (current_user_can('unfiltered_html')) {
+                update_post_meta($post_id, '_magical_code_content', wp_unslash($_POST['magical_code_content']));
+            } else {
+                update_post_meta($post_id, '_magical_code_content', wp_kses_post(wp_unslash($_POST['magical_code_content'])));
+            }
         }
 
         // Save conditions - restrict in free version

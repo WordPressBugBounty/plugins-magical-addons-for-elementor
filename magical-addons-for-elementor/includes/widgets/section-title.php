@@ -1262,18 +1262,16 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 										<# } #>
 
 											<# if ( settings.mgsec_subtitle_show && settings.mgsec_subtitle && settings.mgsecsub_position==='top' ) { #>
-												<h5 {{{ view.getRenderAttributeString( 'mgsec_subtitle' ) }}}><span>{{{ mgsec_subtitle }}}</span></h5>
+												<h5 {{{ view.getRenderAttributeString( 'mgsec_subtitle' ) }}}><span>{{ mgsec_subtitle }}</span></h5>
 												<# } #>
 
 													<# if ( mgsec_title ) { #>
-														<{{ settings.mgsectitle_tag }} {{{ view.getRenderAttributeString( 'mgsec_title' ) }}}>{{{ mgsec_title }}}</{{ settings.mgsectitle_tag }}>
+														<{{ settings.mgsectitle_tag }} {{{ view.getRenderAttributeString( 'mgsec_title' ) }}}>{{ mgsec_title }}</{{ settings.mgsectitle_tag }}>
 														<# } #>
 
 															<# if ( settings.mgsec_subtitle_show && settings.mgsec_subtitle && settings.mgsecsub_position==='bottom' ) { #>
-																<h5 {{{ view.getRenderAttributeString( 'mgsec_subtitle' ) }}}>{{{ mgsec_subtitle }}}</h5>
+																<h5 {{{ view.getRenderAttributeString( 'mgsec_subtitle' ) }}}>{{ mgsec_subtitle }}</h5>
 																<# } #>
-
-
 
 																	<# if ( settings.mgsecborder_show && settings.mgsecborder_position==='bottom' ) { #>
 																		<# if ( settings.mgsecborder_type==='border' ) { #>
@@ -1300,7 +1298,7 @@ class MgAddonSectionTitle extends \Elementor\Widget_Base
 
 
 																								<# if ( settings.mgsecdesc_show && mgsec_desc ) { #>
-																									<p {{{ view.getRenderAttributeString( 'mgsec_desc' ) }}}>{{{ mgsec_desc }}}</p>
+																									<p {{{ view.getRenderAttributeString( 'mgsec_desc' ) }}}>{{ mgsec_desc }}</p>
 																									<# } #>
 			</div>
 	<?php
